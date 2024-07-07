@@ -1,12 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcifbpe8tn1uf"]
+[gd_scene load_steps=3 format=3 uid="uid://dcifbpe8tn1uf"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4lojw"]
+[ext_resource type="PackedScene" uid="uid://dwi7bdg27wpbr" path="res://wizard.tscn" id="1_5ripx"]
+[ext_resource type="Script" path="res://CharacterBody2D2.gd" id="2_pr0f2"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_5ripx")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("CapsuleShape2D_4lojw")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+script = ExtResource("2_pr0f2")
