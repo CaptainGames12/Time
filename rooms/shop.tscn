@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj3g4s7hfeffe"]
+
+[ext_resource type="Texture2D" uid="uid://dus1m3ky3u21l" path="res://icon.svg" id="1_c3w0s"]
+[ext_resource type="Script" path="res://rooms/shop.gd" id="1_gei0l"]
+[ext_resource type="PackedScene" uid="uid://d3u37u2qf608j" path="res://scene_changer.tscn" id="3_5lrum"]
+[ext_resource type="PackedScene" uid="uid://dwi7bdg27wpbr" path="res://wizard.tscn" id="4_boufx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uk8tc"]
+size = Vector2(238, 118)
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_gei0l")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(323, 342)
+scale = Vector2(0.484375, 0.492188)
+texture = ExtResource("1_c3w0s")
+
+[node name="Icon2" type="Sprite2D" parent="."]
+position = Vector2(581, 348)
+scale = Vector2(0.46875, 0.460938)
+texture = ExtResource("1_c3w0s")
+
+[node name="Icon3" type="Sprite2D" parent="."]
+position = Vector2(907, 344)
+scale = Vector2(0.445312, 0.445312)
+texture = ExtResource("1_c3w0s")
+
+[node name="Icon4" type="Sprite2D" parent="."]
+position = Vector2(1013, 112)
+texture = ExtResource("1_c3w0s")
+
+[node name="SceneChanger" parent="." instance=ExtResource("3_5lrum")]
+position = Vector2(568, 664)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChanger"]
+position = Vector2(-1, 49)
+shape = SubResource("RectangleShape2D_uk8tc")
+
+[node name="Player" parent="." instance=ExtResource("4_boufx")]
+position = Vector2(558, 584)
+
+[connection signal="body_entered" from="SceneChanger" to="." method="_on_scene_changer_body_entered"]
