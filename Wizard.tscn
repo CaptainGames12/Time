@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dwi7bdg27wpbr"]
 
-[ext_resource type="Script" path="res://Wizard.gd" id="1_c83oj"]
+[ext_resource type="Script" path="res://Player.gd" id="1_c83oj"]
 [ext_resource type="Texture2D" uid="uid://chptem8q85bdn" path="res://AnimationSheet_Character.png" id="2_gakbh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4lojw"]
@@ -29,7 +29,7 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 process_mode = 3
 script = ExtResource("1_c83oj")
 
