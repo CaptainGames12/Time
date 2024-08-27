@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dj3g4s7hfeffe"]
+[gd_scene load_steps=5 format=3 uid="uid://dj3g4s7hfeffe"]
 
 [ext_resource type="Texture2D" uid="uid://dus1m3ky3u21l" path="res://icon.svg" id="1_c3w0s"]
 [ext_resource type="Script" path="res://rooms/shop.gd" id="1_gei0l"]
 [ext_resource type="PackedScene" uid="uid://d3u37u2qf608j" path="res://scene_changer.tscn" id="3_5lrum"]
-[ext_resource type="PackedScene" uid="uid://dwi7bdg27wpbr" path="res://wizard.tscn" id="4_boufx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uk8tc"]
 size = Vector2(238, 118)
@@ -32,12 +31,15 @@ texture = ExtResource("1_c3w0s")
 
 [node name="SceneChanger" parent="." instance=ExtResource("3_5lrum")]
 position = Vector2(568, 664)
+scene = "main"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChanger"]
 position = Vector2(-1, 49)
 shape = SubResource("RectangleShape2D_uk8tc")
 
-[node name="Player" parent="." instance=ExtResource("4_boufx")]
-position = Vector2(558, 584)
+[node name="Entrances" type="Node2D" parent="."]
+position = Vector2(566, 602)
 
-[connection signal="body_entered" from="SceneChanger" to="." method="_on_scene_changer_body_entered"]
+[node name="any" type="Marker2D" parent="Entrances"]
+
+[connection signal="body_entered" from="SceneChanger" to="SceneChanger" method="_on_body_entered"]

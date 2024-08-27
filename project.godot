@@ -17,18 +17,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SceneManager="*res://addons/scene_manager/scene_manager.tscn"
-Scenes="*res://addons/scene_manager/scenes.gd"
+SceneManager="*res://Scene_Manager.gd"
 
 [editor]
 
 movie_writer/movie_file="/home/capgames/GodotProjects/Time/stop.avi"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/scene_manager/plugin.cfg")
 
 [input]
 

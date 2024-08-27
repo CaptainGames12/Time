@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 var SPEED = 300
 @onready var fireball = preload("res://fireball.tscn")
 var window
