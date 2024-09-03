@@ -14,6 +14,7 @@ y_sort_enabled = true
 script = ExtResource("1_4ufej")
 
 [node name="Player" parent="." instance=ExtResource("1_28m1h")]
+position = Vector2(590, 374)
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(573, 294)
