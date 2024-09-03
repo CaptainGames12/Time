@@ -1,8 +1,8 @@
 class_name Player extends CharacterBody2D
 var SPEED = 300
 @onready var fireball = preload("res://fireball.tscn")
+@onready var sprite = $AnimatedSprite2D
 var window
-
 	
 	
 func _process(delta):
@@ -14,7 +14,10 @@ func _process(delta):
 		attack()
 	if Input.is_action_just_pressed("time_stop"):
 		get_tree().paused = !get_tree().paused
-	
+	if velocity.x < 0:
+		sprite.flip_h = true
+	if velocity.x > 0:
+		sprite.flip_h = false
 		
 	move_and_slide()
 func attack():
