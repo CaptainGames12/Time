@@ -214,7 +214,7 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_phkc5")
 animation = &"right"
 autoplay = "default"
-frame_progress = 0.0202866
+frame_progress = 0.844612
 
 [node name="Detection" type="Area2D" parent="."]
 collision_mask = 2

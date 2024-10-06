@@ -16,4 +16,3 @@ func position_player():
 	for entries in entrance.get_children():
 		if entries is Marker2D and entries.name == "any" or last_scene == "any":
 			player.global_position = entries.global_position
-
