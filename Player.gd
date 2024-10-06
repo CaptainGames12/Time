@@ -30,6 +30,3 @@ func attack():
 		
 	
 	
-
-
-
