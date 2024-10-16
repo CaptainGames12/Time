@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwi7bdg27wpbr"]
+
+[ext_resource type="Script" path="res://Wizard/Player.gd" id="1_23xfq"]
+[ext_resource type="Texture2D" uid="uid://chptem8q85bdn" path="res://Wizard/AnimationSheet_Character.png" id="2_gakbh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4lojw"]
+radius = 23.0
+height = 72.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tacoe"]
+atlas = ExtResource("2_gakbh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4t2o"]
+atlas = ExtResource("2_gakbh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fsmc0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tacoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4t2o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+process_mode = 3
+collision_layer = 3
+script = ExtResource("1_23xfq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visibility_layer = 3
+shape = SubResource("CapsuleShape2D_4lojw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.90735e-06, -2.86102e-06)
+scale = Vector2(1.9375, 1.9375)
+sprite_frames = SubResource("SpriteFrames_fsmc0")
+autoplay = "default"
