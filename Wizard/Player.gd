@@ -1,18 +1,25 @@
-class_name Player extends CharacterBody2D
+class_name Player 
+extends CharacterBody2D
 var SPEED = 300
 @onready var fireball = preload("res://Wizard/fireball.tscn")
 @onready var sprite = $AnimatedSprite2D
-var window
+
 @onready var stamina: TextureProgressBar = $CanvasLayer/Stamina
 @onready var timer: Timer = $Timer
+@onready var healthbar:= $CanvasLayer/Health
+func _ready() -> void:
+	healthbar.max_value =10
+	healthbar.value = 10
+
+
 
 	
-	
 func _process(delta):
+	
 	velocity.x = (Input.get_action_strength("right")-Input.get_action_strength("left"))*SPEED
 	velocity.y = (Input.get_action_strength("down")-Input.get_action_strength("up"))*SPEED
 	velocity.normalized()
-	window = get_viewport_rect().size
+	
 	if Input.is_action_just_pressed("mouse"):
 		attack()
 	if Input.is_action_just_pressed("time_stop"):

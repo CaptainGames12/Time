@@ -4,11 +4,13 @@ extends CharacterBody2D
 @export var speed = 60
 var player = null
 var playerIsHere = false
+var attack = false
 func _on_detection_body_entered(body):
 	player=body
 	playerIsHere = true
 
 func _physics_process(delta):
+	
 	if playerIsHere:
 		position += (player.position - position)/speed
 		if player.position.y > position.y:
@@ -26,5 +28,8 @@ func _on_detection_body_exited(body):
 	sprite.play("default")
 
 
+
 func _on_attack_body_entered(body):
-	body.queue_free()
+	body.healthbar.value -=1
+	if body.healthbar.value <= 0:
+		body.queue_free()
