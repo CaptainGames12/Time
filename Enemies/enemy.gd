@@ -1,30 +1,40 @@
 extends CharacterBody2D
+@onready var treasure: Sprite2D = $"../Treasure"
 
 @onready var sprite = $AnimatedSprite2D
-@export var speed = 60
-var player = null
-var playerIsHere = false
+@export var speed = 200
+
+var target = null
+var targetIsHere = false
 var attack = false
+var tresDistance = null
+var targetDistance = null
+var dist = false
 func _on_detection_body_entered(body):
-	player=body
-	playerIsHere = true
+	target=body
+	targetIsHere = true
 
 func _physics_process(delta):
-	
-	if playerIsHere:
-		position += (player.position - position)/speed
-		if player.position.y > position.y:
+	if target!=null and treasure != null:
+		tresDistance = (treasure.position - position)
+		targetDistance = (target.position - position)  
+		dist = tresDistance<targetDistance
+	if dist and treasure != null:
+		position += (treasure.position - position)/speed
+	elif targetIsHere:
+		position += (target.position - position)/speed
+		if target.position.y > position.y:
 			sprite.play("down")
-		elif player.position.x< position.x:
+		elif target.position.x< position.x:
 			sprite.play("left")
 			sprite.flip_h = true
-		elif player.position.x>position.x:
+		elif target.position.x>position.x:
 			sprite.play("right")
 			sprite.flip_h = false
 			
 func _on_detection_body_exited(body):
-	player=null
-	playerIsHere = false
+	target=null
+	targetIsHere= false
 	sprite.play("default")
 
 
