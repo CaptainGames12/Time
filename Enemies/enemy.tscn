@@ -199,7 +199,7 @@ radius = 693.0
 height = 1386.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tljep"]
-size = Vector2(18, 31)
+size = Vector2(26, 54)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g3c5e"]
 radius = 33.3766
@@ -224,6 +224,7 @@ shape = SubResource("CapsuleShape2D_5bivi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -6)
+scale = Vector2(1.17932, 0.887707)
 shape = SubResource("RectangleShape2D_tljep")
 
 [node name="Attack" type="Area2D" parent="."]
