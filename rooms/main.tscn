@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dcifbpe8tn1uf"]
+[gd_scene load_steps=25 format=4 uid="uid://dcifbpe8tn1uf"]
 
 [ext_resource type="Script" path="res://rooms/main.gd" id="1_4ufej"]
 [ext_resource type="PackedScene" uid="uid://dwi7bdg27wpbr" path="res://Wizard/Wizard.tscn" id="1_28m1h"]
@@ -8,10 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://dmrk7fnn3wb0j" path="res://Health/Healthbar.tscn" id="5_0dchd"]
 [ext_resource type="PackedScene" uid="uid://d3u37u2qf608j" path="res://scene_manager/scene_changer.tscn" id="5_jon5i"]
 [ext_resource type="Texture2D" uid="uid://c1bj4spvk0dm5" path="res://crystal.png" id="6_8j1m6"]
+[ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://PixelatedEleganceRegular-ovyAA.ttf" id="6_qmpgk"]
+[ext_resource type="Texture2D" uid="uid://cx35hpaer8iyo" path="res://money.png" id="7_7hk6n"]
 [ext_resource type="Script" path="res://treasure.gd" id="7_vfroq"]
+[ext_resource type="Script" path="res://rooms/Manager.gd" id="7_xohk7"]
 [ext_resource type="Texture2D" uid="uid://cat2kysforxw4" path="res://assets/Texture/TX Tileset Grass.png" id="9_g1fvg"]
 [ext_resource type="Texture2D" uid="uid://c8m0u7c77i57n" path="res://assets/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Tiles.png" id="9_n7q3b"]
 [ext_resource type="Texture2D" uid="uid://pbcy80mx4t18" path="res://assets/Pixel Crawler - FREE - 1.8/Environment/Green Woods/Assets/Trees.png" id="10_t7v73"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_40i0a"]
+font = ExtResource("6_qmpgk")
+font_size = 42
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qshk"]
 
@@ -597,7 +604,8 @@ texture = ExtResource("10_t7v73")
 8:21/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_mp1vx"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 5
+physics_layer_0/collision_mask = 5
 sources/0 = SubResource("TileSetAtlasSource_1xixw")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ynuw"]
@@ -623,7 +631,6 @@ script = ExtResource("1_4ufej")
 
 [node name="Player" parent="." instance=ExtResource("1_28m1h")]
 position = Vector2(590, 374)
-collision_layer = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("3_2iv3q")
@@ -643,6 +650,20 @@ offset_top = 8.0
 offset_right = 42.0
 offset_bottom = 9.0
 
+[node name="Label" type="Label" parent="Player/CanvasLayer"]
+offset_left = 1037.0
+offset_top = 29.0
+offset_right = 1077.0
+offset_bottom = 67.0
+text = "0"
+label_settings = SubResource("LabelSettings_40i0a")
+script = ExtResource("7_xohk7")
+
+[node name="Money" type="Sprite2D" parent="Player/CanvasLayer"]
+position = Vector2(1094, 33)
+scale = Vector2(2.47213, 2.16086)
+texture = ExtResource("7_7hk6n")
+
 [node name="Timer" type="Timer" parent="Player"]
 wait_time = 0.5
 
@@ -655,6 +676,7 @@ script = ExtResource("7_vfroq")
 [node name="Area2D" type="Area2D" parent="Treasure"]
 scale = Vector2(0.485731, 0.605548)
 collision_layer = 2
+collision_mask = 4
 priority = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Treasure/Area2D"]
@@ -668,36 +690,6 @@ position = Vector2(173, 558)
 
 [node name="Enemy3" parent="." instance=ExtResource("3_qj0uw")]
 position = Vector2(139, 343)
-
-[node name="Enemy4" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(139, 343)
-
-[node name="Enemy5" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(937, 313)
-
-[node name="Enemy6" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(139, 343)
-
-[node name="Enemy7" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(900, 519)
-
-[node name="Enemy8" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(26, 154)
-
-[node name="Enemy9" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(160, 37)
-
-[node name="Enemy10" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(766, 634)
-
-[node name="Enemy11" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(352, 126)
-
-[node name="Enemy12" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(945, 45)
-
-[node name="Enemy13" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(1100, 256)
 
 [node name="SceneChanger" parent="." instance=ExtResource("5_jon5i")]
 position = Vector2(566, -70)

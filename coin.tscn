@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddlmfdlbros0i"]
+
+[ext_resource type="Texture2D" uid="uid://ya4x5uvrbu1p" path="res://coin.png" id="1_43ews"]
+[ext_resource type="Script" path="res://collect.gd" id="2_3kao2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gaa6c"]
+
+[sub_resource type="Animation" id="Animation_d2ogf"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_pnfoh"]
+resource_name = "coin_floating"
+loop_mode = 1
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.633333, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 3), Vector2(0, -1), Vector2(0, -3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xb02u"]
+_data = {
+"RESET": SubResource("Animation_d2ogf"),
+"coin_floating": SubResource("Animation_pnfoh")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_43ews")
+script = ExtResource("2_3kao2")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_gaa6c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_xb02u")
+}
+autoplay = "coin_floating"
+speed_scale = 0.59
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="Sprite2D" method="_on_area_2d_body_entered"]

@@ -1,8 +1,10 @@
 class_name Player 
 extends CharacterBody2D
 var SPEED = 300
+@onready var score = 0
 @onready var fireball = preload("res://Wizard/fireball.tscn")
 @onready var sprite = $AnimatedSprite2D
+@onready var label: Label = $CanvasLayer/Label
 
 @onready var stamina: TextureProgressBar = $CanvasLayer/Stamina
 @onready var timer: Timer = $Timer
@@ -10,12 +12,9 @@ var SPEED = 300
 func _ready() -> void:
 	healthbar.max_value =10
 	healthbar.value = 10
-
-
-
 	
 func _process(delta):
-	
+	label.text = str(score)
 	velocity.x = (Input.get_action_strength("right")-Input.get_action_strength("left"))*SPEED
 	velocity.y = (Input.get_action_strength("down")-Input.get_action_strength("up"))*SPEED
 	velocity.normalized()
