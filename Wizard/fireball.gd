@@ -1,7 +1,7 @@
 extends Area2D
 @export var speed = 200
 var target_fire: Vector2
-var COIN = preload("res://coin.tscn").instantiate()
+var COIN = preload("res://shopping/coin.tscn").instantiate()
 func _physics_process(delta):
 	position-=target_fire*speed*delta
 	
