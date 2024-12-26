@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ddlmfdlbros0i"]
 
-[ext_resource type="Texture2D" uid="uid://ya4x5uvrbu1p" path="res://coin.png" id="1_43ews"]
-[ext_resource type="Script" path="res://collect.gd" id="2_3kao2"]
+[ext_resource type="Texture2D" uid="uid://ya4x5uvrbu1p" path="res://shopping/coin.png" id="1_y2805"]
+[ext_resource type="Script" path="res://shopping/collect.gd" id="2_a0ssi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gaa6c"]
 
@@ -34,8 +34,8 @@ _data = {
 [node name="Node2D" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_43ews")
-script = ExtResource("2_3kao2")
+texture = ExtResource("1_y2805")
+script = ExtResource("2_a0ssi")
 
 [node name="Area2D" type="Area2D" parent="Sprite2D"]
 collision_mask = 2
