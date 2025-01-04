@@ -1,5 +1,5 @@
 extends Area2D
-@export var speed = 200
+@export var speed: = 200
 var target_fire: Vector2
 var COIN = preload("res://shopping/coin.tscn").instantiate()
 func _physics_process(delta):
@@ -13,8 +13,10 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 func _on_body_entered(body):
 	COIN.position = body.position
-	
-	body.queue_free()
+	body.health -=1
+	if body.health == 0:
+		get_parent().call_deferred("add_child", COIN)
+		body.queue_free()
 	queue_free()
-	get_parent().call_deferred("add_child", COIN)
+	
 	

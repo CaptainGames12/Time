@@ -1,7 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://dsr7eeo6300mj"]
+[gd_scene load_steps=38 format=3 uid="uid://dsr7eeo6300mj"]
 
 [ext_resource type="Texture2D" uid="uid://b63bvck4y53iw" path="res://Enemies/Skeleton.png" id="1_tnn81"]
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_ud3qa"]
+[ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://shadow.tscn" id="2_l28ki"]
+[ext_resource type="Texture2D" uid="uid://nfai06t8ec8m" path="res://Enemies/angry clock.png" id="3_ptjc2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yu0c0"]
 atlas = ExtResource("1_tnn81")
@@ -199,16 +201,63 @@ radius = 693.0
 height = 1386.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tljep"]
-size = Vector2(26, 54)
+size = Vector2(20.6315, 16.8975)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g3c5e"]
 radius = 33.3766
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2bh4"]
+bg_color = Color(0.996078, 0, 0.286275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5u18"]
+bg_color = Color(0, 0.724332, 0.235371, 1)
+
+[sub_resource type="Animation" id="Animation_d0ggm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_e1mho"]
+resource_name = "attack"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wyafc"]
+_data = {
+"RESET": SubResource("Animation_d0ggm"),
+"attack": SubResource("Animation_e1mho")
+}
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 5
 script = ExtResource("1_ud3qa")
 
+[node name="Sprite2D2" parent="." instance=ExtResource("2_l28ki")]
+position = Vector2(-4, 22)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_phkc5")
 animation = &"right"
@@ -223,7 +272,7 @@ position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_5bivi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -6)
+position = Vector2(-9.53674e-07, -8.5)
 scale = Vector2(1.17932, 0.887707)
 shape = SubResource("RectangleShape2D_tljep")
 
@@ -236,6 +285,32 @@ shape = SubResource("CircleShape2D_g3c5e")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -8)
+scale = Vector2(2.4375, 2.4375)
+texture = ExtResource("3_ptjc2")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -41.0
+offset_top = -49.0
+offset_right = -37.0
+offset_bottom = -22.0
+scale = Vector2(19.8602, 0.327459)
+theme_override_styles/background = SubResource("StyleBoxFlat_p2bh4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_k5u18")
+max_value = 4.0
+value = 4.0
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wyafc")
+}
 
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]

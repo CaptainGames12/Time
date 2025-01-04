@@ -1,4 +1,4 @@
-extends ProgressBar
+extends TextureProgressBar
 
 @onready var damage: ProgressBar = $Damage
 @onready var timer: Timer = $Timer
