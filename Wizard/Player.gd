@@ -1,11 +1,13 @@
 class_name Player 
 extends CharacterBody2D
 var SPEED = 300
-@onready var score = 0
+@export var inv_res:Inv
+@onready var score = 10
 @onready var fireball = preload("res://Wizard/fireball.tscn")
 @onready var sprite = $AnimatedSprite2D
 @onready var label: Label = $CanvasLayer/Label
 
+@onready var inventory = $CanvasLayer/Control
 @onready var stamina: TextureProgressBar = $CanvasLayer/Stamina
 @onready var timer: Timer = $Timer
 @onready var healthbar:= $CanvasLayer/Health
@@ -33,11 +35,14 @@ func _process(delta):
 	
 	move_and_slide()
 func attack():
-	
 	var bullet = fireball.instantiate()
-	get_parent().add_child(bullet)
-	bullet.position = position
-	bullet.target_fire = (position-get_global_mouse_position()).normalized()
+	var angle = position.angle_to_point(get_global_mouse_position())
+	if null != inventory.chosen_item:
+		bullet.rotation= angle
+		bullet.item = inventory.chosen_item
+		get_parent().add_child(bullet)
+		bullet.position = position
+		bullet.target_fire = (position-get_global_mouse_position()).normalized()
 
 func _on_timer_timeout() -> void:
 	if get_tree().paused == true:
@@ -48,3 +53,9 @@ func _on_timer_timeout() -> void:
 				get_tree().paused = false
 	if get_tree().paused == false:
 		stamina.value+=10
+
+
+func collect(item):
+	inv_res.insert(item)
+	print("collected")
+	

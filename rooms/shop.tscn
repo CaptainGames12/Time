@@ -1,15 +1,17 @@
-[gd_scene load_steps=18 format=4 uid="uid://dj3g4s7hfeffe"]
+[gd_scene load_steps=20 format=4 uid="uid://dj3g4s7hfeffe"]
 
 [ext_resource type="Texture2D" uid="uid://dus1m3ky3u21l" path="res://icon.svg" id="1_c3w0s"]
 [ext_resource type="Script" path="res://rooms/shop.gd" id="1_gei0l"]
 [ext_resource type="PackedScene" uid="uid://d3u37u2qf608j" path="res://scene_manager/scene_changer.tscn" id="3_5lrum"]
 [ext_resource type="Texture2D" uid="uid://c8m0u7c77i57n" path="res://assets/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Tiles.png" id="4_5gkk8"]
 [ext_resource type="Texture2D" uid="uid://chcaf050m8m1q" path="res://assets/Foozle_2DE0001_Pixel_Magic_Effects/Water/001.png" id="5_7bi61"]
+[ext_resource type="Script" path="res://spells/standspells.gd" id="6_2cqbj"]
 [ext_resource type="Texture2D" uid="uid://w63d5unbh3p8" path="res://assets/Foozle_2DE0001_Pixel_Magic_Effects/Rocks/006.png" id="6_tvmeu"]
-[ext_resource type="PackedScene" uid="uid://dors0vso5ssix" path="res://shopping/item.tscn" id="6_y8m4y"]
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="7_2x7yq"]
 [ext_resource type="Texture2D" uid="uid://b3n58yrpdv3nm" path="res://assets/Foozle_2DE0001_Pixel_Magic_Effects/Tornado/001.png" id="7_pvvun"]
-[ext_resource type="Texture2D" uid="uid://d315mjfc8f4kd" path="res://assets/Foozle_2DE0001_Pixel_Magic_Effects/Fire_Ball/001.png" id="8_qeu30"]
+[ext_resource type="Texture2D" uid="uid://d315mjfc8f4kd" path="res://spells/001.png" id="8_qeu30"]
+[ext_resource type="PackedScene" uid="uid://cawhfop6flk6g" path="res://shopping/collectable.tscn" id="9_c2jn6"]
+[ext_resource type="Resource" uid="uid://cjoxar2pq1t5o" path="res://spells/fire.tres" id="11_mxv56"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sia4f"]
 texture = ExtResource("4_5gkk8")
@@ -322,13 +324,13 @@ font_size = 20
 font = ExtResource("7_2x7yq")
 font_size = 20
 
-[sub_resource type="LabelSettings" id="LabelSettings_xgp1s"]
-font = ExtResource("7_2x7yq")
-font_size = 48
-
 [sub_resource type="LabelSettings" id="LabelSettings_m54ad"]
 font = ExtResource("7_2x7yq")
 font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_xgp1s"]
+font = ExtResource("7_2x7yq")
+font_size = 48
 
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_gei0l")
@@ -358,15 +360,16 @@ position = Vector2(580, 484)
 [node name="any" type="Marker2D" parent="Entrances"]
 position = Vector2(1, 0)
 
-[node name="water" type="Sprite2D" parent="."]
-position = Vector2(259, 324)
+[node name="Collectable3" parent="." instance=ExtResource("9_c2jn6")]
+position = Vector2(325, 325)
+
+[node name="water" type="Sprite2D" parent="Collectable3"]
+position = Vector2(-28, -9)
 scale = Vector2(2.16, 2.56)
 texture = ExtResource("5_7bi61")
+script = ExtResource("6_2cqbj")
 
-[node name="Item" parent="water" instance=ExtResource("6_y8m4y")]
-position = Vector2(17.1296, 1.5625)
-
-[node name="Label" type="Label" parent="water"]
+[node name="Label" type="Label" parent="Collectable3/water"]
 offset_left = 6.0185
 offset_top = 18.3594
 offset_right = 46.0185
@@ -374,15 +377,16 @@ offset_bottom = 41.3594
 text = "5$"
 label_settings = SubResource("LabelSettings_fg71o")
 
-[node name="earth" type="Sprite2D" parent="."]
-position = Vector2(462, 322)
-scale = Vector2(2.32, 3.32)
+[node name="Collectable2" parent="." instance=ExtResource("9_c2jn6")]
+position = Vector2(491, 321)
+
+[node name="earth" type="Sprite2D" parent="Collectable2"]
+position = Vector2(-45, -4)
+scale = Vector2(2.44, 3.32)
 texture = ExtResource("6_tvmeu")
+script = ExtResource("6_2cqbj")
 
-[node name="Item" parent="earth" instance=ExtResource("6_y8m4y")]
-position = Vector2(18.9655, 3.31325)
-
-[node name="Label" type="Label" parent="earth"]
+[node name="Label" type="Label" parent="Collectable2/earth"]
 offset_left = 4.0
 offset_top = 19.0
 offset_right = 37.0
@@ -390,31 +394,15 @@ offset_bottom = 38.0
 text = "7$"
 label_settings = SubResource("LabelSettings_3a1oo")
 
-[node name="wind" type="Sprite2D" parent="."]
-position = Vector2(683, 317)
-texture = ExtResource("7_pvvun")
+[node name="Collectable" parent="." instance=ExtResource("9_c2jn6")]
+position = Vector2(854, 333)
 
-[node name="Item" parent="wind" instance=ExtResource("6_y8m4y")]
-position = Vector2(4, 6)
-scale = Vector2(-1.77536, 1.80893)
-
-[node name="Label" type="Label" parent="wind"]
-offset_left = -17.0
-offset_top = 55.0
-offset_right = 23.0
-offset_bottom = 78.0
-text = "6$
-"
-label_settings = SubResource("LabelSettings_xgp1s")
-
-[node name="fire" type="Sprite2D" parent="."]
-position = Vector2(840, 322)
+[node name="fire" type="Sprite2D" parent="Collectable"]
 texture = ExtResource("8_qeu30")
+script = ExtResource("6_2cqbj")
+item = ExtResource("11_mxv56")
 
-[node name="Item" parent="fire" instance=ExtResource("6_y8m4y")]
-scale = Vector2(-2.79259, 1.72534)
-
-[node name="Label" type="Label" parent="fire"]
+[node name="Label" type="Label" parent="Collectable/fire"]
 offset_left = -25.0
 offset_top = 47.0
 offset_right = 43.0
@@ -423,4 +411,22 @@ text = "10$
 "
 label_settings = SubResource("LabelSettings_m54ad")
 
+[node name="Collectable4" parent="." instance=ExtResource("9_c2jn6")]
+position = Vector2(683, 333)
+
+[node name="wind" type="Sprite2D" parent="Collectable4"]
+position = Vector2(-6, -3)
+texture = ExtResource("7_pvvun")
+script = ExtResource("6_2cqbj")
+
+[node name="Label" type="Label" parent="Collectable4/wind"]
+offset_left = -17.0
+offset_top = 55.0
+offset_right = 23.0
+offset_bottom = 78.0
+text = "6$
+"
+label_settings = SubResource("LabelSettings_xgp1s")
+
 [connection signal="body_entered" from="SceneChanger" to="SceneChanger" method="_on_body_entered"]
+[connection signal="body_entered" from="Collectable" to="Collectable/fire" method="_on_collectable_body_entered"]

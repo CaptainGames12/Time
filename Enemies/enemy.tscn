@@ -288,7 +288,6 @@ wait_time = 2.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-debug_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3, -8)

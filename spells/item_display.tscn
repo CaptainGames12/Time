@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://otor5nu3wx31"]
+
+[node name="Item_display" type="Sprite2D"]
+centered = false
