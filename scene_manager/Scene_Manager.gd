@@ -1,4 +1,5 @@
-class_name Scene_Manager extends Node
+extends Node
+class_name Scene_Manager 
 @onready var player: Player 
 var scene_dir_path = "res://rooms/"
 var last_scene : String

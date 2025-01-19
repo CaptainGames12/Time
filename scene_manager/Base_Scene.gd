@@ -1,6 +1,6 @@
 class_name Base_Scene extends Node
 
-@onready var player= get_node("Player")
+@onready var player = get_node("Player")
 @onready var entrance: Node2D = $Entrances
 func _ready():
 	if SceneManager.player:
