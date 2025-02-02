@@ -1,344 +1,42 @@
-[gd_scene load_steps=26 format=4 uid="uid://dcifbpe8tn1uf"]
+[gd_scene load_steps=29 format=4 uid="uid://dcifbpe8tn1uf"]
 
 [ext_resource type="Script" path="res://rooms/main.gd" id="1_4ufej"]
 [ext_resource type="PackedScene" uid="uid://dwi7bdg27wpbr" path="res://Wizard/Wizard.tscn" id="1_28m1h"]
 [ext_resource type="AudioStream" uid="uid://ovv271nxqgpj" path="res://dio-time-stop.mp3" id="3_2iv3q"]
 [ext_resource type="PackedScene" uid="uid://7kfpfr1fhuh5" path="res://control.tscn" id="3_bkj6u"]
-[ext_resource type="PackedScene" uid="uid://dsr7eeo6300mj" path="res://Enemies/enemy.tscn" id="3_qj0uw"]
 [ext_resource type="PackedScene" uid="uid://dmrk7fnn3wb0j" path="res://Health/Healthbar.tscn" id="5_0dchd"]
 [ext_resource type="PackedScene" uid="uid://d3u37u2qf608j" path="res://scene_manager/scene_changer.tscn" id="5_jon5i"]
 [ext_resource type="Texture2D" uid="uid://c1bj4spvk0dm5" path="res://crystal.png" id="6_8j1m6"]
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="6_qmpgk"]
 [ext_resource type="Texture2D" uid="uid://cx35hpaer8iyo" path="res://shopping/money.png" id="7_7hk6n"]
 [ext_resource type="Script" path="res://treasure.gd" id="7_vfroq"]
-[ext_resource type="Script" path="res://rooms/Manager.gd" id="7_xohk7"]
 [ext_resource type="PackedScene" uid="uid://bworkwhvc0mcv" path="res://Wizard/inventory.tscn" id="8_lflfe"]
-[ext_resource type="Texture2D" uid="uid://c8m0u7c77i57n" path="res://assets/Pixel Crawler - FREE - 1.8/Environment/Dungeon Prison/Assets/Tiles.png" id="9_n7q3b"]
+[ext_resource type="Texture2D" uid="uid://b43pjmuwn1i84" path="res://ui/save_button.png" id="12_b2wfq"]
+[ext_resource type="Texture2D" uid="uid://bto51yitt2ds4" path="res://ui/pressed_save.png" id="13_rkn7l"]
 [ext_resource type="Texture2D" uid="uid://d1sb4yj34uggt" path="res://grass.png" id="14_p75mn"]
 [ext_resource type="PackedScene" uid="uid://c5hxob0bgx8yb" path="res://rooms/tree.tscn" id="15_qea0l"]
+[ext_resource type="Texture2D" uid="uid://bex85l0n7gfvt" path="res://ui/normal_restart.png" id="17_2h7oy"]
 [ext_resource type="AudioStream" uid="uid://ds7spg85qkrto" path="res://main-theme.mp3" id="17_ubvls"]
+[ext_resource type="Texture2D" uid="uid://cti83ca1kbptj" path="res://rooms/shop-entrance.png" id="18_1s5vw"]
+[ext_resource type="Texture2D" uid="uid://b50rpcijpbgyp" path="res://ui/pressed_restart.png" id="18_bjhwx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_40i0a"]
 font = ExtResource("6_qmpgk")
 font_size = 42
 
+[sub_resource type="GDScript" id="GDScript_g8e8a"]
+script/source = "extends Label
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_oosx8"]
+font = ExtResource("6_qmpgk")
+font_size = 18
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qshk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aatvm"]
-size = Vector2(194, 57)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qq5w3"]
-texture = ExtResource("9_n7q3b")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-12:0/0 = 0
-13:0/0 = 0
-14:0/0 = 0
-15:0/0 = 0
-16:0/0 = 0
-17:0/0 = 0
-18:0/0 = 0
-19:0/0 = 0
-20:0/0 = 0
-21:0/0 = 0
-22:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-8:1/0 = 0
-9:1/0 = 0
-10:1/0 = 0
-11:1/0 = 0
-12:1/0 = 0
-13:1/0 = 0
-14:1/0 = 0
-15:1/0 = 0
-16:1/0 = 0
-17:1/0 = 0
-18:1/0 = 0
-19:1/0 = 0
-20:1/0 = 0
-22:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-8:2/0 = 0
-9:2/0 = 0
-10:2/0 = 0
-11:2/0 = 0
-12:2/0 = 0
-13:2/0 = 0
-14:2/0 = 0
-15:2/0 = 0
-16:2/0 = 0
-17:2/0 = 0
-18:2/0 = 0
-19:2/0 = 0
-20:2/0 = 0
-21:2/0 = 0
-22:2/0 = 0
-0:3/0 = 0
-0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:3/0 = 0
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:3/0 = 0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-8:3/0 = 0
-9:3/0 = 0
-10:3/0 = 0
-11:3/0 = 0
-12:3/0 = 0
-13:3/0 = 0
-14:3/0 = 0
-15:3/0 = 0
-16:3/0 = 0
-17:3/0 = 0
-18:3/0 = 0
-19:3/0 = 0
-20:3/0 = 0
-21:3/0 = 0
-0:4/0 = 0
-0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:4/0 = 0
-1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:4/0 = 0
-2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-8:4/0 = 0
-9:4/0 = 0
-10:4/0 = 0
-11:4/0 = 0
-12:4/0 = 0
-13:4/0 = 0
-14:4/0 = 0
-15:4/0 = 0
-16:4/0 = 0
-17:4/0 = 0
-18:4/0 = 0
-19:4/0 = 0
-20:4/0 = 0
-21:4/0 = 0
-0:5/0 = 0
-0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:5/0 = 0
-1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:5/0 = 0
-2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-7:5/0 = 0
-8:5/0 = 0
-9:5/0 = 0
-10:5/0 = 0
-12:5/0 = 0
-13:5/0 = 0
-14:5/0 = 0
-15:5/0 = 0
-16:5/0 = 0
-17:5/0 = 0
-18:5/0 = 0
-19:5/0 = 0
-0:6/0 = 0
-0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:6/0 = 0
-1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:6/0 = 0
-2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-7:6/0 = 0
-8:6/0 = 0
-9:6/0 = 0
-10:6/0 = 0
-11:6/0 = 0
-12:6/0 = 0
-13:6/0 = 0
-14:6/0 = 0
-17:6/0 = 0
-19:6/0 = 0
-20:6/0 = 0
-21:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
-8:7/0 = 0
-9:7/0 = 0
-10:7/0 = 0
-11:7/0 = 0
-14:7/0 = 0
-0:8/0 = 0
-1:8/0 = 0
-2:8/0 = 0
-3:8/0 = 0
-4:8/0 = 0
-5:8/0 = 0
-6:8/0 = 0
-7:8/0 = 0
-8:8/0 = 0
-9:8/0 = 0
-10:8/0 = 0
-11:8/0 = 0
-14:8/0 = 0
-0:9/0 = 0
-1:9/0 = 0
-2:9/0 = 0
-3:9/0 = 0
-4:9/0 = 0
-5:9/0 = 0
-6:9/0 = 0
-7:9/0 = 0
-8:9/0 = 0
-9:9/0 = 0
-10:9/0 = 0
-11:9/0 = 0
-14:9/0 = 0
-0:10/0 = 0
-1:10/0 = 0
-3:10/0 = 0
-4:10/0 = 0
-5:10/0 = 0
-6:10/0 = 0
-7:10/0 = 0
-8:10/0 = 0
-9:10/0 = 0
-0:11/0 = 0
-1:11/0 = 0
-2:11/0 = 0
-3:11/0 = 0
-4:11/0 = 0
-5:11/0 = 0
-6:11/0 = 0
-7:11/0 = 0
-8:11/0 = 0
-9:11/0 = 0
-10:11/0 = 0
-0:12/0 = 0
-1:12/0 = 0
-5:12/0 = 0
-6:12/0 = 0
-7:12/0 = 0
-8:12/0 = 0
-9:12/0 = 0
-0:13/0 = 0
-1:13/0 = 0
-2:13/0 = 0
-3:13/0 = 0
-4:13/0 = 0
-5:13/0 = 0
-6:13/0 = 0
-7:13/0 = 0
-8:13/0 = 0
-9:13/0 = 0
-0:14/0 = 0
-1:14/0 = 0
-2:14/0 = 0
-3:14/0 = 0
-4:14/0 = 0
-5:14/0 = 0
-6:14/0 = 0
-7:14/0 = 0
-8:14/0 = 0
-9:14/0 = 0
-0:15/0 = 0
-1:15/0 = 0
-2:15/0 = 0
-3:15/0 = 0
-4:15/0 = 0
-5:15/0 = 0
-6:15/0 = 0
-7:15/0 = 0
-8:15/0 = 0
-9:15/0 = 0
-0:16/0 = 0
-1:16/0 = 0
-2:16/0 = 0
-3:16/0 = 0
-4:16/0 = 0
-5:16/0 = 0
-6:16/0 = 0
-7:16/0 = 0
-8:16/0 = 0
-0:17/0 = 0
-1:17/0 = 0
-2:17/0 = 0
-3:17/0 = 0
-4:17/0 = 0
-5:17/0 = 0
-6:17/0 = 0
-7:17/0 = 0
-8:17/0 = 0
-1:18/0 = 0
-4:18/0 = 0
-7:18/0 = 0
-0:19/0 = 0
-1:19/0 = 0
-2:19/0 = 0
-3:19/0 = 0
-4:19/0 = 0
-5:19/0 = 0
-6:19/0 = 0
-7:19/0 = 0
-8:19/0 = 0
-0:20/0 = 0
-1:20/0 = 0
-2:20/0 = 0
-3:20/0 = 0
-4:20/0 = 0
-5:20/0 = 0
-6:20/0 = 0
-7:20/0 = 0
-8:20/0 = 0
-0:21/0 = 0
-1:21/0 = 0
-2:21/0 = 0
-3:21/0 = 0
-4:21/0 = 0
-5:21/0 = 0
-6:21/0 = 0
-7:21/0 = 0
-8:21/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_f42gr"]
-physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_qq5w3")
+[sub_resource type="LabelSettings" id="LabelSettings_c4sf7"]
+font = ExtResource("6_qmpgk")
+font_size = 12
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8kf7h"]
 texture = ExtResource("14_p75mn")
@@ -381,7 +79,10 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(1156, 10, 1156, 663, -3, 659, 2, 16)])
 agent_radius = 12.7
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aatvm"]
+size = Vector2(194, 57)
+
+[node name="Node2D" type="Node2D" groups=["level"]]
 y_sort_enabled = true
 script = ExtResource("1_4ufej")
 
@@ -407,7 +108,7 @@ offset_right = 84.304
 offset_bottom = -79.0
 scale = Vector2(6.34209, 5.79179)
 
-[node name="Label" type="Label" parent="Player/CanvasLayer"]
+[node name="Price" type="Label" parent="Player/CanvasLayer"]
 offset_left = 1024.0
 offset_top = 52.0
 offset_right = 1064.0
@@ -415,7 +116,7 @@ offset_bottom = 90.0
 text = "0"
 label_settings = SubResource("LabelSettings_40i0a")
 horizontal_alignment = 2
-script = ExtResource("7_xohk7")
+script = SubResource("GDScript_g8e8a")
 
 [node name="Control" parent="Player/CanvasLayer" instance=ExtResource("8_lflfe")]
 unique_name_in_owner = true
@@ -427,8 +128,61 @@ position = Vector2(1108, 53)
 scale = Vector2(2.99213, 3.12346)
 texture = ExtResource("7_7hk6n")
 
-[node name="Timer" type="Timer" parent="Player"]
+[node name="RestartUI" type="Control" parent="Player/CanvasLayer"]
+process_mode = 3
+visible = false
+z_index = 6
+layout_mode = 3
+anchors_preset = 0
+
+[node name="GameOver" type="Label" parent="Player/CanvasLayer/RestartUI"]
+layout_mode = 0
+offset_left = 329.0
+offset_top = 222.0
+offset_right = 445.0
+offset_bottom = 245.0
+scale = Vector2(4.46431, 4.98371)
+text = "Game Over"
+label_settings = SubResource("LabelSettings_oosx8")
+
+[node name="RestartButton" type="TextureButton" parent="Player/CanvasLayer/RestartUI"]
+process_mode = 3
+z_index = 9
+layout_mode = 0
+offset_left = 513.0
+offset_top = 408.0
+offset_right = 553.0
+offset_bottom = 448.0
+scale = Vector2(4.56, 4.32)
+texture_normal = ExtResource("17_2h7oy")
+texture_pressed = ExtResource("18_bjhwx")
+
+[node name="Saving" type="Control" parent="Player/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 978.0
+offset_top = 434.0
+offset_right = 1018.0
+offset_bottom = 474.0
+scale = Vector2(5.86316, 6.3444)
+
+[node name="SaveButton" type="TextureButton" parent="Player/CanvasLayer/Saving"]
+layout_mode = 0
+offset_left = 2.55835
+offset_top = 4.25573
+offset_right = 42.5583
+offset_bottom = 44.2557
+scale = Vector2(0.91445, 0.79179)
+texture_normal = ExtResource("12_b2wfq")
+texture_pressed = ExtResource("13_rkn7l")
+
+[node name="Stamina_timer" type="Timer" parent="Player"]
 wait_time = 0.5
+
+[node name="Cooldown_timer" type="Timer" parent="Player"]
+wait_time = 0.5
+one_shot = true
+autostart = true
 
 [node name="Treasure" type="Sprite2D" parent="."]
 position = Vector2(575, 309)
@@ -445,54 +199,18 @@ priority = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Treasure/Area2D"]
 shape = SubResource("RectangleShape2D_3qshk")
 
-[node name="Enemy" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(1048, 519)
-
-[node name="Enemy2" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(173, 558)
-
-[node name="Enemy3" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(139, 343)
-
-[node name="Enemy4" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(89, 450)
-
-[node name="Enemy5" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(426, 97)
-
-[node name="Enemy6" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(583, 616)
-
-[node name="Enemy7" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(684, 75)
-
-[node name="Enemy8" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(986, 294)
-
-[node name="Enemy9" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(923, 449)
-
-[node name="Enemy10" parent="." instance=ExtResource("3_qj0uw")]
-position = Vector2(895, 582)
-
-[node name="SceneChanger" parent="." instance=ExtResource("5_jon5i")]
-position = Vector2(566, -70)
-scene = "shop"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChanger"]
-position = Vector2(1, 123.5)
-scale = Vector2(0.2, 1)
-shape = SubResource("RectangleShape2D_aatvm")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="SceneChanger"]
-z_index = 5
-y_sort_enabled = true
-scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAD//wIAAQAAAAcAAAD//wMAAQAAAAgAAAD//wQAAQAAAAkAAAAAAAIAAQABAAcAAAAAAAMAAQABAAgAAAAAAAQAAQABAAkAAAD+/wMAAQAAAAUAAAD+/wQAAQAAAAYAAAD+/wIAAQAAAAQAAAABAAIAAQACAAQAAAABAAMAAQACAAUAAAABAAQAAQACAAYAAAD+/wEAAQAAAAMAAAAAAAEAAQABAAMAAAABAAEAAQACAAMAAAD//wEAAQABAAMAAAA=")
-tile_set = SubResource("TileSet_f42gr")
+[node name="Label" type="Label" parent="Treasure"]
+offset_left = -20.9867
+offset_top = -24.5115
+offset_right = 97.0133
+offset_bottom = 10.4885
+scale = Vector2(0.546233, 0.647176)
+text = "Level:0
+Enemies:0"
+label_settings = SubResource("LabelSettings_c4sf7")
 
 [node name="Entrances" type="Node2D" parent="."]
-position = Vector2(565, 143)
+position = Vector2(579, 161)
 
 [node name="any" type="Marker2D" parent="Entrances"]
 position = Vector2(-4, 0)
@@ -537,6 +255,61 @@ stream = ExtResource("17_ubvls")
 autoplay = true
 parameters/looping = true
 
-[connection signal="timeout" from="Player/Timer" to="Player" method="_on_timer_timeout"]
+[node name="SpawnHolder" type="Node2D" parent="."]
+
+[node name="Spawner" type="Node2D" parent="SpawnHolder"]
+position = Vector2(559, 740)
+
+[node name="Spawner2" type="Node2D" parent="SpawnHolder"]
+position = Vector2(1178, 358)
+
+[node name="Spawner3" type="Node2D" parent="SpawnHolder"]
+position = Vector2(1168, 292)
+
+[node name="Spawner4" type="Node2D" parent="SpawnHolder"]
+position = Vector2(-25, 403)
+
+[node name="Spawner5" type="Node2D" parent="SpawnHolder"]
+position = Vector2(-36, 333)
+
+[node name="Spawner6" type="Node2D" parent="SpawnHolder"]
+position = Vector2(610, 695)
+
+[node name="Spawner7" type="Node2D" parent="SpawnHolder"]
+position = Vector2(534, 684)
+
+[node name="CooldownBetweenWaves" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(570, 43)
+scale = Vector2(2.40625, 2.73438)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-0.415588, -16.8228)
+build_mode = 1
+polygon = PackedVector2Array(25.3507, -1.46285, -24.1039, -3.29142, -26.5974, 33.2799, -13.2987, 34.3771, -7.8961, 9.14284, 13.7143, 12.0686, 18.2857, 33.6457, 27.013, 35.1085)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+z_index = 3
+texture = ExtResource("18_1s5vw")
+
+[node name="SceneChanger" parent="StaticBody2D" instance=ExtResource("5_jon5i")]
+position = Vector2(-1.24676, -25.9657)
+scale = Vector2(0.415584, 0.365714)
+scene = "shop"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/SceneChanger"]
+position = Vector2(6, 95)
+scale = Vector2(0.2, 1)
+shape = SubResource("RectangleShape2D_aatvm")
+
+[connection signal="pressed" from="Player/CanvasLayer/RestartUI/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Player/CanvasLayer/Saving/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="timeout" from="Player/Stamina_timer" to="Player" method="_on_timer_timeout"]
+[connection signal="timeout" from="Player/Cooldown_timer" to="Player" method="_on_cooldown_timer_timeout"]
 [connection signal="body_entered" from="Treasure/Area2D" to="Treasure" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="SceneChanger" to="SceneChanger" method="_on_body_entered"]
+[connection signal="timeout" from="CooldownBetweenWaves" to="." method="_on_cooldown_between_waves_timeout"]
+[connection signal="body_entered" from="StaticBody2D/SceneChanger" to="StaticBody2D/SceneChanger" method="_on_body_entered"]

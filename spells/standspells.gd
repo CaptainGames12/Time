@@ -5,7 +5,8 @@ var player = null
 
 func _on_collectable_body_entered(body: Node2D) -> void:
 	player = body
-	if player.score >= item.price:
-		player.score -= item.price
+	if Global.score >= item.price:
+		Global.score -= item.price
+		player.score = Global.score
 		player.collect(item)
 		get_parent().queue_free()
