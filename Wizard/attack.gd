@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var item: InvItem
-@export var speed: = 200
+@export var speed: = 300
 
 var target_fire: Vector2
 var COIN = preload("res://shopping/coin.tscn").instantiate()

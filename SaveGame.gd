@@ -8,3 +8,4 @@ class_name SaveGame
 @export var global_hp: int
 @export var global_score: int
 @export var level: int
+@export var collected_items: Array[String] = []

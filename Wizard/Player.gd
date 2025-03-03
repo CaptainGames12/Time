@@ -1,9 +1,16 @@
 class_name Player 
 extends CharacterBody2D
 var SPEED = 300
+@onready var collect_coin: AudioStreamPlayer2D = $Collect_coin
 
 @export var inv_res:Inv
-@onready var score = Global.score
+@onready var score= Global.score:
+	get:
+		return Global.score
+	set(value):
+		collect_coin.play()
+		print("playing")
+		
 @onready var fireball = preload("res://Wizard/fireball.tscn")
 @onready var sprite = $AnimatedSprite2D
 @onready var price: Label = $CanvasLayer/Price
@@ -19,8 +26,10 @@ func _ready() -> void:
 	healthbar.value = 10
 	Global.hp = healthbar.value
 	healthbar.value = Global.hp
-	Global.score = score
+	#inventory.update_slots()
+	
 func _process(delta):
+	
 	price.text = str(score)
 	velocity.x = (Input.get_action_strength("right")-Input.get_action_strength("left"))*SPEED
 	velocity.y = (Input.get_action_strength("down")-Input.get_action_strength("up"))*SPEED
@@ -49,7 +58,7 @@ func attack():
 		bullet.rotation= angle
 		bullet.item = inventory.chosen_item
 		get_parent().add_child(bullet)
-		#wbullet.dead.connect($"..".enemy_death)
+		
 		bullet.position = position
 		bullet.target_fire = (position-get_global_mouse_position()).normalized()
 var saved = false
@@ -66,6 +75,7 @@ func _on_timer_timeout() -> void:
 
 func collect(item):
 	inv_res.insert(item)
+	
 	print("collected")
 	
 func _on_cooldown_timer_timeout() -> void:

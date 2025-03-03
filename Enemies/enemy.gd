@@ -3,7 +3,7 @@ var treasure: Sprite2D
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 @export var health = 10
 
-@export var speed = 200
+@export var speed = 100
 @onready var health_bar: ProgressBar = $ProgressBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var restart_ui: Control
@@ -60,13 +60,13 @@ func _on_detection_body_exited(body):
 	targetIsHere= false
 	
 func watered():
-	speed = 100
+	speed = 50
 	await get_tree().create_timer(4).timeout
-	speed = 200
+	speed = 100
 func fire():
 	for i in range(4):
 		print("function started %s" % str(i))
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(1).timeout
 		health-=2
 		print("function finished")
 func _on_attack_body_entered(body):

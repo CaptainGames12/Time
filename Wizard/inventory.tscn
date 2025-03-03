@@ -30,7 +30,7 @@ grow_horizontal = 0
 grow_vertical = 0
 columns = 10
 
-[node name="TextureButton" type="TextureButton" parent="GridContainer"]
+[node name="TextureButton" type="TextureButton" parent="GridContainer" node_paths=PackedStringArray("display")]
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("1_f7mgd")
@@ -38,10 +38,13 @@ texture_normal = ExtResource("1_eg8o5")
 texture_pressed = ExtResource("2_eocea")
 texture_focused = ExtResource("3_y10bg")
 script = ExtResource("6_llxb3")
+display = NodePath("Item_display")
 
 [node name="Item_display" parent="GridContainer/TextureButton" instance=ExtResource("7_i1ngt")]
+z_index = 5
+position = Vector2(-5, 1)
 
-[node name="TextureButton2" type="TextureButton" parent="GridContainer"]
+[node name="TextureButton2" type="TextureButton" parent="GridContainer" node_paths=PackedStringArray("display")]
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("1_f7mgd")
@@ -49,11 +52,13 @@ texture_normal = ExtResource("1_eg8o5")
 texture_pressed = ExtResource("2_eocea")
 texture_focused = ExtResource("3_y10bg")
 script = ExtResource("6_llxb3")
+display = NodePath("Item_display2")
 
 [node name="Item_display2" parent="GridContainer/TextureButton2" instance=ExtResource("7_i1ngt")]
-position = Vector2(-68, 0)
+z_index = 5
+position = Vector2(-67, 3)
 
-[node name="TextureButton3" type="TextureButton" parent="GridContainer"]
+[node name="TextureButton3" type="TextureButton" parent="GridContainer" node_paths=PackedStringArray("display")]
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("1_f7mgd")
@@ -61,11 +66,13 @@ texture_normal = ExtResource("1_eg8o5")
 texture_pressed = ExtResource("2_eocea")
 texture_focused = ExtResource("3_y10bg")
 script = ExtResource("6_llxb3")
+display = NodePath("Item_display3")
 
 [node name="Item_display3" parent="GridContainer/TextureButton3" instance=ExtResource("7_i1ngt")]
+z_index = 5
 position = Vector2(-136, 0)
 
-[node name="TextureButton4" type="TextureButton" parent="GridContainer"]
+[node name="TextureButton4" type="TextureButton" parent="GridContainer" node_paths=PackedStringArray("display")]
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("1_f7mgd")
@@ -73,8 +80,10 @@ texture_normal = ExtResource("1_eg8o5")
 texture_pressed = ExtResource("2_eocea")
 texture_focused = ExtResource("3_y10bg")
 script = ExtResource("6_llxb3")
+display = NodePath("Item_display4")
 
 [node name="Item_display4" parent="GridContainer/TextureButton4" instance=ExtResource("7_i1ngt")]
+z_index = 5
 position = Vector2(-204, 0)
 
 [connection signal="toggled" from="GridContainer/TextureButton" to="." method="_on_texture_button_toggled"]

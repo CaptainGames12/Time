@@ -8,4 +8,4 @@ script = ExtResource("1_7jriu")
 item_name = "water"
 texture = ExtResource("2_qfqi4")
 price = 5
-damage = 1
+damage = 3
