@@ -27,13 +27,21 @@ offset_right = 1265.0
 offset_bottom = 671.0
 texture = ExtResource("1_bub7n")
 
+<<<<<<< HEAD
 [node name="Timely adventure" type="Label" parent="."]
+=======
+[node name="Timeful adventure" type="Label" parent="."]
+>>>>>>> 8f59c7c (delete-file)
 layout_mode = 0
 offset_left = 232.0
 offset_top = 96.0
 offset_right = 1111.0
 offset_bottom = 231.0
+<<<<<<< HEAD
 text = "Timely adventure"
+=======
+text = "Timeful adventure"
+>>>>>>> 8f59c7c (delete-file)
 label_settings = SubResource("LabelSettings_bvwqm")
 
 [node name="New" type="TextureButton" parent="."]
