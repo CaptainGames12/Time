@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ddlmfdlbros0i"]
 
 [ext_resource type="Texture2D" uid="uid://ya4x5uvrbu1p" path="res://shopping/coin.png" id="1_y2805"]
-[ext_resource type="Script" path="res://shopping/collect.gd" id="2_a0ssi"]
+[ext_resource type="Script" uid="uid://csmf7fcrllels" path="res://shopping/collect.gd" id="2_a0ssi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gaa6c"]
 
@@ -27,8 +27,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xb02u"]
 _data = {
-"RESET": SubResource("Animation_d2ogf"),
-"coin_floating": SubResource("Animation_pnfoh")
+&"RESET": SubResource("Animation_d2ogf"),
+&"coin_floating": SubResource("Animation_pnfoh")
 }
 
 [node name="Node2D" type="Node2D"]

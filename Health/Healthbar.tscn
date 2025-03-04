@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dmrk7fnn3wb0j"]
 
 [ext_resource type="Texture2D" uid="uid://b51ik02yye26j" path="res://Wizard/healthbar_empty.png" id="1_tmkk4"]
-[ext_resource type="Script" path="res://Health/healthbar.gd" id="1_una5g"]
+[ext_resource type="Script" uid="uid://3pfcmp655ecf" path="res://Health/healthbar.gd" id="1_una5g"]
 [ext_resource type="Texture2D" uid="uid://ctrkptbd0ysri" path="res://Wizard/healthbar.png" id="2_kmwyh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ojuni"]
