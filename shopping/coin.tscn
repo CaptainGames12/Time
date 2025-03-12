@@ -1,11 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://ddlmfdlbros0i"]
 
 [ext_resource type="Texture2D" uid="uid://ya4x5uvrbu1p" path="res://shopping/coin.png" id="1_y2805"]
-<<<<<<< HEAD
-[ext_resource type="Script" uid="uid://csmf7fcrllels" path="res://shopping/collect.gd" id="2_a0ssi"]
-=======
+
 [ext_resource type="Script" uid="uid://b0q5mefqurwro" path="res://shopping/collect.gd" id="2_a0ssi"]
->>>>>>> e5d4803 (undone_wind)
+
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gaa6c"]
 

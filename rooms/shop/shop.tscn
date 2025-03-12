@@ -1,20 +1,11 @@
 [gd_scene load_steps=24 format=3 uid="uid://dj3g4s7hfeffe"]
 
-<<<<<<< HEAD:rooms/shop.tscn
-[ext_resource type="Script" uid="uid://b5j42rn2bv1ex" path="res://rooms/shop.gd" id="1_gei0l"]
-[ext_resource type="Texture2D" uid="uid://bh8l4ykorq1lb" path="res://rooms/shop-room.png" id="2_g5u8n"]
-[ext_resource type="Script" uid="uid://c8cyr2v44fgeu" path="res://rooms/scene_changer_shop.gd" id="3_f65yd"]
-[ext_resource type="Script" uid="uid://bferbx1kplkuv" path="res://shopping/collectable_name.gd" id="5_yihyf"]
-[ext_resource type="Script" uid="uid://dhvxkptej4jt3" path="res://spells/standspells.gd" id="6_2cqbj"]
-[ext_resource type="Texture2D" uid="uid://bu4q51om6q1ul" path="res://spells/water.png" id="6_yuvx1"]
-=======
 [ext_resource type="Script" uid="uid://c3k5pwoenex3g" path="res://rooms/shop/shop.gd" id="1_gei0l"]
 [ext_resource type="Texture2D" uid="uid://bh8l4ykorq1lb" path="res://rooms/shop/shop-room.png" id="2_g5u8n"]
 [ext_resource type="Script" uid="uid://c72njqudysceq" path="res://rooms/shop/scene_changer_shop.gd" id="3_f65yd"]
-[ext_resource type="Script" uid="uid://bc62sg1vp2n16" path="res://shopping/collectable_name.gd" id="5_yihyf"]
-[ext_resource type="Script" uid="uid://bwuun5x2c2fe6" path="res://spells/standspells.gd" id="6_2cqbj"]
+[ext_resource type="Script" path="res://shopping/collectable_name.gd" id="5_yihyf"]
+[ext_resource type="Script" path="res://spells/standspells.gd" id="6_2cqbj"]
 [ext_resource type="Texture2D" uid="uid://bu4q51om6q1ul" path="res://spells/water/water.png" id="6_yuvx1"]
->>>>>>> e5d4803 (undone_wind):rooms/shop/shop.tscn
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="7_2x7yq"]
 [ext_resource type="Resource" uid="uid://dicpoy2ecubwa" path="res://spells/water/water.tres" id="8_bubcw"]
 [ext_resource type="PackedScene" uid="uid://cawhfop6flk6g" path="res://shopping/collectable.tscn" id="9_c2jn6"]

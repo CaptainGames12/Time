@@ -1,12 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://dsr7eeo6300mj"]
 
-<<<<<<< HEAD
-[ext_resource type="Script" uid="uid://btx5ovp1moufs" path="res://Enemies/enemy.gd" id="1_ud3qa"]
-[ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://shadow.tscn" id="2_l28ki"]
-=======
-[ext_resource type="Script" uid="uid://gnbdojfdkvvj" path="res://Enemies/enemy.gd" id="1_ud3qa"]
+[ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_ud3qa"]
 [ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://rooms/main/shadow.tscn" id="2_l28ki"]
->>>>>>> e5d4803 (undone_wind)
 [ext_resource type="Texture2D" uid="uid://nfai06t8ec8m" path="res://Enemies/angry clock.png" id="3_ptjc2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5bivi"]

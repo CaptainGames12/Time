@@ -1,10 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dwi7bdg27wpbr"]
 
-<<<<<<< HEAD
-[ext_resource type="Script" uid="uid://juh7tuiallea" path="res://Wizard/Player.gd" id="1_23xfq"]
-=======
-[ext_resource type="Script" uid="uid://tnscipdrjbkq" path="res://Wizard/Player.gd" id="1_23xfq"]
->>>>>>> e5d4803 (undone_wind)
+[ext_resource type="Script" path="res://Wizard/Player.gd" id="1_23xfq"]
 [ext_resource type="Texture2D" uid="uid://3w0iy1h8t6ab" path="res://Wizard/wizard.png" id="2_mwy0g"]
 [ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://rooms/main/shadow.tscn" id="2_wi82f"]
 [ext_resource type="Resource" uid="uid://w41rwmtsds5d" path="res://Wizard/inventory/playerinv.tres" id="2_wpefu"]

@@ -1,10 +1,8 @@
 [gd_scene load_steps=29 format=4 uid="uid://dcifbpe8tn1uf"]
 
-<<<<<<< HEAD:rooms/main.tscn
-[ext_resource type="Script" uid="uid://fmevlgttn6bt" path="res://rooms/main.gd" id="1_4ufej"]
-=======
+
 [ext_resource type="Script" uid="uid://cpfmollh1xmdd" path="res://rooms/main/main.gd" id="1_4ufej"]
->>>>>>> e5d4803 (undone_wind):rooms/main/main.tscn
+
 [ext_resource type="PackedScene" uid="uid://dwi7bdg27wpbr" path="res://Wizard/Wizard.tscn" id="1_28m1h"]
 [ext_resource type="AudioStream" uid="uid://cje471liap8dj" path="res://shopping/coin.wav" id="2_chvbv"]
 [ext_resource type="AudioStream" uid="uid://ovv271nxqgpj" path="res://Wizard/dio-time-stop.mp3" id="3_2iv3q"]
@@ -12,12 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://dmrk7fnn3wb0j" path="res://Wizard/player_ui/Healthbar.tscn" id="5_0dchd"]
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="6_qmpgk"]
 [ext_resource type="Texture2D" uid="uid://cx35hpaer8iyo" path="res://shopping/money.png" id="7_7hk6n"]
-<<<<<<< HEAD:rooms/main.tscn
-[ext_resource type="Script" uid="uid://oq8aqobaivlf" path="res://treasure.gd" id="7_vfroq"]
-[ext_resource type="PackedScene" uid="uid://bworkwhvc0mcv" path="res://Wizard/inventory.tscn" id="8_lflfe"]
-=======
+
 [ext_resource type="PackedScene" uid="uid://bworkwhvc0mcv" path="res://Wizard/inventory/inventory.tscn" id="8_lflfe"]
->>>>>>> e5d4803 (undone_wind):rooms/main/main.tscn
+
 [ext_resource type="Texture2D" uid="uid://b43pjmuwn1i84" path="res://ui/save_button.png" id="12_b2wfq"]
 [ext_resource type="Texture2D" uid="uid://bto51yitt2ds4" path="res://ui/pressed_save.png" id="13_rkn7l"]
 [ext_resource type="PackedScene" uid="uid://dfetviixmo6rp" path="res://rooms/main/treasure.tscn" id="13_st04a"]
@@ -27,13 +22,10 @@
 [ext_resource type="AudioStream" uid="uid://ds7spg85qkrto" path="res://rooms/main/main-theme.mp3" id="17_ubvls"]
 [ext_resource type="Texture2D" uid="uid://cti83ca1kbptj" path="res://rooms/shop/shop-entrance.png" id="18_1s5vw"]
 [ext_resource type="Texture2D" uid="uid://b50rpcijpbgyp" path="res://ui/pressed_restart.png" id="18_bjhwx"]
-<<<<<<< HEAD:rooms/main.tscn
-[ext_resource type="Script" uid="uid://c13gxmhuho5en" path="res://scene_manager/SceneChanger.gd" id="19_4j2le"]
-[ext_resource type="PackedScene" uid="uid://dj3g4s7hfeffe" path="res://rooms/shop.tscn" id="20_h78s4"]
-=======
+
 [ext_resource type="Script" uid="uid://tiylatomfsam" path="res://scene_manager/SceneChanger.gd" id="19_4j2le"]
 [ext_resource type="PackedScene" uid="uid://dj3g4s7hfeffe" path="res://rooms/shop/shop.tscn" id="20_h78s4"]
->>>>>>> e5d4803 (undone_wind):rooms/main/main.tscn
+
 
 [sub_resource type="LabelSettings" id="LabelSettings_40i0a"]
 font = ExtResource("6_qmpgk")

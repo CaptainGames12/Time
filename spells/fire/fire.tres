@@ -1,12 +1,9 @@
 [gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://cjoxar2pq1t5o"]
 
-<<<<<<< HEAD:spells/fire.tres
-[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/item_inv.gd" id="1_py5ue"]
-[ext_resource type="Texture2D" uid="uid://b166u30ogn6tg" path="res://spells/fire.png" id="2_tcsnv"]
-=======
+
 [ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="1_py5ue"]
 [ext_resource type="Texture2D" uid="uid://b166u30ogn6tg" path="res://spells/fire/fire.png" id="2_tcsnv"]
->>>>>>> e5d4803 (undone_wind):spells/fire/fire.tres
+
 
 [resource]
 script = ExtResource("1_py5ue")
