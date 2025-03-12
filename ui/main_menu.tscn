@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnkfttplq4vu7"]
+[gd_scene load_steps=9 format=3 uid="uid://dnkfttplq4vu7"]
 
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="1_8aorn"]
 [ext_resource type="Texture2D" uid="uid://d3f2u5ulcdnon" path="res://ui/background.png" id="1_bub7n"]
+[ext_resource type="Script" uid="uid://cbohdxbtwkk3k" path="res://ui/main_menu.gd" id="1_p8ri8"]
 [ext_resource type="Texture2D" uid="uid://b8kdaf4444sp5" path="res://ui/new_btn.png" id="2_ot6bu"]
 [ext_resource type="Texture2D" uid="uid://crrp51t1w8xav" path="res://ui/new_pressed.png" id="3_ryvw7"]
 [ext_resource type="Texture2D" uid="uid://ckrgta75hq78b" path="res://ui/load_btn.png" id="4_ng0kw"]
@@ -13,12 +14,14 @@ font_size = 54
 font_color = Color(0, 0, 0, 1)
 
 [node name="Main menu" type="Control"]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_p8ri8")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -27,31 +30,34 @@ offset_right = 1265.0
 offset_bottom = 671.0
 texture = ExtResource("1_bub7n")
 
-[node name="Timely adventure" type="Label" parent="."]
+[node name="Timeful adventure" type="Label" parent="."]
 layout_mode = 0
 offset_left = 232.0
 offset_top = 96.0
 offset_right = 1111.0
 offset_bottom = 231.0
-text = "Timely adventure"
+text = "Timeful adventure"
 label_settings = SubResource("LabelSettings_bvwqm")
 
 [node name="New" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 475.0
-offset_top = 239.0
-offset_right = 507.0
-offset_bottom = 271.0
+offset_left = 292.0
+offset_top = 357.0
+offset_right = 324.0
+offset_bottom = 389.0
 scale = Vector2(7, 7)
 texture_normal = ExtResource("2_ot6bu")
 texture_pressed = ExtResource("3_ryvw7")
 
 [node name="Load" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 476.0
-offset_top = 366.0
-offset_right = 516.0
-offset_bottom = 406.0
+offset_left = 696.0
+offset_top = 356.0
+offset_right = 736.0
+offset_bottom = 388.0
 scale = Vector2(7, 7)
 texture_normal = ExtResource("4_ng0kw")
 texture_pressed = ExtResource("5_5f07i")
+
+[connection signal="pressed" from="New" to="." method="_on_new_pressed"]
+[connection signal="pressed" from="Load" to="." method="_on_load_pressed"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5hxob0bgx8yb"]
+
+[ext_resource type="Texture2D" uid="uid://bgsh874ninpqk" path="res://rooms/main/tree.png" id="1_gk0o3"]
+[ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://rooms/main/shadow.tscn" id="2_kft5w"]
+
+[node name="Tree" type="StaticBody2D"]
+position = Vector2(948.749, 279)
+scale = Vector2(5.61008, 6.71958)
+
+[node name="Sprite2D" parent="." instance=ExtResource("2_kft5w")]
+position = Vector2(-0.490021, 8.48267)
+scale = Vector2(0.506951, 0.194992)
+
+[node name="Tree" type="Sprite2D" parent="."]
+position = Vector2(2.5403, -1.19055)
+scale = Vector2(0.857831, 0.71619)
+texture = ExtResource("1_gk0o3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-1.52588e-05, 0)
+polygon = PackedVector2Array(-9.55844, 8.51948, -6.44156, -1.03896, -6.23376, -6.44156, -6.72871, -7.29212, -5.65921, -7.88739, -0.846436, -6.99448, 4.15584, -8.51948, 5.03583, -6.99448, 4.57143, -6.64935, 6.44156, -1.03896, 8.72726, 4.36364, 8.93506, 8.93506, 4.98701, 8.72728, 0.831161, 9.14286, -3.32468, 9.76623)

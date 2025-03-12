@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfetviixmo6rp"]
+
+[ext_resource type="Texture2D" uid="uid://c1bj4spvk0dm5" path="res://rooms/main/crystal.png" id="1_ebkkm"]
+[ext_resource type="Script" uid="uid://erxqkmgcc6ea" path="res://rooms/main/treasure.gd" id="2_8oxmk"]
+[ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="3_ro0ka"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qshk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c4sf7"]
+font = ExtResource("3_ro0ka")
+font_size = 40
+font_color = Color(0.128236, 0.497551, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebkkm"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8oxmk"]
+bg_color = Color(0.31326, 0.000797623, 0.879476, 1)
+
+[node name="Treasure" type="Sprite2D"]
+texture = ExtResource("1_ebkkm")
+script = ExtResource("2_8oxmk")
+treasureDurability = 100
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(0.485731, 0.605548)
+collision_layer = 4
+collision_mask = 2
+priority = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_3qshk")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -12.8567
+offset_top = -14.5854
+offset_right = 249.143
+offset_bottom = 62.4146
+scale = Vector2(0.1, 0.1)
+text = "Level:0
+Enemies:0"
+label_settings = SubResource("LabelSettings_c4sf7")
+horizontal_alignment = 1
+
+[node name="Durability" type="ProgressBar" parent="."]
+offset_left = -8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 11.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ebkkm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8oxmk")
+value = 100.0
+show_percentage = false
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

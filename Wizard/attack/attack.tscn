@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://b45gsu6lclc1p"]
+
+<<<<<<< HEAD:Wizard/fireball.tscn
+[ext_resource type="Script" uid="uid://behws7khktgn1" path="res://Wizard/attack.gd" id="1_krs5v"]
+=======
+[ext_resource type="Script" uid="uid://bxfta3er3afs1" path="res://Wizard/attack/attack.gd" id="1_slyte"]
+>>>>>>> e5d4803 (undone_wind):Wizard/attack/attack.tscn
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2634j"]
+radius = 14.0
+
+[node name="Attack" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_slyte")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2634j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, 0.999998)
+flip_h = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

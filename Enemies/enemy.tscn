@@ -1,15 +1,20 @@
 [gd_scene load_steps=12 format=3 uid="uid://dsr7eeo6300mj"]
 
+<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://btx5ovp1moufs" path="res://Enemies/enemy.gd" id="1_ud3qa"]
 [ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://shadow.tscn" id="2_l28ki"]
+=======
+[ext_resource type="Script" uid="uid://gnbdojfdkvvj" path="res://Enemies/enemy.gd" id="1_ud3qa"]
+[ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://rooms/main/shadow.tscn" id="2_l28ki"]
+>>>>>>> e5d4803 (undone_wind)
 [ext_resource type="Texture2D" uid="uid://nfai06t8ec8m" path="res://Enemies/angry clock.png" id="3_ptjc2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5bivi"]
-radius = 693.0
-height = 1386.0
+radius = 1420.0
+height = 2886.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tljep"]
-size = Vector2(20.6315, 16.8975)
+size = Vector2(13.5671, 16.8975)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g3c5e"]
 radius = 33.3766
@@ -58,26 +63,29 @@ _data = {
 }
 
 [node name="Enemy" type="CharacterBody2D"]
-collision_layer = 5
+z_index = 1
+collision_layer = 2
+collision_mask = 6
 script = ExtResource("1_ud3qa")
 
 [node name="Sprite2D2" parent="." instance=ExtResource("2_l28ki")]
 position = Vector2(-4, 22)
 
 [node name="Detection" type="Area2D" parent="."]
-collision_mask = 2
+collision_layer = 2
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_5bivi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-9.53674e-07, -8.5)
+position = Vector2(2.38419e-07, -4.5)
 scale = Vector2(1.17932, 0.887707)
 shape = SubResource("RectangleShape2D_tljep")
 
-[node name="Attack" type="Area2D" parent="."]
-collision_mask = 2
+[node name="Attack" type="Area2D" parent="." groups=["attack_area"]]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
 position = Vector2(-2, -4)
@@ -103,14 +111,14 @@ scale = Vector2(19.8602, 0.327459)
 theme_override_styles/background = SubResource("StyleBoxFlat_p2bh4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_k5u18")
 max_value = 4.0
+step = 1.0
 value = 4.0
 show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_wyafc")
+&"": SubResource("AnimationLibrary_wyafc")
 }
 
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
-[connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]
 [connection signal="body_entered" from="Attack" to="." method="_on_attack_body_entered"]

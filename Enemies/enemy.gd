@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Enemy
 var treasure: Sprite2D
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 @export var health = 10
@@ -8,7 +9,8 @@ var treasure: Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var restart_ui: Control
 var COIN = preload("res://shopping/coin.tscn").instantiate()
-
+var rockNode = preload("res://spells/earth/rock.tscn").instantiate()
+		
 var target = null
 var targetIsHere = false
 var attack = false
@@ -18,7 +20,7 @@ var dist = false
 
 signal zero_hp
 signal dead
-
+var spawnRock = false
 func _ready() -> void:
 	health_bar.max_value = health
 	health_bar.value = health
@@ -27,11 +29,18 @@ func _ready() -> void:
 func death():
 	get_parent().call_deferred("add_child", COIN)
 	COIN.position = position
+	if spawnRock:
+		get_parent().call_deferred("add_child", rockNode)
+		rockNode.position.y = position.y
+		rockNode.position.x = position.x+20
+		print("rock_spawned")
 	queue_free()
 	
 func _on_detection_body_entered(body):
-	target = body
-	targetIsHere = true
+	if body.is_in_group("target"):
+		print("target is found")
+		target = body
+		targetIsHere = true
 
 func _process(delta):
 	health_bar.value = health
@@ -39,6 +48,7 @@ func _process(delta):
 	if health<=0:
 		death()
 		emit_signal("dead")
+		spawnRock = true
 	if target!=null and treasure != null:
 		nav.target_position=target.position
 		tresDistance = (treasure.position - position)
@@ -55,24 +65,28 @@ func _process(delta):
 		velocity = velocity.lerp(direction*speed, 1)
 		
 	move_and_slide()
-func _on_detection_body_exited(body):
-	target=null
-	targetIsHere= false
-	
+
+func winded():
+	pass
+func earthed():
+	spawnRock = true
+		
 func watered():
 	speed = 50
 	await get_tree().create_timer(4).timeout
 	speed = 100
-func fire():
+func fired():
 	for i in range(4):
 		print("function started %s" % str(i))
 		await get_tree().create_timer(1).timeout
 		health-=2
 		print("function finished")
-func _on_attack_body_entered(body):
+func _on_attack_body_entered(body:Player):
 	animation_player.play("attack")
 	Global.hp-=1
-	body.healthbar.value =Global.hp
+	var tween = create_tween()
+	tween.tween_property(body.healthbar, "value", Global.hp, 0.5)
+	#body.healthbar.value =Global.hp
 	restart_ui = get_node("../Player/CanvasLayer/RestartUI")
 	var main = get_parent()
 	if Global.hp <= 2:

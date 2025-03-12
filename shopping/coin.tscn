@@ -1,7 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://ddlmfdlbros0i"]
 
 [ext_resource type="Texture2D" uid="uid://ya4x5uvrbu1p" path="res://shopping/coin.png" id="1_y2805"]
+<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://csmf7fcrllels" path="res://shopping/collect.gd" id="2_a0ssi"]
+=======
+[ext_resource type="Script" uid="uid://b0q5mefqurwro" path="res://shopping/collect.gd" id="2_a0ssi"]
+>>>>>>> e5d4803 (undone_wind)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gaa6c"]
 
@@ -38,14 +42,14 @@ texture = ExtResource("1_y2805")
 script = ExtResource("2_a0ssi")
 
 [node name="Area2D" type="Area2D" parent="Sprite2D"]
-collision_mask = 2
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
 shape = SubResource("CircleShape2D_gaa6c")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
-"": SubResource("AnimationLibrary_xb02u")
+&"": SubResource("AnimationLibrary_xb02u")
 }
 autoplay = "coin_floating"
 speed_scale = 0.59

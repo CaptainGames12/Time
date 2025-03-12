@@ -1,17 +1,13 @@
 class_name Player 
 extends CharacterBody2D
 var SPEED = 300
+
 @onready var collect_coin: AudioStreamPlayer2D = $Collect_coin
 
 @export var inv_res:Inv
-@onready var score= Global.score:
-	get:
-		return Global.score
-	set(value):
-		collect_coin.play()
-		print("playing")
+@onready var score= Global.score
 		
-@onready var fireball = preload("res://Wizard/fireball.tscn")
+@onready var fireball = preload("res://Wizard/attack/attack.tscn")
 @onready var sprite = $AnimatedSprite2D
 @onready var price: Label = $CanvasLayer/Price
 @onready var cooldown_timer: Timer = $Cooldown_timer
@@ -35,7 +31,8 @@ func _process(delta):
 	velocity.y = (Input.get_action_strength("down")-Input.get_action_strength("up"))*SPEED
 	velocity.normalized()
 	if Input.is_action_just_pressed("mouse"):
-		cooldown_timer.start()
+		if cooldown_timer.is_stopped():
+			cooldown_timer.start()
 		if cooldown_finished: 
 			attack()
 			cooldown_finished = false

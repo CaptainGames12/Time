@@ -2,7 +2,8 @@ extends Area2D
 
 @export var scene : String
 @onready var shop: Node2D = $"../../Shop"
-@onready var camera_2d: Camera2D = $"../../Camera2D"
+
+@onready var camera_2d: Camera2D = $"../../Player/CanvasLayer/Camera2D"
 
 func _on_body_entered(body):
 	body.global_position = shop.entrance_pos

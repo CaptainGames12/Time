@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4tkqxr6vie41"]
+
+[ext_resource type="Script" uid="uid://dkfv16jh2nwep" path="res://spells/earth/rock.gd" id="1_0va4r"]
+[ext_resource type="Texture2D" uid="uid://it2ulst8k2ma" path="res://spells/earth/earth.png" id="1_qlsm7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0va4r"]
+radius = 17.4929
+
+[node name="Rock" type="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_0va4r")
+
+[node name="RockCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0va4r")
+
+[node name="Rock" type="Sprite2D" parent="."]
+texture = ExtResource("1_qlsm7")
