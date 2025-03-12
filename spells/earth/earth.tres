@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://drlppforch3c8"]
+
+[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="1_5j5ef"]
+[ext_resource type="Texture2D" uid="uid://it2ulst8k2ma" path="res://spells/earth/earth.png" id="2_1cp1m"]
+
+[resource]
+script = ExtResource("1_5j5ef")
+item_name = "earth"
+texture = ExtResource("2_1cp1m")
+price = 7
+damage = 3
+metadata/_custom_type_script = "uid://dsc584apkhxu"

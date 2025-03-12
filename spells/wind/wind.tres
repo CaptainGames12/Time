@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://ccy3hlsvd2046"]
+
+[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="1_3k6au"]
+[ext_resource type="Texture2D" uid="uid://0q64x2sx66v" path="res://spells/wind/tornado.png" id="2_jypdc"]
+
+[resource]
+script = ExtResource("1_3k6au")
+item_name = "wind"
+texture = ExtResource("2_jypdc")
+price = 6
+damage = 2
+metadata/_custom_type_script = "uid://dsc584apkhxu"

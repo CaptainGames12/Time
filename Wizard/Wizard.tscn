@@ -1,9 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://dwi7bdg27wpbr"]
 
+<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://juh7tuiallea" path="res://Wizard/Player.gd" id="1_23xfq"]
+=======
+[ext_resource type="Script" uid="uid://tnscipdrjbkq" path="res://Wizard/Player.gd" id="1_23xfq"]
+>>>>>>> e5d4803 (undone_wind)
 [ext_resource type="Texture2D" uid="uid://3w0iy1h8t6ab" path="res://Wizard/wizard.png" id="2_mwy0g"]
-[ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://shadow.tscn" id="2_wi82f"]
-[ext_resource type="Resource" uid="uid://w41rwmtsds5d" path="res://Wizard/playerinv.tres" id="2_wpefu"]
+[ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://rooms/main/shadow.tscn" id="2_wi82f"]
+[ext_resource type="Resource" uid="uid://w41rwmtsds5d" path="res://Wizard/inventory/playerinv.tres" id="2_wpefu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4lojw"]
 radius = 30.0
@@ -34,8 +38,6 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 process_mode = 3
 y_sort_enabled = true
-position = Vector2(1, 40)
-collision_layer = 3
 script = ExtResource("1_23xfq")
 inv_res = ExtResource("2_wpefu")
 
