@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://chq2r7qj02k12"]
+
+[ext_resource type="Texture2D" uid="uid://crteyewft5qj0" path="res://Enemies/boss/boss clock.png" id="1_al4nj"]
+[ext_resource type="Script" uid="uid://bg45rpd0yoohk" path="res://Enemies/boss/evil_clock_boss.gd" id="1_dv3vu"]
+[ext_resource type="Texture2D" uid="uid://cxrbjkw82lgkr" path="res://Enemies/boss/defense.png" id="3_jwmnu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dv3vu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iq1lk"]
+radius = 53.3667
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jwmnu"]
+radius = 14.0357
+
+[node name="EvilClockBoss" type="CharacterBody2D"]
+collision_layer = 17
+collision_mask = 25
+script = ExtResource("1_dv3vu")
+
+[node name="ClockBossSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_al4nj")
+
+[node name="Defense" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.447059)
+texture = ExtResource("3_jwmnu")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dv3vu")
+
+[node name="ShotingTime" type="Timer" parent="."]
+autostart = true
+
+[node name="Locator" type="Area2D" parent="."]
+collision_layer = 17
+collision_mask = 9
+
+[node name="LocatorCollision" type="CollisionShape2D" parent="Locator"]
+shape = SubResource("CircleShape2D_iq1lk")
+
+[node name="Attack" type="Area2D" parent="."]
+
+[node name="AttackCollision" type="CollisionShape2D" parent="Attack"]
+shape = SubResource("CircleShape2D_jwmnu")
+
+[node name="StopVector" type="RayCast2D" parent="."]
+target_position = Vector2(0, 34)
+
+[connection signal="body_entered" from="Locator" to="." method="_on_locator_body_entered"]
+[connection signal="body_entered" from="Attack" to="." method="_on_attack_body_entered"]

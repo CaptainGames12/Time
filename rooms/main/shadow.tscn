@@ -5,6 +5,5 @@
 [node name="Sprite2D" type="Sprite2D"]
 modulate = Color(0.262745, 0.262745, 0.262745, 0.419608)
 self_modulate = Color(0.241156, 0.241156, 0.241156, 1)
-position = Vector2(0, 65)
-scale = Vector2(0.92, 0.517557)
+y_sort_enabled = true
 texture = ExtResource("1_lxky3")

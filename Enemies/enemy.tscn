@@ -105,9 +105,9 @@ offset_bottom = -22.0
 scale = Vector2(19.8602, 0.327459)
 theme_override_styles/background = SubResource("StyleBoxFlat_p2bh4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_k5u18")
-max_value = 4.0
+min_value = 1.0
 step = 1.0
-value = 4.0
+value = 1.0
 show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -41,14 +41,17 @@ func _on_detection_body_entered(body):
 		print("target is found")
 		target = body
 		targetIsHere = true
-
-func _process(delta):
+var atk_dir:Vector2 = Vector2(0, 0)
+var isWinded = false
+func _physics_process(delta):
 	health_bar.value = health
 	var direction
-	if health<=0:
+	
+	print(health_bar.value)
+	if health_bar.value<=1:
 		death()
 		emit_signal("dead")
-		spawnRock = true
+		
 	if target!=null and treasure != null:
 		nav.target_position=target.position
 		tresDistance = (treasure.position - position)
@@ -63,11 +66,14 @@ func _process(delta):
 		direction = (nav.get_next_path_position() - global_position)
 		direction = direction.normalized()
 		velocity = velocity.lerp(direction*speed, 1)
-		
+	if isWinded:
+		velocity-=atk_dir*knock_speed	
+		isWinded = false
 	move_and_slide()
-
-func winded():
-	pass
+var knock_speed = 5000
+func winded(direction):
+	atk_dir = direction
+	isWinded = true
 func earthed():
 	spawnRock = true
 		
@@ -86,7 +92,7 @@ func _on_attack_body_entered(body:Player):
 	Global.hp-=1
 	var tween = create_tween()
 	tween.tween_property(body.healthbar, "value", Global.hp, 0.5)
-	#body.healthbar.value =Global.hp
+	
 	restart_ui = get_node("../Player/CanvasLayer/RestartUI")
 	var main = get_parent()
 	if Global.hp <= 2:

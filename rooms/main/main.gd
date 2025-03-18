@@ -4,11 +4,11 @@ extends Base_Scene
 @onready var inv = %Control
 var save_path = "user://save.tres"
 @onready var texture_rect: TextureRect = $TextureRect
-@onready var current_level = 1
+@onready var current_level = 3
 @onready var saver = ResourceSaver
 @onready var loader = ResourceLoader.load(save_path) as SaveGame
 var saving = SaveGame.new()
-
+@onready var boss_clock = preload("res://Enemies/boss/evil_clock_boss.tscn")
 func _ready():
 	
 	texture_rect.queue_free()
@@ -59,20 +59,25 @@ func enemy_death():
 		print()
 		dead_enemies=0
 func spawn_enemies():
-	for i in range(enemy_count[current_level]):
+	if current_level<=4:
+		for i in range(enemy_count[current_level]):
+			var enemy_node = enemy.instantiate()
+			var spawn_amount = spawnholder.get_child_count()-1
+			var rand_num = rand.randi_range(0, spawn_amount)
+			var spawn_pos = spawnholder.get_child(rand_num).position
+			enemy_node.position=spawn_pos
+			enemy_node.treasure = treasure
+			add_child(enemy_node)
+			await get_tree().create_timer(1, false).timeout
+	elif current_level==5:
+		var boss_clock_node = boss_clock.instantiate()
 		
-		var enemy_node = enemy.instantiate()
-		var spawn_amount = spawnholder.get_child_count()-1
-		var rand_num = rand.randi_range(0, spawn_amount)
-		var spawn_pos = spawnholder.get_child(rand_num).position
-		enemy_node.position=spawn_pos
-		enemy_node.treasure = treasure
-		add_child(enemy_node)
-		await get_tree().create_timer(1).timeout
+
 func update_level(level):
 	if treasure_label!=null:
 		
 		treasure_label.text = "Level: "+str(level)+"\n"+"Enemies: "+str(enemy_count[level]-dead_enemies)
+	
 	spawn_enemies()
 func _on_cooldown_between_waves_timeout() -> void:
 	

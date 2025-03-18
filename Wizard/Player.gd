@@ -22,14 +22,14 @@ func _ready() -> void:
 	healthbar.value = 10
 	Global.hp = healthbar.value
 	healthbar.value = Global.hp
-	#inventory.update_slots()
-	
-func _process(delta):
-	
+
+func _physics_process(delta):
+
 	price.text = str(score)
-	velocity.x = (Input.get_action_strength("right")-Input.get_action_strength("left"))*SPEED
-	velocity.y = (Input.get_action_strength("down")-Input.get_action_strength("up"))*SPEED
+	velocity.x = (Input.get_action_strength("right")-Input.get_action_strength("left"))*SPEED*delta
+	velocity.y = (Input.get_action_strength("down")-Input.get_action_strength("up"))*SPEED*delta
 	velocity.normalized()
+	global_position
 	if Input.is_action_just_pressed("mouse"):
 		if cooldown_timer.is_stopped():
 			cooldown_timer.start()
@@ -38,6 +38,7 @@ func _process(delta):
 			cooldown_finished = false
 	if Input.is_action_just_pressed("time_stop"):
 		get_tree().paused = !get_tree().paused
+		
 		timer.start()
 		$AudioStreamPlayer2D.play()
 	
@@ -46,7 +47,7 @@ func _process(delta):
 	if velocity.x > 0:
 		sprite.flip_h = false
 	
-	move_and_slide()
+	move_and_collide(velocity)
 func attack():
 	var bullet = fireball.instantiate()
 	var angle = position.angle_to_point(get_global_mouse_position())
@@ -58,7 +59,9 @@ func attack():
 		
 		bullet.position = position
 		bullet.target_fire = (position-get_global_mouse_position()).normalized()
-var saved = false
+		print(position)
+		print(get_global_mouse_position())
+
 func _on_timer_timeout() -> void:
 	if get_tree().paused == true:
 		match stamina.value>0:
@@ -66,6 +69,7 @@ func _on_timer_timeout() -> void:
 				stamina.value-=10
 			false:
 				get_tree().paused = false
+				
 	if get_tree().paused == false:
 		
 		stamina.value+=10

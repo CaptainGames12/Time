@@ -12,6 +12,7 @@ func _ready() -> void:
 func _physics_process(delta):
 	position-=target_fire*speed*delta
 	
+	
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
@@ -26,5 +27,5 @@ func _on_body_entered(body: Enemy):
 		"earth":
 			body.earthed()
 		"wind":
-			body.winded()
+			body.winded(target_fire)
 	queue_free()

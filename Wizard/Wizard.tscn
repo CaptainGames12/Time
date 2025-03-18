@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://dwi7bdg27wpbr"]
 
 [ext_resource type="Script" path="res://Wizard/Player.gd" id="1_23xfq"]
+[ext_resource type="Resource" uid="uid://w41rwmtsds5d" path="res://Wizard/playerinv.tres" id="2_ep4yn"]
 [ext_resource type="Texture2D" uid="uid://3w0iy1h8t6ab" path="res://Wizard/wizard.png" id="2_mwy0g"]
 [ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://rooms/main/shadow.tscn" id="2_wi82f"]
-[ext_resource type="Resource" uid="uid://w41rwmtsds5d" path="res://Wizard/inventory/playerinv.tres" id="2_wpefu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4lojw"]
 radius = 30.0
@@ -35,17 +35,20 @@ animations = [{
 process_mode = 3
 y_sort_enabled = true
 script = ExtResource("1_23xfq")
-inv_res = ExtResource("2_wpefu")
-
-[node name="Sprite2D" parent="." instance=ExtResource("2_wi82f")]
+inv_res = ExtResource("2_ep4yn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visibility_layer = 3
-position = Vector2(-1, 29)
+position = Vector2(0.875038, 1.87505)
 shape = SubResource("CapsuleShape2D_4lojw")
 
+[node name="Sprite2D" parent="." instance=ExtResource("2_wi82f")]
+y_sort_enabled = false
+position = Vector2(0, 28)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(4, 6.99999)
+y_sort_enabled = true
+position = Vector2(1.87504, -27.125)
 scale = Vector2(3.86719, 3.86719)
 sprite_frames = SubResource("SpriteFrames_fsmc0")
 autoplay = "default"
