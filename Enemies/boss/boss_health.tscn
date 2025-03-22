@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbvctbxxv3rvi"]
+
+[ext_resource type="Texture2D" uid="uid://1xv5n2pykspq" path="res://Enemies/boss/boss_healthbar_empty.png" id="1_3mp5b"]
+[ext_resource type="Texture2D" uid="uid://bjnrqjaiw5i2q" path="res://Enemies/boss/boss_healthbar.png" id="2_wgnee"]
+
+[node name="Boss_health" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.999995, 1.00547)
+size_flags_vertical = 8
+
+[node name="Boss_healthbar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(5.40441, 4.21875)
+pivot_offset = Vector2(30, 30)
+texture_under = ExtResource("1_3mp5b")
+texture_progress = ExtResource("2_wgnee")

@@ -4,7 +4,7 @@ extends Base_Scene
 @onready var inv = %Control
 var save_path = "user://save.tres"
 @onready var texture_rect: TextureRect = $TextureRect
-@onready var current_level = 3
+@onready var current_level = 5
 @onready var saver = ResourceSaver
 @onready var loader = ResourceLoader.load(save_path) as SaveGame
 var saving = SaveGame.new()
@@ -31,13 +31,14 @@ func _ready():
 	if SceneManager.player:
 		$Player.global_position = $Entrances/any.global_position
 @onready var inv_res = player.inv_res
+@onready var boss_healthbar: Control = $Player/CanvasLayer/Boss_health
 
 @onready var enemy_count: Dictionary[int, int] = {
 	1:2,
 	2:4,
 	3:6,
-	4:8,
-	5:10
+	4:2,
+	5:1
 }
 @onready var enemy = preload("res://Enemies/enemy.tscn")
 @onready var rand = RandomNumberGenerator.new()
@@ -45,10 +46,11 @@ func _ready():
 @onready var cooldowntimer = $CooldownBetweenWaves
 @onready var spawnholder = $SpawnHolder
 @onready var treasure = $Treasure
+@onready var boss_clock_node = boss_clock.instantiate()
 func _process(delta: float) -> void:
 	if(int(cooldowntimer.time_left)>0):
 		treasure_label.text="\n"+str(int(cooldowntimer.time_left))
-	
+	boss_healthbar.get_child(0).value= boss_clock_node.boss_health
 func enemy_death():
 	dead_enemies += 1
 	if treasure_label != null:
@@ -70,12 +72,15 @@ func spawn_enemies():
 			add_child(enemy_node)
 			await get_tree().create_timer(1, false).timeout
 	elif current_level==5:
-		var boss_clock_node = boss_clock.instantiate()
 		
-
+		add_child(boss_clock_node)
+		boss_clock_node.hit_player.connect(player.boss_hit)
+		boss_healthbar.get_child(0).value= boss_clock_node.boss_health
+		boss_healthbar.get_child(0).max_value= boss_clock_node.boss_health
+		boss_healthbar.visible = true
 func update_level(level):
+	
 	if treasure_label!=null:
-		
 		treasure_label.text = "Level: "+str(level)+"\n"+"Enemies: "+str(enemy_count[level]-dead_enemies)
 	
 	spawn_enemies()

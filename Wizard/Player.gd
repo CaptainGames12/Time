@@ -1,11 +1,12 @@
 class_name Player 
 extends CharacterBody2D
-var SPEED = 300
+var SPEED = 200
 
 @onready var collect_coin: AudioStreamPlayer2D = $Collect_coin
 
 @export var inv_res:Inv
 @onready var score= Global.score
+@onready var restart_ui: Control = $CanvasLayer/RestartUI
 		
 @onready var fireball = preload("res://Wizard/attack/attack.tscn")
 @onready var sprite = $AnimatedSprite2D
@@ -17,6 +18,7 @@ var SPEED = 300
 @onready var timer: Timer = $Stamina_timer
 @onready var healthbar:= $CanvasLayer/Health
 var cooldown_finished = true
+var knockback_power: Vector2 = Vector2.ZERO
 func _ready() -> void:
 	healthbar.max_value =10
 	healthbar.value = 10
@@ -26,10 +28,11 @@ func _ready() -> void:
 func _physics_process(delta):
 
 	price.text = str(score)
-	velocity.x = (Input.get_action_strength("right")-Input.get_action_strength("left"))*SPEED*delta
-	velocity.y = (Input.get_action_strength("down")-Input.get_action_strength("up"))*SPEED*delta
+	velocity.x = (Input.get_action_strength("right")-Input.get_action_strength("left"))*SPEED
+	velocity.y = (Input.get_action_strength("down")-Input.get_action_strength("up"))*SPEED
+	velocity+=knockback_power
 	velocity.normalized()
-	global_position
+
 	if Input.is_action_just_pressed("mouse"):
 		if cooldown_timer.is_stopped():
 			cooldown_timer.start()
@@ -47,7 +50,7 @@ func _physics_process(delta):
 	if velocity.x > 0:
 		sprite.flip_h = false
 	
-	move_and_collide(velocity)
+	move_and_slide()
 func attack():
 	var bullet = fireball.instantiate()
 	var angle = position.angle_to_point(get_global_mouse_position())
@@ -59,8 +62,7 @@ func attack():
 		
 		bullet.position = position
 		bullet.target_fire = (position-get_global_mouse_position()).normalized()
-		print(position)
-		print(get_global_mouse_position())
+		
 
 func _on_timer_timeout() -> void:
 	if get_tree().paused == true:
@@ -71,13 +73,16 @@ func _on_timer_timeout() -> void:
 				get_tree().paused = false
 				
 	if get_tree().paused == false:
-		
 		stamina.value+=10
+		
+func boss_hit(dir:Vector2):
+	knockback_power +=dir.rotated(PI/2).normalized()*600
 
+	var knockTween = get_tree().create_tween()
+	knockTween.parallel().tween_property(self, "knockback_power", Vector2.ZERO, 0.5)
+		
 func collect(item):
 	inv_res.insert(item)
-	
-	print("collected")
 	
 func _on_cooldown_timer_timeout() -> void:
 	cooldown_finished = true	

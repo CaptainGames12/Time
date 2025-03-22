@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cpfmollh1xmdd" path="res://rooms/main/main.gd" id="1_4ufej"]
 [ext_resource type="PackedScene" uid="uid://dwi7bdg27wpbr" path="res://Wizard/Wizard.tscn" id="1_28m1h"]
 [ext_resource type="AudioStream" uid="uid://cje471liap8dj" path="res://shopping/coin.wav" id="2_chvbv"]
-[ext_resource type="PackedScene" uid="uid://chq2r7qj02k12" path="res://Enemies/boss/evil_clock_boss.tscn" id="2_v24id"]
 [ext_resource type="AudioStream" uid="uid://ovv271nxqgpj" path="res://Wizard/dio-time-stop.mp3" id="3_2iv3q"]
 [ext_resource type="PackedScene" uid="uid://7kfpfr1fhuh5" path="res://Wizard/player_ui/control.tscn" id="3_bkj6u"]
 [ext_resource type="PackedScene" uid="uid://dmrk7fnn3wb0j" path="res://Wizard/player_ui/Healthbar.tscn" id="5_0dchd"]
@@ -13,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b43pjmuwn1i84" path="res://ui/save_button.png" id="12_b2wfq"]
 [ext_resource type="Texture2D" uid="uid://bto51yitt2ds4" path="res://ui/pressed_save.png" id="13_rkn7l"]
 [ext_resource type="PackedScene" uid="uid://dfetviixmo6rp" path="res://rooms/main/treasure.tscn" id="13_st04a"]
+[ext_resource type="PackedScene" uid="uid://cbvctbxxv3rvi" path="res://Enemies/boss/boss_health.tscn" id="13_v24id"]
 [ext_resource type="Texture2D" uid="uid://d1sb4yj34uggt" path="res://rooms/main/grass.png" id="14_p75mn"]
 [ext_resource type="PackedScene" uid="uid://c5hxob0bgx8yb" path="res://rooms/main/tree.tscn" id="15_qea0l"]
 [ext_resource type="Texture2D" uid="uid://bex85l0n7gfvt" path="res://ui/normal_restart.png" id="17_2h7oy"]
@@ -96,6 +96,9 @@ stream = ExtResource("3_2iv3q")
 volume_db = -12.181
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+
+[node name="Boss_health" parent="Player/CanvasLayer" instance=ExtResource("13_v24id")]
+visible = false
 
 [node name="Stamina" parent="Player/CanvasLayer" instance=ExtResource("3_bkj6u")]
 offset_left = 44.0
@@ -197,10 +200,6 @@ stream = ExtResource("2_chvbv")
 position = Vector2(575, 309)
 scale = Vector2(5, 5)
 
-[node name="EvilClockBoss" parent="." instance=ExtResource("2_v24id")]
-position = Vector2(620, 404)
-scale = Vector2(4, 4)
-
 [node name="Entrances" type="Node2D" parent="."]
 position = Vector2(579, 161)
 
@@ -221,6 +220,8 @@ navigation_polygon = SubResource("NavigationPolygon_xu4os")
 [node name="Tree" parent="NavigationRegion2D" instance=ExtResource("15_qea0l")]
 position = Vector2(974, 254)
 scale = Vector2(6, 6)
+collision_layer = 0
+collision_mask = 0
 
 [node name="Shadow" parent="NavigationRegion2D/Tree" instance=ExtResource("17_w8gtq")]
 position = Vector2(4.36604e-06, -2.71429)
@@ -230,6 +231,8 @@ scale = Vector2(0.4, 0.4)
 z_index = 1
 position = Vector2(817, 257)
 scale = Vector2(6, 6)
+collision_layer = 0
+collision_mask = 0
 
 [node name="Shadow4" parent="NavigationRegion2D/Tree4" instance=ExtResource("17_w8gtq")]
 position = Vector2(0.142853, -3.28571)
@@ -239,6 +242,8 @@ scale = Vector2(0.4, 0.4)
 z_index = 1
 position = Vector2(349, 584)
 scale = Vector2(6, 6)
+collision_layer = 0
+collision_mask = 0
 
 [node name="Shadow2" parent="NavigationRegion2D/Tree2" instance=ExtResource("17_w8gtq")]
 position = Vector2(0.285721, -3.28572)
@@ -248,6 +253,8 @@ scale = Vector2(0.4, 0.4)
 z_index = 1
 position = Vector2(280, 289)
 scale = Vector2(6, 6)
+collision_layer = 0
+collision_mask = 0
 
 [node name="Shadow3" parent="NavigationRegion2D/Tree3" instance=ExtResource("17_w8gtq")]
 position = Vector2(-0.714287, -3.28571)
@@ -257,6 +264,8 @@ scale = Vector2(0.4, 0.4)
 z_index = 1
 position = Vector2(93, 352)
 scale = Vector2(6, 6)
+collision_layer = 0
+collision_mask = 0
 
 [node name="Shadow5" parent="NavigationRegion2D/Tree5" instance=ExtResource("17_w8gtq")]
 position = Vector2(-0.428572, -2.85714)
@@ -266,6 +275,8 @@ scale = Vector2(0.4, 0.4)
 z_index = 1
 position = Vector2(1018, 460)
 scale = Vector2(6, 6)
+collision_layer = 0
+collision_mask = 0
 
 [node name="Shadow6" parent="NavigationRegion2D/Tree6" instance=ExtResource("17_w8gtq")]
 position = Vector2(-0.142855, -2.57143)
@@ -275,6 +286,8 @@ scale = Vector2(0.4, 0.4)
 z_index = 1
 position = Vector2(779, 621)
 scale = Vector2(6, 6)
+collision_layer = 0
+collision_mask = 0
 
 [node name="Shadow7" parent="NavigationRegion2D/Tree7" instance=ExtResource("17_w8gtq")]
 position = Vector2(-0.428576, -4.28572)
@@ -284,6 +297,8 @@ scale = Vector2(0.4, 0.4)
 z_index = 1
 position = Vector2(198, 193)
 scale = Vector2(6, 6)
+collision_layer = 0
+collision_mask = 0
 
 [node name="Shadow8" parent="NavigationRegion2D/Tree8" instance=ExtResource("17_w8gtq")]
 position = Vector2(0.14286, -3.14285)
@@ -291,6 +306,7 @@ scale = Vector2(0.4, 0.4)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_ubvls")
+volume_db = -78.333
 autoplay = true
 parameters/looping = true
 
@@ -320,6 +336,7 @@ position = Vector2(469, 694)
 [node name="CooldownBetweenWaves" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+autostart = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(570, 43)
