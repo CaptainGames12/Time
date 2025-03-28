@@ -4,7 +4,7 @@ extends Base_Scene
 @onready var inv = %Control
 var save_path = "user://save.tres"
 @onready var texture_rect: TextureRect = $TextureRect
-@onready var current_level = 5
+@onready var current_level = 1
 @onready var saver = ResourceSaver
 @onready var loader = ResourceLoader.load(save_path) as SaveGame
 var saving = SaveGame.new()

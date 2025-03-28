@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://c1ci06sps34uw"]
+
+[node name="AttackSFX" type="AudioStreamPlayer2D"]

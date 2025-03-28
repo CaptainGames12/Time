@@ -82,11 +82,14 @@ func watered():
 	await get_tree().create_timer(4).timeout
 	speed = 100
 func fired():
+	
 	for i in range(4):
-		print("function started %s" % str(i))
+		
 		await get_tree().create_timer(1).timeout
 		health-=2
-		print("function finished")
+	
+		if i==4:
+			get_child(0).queue_free()
 func _on_attack_body_entered(body:Player):
 	animation_player.play("attack")
 	Global.hp-=1

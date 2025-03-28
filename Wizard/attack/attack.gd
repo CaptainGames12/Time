@@ -9,7 +9,17 @@ var COIN = preload("res://shopping/coin.tscn").instantiate()
 
 func _ready() -> void:
 	$Sprite2D.texture = item.texture
-
+	match item.item_name:
+			"fire":
+				AttackSfx.stream = item.audio
+				AttackSfx.play()
+				
+			"water":
+				pass
+			"earth":
+				pass
+			"wind":
+				pass
 func _physics_process(delta):
 	position-=target_fire*speed*delta
 	
@@ -23,6 +33,9 @@ func _on_body_entered(body: CharacterBody2D):
 		body.health -= item.damage
 		match item.item_name:
 			"fire":
+				
+				body.add_child(item.particle.instantiate())
+				body.move_child(find_child("fire"), -1)
 				body.fired()
 			"water":
 				body.watered()

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SceneManager="*res://scene_manager/Scene_Manager.gd"
 Global="*res://global.gd"
+AttackSfx="*res://spells/attack_sfx.tscn"
 
 [display]
 
