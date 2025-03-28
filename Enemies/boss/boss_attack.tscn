@@ -13,17 +13,19 @@ script = ExtResource("1_wmqhb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.566
+scale = Vector2(3.34478, 2.01535)
 shape = SubResource("CapsuleShape2D_ss2up")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-0.5, 0.999998)
 rotation = 1.566
-scale = Vector2(0.84375, 1)
+scale = Vector2(2.82216, 2.01535)
 texture = ExtResource("2_ntktj")
 flip_h = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(3.34478, 2.01535)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

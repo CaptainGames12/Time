@@ -50,7 +50,8 @@ func _ready():
 func _process(delta: float) -> void:
 	if(int(cooldowntimer.time_left)>0):
 		treasure_label.text="\n"+str(int(cooldowntimer.time_left))
-	boss_healthbar.get_child(0).value= boss_clock_node.boss_health
+	if boss_clock_node!= null:
+		boss_healthbar.get_child(0).value= boss_clock_node.boss_health
 func enemy_death():
 	dead_enemies += 1
 	if treasure_label != null:
@@ -72,12 +73,15 @@ func spawn_enemies():
 			add_child(enemy_node)
 			await get_tree().create_timer(1, false).timeout
 	elif current_level==5:
-		
+		$NavigationRegion2D.queue_free()
 		add_child(boss_clock_node)
 		boss_clock_node.hit_player.connect(player.boss_hit)
 		boss_healthbar.get_child(0).value= boss_clock_node.boss_health
 		boss_healthbar.get_child(0).max_value= boss_clock_node.boss_health
 		boss_healthbar.visible = true
+		if treasure_label!=null:
+			treasure_label.text = "Level: "+str(current_level)+"\n"+"BOSS: "+"EVIL CLOCK"
+			treasure_label.position.x-=10
 func update_level(level):
 	
 	if treasure_label!=null:

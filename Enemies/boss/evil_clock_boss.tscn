@@ -43,6 +43,7 @@ animation = &"angry"
 autoplay = "not angry"
 
 [node name="Locator sprite" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 0.154349, 0.246537, 0.447059)
 scale = Vector2(2.10625, 2.20405)
 texture = ExtResource("3_jwmnu")
@@ -63,7 +64,6 @@ autostart = true
 [node name="Locator" type="Area2D" parent="."]
 visible = false
 collision_layer = 17
-collision_mask = 9
 
 [node name="LocatorCollision" type="CollisionShape2D" parent="Locator"]
 shape = SubResource("CircleShape2D_iq1lk")
@@ -74,12 +74,11 @@ visible = false
 [node name="AttackCollision" type="CollisionShape2D" parent="Attack"]
 shape = SubResource("CircleShape2D_jwmnu")
 
-[node name="StopVector" type="RayCast2D" parent="."]
-target_position = Vector2(0, 34)
-
 [node name="ShootingCooldown" type="Timer" parent="."]
-wait_time = 3.0
 one_shot = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+update_rotation = false
 
 [connection signal="timeout" from="RollingTime" to="." method="_on_rolling_time_timeout"]
 [connection signal="body_entered" from="Locator" to="." method="_on_locator_body_entered"]
