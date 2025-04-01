@@ -1,4 +1,3 @@
-
 extends CharacterBody2D
 class_name ClockBoss
 @export var boss_health = 20
@@ -30,9 +29,9 @@ var state = States.IDLE
 func states_changer(newState):
 	state=newState
 func rolling_animate(delta):
-	if target_pos.x<position.x:
+	if velocity.x<0:
 		rotation_degrees-=ROT_SPEED*delta
-	if target_pos.x>position.x:
+	if velocity.x>0:
 		rotation_degrees+=ROT_SPEED*delta
 	if isAngried:
 		clock_boss_sprite.play("angry")
@@ -54,9 +53,11 @@ func shooting():
 		arrow_node.position = position
 		arrow_node.target_fire = (position-player.position).normalized()
 		shooting_cooldown.start()
-func idle():
-	print("isIdle")
-	
+		if player.position.x>=position.x:
+			clock_boss_sprite.flip_h = true
+		else:
+			clock_boss_sprite.flip_h = false
+
 func _process(delta: float) -> void:
 	match state:
 		States.IDLE:
@@ -88,16 +89,20 @@ func _physics_process(delta: float) -> void:
 			rolling_physics(delta)
 	stop_vector.target_position=velocity.normalized()*50
 		
-	if stop_vector.is_colliding():
+	if stop_vector.is_colliding() or stop_vector.collide_with_areas:
+		print("is_colliding")
 		emit_signal("stopHit")
 	move_and_collide(velocity)
 
-func _on_attack_body_entered(body: Player) -> void:
-	Global.hp-=2
-	body.healthbar.value-=2
-	emit_signal("hit_player", velocity)
-	spawning_restart(body)
-
+func _on_attack_body_entered(body: Node2D) -> void:
+	if body is Player:
+		Global.hp-=2
+		body.healthbar.value-=2
+		emit_signal("hit_player", velocity)
+		spawning_restart(body)
+	elif body.is_in_group("tree"):
+		body.queue_free()
+		boss_health -=2
 func spawning_restart(body):
 	restart_ui = get_node("../Player/CanvasLayer/RestartUI")
 	var main = get_parent()

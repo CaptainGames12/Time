@@ -10,6 +10,6 @@ script = ExtResource("1_py5ue")
 item_name = "fire"
 texture = ExtResource("2_tcsnv")
 price = 10
-damage = 2
+damage = 4
 particle = ExtResource("1_gywru")
 audio = ExtResource("1_112r0")

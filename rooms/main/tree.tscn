@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bgsh874ninpqk" path="res://rooms/main/tree.png" id="1_gk0o3"]
 
-[node name="Tree" type="StaticBody2D"]
+[node name="Tree" type="StaticBody2D" groups=["tree"]]
 y_sort_enabled = true
 
 [node name="Tree" type="Sprite2D" parent="."]

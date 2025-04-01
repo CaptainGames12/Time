@@ -1,10 +1,12 @@
 extends CharacterBody2D
 class_name Enemy
 var treasure: Sprite2D
-@onready var nav: NavigationAgent2D = $NavigationAgent2D
-@export var health = 10
 
+@export var health = 10
 @export var speed = 100
+
+@onready var animation: AnimatedSprite2D = $Animation
+@onready var nav: NavigationAgent2D = $NavigationAgent2D
 @onready var health_bar: ProgressBar = $ProgressBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var restart_ui: Control
@@ -69,6 +71,14 @@ func _physics_process(delta):
 	if isWinded:
 		velocity-=atk_dir*knock_speed	
 		isWinded = false
+	if velocity!=Vector2(0, 0):
+		if velocity.x<0:
+			animation.flip_h = false
+		if velocity.x>0:
+			animation.flip_h = true
+		animation.play("walking")
+	else:
+		animation.play("idle")
 	move_and_slide()
 var knock_speed = 5000
 func winded(direction):

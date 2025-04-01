@@ -44,12 +44,16 @@ func _physics_process(delta):
 		
 		timer.start()
 		$AudioStreamPlayer2D.play()
-	
-	if velocity.x < 0:
-		sprite.flip_h = true
-	if velocity.x > 0:
-		sprite.flip_h = false
-	
+	var current_anim:String
+	if velocity!=Vector2(0, 0):	
+		if velocity.x < 0:
+			sprite.flip_h = true
+		if velocity.x > 0:
+			sprite.flip_h = false
+		sprite.play("run")
+	else:
+		
+		sprite.play("idle")
 	move_and_slide()
 func attack():
 	var bullet = fireball.instantiate()

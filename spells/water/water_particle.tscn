@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cf00b5ppyb2tg"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yik5i"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+scale_min = 4.0
+scale_max = 5.24
+
+[node name="water" type="GPUParticles2D"]
+modulate = Color(0, 0.415686, 1, 1)
+amount = 4
+amount_ratio = 0.5588
+lifetime = 1.11
+process_material = SubResource("ParticleProcessMaterial_yik5i")

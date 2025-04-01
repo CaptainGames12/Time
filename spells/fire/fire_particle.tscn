@@ -28,7 +28,7 @@ anim_speed_max = 1.66
 turbulence_influence_min = 0.545
 turbulence_influence_max = 0.922
 
-[node name="fire" type="GPUParticles2D"]
+[node name="FireParticle" type="GPUParticles2D"]
 modulate = Color(0.996078, 0.313726, 0.14902, 1)
 material = SubResource("CanvasItemMaterial_ukhwt")
 amount = 20

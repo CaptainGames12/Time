@@ -4,7 +4,7 @@ extends Base_Scene
 @onready var inv = %Control
 var save_path = "user://save.tres"
 @onready var texture_rect: TextureRect = $TextureRect
-@onready var current_level = 1
+@onready var current_level = 5
 @onready var saver = ResourceSaver
 @onready var loader = ResourceLoader.load(save_path) as SaveGame
 var saving = SaveGame.new()
@@ -32,6 +32,7 @@ func _ready():
 		$Player.global_position = $Entrances/any.global_position
 @onready var inv_res = player.inv_res
 @onready var boss_healthbar: Control = $Player/CanvasLayer/Boss_health
+@onready var main_music: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @onready var enemy_count: Dictionary[int, int] = {
 	1:2,
@@ -73,7 +74,10 @@ func spawn_enemies():
 			add_child(enemy_node)
 			await get_tree().create_timer(1, false).timeout
 	elif current_level==5:
-		$NavigationRegion2D.queue_free()
+		main_music.stream = load("res://Enemies/boss/bossclock.wav")
+	
+		main_music.play()
+		
 		add_child(boss_clock_node)
 		boss_clock_node.hit_player.connect(player.boss_hit)
 		boss_healthbar.get_child(0).value= boss_clock_node.boss_health
