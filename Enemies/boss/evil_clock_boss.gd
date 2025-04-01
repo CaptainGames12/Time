@@ -40,6 +40,9 @@ func rolling_physics(delta):
 	if isAngried:
 		velocity -= target_pos*SPEED*delta
 		isProtected = false
+		if get_tree().paused == true:
+			PhysicsServer2D.set_active(true)
+			SPEED = 5
 func get_direction_rolling(body):
 	locator.get_child(0).disabled = true
 	target_pos = (position-body.position).normalized()
@@ -84,6 +87,7 @@ func stopHitEmited():
 	isProtected = true
 	states_changer(States.IDLE)
 func _physics_process(delta: float) -> void:
+	
 	match state:
 		States.ROLLING:
 			rolling_physics(delta)

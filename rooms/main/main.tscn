@@ -376,6 +376,7 @@ polygon = PackedVector2Array(1212, 632, 1183, 667, 1168, -24, -27, -21, -30, 670
 position = Vector2(17, -728)
 
 [node name="StopVec" type="RayCast2D" parent="."]
+process_mode = 3
 collision_mask = 8
 
 [connection signal="pressed" from="Player/CanvasLayer/Saving/SaveButton" to="." method="_on_save_button_pressed"]
