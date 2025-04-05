@@ -6,9 +6,11 @@ extends Area2D
 
 var target_fire: Vector2
 var COIN = preload("res://shopping/coin.tscn").instantiate()
-
+signal deadBoss
 func _ready() -> void:
+
 	$Sprite2D.texture = item.texture
+	deadBoss.connect(get_node("/root/Node2D").the_end)
 	match item.item_name:
 		"fire":
 			AttackSfx.stream = item.audio
@@ -49,4 +51,5 @@ func _on_body_entered(body: CharacterBody2D):
 			boss_health.get_child(0).value -= item.damage
 			if body.boss_health<=0:
 				body.queue_free()
+				deadBoss.emit()
 	queue_free()

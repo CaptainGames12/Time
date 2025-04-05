@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://byyvwanp7uc17"]
+
+[ext_resource type="Texture2D" uid="uid://3ijor6g4uem5" path="res://rooms/main/level_incomplete.png" id="1_4xn8v"]
+[ext_resource type="Texture2D" uid="uid://b06dvfujot2v1" path="res://rooms/main/level.png" id="2_1jt6s"]
+
+[node name="TextureProgressBar" type="TextureProgressBar"]
+offset_right = 16.0
+offset_bottom = 80.0
+max_value = 5.0
+fill_mode = 3
+texture_under = ExtResource("1_4xn8v")
+texture_progress = ExtResource("2_1jt6s")

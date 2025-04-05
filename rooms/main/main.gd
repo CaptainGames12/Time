@@ -1,16 +1,21 @@
 extends Base_Scene
-@onready var treasure_label = $Treasure/Label
+@onready var level_progress: TextureProgressBar = $Player/CanvasLayer/LevelProgress
+
+
 @onready var restart_ui: Control = $Player/CanvasLayer/RestartUI/RestartButton
 @onready var inv = %Control
 var save_path = "user://save.tres"
 @onready var texture_rect: TextureRect = $TextureRect
-@onready var current_level = 5
+@onready var current_level = 1
 @onready var saver = ResourceSaver
 @onready var loader = ResourceLoader.load(save_path) as SaveGame
 var saving = SaveGame.new()
 @onready var boss_clock = preload("res://Enemies/boss/evil_clock_boss.tscn")
+@onready var entrance_shop: StaticBody2D = $Entrance_shop
+
 func _ready():
-	
+	entrance_anim.play("open")
+	scene_changer.monitoring = true
 	texture_rect.queue_free()
 	
 	if loader != null:	
@@ -33,6 +38,8 @@ func _ready():
 @onready var inv_res = player.inv_res
 @onready var boss_healthbar: Control = $Player/CanvasLayer/Boss_health
 @onready var main_music: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var entrance_anim: AnimatedSprite2D = $Entrance_shop/Entrance_anim
+@onready var scene_changer: Area2D = $Entrance_shop/SceneChanger
 
 @onready var enemy_count: Dictionary[int, int] = {
 	1:2,
@@ -49,20 +56,20 @@ func _ready():
 @onready var treasure = $Treasure
 @onready var boss_clock_node = boss_clock.instantiate()
 func _process(delta: float) -> void:
-	if(int(cooldowntimer.time_left)>0):
-		treasure_label.text="\n"+str(int(cooldowntimer.time_left))
+	
 	if boss_clock_node!= null:
 		boss_healthbar.get_child(0).value= boss_clock_node.boss_health
 func enemy_death():
 	dead_enemies += 1
-	if treasure_label != null:
-		treasure_label.text = "Level: "+str(current_level)+"\n"+"Enemies: "+str(enemy_count[current_level]-dead_enemies)
+	
 	if dead_enemies==enemy_count[current_level]:
+		open_shop()
 		current_level+=1
 		cooldowntimer.start()
 		print()
 		dead_enemies=0
 func spawn_enemies():
+	
 	if current_level<=4:
 		for i in range(enemy_count[current_level]):
 			var enemy_node = enemy.instantiate()
@@ -83,20 +90,25 @@ func spawn_enemies():
 		boss_healthbar.get_child(0).value= boss_clock_node.boss_health
 		boss_healthbar.get_child(0).max_value= boss_clock_node.boss_health
 		boss_healthbar.visible = true
-		if treasure_label!=null:
-			treasure_label.text = "Level: "+str(current_level)+"\n"+"BOSS: "+"EVIL CLOCK"
-			treasure_label.position.x-=10
+		
 func update_level(level):
 	
-	if treasure_label!=null:
-		treasure_label.text = "Level: "+str(level)+"\n"+"Enemies: "+str(enemy_count[level]-dead_enemies)
+	if level_progress!=null:
+		level_progress.value = current_level
 	
 	spawn_enemies()
 func _on_cooldown_between_waves_timeout() -> void:
-	
+	close_shop()
 	update_level(current_level)
 		
-	
+func open_shop():
+	scene_changer.monitoring = true
+	entrance_anim.play("open")
+	$Entrance_shop/Closed/ClosedCollision.disabled =true
+func close_shop():
+	scene_changer.monitoring = false
+	entrance_anim.play("close")
+	$Entrance_shop/Closed/ClosedCollision.disabled =false
 func _on_restart_button_pressed() -> void:
 
 	get_tree().paused = false
@@ -120,3 +132,8 @@ func _on_save_button_pressed() -> void:
 		saving.player_inv = inv.itemsList.slots
 		
 		saver.save(saving, save_path)
+func the_end():
+	$Ending.play("ending")
+
+func _on_ending_animation_finished(anim_name: StringName="ending") -> void:
+	get_tree().change_scene_to_file("res://rooms/ending/clapping.tscn")

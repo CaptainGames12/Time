@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://dcifbpe8tn1uf"]
+[gd_scene load_steps=45 format=4 uid="uid://dcifbpe8tn1uf"]
 
 [ext_resource type="Script" uid="uid://cpfmollh1xmdd" path="res://rooms/main/main.gd" id="1_4ufej"]
 [ext_resource type="PackedScene" uid="uid://dwi7bdg27wpbr" path="res://Wizard/Wizard.tscn" id="1_28m1h"]
@@ -14,15 +14,22 @@
 [ext_resource type="PackedScene" uid="uid://dfetviixmo6rp" path="res://rooms/main/treasure.tscn" id="13_st04a"]
 [ext_resource type="PackedScene" uid="uid://cbvctbxxv3rvi" path="res://Enemies/boss/boss_health.tscn" id="13_v24id"]
 [ext_resource type="Texture2D" uid="uid://d1sb4yj34uggt" path="res://rooms/main/grass.png" id="14_p75mn"]
+[ext_resource type="PackedScene" uid="uid://byyvwanp7uc17" path="res://rooms/main/level_progress.tscn" id="14_v2j20"]
 [ext_resource type="PackedScene" uid="uid://c5hxob0bgx8yb" path="res://rooms/main/tree.tscn" id="15_qea0l"]
 [ext_resource type="Texture2D" uid="uid://bex85l0n7gfvt" path="res://ui/normal_restart.png" id="17_2h7oy"]
 [ext_resource type="AudioStream" uid="uid://ds7spg85qkrto" path="res://rooms/main/main-theme.mp3" id="17_ubvls"]
 [ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://rooms/main/shadow.tscn" id="17_w8gtq"]
-[ext_resource type="Texture2D" uid="uid://cti83ca1kbptj" path="res://rooms/shop/shop-entrance.png" id="18_1s5vw"]
 [ext_resource type="Texture2D" uid="uid://b50rpcijpbgyp" path="res://ui/pressed_restart.png" id="18_bjhwx"]
 [ext_resource type="Script" path="res://scene_manager/SceneChanger.gd" id="19_4j2le"]
 [ext_resource type="PackedScene" uid="uid://dj3g4s7hfeffe" path="res://rooms/shop/shop.tscn" id="20_h78s4"]
 [ext_resource type="Texture2D" uid="uid://ofsbg0toro35" path="res://rooms/main/shadow.png" id="20_jgkow"]
+[ext_resource type="Texture2D" uid="uid://ul3orpvo2lxy" path="res://rooms/shop/shop_entrance/shop-entrance_animated7.png" id="21_ndgev"]
+[ext_resource type="Texture2D" uid="uid://bp01g20rr48dh" path="res://rooms/shop/shop_entrance/shop-entrance_animated6.png" id="22_v2j20"]
+[ext_resource type="Texture2D" uid="uid://bq4b2j3j6cp2l" path="res://rooms/shop/shop_entrance/shop-entrance_animated5.png" id="23_j4mh5"]
+[ext_resource type="Texture2D" uid="uid://cj2l4rtm4iof1" path="res://rooms/shop/shop_entrance/shop-entrance_animated4.png" id="24_0bf1a"]
+[ext_resource type="Texture2D" uid="uid://g8syf8jr3rc2" path="res://rooms/shop/shop_entrance/shop-entrance_animated3.png" id="25_tm1hv"]
+[ext_resource type="Texture2D" uid="uid://bq21mntu6y7tc" path="res://rooms/shop/shop_entrance/shop-entrance_animated2.png" id="26_4k2ai"]
+[ext_resource type="Texture2D" uid="uid://c0j63jieskj1v" path="res://rooms/shop/shop_entrance/shop-entrance_animated1.png" id="27_m3omd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_40i0a"]
 font = ExtResource("6_qmpgk")
@@ -77,10 +84,135 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(1156, 10, 1156, 663, -3, 659, 2, 16)])
 agent_radius = 12.7
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_wewfl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_ndgev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_v2j20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_j4mh5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_0bf1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_tm1hv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_4k2ai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_m3omd")
+}],
+"loop": false,
+"name": &"close",
+"speed": 19.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_m3omd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_4k2ai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_tm1hv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_0bf1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_j4mh5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_v2j20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ndgev")
+}],
+"loop": false,
+"name": &"open",
+"speed": 19.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aatvm"]
-size = Vector2(194, 57)
+size = Vector2(194, 43.4649)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndgev"]
+size = Vector2(41.3333, 13.75)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_xescj"]
+
+[sub_resource type="Animation" id="Animation_23j7k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Treasure:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(575, 309)]
+}
+
+[sub_resource type="Animation" id="Animation_jgkow"]
+resource_name = "ending"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.98, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.458405, 0.458405, 0.458405, 1), Color(0.122252, 0.122252, 0.122252, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v2j20"]
+resource_name = "crystal"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Treasure:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.16667, 2.06667, 2.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(575, 309), Vector2(575, 281), Vector2(575, 290), Vector2(575, 309)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pbnns"]
+_data = {
+&"RESET": SubResource("Animation_23j7k"),
+&"crystal": SubResource("Animation_v2j20"),
+&"ending": SubResource("Animation_jgkow")
+}
 
 [node name="Node2D" type="Node2D" groups=["level"]]
 process_mode = 1
@@ -90,13 +222,15 @@ script = ExtResource("1_4ufej")
 [node name="Player" parent="." groups=["target"] instance=ExtResource("1_28m1h")]
 z_index = 1
 position = Vector2(582, 449)
-collision_mask = 9
+scale = Vector2(0.991811, 1)
+collision_mask = 41
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("3_2iv3q")
 volume_db = -12.181
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+follow_viewport_scale = 20.388
 
 [node name="Boss_health" parent="Player/CanvasLayer" instance=ExtResource("13_v24id")]
 visible = false
@@ -186,6 +320,18 @@ texture_pressed = ExtResource("18_bjhwx")
 [node name="Camera2D" type="Camera2D" parent="Player/CanvasLayer"]
 position = Vector2(579, 329)
 
+[node name="LevelProgress" parent="Player/CanvasLayer" instance=ExtResource("14_v2j20")]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -196.0
+offset_right = 26.0
+offset_bottom = -116.0
+grow_vertical = 2
+scale = Vector2(4.34891, 4.34891)
+size_flags_horizontal = 0
+
 [node name="Stamina_timer" type="Timer" parent="Player"]
 wait_time = 0.5
 
@@ -200,10 +346,10 @@ stream = ExtResource("2_chvbv")
 [node name="Treasure" parent="." groups=["target"] instance=ExtResource("13_st04a")]
 z_index = 1
 position = Vector2(575, 309)
-scale = Vector2(5, 5)
+scale = Vector2(3.6901, 3.6901)
 
 [node name="Entrances" type="Node2D" parent="."]
-position = Vector2(579, 161)
+position = Vector2(581, 196)
 
 [node name="any" type="Marker2D" parent="Entrances"]
 position = Vector2(-4, 0)
@@ -323,37 +469,50 @@ wait_time = 5.0
 one_shot = true
 autostart = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(577, 64)
-scale = Vector2(2.40625, 2.73438)
+[node name="Entrance_shop" type="StaticBody2D" parent="."]
+z_index = -2
+position = Vector2(578, 88)
+scale = Vector2(3, 4)
 collision_layer = 9
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Entrance_shop"]
 position = Vector2(-0.415588, -16.8228)
+scale = Vector2(1.17118, 0.73971)
 build_mode = 1
-polygon = PackedVector2Array(25.3507, -1.46285, -24.1039, -3.29142, -26.5974, 33.2799, -13.2987, 34.3771, -7.8961, 9.14284, 13.7143, 12.0686, 18.2857, 33.6457, 27.013, 35.1085)
+polygon = PackedVector2Array(27.393, -0.915493, -24.1039, -3.29142, -26.1141, 35.9233, -13.5912, 35.9233, -7.8961, 9.14284, 13.7143, 12.0686, 16.5778, 35.5853, 29.6699, 35.5853)
 
-[node name="Shadow" type="Sprite2D" parent="StaticBody2D"]
+[node name="Shadow" type="Sprite2D" parent="Entrance_shop"]
 modulate = Color(1, 1, 1, 0.635294)
-position = Vector2(-0.415587, 16.0914)
-scale = Vector2(1.03065, 0.365714)
+z_index = 2
+position = Vector2(1.5, 15.75)
+scale = Vector2(1.13021, 0.365714)
 texture = ExtResource("20_jgkow")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+[node name="Entrance_anim" type="AnimatedSprite2D" parent="Entrance_shop"]
 z_index = 3
-texture = ExtResource("18_1s5vw")
+position = Vector2(1.5, 0)
+scale = Vector2(1.22396, 1)
+sprite_frames = SubResource("SpriteFrames_wewfl")
+animation = &"open"
 
-[node name="SceneChanger" type="Area2D" parent="StaticBody2D"]
+[node name="SceneChanger" type="Area2D" parent="Entrance_shop"]
 process_mode = 3
 position = Vector2(-1.24676, -25.9657)
 scale = Vector2(0.415584, 0.365714)
 script = ExtResource("19_4j2le")
 scene = "shop"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/SceneChanger"]
-position = Vector2(6, 95)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_shop/SceneChanger"]
+position = Vector2(6, 88.2324)
 scale = Vector2(0.2, 1)
 shape = SubResource("RectangleShape2D_aatvm")
+
+[node name="Closed" type="StaticBody2D" parent="Entrance_shop"]
+collision_layer = 32
+
+[node name="ClosedCollision" type="CollisionShape2D" parent="Entrance_shop/Closed"]
+position = Vector2(2.33333, 3.875)
+shape = SubResource("RectangleShape2D_ndgev")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
@@ -373,15 +532,23 @@ position = Vector2(29, 2)
 polygon = PackedVector2Array(1212, 632, 1183, 667, 1168, -24, -27, -21, -30, 670, 1191, 671, 1159, 736, -71, 691, -90, -70, 522.552, -58.2955, 1204, -45)
 
 [node name="Shop" parent="." instance=ExtResource("20_h78s4")]
-position = Vector2(17, -728)
+position = Vector2(-3, -702)
 
 [node name="StopVec" type="RayCast2D" parent="."]
 process_mode = 3
-collision_mask = 8
+scale = Vector2(10, 1)
+collision_mask = 40
+
+[node name="Ending" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pbnns")
+}
+autoplay = "crystal"
 
 [connection signal="pressed" from="Player/CanvasLayer/Saving/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="Player/CanvasLayer/RestartUI/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="timeout" from="Player/Stamina_timer" to="Player" method="_on_timer_timeout"]
 [connection signal="timeout" from="Player/Cooldown_timer" to="Player" method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="CooldownBetweenWaves" to="." method="_on_cooldown_between_waves_timeout"]
-[connection signal="body_entered" from="StaticBody2D/SceneChanger" to="StaticBody2D/SceneChanger" method="_on_body_entered"]
+[connection signal="body_entered" from="Entrance_shop/SceneChanger" to="Entrance_shop/SceneChanger" method="_on_body_entered"]
+[connection signal="animation_finished" from="Ending" to="." method="_on_ending_animation_finished"]

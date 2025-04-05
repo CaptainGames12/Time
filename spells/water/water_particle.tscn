@@ -8,6 +8,7 @@ scale_max = 5.24
 
 [node name="water" type="GPUParticles2D"]
 modulate = Color(0, 0.415686, 1, 1)
+z_index = -1
 amount = 4
 amount_ratio = 0.5588
 lifetime = 1.11

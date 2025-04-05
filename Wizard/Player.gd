@@ -3,7 +3,7 @@ extends CharacterBody2D
 var SPEED = 200
 
 @onready var collect_coin: AudioStreamPlayer2D = $Collect_coin
-
+var in_the_shop = false
 @export var inv_res:Inv
 @onready var score= Global.score
 @onready var restart_ui: Control = $CanvasLayer/RestartUI
@@ -39,7 +39,7 @@ func _physics_process(delta):
 		if cooldown_finished: 
 			attack()
 			cooldown_finished = false
-	if Input.is_action_just_pressed("time_stop"):
+	if Input.is_action_just_pressed("time_stop") and !in_the_shop:
 		get_tree().paused = !get_tree().paused
 		
 		timer.start()
@@ -81,7 +81,6 @@ func _on_timer_timeout() -> void:
 		
 func boss_hit(dir:Vector2):
 	knockback_power +=dir.rotated(PI/2).normalized()*600
-
 	var knockTween = get_tree().create_tween()
 	knockTween.parallel().tween_property(self, "knockback_power", Vector2.ZERO, 0.5)
 		

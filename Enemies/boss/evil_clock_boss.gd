@@ -1,6 +1,6 @@
 extends CharacterBody2D
 class_name ClockBoss
-@export var boss_health = 20
+@export var boss_health = 40
 var isAngried = false
 @onready var player = get_node("/root/Node2D/Player")
 var isProtected=true
@@ -38,13 +38,19 @@ func rolling_animate(delta):
 		defense.visible = false
 func rolling_physics(delta):
 	if isAngried:
-		velocity -= target_pos*SPEED*delta
-		isProtected = false
-		if get_tree().paused == true:
+		if get_tree().paused==false:
 			PhysicsServer2D.set_active(true)
-			SPEED = 5
+			SPEED=30
+			velocity -= target_pos*SPEED*delta
+			isProtected = false
+			print("rolling")
+		elif get_tree().paused == true:
+			PhysicsServer2D.set_active(true)
+			SPEED=5
+			velocity -= target_pos*SPEED*delta
+		
 func get_direction_rolling(body):
-	locator.get_child(0).disabled = true
+	locator.set_deferred("monitoring", false)
 	target_pos = (position-body.position).normalized()
 	player = body
 	isAngried = true
@@ -107,25 +113,29 @@ func _on_attack_body_entered(body: Node2D) -> void:
 	elif body.is_in_group("tree"):
 		body.queue_free()
 		boss_health -=2
+		if boss_health==0:
+			queue_free()
 func spawning_restart(body):
 	restart_ui = get_node("../Player/CanvasLayer/RestartUI")
 	var main = get_parent()
 	
 	if Global.hp <= 0:
-		restart_ui.get_parent().remove_child(restart_ui)
-		main.add_child(restart_ui)
-		body.queue_free()
-		get_tree().paused = true
-		restart_ui.visible = true
-
-func _on_locator_body_entered(body: Player) -> void:
-	if rolling_time.is_stopped():
+		if restart_ui!=null:
+			
+			restart_ui.get_parent().remove_child(restart_ui)
+			main.add_child(restart_ui)
+			body.queue_free()
+			get_tree().paused = true
+			restart_ui.visible = true
+		
+func _on_locator_body_entered(body: Node2D) -> void:
+	if rolling_time.is_stopped() and body is Player:
 		get_direction_rolling(body)
 		isProtected=false
 		states_changer(States.ROLLING)	
 		locator_sprite.visible = false
-
+		
 func _on_rolling_time_timeout() -> void:
 
 	locator_sprite.visible = true
-	locator.get_child(0).disabled = false
+	locator.set_deferred("monitoring", true)

@@ -1,0 +1,96 @@
+[gd_scene load_steps=17 format=3 uid="uid://u3deam7radoj"]
+
+[ext_resource type="Texture2D" uid="uid://c1yhshfe50xc1" path="res://rooms/ending/hand_anim/hands1.png" id="1_hr0ax"]
+[ext_resource type="Texture2D" uid="uid://bb5r5hjvclelo" path="res://rooms/ending/hand_anim/hands2.png" id="2_p5sa6"]
+[ext_resource type="Texture2D" uid="uid://cfpo7do23msga" path="res://rooms/ending/hand_anim/hands3.png" id="3_3lkrb"]
+[ext_resource type="Texture2D" uid="uid://dfstk6vjypfvx" path="res://rooms/ending/hand_anim/hands4.png" id="4_cmcms"]
+[ext_resource type="Texture2D" uid="uid://cq7n0ww5iw32c" path="res://rooms/ending/hand_anim/hands5.png" id="5_nb3oj"]
+[ext_resource type="Texture2D" uid="uid://dx64se8lntkp3" path="res://rooms/ending/hand_anim/hands6.png" id="6_6uw34"]
+[ext_resource type="Texture2D" uid="uid://c00gkrne8suvb" path="res://rooms/ending/hand_anim/hands7.png" id="7_67bua"]
+[ext_resource type="Texture2D" uid="uid://blwfuk6ueqryv" path="res://rooms/ending/hand_anim/hands8.png" id="8_2kt5f"]
+[ext_resource type="Texture2D" uid="uid://dsu66yghhw8p8" path="res://rooms/ending/hand_anim/hands9.png" id="9_1u8ia"]
+[ext_resource type="Texture2D" uid="uid://d382fienbvoyj" path="res://rooms/ending/hand_anim/hands10.png" id="10_lweu8"]
+[ext_resource type="Script" uid="uid://brysdkbchwc3x" path="res://rooms/ending/end.gd" id="11_cmcms"]
+[ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="11_p5sa6"]
+[ext_resource type="AudioStream" uid="uid://byqvqf2xitnpn" path="res://rooms/ending/Clap-1.mp3" id="12_3lkrb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cvdhc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hr0ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_p5sa6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3lkrb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cmcms")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nb3oj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6uw34")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_67bua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2kt5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1u8ia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lweu8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 11.0
+}]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_hr0ax"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3lkrb"]
+font = ExtResource("11_p5sa6")
+font_size = 42
+
+[node name="Clapping" type="AnimatedSprite2D"]
+position = Vector2(536, 320)
+scale = Vector2(3.83896, 3.83896)
+sprite_frames = SubResource("SpriteFrames_cvdhc")
+autoplay = "default"
+frame_progress = 0.528956
+script = ExtResource("11_cmcms")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+offset_left = -254.0
+offset_top = -146.0
+offset_right = -214.0
+offset_bottom = -106.0
+scale = Vector2(13.4015, 8.47282)
+texture = SubResource("CanvasTexture_hr0ax")
+metadata/_edit_use_anchors_ = true
+
+[node name="Dialogue" type="Label" parent="."]
+modulate = Color(0.00820201, 0.00820203, 0.00820202, 1)
+offset_left = -110.447
+offset_top = 20.839
+offset_right = 305.553
+offset_bottom = 95.839
+scale = Vector2(0.29433, 0.26326)
+text = "WELL, WELL, WELL.
+BUT THIS IS NOT THE END.
+YOUR WORLD WILL BE MINE."
+label_settings = SubResource("LabelSettings_3lkrb")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_3lkrb")
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
