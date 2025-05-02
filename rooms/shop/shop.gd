@@ -14,7 +14,7 @@ extends Node2D
 
 @onready var shop_list = [$Collectable3, $Collectable2, $Collectable, $Collectable4]
 func _ready():
-	await get_tree().create_timer(0.5).timeout
+	
 	texture_rect.queue_free()
 	
 	if SceneManager.player:

@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwnkeop8j42an"]
+[gd_scene load_steps=4 format=3 uid="uid://dwnkeop8j42an"]
+
+[ext_resource type="Script" uid="uid://5te6ac0uy738" path="res://spells/fire/fire_particle.gd" id="1_kpp2m"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ukhwt"]
 particles_animation = true
@@ -34,3 +36,4 @@ material = SubResource("CanvasItemMaterial_ukhwt")
 amount = 20
 visibility_rect = Rect2(-500, -500, 1000, 1000)
 process_material = SubResource("ParticleProcessMaterial_jcdb6")
+script = ExtResource("1_kpp2m")

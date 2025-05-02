@@ -1,8 +1,7 @@
 extends Base_Scene
 @onready var level_progress: TextureProgressBar = $Player/CanvasLayer/LevelProgress
 
-
-@onready var restart_ui: Control = $Player/CanvasLayer/RestartUI/RestartButton
+@onready var restart_ui = $Player/CanvasLayer/RestartUI/RestartButton
 @onready var inv = %Control
 var save_path = "user://save.tres"
 @onready var texture_rect: TextureRect = $TextureRect
@@ -12,14 +11,32 @@ var save_path = "user://save.tres"
 var saving = SaveGame.new()
 @onready var boss_clock = preload("res://Enemies/boss/evil_clock_boss.tscn")
 @onready var entrance_shop: StaticBody2D = $Entrance_shop
+@onready var dialogs: Control = $Player/CanvasLayer/Dialogs
+var rewarded_ad : RewardedAd
+var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
+var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 
 func _ready():
-	entrance_anim.play("open")
-	scene_changer.monitoring = true
-	texture_rect.queue_free()
 	
+	MobileAds.initialize()
+	
+	rewarded_ad_load_callback.on_ad_failed_to_load = on_rewarded_ad_failed_to_load
+	rewarded_ad_load_callback.on_ad_loaded = on_rewarded_ad_loaded
+	
+	on_user_earned_reward_listener.on_user_earned_reward = func(rewarded_item : RewardedItem):
+		Global.hp=10
+		player.healthbar.value=10
+	Texts.place =1
+	open_shop()
+	scene_changer.monitoring = true
+	if dialogs.is_inside_tree():
+		close_shop()
+	DialogSignals.go_to_the_shop.connect(open_shop)
+	DialogSignals.tutorial_finished.connect(open_shop)
+	get_tree().paused=true
 	if loader != null:	
-		
+		DialogSignals.tutorial_finished.emit()
+		$Player/CanvasLayer/Dialogs.queue_free()
 		player.global_position = loader.player_pos
 		player.healthbar.value = loader.player_health
 		player.score = loader.player_score
@@ -45,7 +62,7 @@ func _ready():
 	1:2,
 	2:4,
 	3:6,
-	4:2,
+	4:8,
 	5:1
 }
 @onready var enemy = preload("res://Enemies/enemy.tscn")
@@ -56,7 +73,10 @@ func _ready():
 @onready var treasure = $Treasure
 @onready var boss_clock_node = boss_clock.instantiate()
 func _process(delta: float) -> void:
-	
+	if $Player/CanvasLayer/Heal_window.is_visible_in_tree():
+		Engine.time_scale=0
+	else:
+		Engine.time_scale=1
 	if boss_clock_node!= null:
 		boss_healthbar.get_child(0).value= boss_clock_node.boss_health
 func enemy_death():
@@ -102,15 +122,20 @@ func _on_cooldown_between_waves_timeout() -> void:
 	update_level(current_level)
 		
 func open_shop():
+	print("shop is opened")
+	PhysicsServer2D.set_active(true)
+	
 	scene_changer.monitoring = true
 	entrance_anim.play("open")
 	$Entrance_shop/Closed/ClosedCollision.disabled =true
 func close_shop():
+	print("shop is closed")
 	scene_changer.monitoring = false
 	entrance_anim.play("close")
 	$Entrance_shop/Closed/ClosedCollision.disabled =false
+	PhysicsServer2D.set_active(true)
 func _on_restart_button_pressed() -> void:
-
+	Texts.place=1
 	get_tree().paused = false
 	
 	get_tree().reload_current_scene()
@@ -133,7 +158,30 @@ func _on_save_button_pressed() -> void:
 		
 		saver.save(saving, save_path)
 func the_end():
-	$Ending.play("ending")
+	$Main_animations.play("ending")
 
 func _on_ending_animation_finished(anim_name: StringName="ending") -> void:
 	get_tree().change_scene_to_file("res://rooms/ending/clapping.tscn")
+
+
+func _on_button_pressed() -> void:
+	if dialogs == null:
+		$Player/CanvasLayer/Heal_window.visible = !$Player/CanvasLayer/Heal_window.visible 
+		var unit_id : String
+		if OS.get_name() == "Android":
+			unit_id = "ca-app-pub-3940256099942544/5224354917"
+		elif OS.get_name() == "iOS":
+			unit_id = "ca-app-pub-3940256099942544/1712485313"
+
+		RewardedAdLoader.new().load(unit_id, AdRequest.new(), rewarded_ad_load_callback)
+		
+func main_show_ad():
+	if rewarded_ad:
+		rewarded_ad.show(on_user_earned_reward_listener)
+		print("is shown")
+		
+func on_rewarded_ad_failed_to_load(adError : LoadAdError) -> void:
+	print(adError.message)
+	
+func on_rewarded_ad_loaded(rewarded_ad : RewardedAd) -> void:
+	self.rewarded_ad = rewarded_ad

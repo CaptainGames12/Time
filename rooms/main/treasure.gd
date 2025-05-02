@@ -3,7 +3,7 @@ extends Sprite2D
 @onready var restart_ui: Control = $"../Player/CanvasLayer/RestartUI"
 @export var treasureDurability: int
 @onready var durabilityBar: ProgressBar = $Durability
-
+var is_tutorial_started = false
 func _on_area_2d_body_entered(body: Area2D) -> void:
 	if body.is_in_group("attack_area"):
 		treasureDurability-=10
@@ -15,4 +15,3 @@ func _on_area_2d_body_entered(body: Area2D) -> void:
 				player.process_mode = PROCESS_MODE_PAUSABLE
 			get_tree().paused = true
 			restart_ui.visible = true
-	

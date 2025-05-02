@@ -8,8 +8,8 @@
 radius = 1420.0
 height = 2886.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tljep"]
-size = Vector2(13.5671, 16.8975)
+[sub_resource type="CircleShape2D" id="CircleShape2D_47qgu"]
+radius = 5.93562
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g3c5e"]
 radius = 33.3766
@@ -92,15 +92,15 @@ _data = {
 }
 
 [node name="Enemy" type="CharacterBody2D"]
-z_index = 1
 collision_layer = 2
-collision_mask = 6
+collision_mask = 39
 script = ExtResource("1_ud3qa")
 
 [node name="Sprite2D2" parent="." instance=ExtResource("2_l28ki")]
-position = Vector2(-4, 22)
+position = Vector2(-2, 26)
 
 [node name="Detection" type="Area2D" parent="."]
+position = Vector2(2, 4)
 collision_layer = 2
 collision_mask = 5
 
@@ -109,11 +109,12 @@ position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_5bivi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.38419e-07, -4.5)
+position = Vector2(-8.47033e-22, 1.90735e-06)
 scale = Vector2(1.17932, 0.887707)
-shape = SubResource("RectangleShape2D_tljep")
+shape = SubResource("CircleShape2D_47qgu")
 
 [node name="Attack" type="Area2D" parent="." groups=["attack_area"]]
+position = Vector2(2, 4)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
@@ -127,20 +128,19 @@ wait_time = 2.0
 avoidance_enabled = true
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
-position = Vector2(-3, -8)
+position = Vector2(-1, -4)
 scale = Vector2(2.4375, 2.4375)
 sprite_frames = SubResource("SpriteFrames_8wvsg")
 animation = &"idle"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -41.0
-offset_top = -49.0
-offset_right = -37.0
-offset_bottom = -22.0
+offset_left = -39.0
+offset_top = -45.0
+offset_right = -35.0
+offset_bottom = -18.0
 scale = Vector2(19.8602, 0.327459)
 theme_override_styles/background = SubResource("StyleBoxFlat_p2bh4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_k5u18")
-min_value = 1.0
 step = 1.0
 value = 1.0
 show_percentage = false

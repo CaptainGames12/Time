@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://dibl3hw88xbdh"]
+
+[ext_resource type="Texture2D" uid="uid://d0fboj7sn5spq" path="res://ui/heal_window.png" id="1_5aus0"]
+[ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="2_woifj"]
+[ext_resource type="Texture2D" uid="uid://i1hwxo0kun40" path="res://ui/heal_btn.png" id="3_ih1y5"]
+[ext_resource type="Texture2D" uid="uid://c8ewn13w3edbo" path="res://ui/heal_pressed.png" id="4_akssv"]
+[ext_resource type="Script" uid="uid://dsdqywedg3xd5" path="res://ui/show_ad.gd" id="5_akssv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ih1y5"]
+font = ExtResource("2_woifj")
+font_size = 42
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6.41854, 7.56923)
+pivot_offset = Vector2(30, 30)
+texture = ExtResource("1_5aus0")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+offset_left = 10.5943
+offset_top = 21.6667
+offset_right = 676.594
+offset_bottom = 141.667
+scale = Vector2(0.0668334, 0.0645394)
+text = "If you want to support author or just to heal yourself."
+label_settings = SubResource("LabelSettings_ih1y5")
+autowrap_mode = 1
+justification_flags = 161
+
+[node name="Heal" type="TextureButton" parent="TextureRect"]
+layout_mode = 1
+offset_left = 17.9168
+offset_top = 37.124
+offset_right = 59.9168
+offset_bottom = 96.124
+scale = Vector2(0.714145, 0.395726)
+texture_normal = ExtResource("3_ih1y5")
+texture_pressed = ExtResource("4_akssv")
+stretch_mode = 0
+script = ExtResource("5_akssv")
+
+[connection signal="pressed" from="TextureRect/Heal" to="TextureRect/Heal" method="_on_pressed"]

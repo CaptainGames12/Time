@@ -25,7 +25,12 @@ enum States
 	ROLLING
 }
 var state = States.IDLE
-
+var atk_dir:Vector2 = Vector2(0, 0)
+var isWinded = false
+var spawnRock = false
+var knock_speed=100
+var rockNode = preload("res://spells/earth/rock.tscn").instantiate()
+		
 func states_changer(newState):
 	state=newState
 func rolling_animate(delta):
@@ -40,7 +45,7 @@ func rolling_physics(delta):
 	if isAngried:
 		if get_tree().paused==false:
 			PhysicsServer2D.set_active(true)
-			SPEED=30
+			SPEED=20
 			velocity -= target_pos*SPEED*delta
 			isProtected = false
 			print("rolling")
@@ -48,7 +53,9 @@ func rolling_physics(delta):
 			PhysicsServer2D.set_active(true)
 			SPEED=5
 			velocity -= target_pos*SPEED*delta
-		
+		if isWinded:
+			velocity+=atk_dir*knock_speed	
+			isWinded = false
 func get_direction_rolling(body):
 	locator.set_deferred("monitoring", false)
 	target_pos = (position-body.position).normalized()
@@ -134,8 +141,25 @@ func _on_locator_body_entered(body: Node2D) -> void:
 		isProtected=false
 		states_changer(States.ROLLING)	
 		locator_sprite.visible = false
-		
+
 func _on_rolling_time_timeout() -> void:
 
 	locator_sprite.visible = true
 	locator.set_deferred("monitoring", true)
+func winded(direction):
+	atk_dir = direction
+	isWinded = true
+func earthed():
+	get_parent().call_deferred("add_child", rockNode)
+	rockNode.position.y = position.y
+	rockNode.position.x = position.x+20
+func watered():
+	SPEED = 5
+	await get_tree().create_timer(4).timeout
+	SPEED = 20
+func fired():
+	for i in range(4):
+		await get_tree().create_timer(1).timeout
+		boss_health-=2
+		if i==4:
+			get_child(0).queue_free()

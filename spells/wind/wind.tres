@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://ccy3hlsvd2046"]
+[gd_resource type="Resource" script_class="InvItem" load_steps=4 format=3 uid="uid://ccy3hlsvd2046"]
 
+[ext_resource type="AudioStream" uid="uid://17jsgedo7cms" path="res://spells/wind/wind.wav" id="1_1jaqo"]
 [ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="1_3k6au"]
 [ext_resource type="Texture2D" uid="uid://0q64x2sx66v" path="res://spells/wind/tornado.png" id="2_jypdc"]
 
@@ -9,4 +10,5 @@ item_name = "wind"
 texture = ExtResource("2_jypdc")
 price = 6
 damage = 2
+audio = ExtResource("1_1jaqo")
 metadata/_custom_type_script = "uid://dsc584apkhxu"

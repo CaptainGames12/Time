@@ -50,7 +50,7 @@ func _physics_process(delta):
 	var direction
 	
 	print(health_bar.value)
-	if health_bar.value<=1:
+	if health_bar.value<=2:
 		death()
 		emit_signal("dead")
 		
@@ -69,7 +69,7 @@ func _physics_process(delta):
 		direction = direction.normalized()
 		velocity = velocity.lerp(direction*speed, 1)
 	if isWinded:
-		velocity-=atk_dir*knock_speed	
+		velocity+=atk_dir*knock_speed	
 		isWinded = false
 	if velocity!=Vector2(0, 0):
 		if velocity.x<0:
@@ -92,25 +92,21 @@ func watered():
 	await get_tree().create_timer(4).timeout
 	speed = 100
 func fired():
-	
 	for i in range(4):
-		
 		await get_tree().create_timer(1).timeout
 		health-=2
-	
-		if i==4:
-			get_child(0).queue_free()
-func _on_attack_body_entered(body:Player):
-	animation_player.play("attack")
-	Global.hp-=1
-	var tween = create_tween()
-	tween.tween_property(body.healthbar, "value", Global.hp, 0.5)
-	
-	restart_ui = get_node("../Player/CanvasLayer/RestartUI")
-	var main = get_parent()
-	if Global.hp <= 2:
-		restart_ui.get_parent().remove_child(restart_ui)
-		main.add_child(restart_ui)
-		body.queue_free()
-		get_tree().paused = true
-		restart_ui.visible = true
+func _on_attack_body_entered(body:Node2D)->void:
+	if body.is_in_group("player"):
+		animation_player.play("attack")
+		Global.hp-=1
+		var tween = create_tween()
+		tween.tween_property(body.healthbar, "value", Global.hp, 0.5)
+		
+		restart_ui = get_node("/root/Node2D/Player/CanvasLayer/RestartUI")
+		var main = get_parent()
+		if Global.hp <= 2:
+			restart_ui.get_parent().remove_child(restart_ui)
+			main.add_child(restart_ui)
+			body.queue_free()
+			get_tree().paused = true
+			restart_ui.visible = true

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://xd5fsmhf0pj7"]
+
+[ext_resource type="Texture2D" uid="uid://b2alnoh2dm1w5" path="res://ui/time_stop_button.png" id="1_smua0"]
+[ext_resource type="Texture2D" uid="uid://cqn8d854txue8" path="res://ui/time_stop_pressed.png" id="2_8teqa"]
+
+[node name="TimeStop" type="TouchScreenButton"]
+texture_normal = ExtResource("1_smua0")
+texture_pressed = ExtResource("2_8teqa")
+action = "time_stop"

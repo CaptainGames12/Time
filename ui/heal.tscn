@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxnr26roenje2"]
+
+[ext_resource type="Texture2D" uid="uid://i1hwxo0kun40" path="res://ui/heal_btn.png" id="1_7hof5"]
+[ext_resource type="Texture2D" uid="uid://c8ewn13w3edbo" path="res://ui/heal_pressed.png" id="2_2h81g"]
+
+[node name="Heal" type="TextureButton"]
+offset_left = 265.0
+offset_top = 52.0
+offset_right = 307.0
+offset_bottom = 111.0
+scale = Vector2(2.64454, 1.88754)
+texture_normal = ExtResource("1_7hof5")
+texture_pressed = ExtResource("2_2h81g")
+stretch_mode = 0

@@ -4,6 +4,8 @@
 
 [node name="Tree" type="StaticBody2D" groups=["tree"]]
 y_sort_enabled = true
+collision_layer = 8
+collision_mask = 0
 
 [node name="Tree" type="Sprite2D" parent="."]
 position = Vector2(2.5403, -1.19055)

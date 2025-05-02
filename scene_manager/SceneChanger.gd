@@ -6,6 +6,7 @@ extends Area2D
 @onready var camera_2d: Camera2D = $"../../Player/CanvasLayer/Camera2D"
 
 func _on_body_entered(body):
+
 	body.in_the_shop=true
 	body.timer.stop()
 	body.global_position = shop.entrance_pos

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="InvItem" load_steps=4 format=3 uid="uid://dicpoy2ecubwa"]
+[gd_resource type="Resource" script_class="InvItem" load_steps=5 format=3 uid="uid://dicpoy2ecubwa"]
 
+[ext_resource type="AudioStream" uid="uid://cm0lreo7ltykp" path="res://spells/water/water.wav" id="1_2s3x6"]
 [ext_resource type="PackedScene" uid="uid://cf00b5ppyb2tg" path="res://spells/water/water_particle.tscn" id="1_3u1yq"]
 [ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="1_7jriu"]
 [ext_resource type="Texture2D" uid="uid://bu4q51om6q1ul" path="res://spells/water/water.png" id="2_qfqi4"]
@@ -11,3 +12,4 @@ texture = ExtResource("2_qfqi4")
 price = 5
 damage = 2
 particle = ExtResource("1_3u1yq")
+audio = ExtResource("1_2s3x6")

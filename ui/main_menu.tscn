@@ -39,22 +39,14 @@ offset_bottom = 231.0
 text = "Timeful adventure"
 label_settings = SubResource("LabelSettings_bvwqm")
 
-[node name="New" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 292.0
-offset_top = 357.0
-offset_right = 324.0
-offset_bottom = 389.0
+[node name="New" type="TouchScreenButton" parent="."]
+position = Vector2(285, 337)
 scale = Vector2(7, 7)
 texture_normal = ExtResource("2_ot6bu")
 texture_pressed = ExtResource("3_ryvw7")
 
-[node name="Load" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 696.0
-offset_top = 356.0
-offset_right = 736.0
-offset_bottom = 388.0
+[node name="Load" type="TouchScreenButton" parent="."]
+position = Vector2(676, 337)
 scale = Vector2(7, 7)
 texture_normal = ExtResource("4_ng0kw")
 texture_pressed = ExtResource("5_5f07i")

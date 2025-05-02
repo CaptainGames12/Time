@@ -7,6 +7,7 @@ var in_the_shop = false
 @export var inv_res:Inv
 @onready var score= Global.score
 @onready var restart_ui: Control = $CanvasLayer/RestartUI
+@onready var dialogs: Control = $CanvasLayer/Dialogs
 		
 @onready var fireball = preload("res://Wizard/attack/attack.tscn")
 @onready var sprite = $AnimatedSprite2D
@@ -19,27 +20,36 @@ var in_the_shop = false
 @onready var healthbar:= $CanvasLayer/Health
 var cooldown_finished = true
 var knockback_power: Vector2 = Vector2.ZERO
+
 func _ready() -> void:
+	
+	
 	healthbar.max_value =10
 	healthbar.value = 10
 	Global.hp = healthbar.value
 	healthbar.value = Global.hp
+@onready var joystick: Node2D = $CanvasLayer/Joystick
+@onready var spell_joystick: Node2D = $CanvasLayer/SpellJoystick
+
+
 
 func _physics_process(delta):
-
+	
 	price.text = str(score)
-	velocity.x = (Input.get_action_strength("right")-Input.get_action_strength("left"))*SPEED
-	velocity.y = (Input.get_action_strength("down")-Input.get_action_strength("up"))*SPEED
+	velocity = joystick.input_vector*SPEED
 	velocity+=knockback_power
 	velocity.normalized()
-
-	if Input.is_action_just_pressed("mouse"):
+	if Input.is_action_pressed("attack"):	
 		if cooldown_timer.is_stopped():
 			cooldown_timer.start()
 		if cooldown_finished: 
-			attack()
-			cooldown_finished = false
-	if Input.is_action_just_pressed("time_stop") and !in_the_shop:
+			if spell_joystick.input_vector!=Vector2.ZERO:
+				attack(spell_joystick.input_vector)
+				cooldown_finished = false
+
+	
+	if Input.is_action_just_pressed("time_stop") and !in_the_shop and dialogs==null:
+		
 		get_tree().paused = !get_tree().paused
 		
 		timer.start()
@@ -55,17 +65,17 @@ func _physics_process(delta):
 		
 		sprite.play("idle")
 	move_and_slide()
-func attack():
+func attack(touch_pos):
 	var bullet = fireball.instantiate()
-	var angle = position.angle_to_point(get_global_mouse_position())
+	
 	if null != inventory.chosen_item:
 		
-		bullet.rotation= angle
+		bullet.look_at(touch_pos)
 		bullet.item = inventory.chosen_item
 		get_parent().add_child(bullet)
 		
 		bullet.position = position
-		bullet.target_fire = (position-get_global_mouse_position()).normalized()
+		bullet.target_fire = touch_pos.normalized()
 		
 
 func _on_timer_timeout() -> void:

@@ -1,15 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://cf00b5ppyb2tg"]
+[gd_scene load_steps=3 format=3 uid="uid://cf00b5ppyb2tg"]
+
+[ext_resource type="Script" uid="uid://ps3wnw7obu5s" path="res://spells/water/water_particle.gd" id="1_ayobl"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yik5i"]
 particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 1, 1)
+spread = 89.306
 gravity = Vector3(0, 98, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
 scale_min = 4.0
 scale_max = 5.24
+anim_offset_min = 0.7263
+anim_offset_max = 1.0
 
 [node name="water" type="GPUParticles2D"]
 modulate = Color(0, 0.415686, 1, 1)
 z_index = -1
-amount = 4
-amount_ratio = 0.5588
-lifetime = 1.11
+amount = 12
+lifetime = 0.72
 process_material = SubResource("ParticleProcessMaterial_yik5i")
+script = ExtResource("1_ayobl")

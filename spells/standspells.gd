@@ -13,5 +13,5 @@ func _on_collectable_body_entered(body: Node2D) -> void:
 		Global.score -= item.price
 		player.score = Global.score
 		player.collect(item)
-		
+		DialogSignals.emit_signal("bought")
 		get_parent().queue_free()

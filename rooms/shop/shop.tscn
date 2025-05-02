@@ -78,6 +78,7 @@ offset_right = 40.0
 offset_bottom = 79.0
 text = "5$"
 label_settings = SubResource("LabelSettings_fg71o")
+metadata/_edit_use_anchors_ = true
 
 [node name="water" type="Sprite2D" parent="Collectable3"]
 position = Vector2(5, 4)

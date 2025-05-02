@@ -45,7 +45,8 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 process_mode = 3
-y_sort_enabled = true
+collision_layer = 5
+collision_mask = 45
 script = ExtResource("1_23xfq")
 inv_res = ExtResource("2_ep4yn")
 
@@ -55,12 +56,9 @@ position = Vector2(-1, 3)
 shape = SubResource("CapsuleShape2D_4lojw")
 
 [node name="Sprite2D" parent="." instance=ExtResource("2_wi82f")]
-z_index = -1
-y_sort_enabled = false
 position = Vector2(0, 28)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-y_sort_enabled = true
 position = Vector2(1.87504, -27.125)
 scale = Vector2(3.86719, 3.86719)
 sprite_frames = SubResource("SpriteFrames_fsmc0")

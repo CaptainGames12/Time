@@ -19,15 +19,14 @@ script = ExtResource("1_k3ive")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -268.0
-offset_top = -64.0
-grow_horizontal = 0
-grow_vertical = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -134.0
+offset_right = 134.0
+offset_bottom = 64.0
+grow_horizontal = 2
+scale = Vector2(1.23254, 1.23254)
 columns = 10
 
 [node name="TextureButton" type="TextureButton" parent="GridContainer" node_paths=PackedStringArray("display")]
