@@ -93,7 +93,11 @@ func boss_hit(dir:Vector2):
 	knockback_power +=dir.rotated(PI/2).normalized()*600
 	var knockTween = get_tree().create_tween()
 	knockTween.parallel().tween_property(self, "knockback_power", Vector2.ZERO, 0.5)
-		
+	joystick.knocked=true
+	joystick.input_vector=Vector2.ZERO
+	knockTween.finished.connect(anim_finished)
+func anim_finished():
+	joystick.knocked=false
 func collect(item):
 	inv_res.insert(item)
 	

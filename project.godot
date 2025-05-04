@@ -107,6 +107,8 @@ enabled=PackedStringArray("res://addons/admob/plugin.cfg")
 
 level=""
 player=""
+boss=""
+enemy=""
 
 [input]
 
@@ -167,6 +169,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_4="barrier"
 2d_physics/layer_5="boss"
 2d_physics/layer_6="door"
+2d_physics/layer_7="trees"
 
 [navigation]
 

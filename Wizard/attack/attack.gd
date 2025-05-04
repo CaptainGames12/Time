@@ -73,7 +73,8 @@ func _on_body_entered(body: CharacterBody2D):
 			if body.boss_health<=0:
 				body.queue_free()
 				deadBoss.emit()
-	queue_free()
+	if item.item_name != "earth":	
+		queue_free()
 
 
 func _on_timer_timeout() -> void:

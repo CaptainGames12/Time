@@ -62,12 +62,12 @@ func _physics_process(delta):
 	if dist and treasure != null:
 		direction = (treasure.position - position)
 		direction = direction.normalized()
-		velocity = velocity.lerp(direction*speed, 1)
+		velocity = velocity.lerp(direction*speed*delta, 1)
 	elif targetIsHere:
 		nav.target_position=target.position
 		direction = (nav.get_next_path_position() - global_position)
 		direction = direction.normalized()
-		velocity = velocity.lerp(direction*speed, 1)
+		velocity = velocity.lerp(direction*speed*delta, 1)
 	if isWinded:
 		velocity+=atk_dir*knock_speed	
 		isWinded = false
@@ -79,7 +79,7 @@ func _physics_process(delta):
 		animation.play("walking")
 	else:
 		animation.play("idle")
-	move_and_slide()
+	move_and_collide(velocity)
 var knock_speed = 5000
 func winded(direction):
 	atk_dir = direction

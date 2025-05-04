@@ -9,7 +9,7 @@ var isProtected=true
 @onready var restart_ui: Control
 var target_pos = Vector2(0,0)
 var SPEED = 20
-var ROT_SPEED = 200
+var ROT_SPEED = 300
 signal hit_player
 signal stopHit
 @onready var stop_vector: RayCast2D = get_node("/root/Node2D/StopVec")
@@ -92,6 +92,7 @@ func _ready() -> void:
 	var tween_walking = get_tree().create_tween()
 	tween_walking.tween_property(self, "global_position", Vector2(888.0,328.0),2)
 func stopHitEmited():
+
 	isAngried = false
 	
 	rolling_time.start()
@@ -108,6 +109,7 @@ func _physics_process(delta: float) -> void:
 		
 	if stop_vector.is_colliding() or stop_vector.collide_with_areas:
 		print("is_colliding")
+		
 		emit_signal("stopHit")
 	move_and_collide(velocity)
 
@@ -118,6 +120,7 @@ func _on_attack_body_entered(body: Node2D) -> void:
 		emit_signal("hit_player", velocity)
 		spawning_restart(body)
 	elif body.is_in_group("tree"):
+		
 		body.queue_free()
 		boss_health -=2
 		if boss_health==0:
