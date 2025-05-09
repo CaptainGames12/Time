@@ -1,6 +1,6 @@
 class_name Player 
 extends CharacterBody2D
-var SPEED = 200
+var SPEED = 300
 
 @onready var collect_coin: AudioStreamPlayer2D = $Collect_coin
 var in_the_shop = false
@@ -10,7 +10,7 @@ var in_the_shop = false
 @onready var dialogs: Control = $CanvasLayer/Dialogs
 		
 @onready var fireball = preload("res://Wizard/attack/attack.tscn")
-@onready var sprite = $AnimatedSprite2D
+
 @onready var price: Label = $CanvasLayer/Price
 @onready var cooldown_timer: Timer = $Cooldown_timer
 @onready var main = $".."
@@ -20,25 +20,35 @@ var in_the_shop = false
 @onready var healthbar:= $CanvasLayer/Health
 var cooldown_finished = true
 var knockback_power: Vector2 = Vector2.ZERO
-
+var attacked=false
 func _ready() -> void:
 	
-	
+	animation_tree.active=true
 	healthbar.max_value =10
 	healthbar.value = 10
 	Global.hp = healthbar.value
 	healthbar.value = Global.hp
 @onready var joystick: Node2D = $CanvasLayer/Joystick
 @onready var spell_joystick: Node2D = $CanvasLayer/SpellJoystick
-
+@onready var animation_tree: AnimationTree = $AnimationTree
+var last_facing_dir = Vector2(0, -1)
 
 
 func _physics_process(delta):
-	
+	if Global.hp==0:
+		$"../TextureRect".visible=true
+		
 	price.text = str(score)
 	velocity = joystick.input_vector*SPEED
 	velocity+=knockback_power
 	velocity.normalized()
+	var idle = !velocity.normalized()
+	if !idle:
+		last_facing_dir= velocity.normalized()
+	$Move.visible = !attacked
+	$Attack.visible = attacked
+	animation_tree.set("parameters/Walk/blend_position", last_facing_dir)
+	animation_tree.set("parameters/Idle/blend_position", last_facing_dir)
 	if Input.is_action_pressed("attack"):	
 		if cooldown_timer.is_stopped():
 			cooldown_timer.start()
@@ -46,32 +56,31 @@ func _physics_process(delta):
 			if spell_joystick.input_vector!=Vector2.ZERO:
 				attack(spell_joystick.input_vector)
 				cooldown_finished = false
-
+				last_facing_dir=spell_joystick.input_vector.normalized()
+				animation_tree.set("parameters/Attack/blend_position", spell_joystick.input_vector)
+				attacked=true
+			else: 
+				attacked=false
 	
-	if Input.is_action_just_pressed("time_stop") and !in_the_shop and dialogs==null:
+	if Input.is_action_just_pressed("time_stop") and !in_the_shop:
+		if dialogs==null:
+			get_tree().paused = !get_tree().paused
+			timer.start()
+			$AudioStreamPlayer2D.play()
+		DialogSignals.time_stop_pressed.emit()
 		
-		get_tree().paused = !get_tree().paused
-		
-		timer.start()
-		$AudioStreamPlayer2D.play()
 	var current_anim:String
-	if velocity!=Vector2(0, 0):	
-		if velocity.x < 0:
-			sprite.flip_h = true
-		if velocity.x > 0:
-			sprite.flip_h = false
-		sprite.play("run")
-	else:
-		
-		sprite.play("idle")
+	
 	move_and_slide()
+
 func attack(touch_pos):
 	var bullet = fireball.instantiate()
 	
-	if null != inventory.chosen_item:
+	if null != inventory.chosen_item.values():
 		
 		bullet.look_at(touch_pos)
-		bullet.item = inventory.chosen_item
+		
+		bullet.elements = inventory.chosen_item
 		get_parent().add_child(bullet)
 		
 		bullet.position = position

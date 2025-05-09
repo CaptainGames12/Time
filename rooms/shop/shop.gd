@@ -1,5 +1,4 @@
 extends Node2D
-@onready var camera_2d: Camera2D = $"../Player/CanvasLayer/Camera2D"
 
 @onready var control: Inventory = %Control
 @onready var shop_theme: AudioStreamPlayer2D = $AudioStreamPlayer2D

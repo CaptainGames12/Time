@@ -57,7 +57,8 @@ func _ready():
 @onready var main_music: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var entrance_anim: AnimatedSprite2D = $Entrance_shop/Entrance_anim
 @onready var scene_changer: Area2D = $Entrance_shop/SceneChanger
-
+signal in_the_shop
+signal out_of_the_shop
 @onready var enemy_count: Dictionary[int, int] = {
 	1:2,
 	2:4,
@@ -73,6 +74,7 @@ func _ready():
 @onready var treasure = $Treasure
 @onready var boss_clock_node = boss_clock.instantiate()
 func _process(delta: float) -> void:
+	
 	if $Player/CanvasLayer/Heal_window.is_visible_in_tree():
 		Engine.time_scale=0
 	else:
@@ -144,6 +146,7 @@ func _on_restart_button_pressed() -> void:
 
 func _on_save_button_pressed() -> void:
 	if player.stamina.value==100:
+		DialogSignals.time_save_pressed.emit()
 		player.stamina.value = 0
 		player.timer.start()
 		

@@ -28,7 +28,7 @@ var state = States.IDLE
 var atk_dir:Vector2 = Vector2(0, 0)
 var isWinded = false
 var spawnRock = false
-var knock_speed=100
+var knock_speed=50
 var rockNode = preload("res://spells/earth/rock.tscn").instantiate()
 		
 func states_changer(newState):
@@ -88,9 +88,9 @@ func _ready() -> void:
 	scale.x = 4
 	scale.y = 4
 	$RemoteTransform2D.remote_path = stop_vector.get_path()
-	position = Vector2(1183.0, 338.0)
+	position = Vector2(1878, 580)
 	var tween_walking = get_tree().create_tween()
-	tween_walking.tween_property(self, "global_position", Vector2(888.0,328.0),2)
+	tween_walking.tween_property(self, "global_position", Vector2(1700,580),2)
 func stopHitEmited():
 
 	isAngried = false

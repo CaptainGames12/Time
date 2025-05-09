@@ -4,4 +4,6 @@ signal go_to_the_shop
 signal out_of_the_shop
 signal bought
 signal shoot
+signal time_stop_pressed
+signal time_save_pressed
 signal tutorial_finished

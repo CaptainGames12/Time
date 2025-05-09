@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnkfttplq4vu7"]
+[gd_scene load_steps=10 format=3 uid="uid://dnkfttplq4vu7"]
 
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="1_8aorn"]
 [ext_resource type="Texture2D" uid="uid://d3f2u5ulcdnon" path="res://ui/background.png" id="1_bub7n"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://crrp51t1w8xav" path="res://ui/new_pressed.png" id="3_ryvw7"]
 [ext_resource type="Texture2D" uid="uid://ckrgta75hq78b" path="res://ui/load_btn.png" id="4_ng0kw"]
 [ext_resource type="Texture2D" uid="uid://dohmda7mb1q82" path="res://ui/load_pressed.png" id="5_5f07i"]
+[ext_resource type="AudioStream" uid="uid://cla4svsndu54l" path="res://ui/menu.mp3" id="8_ubpvv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bvwqm"]
 font = ExtResource("1_8aorn")
@@ -50,6 +51,11 @@ position = Vector2(676, 337)
 scale = Vector2(7, 7)
 texture_normal = ExtResource("4_ng0kw")
 texture_pressed = ExtResource("5_5f07i")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ubpvv")
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="New" to="." method="_on_new_pressed"]
 [connection signal="pressed" from="Load" to="." method="_on_load_pressed"]

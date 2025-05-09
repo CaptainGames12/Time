@@ -12,7 +12,7 @@ var next_text = ""
 var isTutorialStarted:bool
 var is_tutorial_here = true
 
-
+@onready var tween_dialog =  get_tree().create_tween().set_pause_mode(2)
 func _ready() -> void:
 	DialogSignals.tutorial_started.emit()
 	DialogSignals.tutorial_started.connect(start)
@@ -20,7 +20,9 @@ func _ready() -> void:
 	DialogSignals.out_of_the_shop.connect(cast_spell)
 	DialogSignals.shoot.connect(shoot)
 	DialogSignals.tutorial_finished.connect(finish)
-	
+	DialogSignals.time_save_pressed.connect(save_pressed)
+	DialogSignals.time_stop_pressed.connect(stop_pressed)
+
 var shoot_counter=0	
 func _process(delta: float) -> void:
 	
@@ -31,11 +33,11 @@ func _process(delta: float) -> void:
 			next_text = Texts.timeline[Texts.place]
 			generate_dialogue(next_text)
 		Text_state.GEN:
+			
 			if Input.is_action_just_pressed("continue"):
 				$"../../AudioStreamPlayer2D".stop()
 				visible_ratio = 1
-				get_tree().get_processed_tweens()[0].kill()
-				
+				tween_dialog.kill()
 				state_changer(Text_state.FINISHED)
 		Text_state.FINISHED:
 			
@@ -45,7 +47,7 @@ func _process(delta: float) -> void:
 				if Texts.place<3:	
 					state_changer(Text_state.ONREADY)
 				
-				if isSkipped or Texts.place>=6:
+				if isSkipped or Texts.place==6:
 					is_tutorial_here = false
 					DialogSignals.tutorial_finished.emit()
 					get_tree().queue_delete($"../..")
@@ -54,16 +56,22 @@ func _process(delta: float) -> void:
 					Texts.place+=1
 func finish():
 	get_tree().paused = false
+func save_pressed():
+	Texts.place=6
+	state_changer(Text_state.ONREADY)
 func got_item():
 	Texts.place=4
 	state_changer(Text_state.ONREADY)
 func cast_spell():
 	Texts.place=5
+	state_changer(Text_state.ONREADY)
+func stop_pressed():
+	Texts.place=9
 	state_changer(Text_state.ONREADY)	
 func shoot():
 	shoot_counter+=1
 	if shoot_counter==1:
-		Texts.place=6
+		Texts.place=8
 		state_changer(Text_state.ONREADY)	
 func generate_dialogue(my_text = next_text):
 	
@@ -71,9 +79,9 @@ func generate_dialogue(my_text = next_text):
 	visible_ratio = 0
 	text = my_text
 	state_changer(Text_state.GEN)
-	var text_appearing = get_tree().create_tween().set_pause_mode(2)
-	text_appearing.tween_property(self, "visible_ratio", 1, 2)
-	text_appearing.connect("finished", anim_finished)
+	tween_dialog = get_tree().create_tween().set_pause_mode(2)
+	tween_dialog.tween_property(self, "visible_ratio", 1, 2)
+	tween_dialog.connect("finished", anim_finished)
 	if Texts.place==3:
 		DialogSignals.go_to_the_shop.emit()
 func anim_finished():

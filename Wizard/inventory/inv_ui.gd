@@ -16,16 +16,21 @@ func update_slots():
 	for i in range(min(itemsList.slots.size(), slotsUi.size())):
 		slotsUi[i].update(itemsList.slots[i])
 	
-var chosen_item
-
+var chosen_item={
+	1:null,
+	2:null,
+	3:null,
+	4:null
+}
 func _on_texture_button_toggled(toggled_on: bool) -> void:
-	chosen_item=itemsList.slots[0].item
-
+	chosen_item[1]=itemsList.slots[0].item
+	
 func _on_texture_button_2_toggled(toggled_on: bool) -> void:
-	chosen_item=itemsList.slots[1].item
+	chosen_item[2] = itemsList.slots[1].item
 
 func _on_texture_button_3_toggled(toggled_on: bool) -> void:
-	chosen_item=itemsList.slots[2].item
+	chosen_item[3] = itemsList.slots[2].item
 	
 func _on_texture_button_4_toggled(toggled_on: bool) -> void:
-	chosen_item=itemsList.slots[3].item
+	chosen_item[4]=itemsList.slots[3].item
+	print(chosen_item)

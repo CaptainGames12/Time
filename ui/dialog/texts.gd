@@ -1,5 +1,7 @@
 extends Node
 
+const time_stop = "Awesome. You have ability to control time with golden clocks, which I gave you. Try pressing [img]res://ui/time_stop_button.png[/img] to stop time."
+const time_reverse = "Goog. Now press [img]res://ui/save_button.png[/img] to [wave]save[/wave] your time point and turn back in time if something bad happens. Remember it needs your whole mana."
 const greetings = "Hello. My time has come. So it is your turn to defend [rainbow][wave]the Crystal of harmony[/wave][/rainbow]. I hope I teached you well." 
 const question = "Do you need jogging your memory?
 
@@ -17,6 +19,8 @@ var timeline = {
 	4:shoped,
 	5:shooting,
 	6:ending,
-	7:skipping
+	7:skipping,
+	8:time_stop,
+	9:time_reverse
 }
 var place = 1

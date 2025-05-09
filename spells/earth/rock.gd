@@ -14,7 +14,7 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 	
 	if body.is_in_group("enemy"):
 		body.health-=1
-		print("enemy health: "+ str(body.health))
-	if body.is_in_group("boss"):
+	if body.is_in_group("boss") and body.isAngried:
+		
 		body.boss_health-=1
 	

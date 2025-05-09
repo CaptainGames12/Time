@@ -80,7 +80,7 @@ func _physics_process(delta):
 	else:
 		animation.play("idle")
 	move_and_collide(velocity)
-var knock_speed = 5000
+var knock_speed = 50
 func winded(direction):
 	atk_dir = direction
 	isWinded = true
@@ -88,7 +88,7 @@ func earthed():
 	spawnRock = true
 		
 func watered():
-	speed = 50
+	speed = 0
 	await get_tree().create_timer(4).timeout
 	speed = 100
 func fired():
