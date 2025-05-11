@@ -10,6 +10,6 @@ script = ExtResource("1_7jriu")
 item_name = "water"
 texture = ExtResource("2_qfqi4")
 price = 5
-damage = 2
+damage = 3
 particle = ExtResource("1_3u1yq")
 audio = ExtResource("1_2s3x6")

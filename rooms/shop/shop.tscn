@@ -5,11 +5,11 @@
 [ext_resource type="Script" uid="uid://c72njqudysceq" path="res://rooms/shop/scene_changer_shop.gd" id="3_f65yd"]
 [ext_resource type="Script" path="res://shopping/collectable_name.gd" id="5_yihyf"]
 [ext_resource type="Script" path="res://spells/standspells.gd" id="6_2cqbj"]
-[ext_resource type="Texture2D" uid="uid://bu4q51om6q1ul" path="res://spells/water/water.png" id="6_yuvx1"]
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="7_2x7yq"]
-[ext_resource type="Resource" uid="uid://dicpoy2ecubwa" path="res://spells/water/water.tres" id="8_bubcw"]
+[ext_resource type="Texture2D" uid="uid://di1ghrjnhpudb" path="res://spells/ice/ice.png" id="7_7ksee"]
 [ext_resource type="PackedScene" uid="uid://cawhfop6flk6g" path="res://shopping/collectable.tscn" id="9_c2jn6"]
 [ext_resource type="Texture2D" uid="uid://b166u30ogn6tg" path="res://spells/fire/fire.png" id="9_i33k3"]
+[ext_resource type="Resource" uid="uid://c7g1jmn5c16e4" path="res://spells/ice/ice.tres" id="9_sn16c"]
 [ext_resource type="Texture2D" uid="uid://it2ulst8k2ma" path="res://spells/earth/earth.png" id="10_pksvi"]
 [ext_resource type="Resource" uid="uid://drlppforch3c8" path="res://spells/earth/earth.tres" id="11_ivrbv"]
 [ext_resource type="Resource" uid="uid://cjoxar2pq1t5o" path="res://spells/fire/fire.tres" id="11_mxv56"]
@@ -69,7 +69,7 @@ position = Vector2(1, -22)
 [node name="Collectable3" parent="." instance=ExtResource("9_c2jn6")]
 position = Vector2(325, 325)
 script = ExtResource("5_yihyf")
-item_name = "water"
+item_name = "ice"
 
 [node name="Label" type="Label" parent="Collectable3"]
 offset_left = -25.0
@@ -80,11 +80,12 @@ text = "5$"
 label_settings = SubResource("LabelSettings_fg71o")
 metadata/_edit_use_anchors_ = true
 
-[node name="water" type="Sprite2D" parent="Collectable3"]
-position = Vector2(5, 4)
-texture = ExtResource("6_yuvx1")
+[node name="ice" type="Sprite2D" parent="Collectable3"]
+position = Vector2(1.33514e-05, 1.90735e-06)
+scale = Vector2(0.77712, 0.786854)
+texture = ExtResource("7_7ksee")
 script = ExtResource("6_2cqbj")
-item = ExtResource("8_bubcw")
+item = ExtResource("9_sn16c")
 
 [node name="Collectable2" parent="." instance=ExtResource("9_c2jn6")]
 position = Vector2(491, 325)
@@ -162,7 +163,7 @@ stream = ExtResource("12_75d0j")
 parameters/looping = true
 
 [connection signal="body_entered" from="SceneChanger" to="SceneChanger" method="_on_body_entered"]
-[connection signal="body_entered" from="Collectable3" to="Collectable3/water" method="_on_collectable_body_entered"]
+[connection signal="body_entered" from="Collectable3" to="Collectable3/ice" method="_on_collectable_body_entered"]
 [connection signal="body_entered" from="Collectable2" to="Collectable2/earth" method="_on_collectable_body_entered"]
 [connection signal="body_entered" from="Collectable" to="Collectable/fire" method="_on_collectable_body_entered"]
 [connection signal="body_entered" from="Collectable4" to="Collectable4/wind" method="_on_collectable_body_entered"]

@@ -23,14 +23,26 @@ var chosen_item={
 	4:null
 }
 func _on_texture_button_toggled(toggled_on: bool) -> void:
-	chosen_item[1]=itemsList.slots[0].item
-	
+	if toggled_on:
+		if itemsList.slots[0].item!=null:
+			chosen_item[1]=itemsList.slots[0].item.item_name
+	if !toggled_on:
+		chosen_item[1]=null
 func _on_texture_button_2_toggled(toggled_on: bool) -> void:
-	chosen_item[2] = itemsList.slots[1].item
-
+	if toggled_on:
+		if itemsList.slots[1].item!=null:
+			chosen_item[2]=itemsList.slots[1].item.item_name
+	if !toggled_on:
+		chosen_item[2]=null
 func _on_texture_button_3_toggled(toggled_on: bool) -> void:
-	chosen_item[3] = itemsList.slots[2].item
-	
+	if toggled_on:
+		if itemsList.slots[2].item!=null:
+			chosen_item[3]=itemsList.slots[2].item.item_name
+	if !toggled_on:
+		chosen_item[3]=null
 func _on_texture_button_4_toggled(toggled_on: bool) -> void:
-	chosen_item[4]=itemsList.slots[3].item
-	print(chosen_item)
+	if toggled_on:
+		if itemsList.slots[3].item!=null:
+			chosen_item[4]=itemsList.slots[3].item.item_name
+	if !toggled_on:
+		chosen_item[4]=null

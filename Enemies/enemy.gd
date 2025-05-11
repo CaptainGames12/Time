@@ -19,7 +19,7 @@ var attack = false
 var tresDistance = null
 var targetDistance = null
 var dist = false
-
+var confused = true
 signal zero_hp
 signal dead
 var spawnRock = false
@@ -35,22 +35,23 @@ func death():
 		get_parent().call_deferred("add_child", rockNode)
 		rockNode.position.y = position.y
 		rockNode.position.x = position.x+20
-		print("rock_spawned")
+		
 	queue_free()
 	
 func _on_detection_body_entered(body):
 	if body.is_in_group("target"):
-		print("target is found")
+		
 		target = body
 		targetIsHere = true
 var atk_dir:Vector2 = Vector2(0, 0)
 var isWinded = false
+
+	
 func _physics_process(delta):
 	health_bar.value = health
 	var direction
-	
 	print(health_bar.value)
-	if health_bar.value<=2:
+	if health<=0:
 		death()
 		emit_signal("dead")
 		
@@ -61,12 +62,13 @@ func _physics_process(delta):
 		dist = tresDistance<targetDistance
 	if dist and treasure != null:
 		direction = (treasure.position - position)
-		direction = direction.normalized()
+		direction = direction.normalized() if !confused else Vector2(randi_range(-1, 1), randi_range(-1, 1))
+
 		velocity = velocity.lerp(direction*speed*delta, 1)
 	elif targetIsHere:
 		nav.target_position=target.position
 		direction = (nav.get_next_path_position() - global_position)
-		direction = direction.normalized()
+		direction = direction.normalized() if !confused else Vector2(randi_range(-1, 1), randi_range(-1, 1))
 		velocity = velocity.lerp(direction*speed*delta, 1)
 	if isWinded:
 		velocity+=atk_dir*knock_speed	
@@ -81,14 +83,19 @@ func _physics_process(delta):
 		animation.play("idle")
 	move_and_collide(velocity)
 var knock_speed = 50
+
+	
 func winded(direction):
 	atk_dir = direction
 	isWinded = true
 func earthed():
 	spawnRock = true
-		
-func watered():
+func frozen():
 	speed = 0
+	await get_tree().create_timer(4).timeout
+	speed = 100		
+func watered():
+	speed = 50
 	await get_tree().create_timer(4).timeout
 	speed = 100
 func fired():

@@ -135,15 +135,14 @@ sprite_frames = SubResource("SpriteFrames_8wvsg")
 animation = &"idle"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -39.0
-offset_top = -45.0
-offset_right = -35.0
-offset_bottom = -18.0
-scale = Vector2(19.8602, 0.327459)
+offset_left = -85.0
+offset_top = -47.0
+offset_right = 95.0
+offset_bottom = -35.0
 theme_override_styles/background = SubResource("StyleBoxFlat_p2bh4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_k5u18")
-step = 1.0
-value = 1.0
+max_value = 10.0
+value = 10.0
 show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

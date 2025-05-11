@@ -81,6 +81,7 @@ Global="*res://global.gd"
 AttackSfx="*res://spells/attack_sfx.tscn"
 Texts="*res://ui/dialog/texts.gd"
 DialogSignals="*res://ui/dialog/dialog_signals.gd"
+SpellMixer="*res://spells/Mixer.gd"
 
 [display]
 

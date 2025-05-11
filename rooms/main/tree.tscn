@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5hxob0bgx8yb"]
+[gd_scene load_steps=3 format=3 uid="uid://c5hxob0bgx8yb"]
 
+[ext_resource type="Script" uid="uid://dtfr1ue0prcfo" path="res://rooms/main/tree.gd" id="1_0aucb"]
 [ext_resource type="Texture2D" uid="uid://bgsh874ninpqk" path="res://rooms/main/tree.png" id="1_gk0o3"]
 
 [node name="Tree" type="StaticBody2D" groups=["tree"]]
 y_sort_enabled = true
 collision_layer = 66
 collision_mask = 0
+script = ExtResource("1_0aucb")
 
 [node name="Tree" type="Sprite2D" parent="."]
 position = Vector2(2.5403, -1.19055)
@@ -14,6 +16,6 @@ texture = ExtResource("1_gk0o3")
 offset = Vector2(0, -15)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, -10)
-polygon = PackedVector2Array(-5, 17, -2, 7, -2, 2, 3, 1, 5, 9, 7, 18, -1, 18)
-disabled = true
+position = Vector2(0.736378, -12)
+scale = Vector2(0.239025, 0.790417)
+polygon = PackedVector2Array(-15.6317, 21.5076, -6.26062, 8.30258, -6.26062, 1.18608, 8.3475, 0, 8.3475, 9.48866, 13.6539, 22.7728, 1.10291, 21.5076)
