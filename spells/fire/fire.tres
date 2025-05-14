@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="InvItem" load_steps=5 format=3 uid="uid://cjoxar2pq1t5o"]
 
-[ext_resource type="AudioStream" uid="uid://bxyd5tmembyeo" path="res://spells/fire/fire.wav" id="1_112r0"]
+[ext_resource type="AudioStream" uid="uid://bubcni6ccnt3a" path="res://spells/fire/fire_fx.mp3" id="1_112r0"]
 [ext_resource type="PackedScene" uid="uid://dwnkeop8j42an" path="res://spells/fire/fire_particle.tscn" id="1_gywru"]
 [ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="1_py5ue"]
 [ext_resource type="Texture2D" uid="uid://b166u30ogn6tg" path="res://spells/fire/fire.png" id="2_tcsnv"]

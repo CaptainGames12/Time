@@ -30,7 +30,6 @@ func _update_knob(pos):
 		var dir = (pos - global_position).limit_length(radius)
 		input_vector = dir / radius
 		$Stick.position = knob_start_pos + dir
-	# input_vector можна використовувати для управління гравцем
-
+	
 func is_point_inside(pos: Vector2) -> bool:
 	return $Ring.get_global_rect().has_point(pos)

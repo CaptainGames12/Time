@@ -1,23 +1,49 @@
-extends Base_Scene
-@onready var level_progress: TextureProgressBar = $Player/CanvasLayer/LevelProgress
-
-@onready var restart_ui = $Player/CanvasLayer/RestartUI/RestartButton
-@onready var inv = %Control
+extends Node2D
 var save_path = "user://save.tres"
+var saving = SaveGame.new()
+
+var rewarded_ad : RewardedAd
+var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
+var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
+@onready var player = $Player
+@onready var level_progress: TextureProgressBar = %LevelProgress
+
+@onready var restart_ui = %RestartUI
+@onready var inv = %InventoryUI
+
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var current_level = 1
 @onready var saver = ResourceSaver
 @onready var loader = ResourceLoader.load(save_path) as SaveGame
-var saving = SaveGame.new()
+
 @onready var boss_clock = preload("res://Enemies/boss/evil_clock_boss.tscn")
 @onready var entrance_shop: StaticBody2D = $Entrance_shop
-@onready var dialogs: Control = $Player/CanvasLayer/Dialogs
-var rewarded_ad : RewardedAd
-var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
-var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
+@onready var dialogs: Control = %Dialogs
 
-func _ready():
-	
+@onready var inv_res = player.inv_res
+@onready var boss_healthbar: Control = %Boss_health
+@onready var main_music: AudioStreamPlayer2D = %MainMusic
+@onready var entrance_anim: AnimatedSprite2D = $Entrance_shop/Entrance_anim
+@onready var scene_changer: Area2D = $Entrance_shop/SceneChanger
+
+@onready var enemy_count: Dictionary[int, int] = {
+	1:2,
+	2:4,
+	3:6,
+	4:8,
+	5:1
+}
+@onready var enemy = preload("res://Enemies/enemy.tscn")
+@onready var rand = RandomNumberGenerator.new()
+@onready var dead_enemies = 0
+@onready var cooldown_timer = $CooldownBetweenWaves
+@onready var spawnholder = $SpawnHolder
+@onready var treasure = $Treasure
+@onready var boss_clock_node = boss_clock.instantiate()
+signal in_the_shop
+signal out_of_the_shop
+
+func ad_initialize():
 	MobileAds.initialize()
 	
 	rewarded_ad_load_callback.on_ad_failed_to_load = on_rewarded_ad_failed_to_load
@@ -26,17 +52,15 @@ func _ready():
 	on_user_earned_reward_listener.on_user_earned_reward = func(rewarded_item : RewardedItem):
 		Global.hp=10
 		player.healthbar.value=10
-	Texts.place =1
+func close_open_shop_onstart():	
 	open_shop()
 	scene_changer.monitoring = true
 	if dialogs.is_inside_tree():
 		close_shop()
-	DialogSignals.go_to_the_shop.connect(open_shop)
-	DialogSignals.tutorial_finished.connect(open_shop)
-	get_tree().paused=true
+func load_save():
 	if loader != null:	
 		DialogSignals.tutorial_finished.emit()
-		$Player/CanvasLayer/Dialogs.queue_free()
+		%Dialogs.queue_free()
 		player.global_position = loader.player_pos
 		player.healthbar.value = loader.player_health
 		player.score = loader.player_score
@@ -48,34 +72,22 @@ func _ready():
 		inv.update_slots()
 	else:
 		printerr("isn't loaded")
+func _ready():
+	ad_initialize()
+	Texts.place =1
+	close_open_shop_onstart()
+	DialogSignals.go_to_the_shop.connect(open_shop)
+	DialogSignals.tutorial_finished.connect(open_shop)
+	get_tree().paused=true
+	load_save()
 	
-	$CooldownBetweenWaves.autostart =true
-	if SceneManager.player:
+	cooldown_timer.autostart =true
+	if player:
 		$Player.global_position = $Entrances/any.global_position
-@onready var inv_res = player.inv_res
-@onready var boss_healthbar: Control = $Player/CanvasLayer/Boss_health
-@onready var main_music: AudioStreamPlayer2D = $AudioStreamPlayer2D
-@onready var entrance_anim: AnimatedSprite2D = $Entrance_shop/Entrance_anim
-@onready var scene_changer: Area2D = $Entrance_shop/SceneChanger
-signal in_the_shop
-signal out_of_the_shop
-@onready var enemy_count: Dictionary[int, int] = {
-	1:2,
-	2:4,
-	3:6,
-	4:8,
-	5:1
-}
-@onready var enemy = preload("res://Enemies/enemy.tscn")
-@onready var rand = RandomNumberGenerator.new()
-@onready var dead_enemies = 0
-@onready var cooldowntimer = $CooldownBetweenWaves
-@onready var spawnholder = $SpawnHolder
-@onready var treasure = $Treasure
-@onready var boss_clock_node = boss_clock.instantiate()
+
 func _process(delta: float) -> void:
-	
-	if $Player/CanvasLayer/Heal_window.is_visible_in_tree():
+
+	if %Heal_window.is_visible_in_tree():
 		Engine.time_scale=0
 	else:
 		Engine.time_scale=1
@@ -87,7 +99,7 @@ func enemy_death():
 	if dead_enemies==enemy_count[current_level]:
 		open_shop()
 		current_level+=1
-		cooldowntimer.start()
+		cooldown_timer.start()
 		print()
 		dead_enemies=0
 func spawn_enemies():
@@ -117,7 +129,7 @@ func update_level(level):
 	
 	if level_progress!=null:
 		level_progress.value = current_level
-	
+		level_progress.get_child(0).value=current_level-1
 	spawn_enemies()
 func _on_cooldown_between_waves_timeout() -> void:
 	close_shop()
@@ -136,14 +148,13 @@ func close_shop():
 	entrance_anim.play("close")
 	$Entrance_shop/Closed/ClosedCollision.disabled =false
 	PhysicsServer2D.set_active(true)
+
 func _on_restart_button_pressed() -> void:
 	Texts.place=1
 	get_tree().paused = false
-	
 	get_tree().reload_current_scene()
 	restart_ui.visible = false
 	
-
 func _on_save_button_pressed() -> void:
 	if player.stamina.value==100:
 		DialogSignals.time_save_pressed.emit()

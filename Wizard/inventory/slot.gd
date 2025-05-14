@@ -1,5 +1,5 @@
-extends TextureButton
-
+extends TouchScreenButton
+@export var element:Resource
 @export var display: Sprite2D
 func update(slot: InvSlot)->void:
 	

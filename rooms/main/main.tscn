@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://dcifbpe8tn1uf"]
+[gd_scene load_steps=61 format=3 uid="uid://dcifbpe8tn1uf"]
 
 [ext_resource type="Script" uid="uid://cpfmollh1xmdd" path="res://rooms/main/main.gd" id="1_4ufej"]
 [ext_resource type="PackedScene" uid="uid://dwi7bdg27wpbr" path="res://Wizard/Wizard.tscn" id="1_28m1h"]
@@ -8,10 +8,10 @@
 [ext_resource type="Script" uid="uid://bvgi5hq7cq5gn" path="res://Wizard/camera_2d.gd" id="3_tm1hv"]
 [ext_resource type="PackedScene" uid="uid://dmrk7fnn3wb0j" path="res://Wizard/player_ui/Healthbar.tscn" id="5_0dchd"]
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="6_qmpgk"]
-[ext_resource type="Texture2D" uid="uid://cx35hpaer8iyo" path="res://shopping/money.png" id="7_7hk6n"]
 [ext_resource type="PackedScene" uid="uid://bworkwhvc0mcv" path="res://Wizard/inventory/inventory.tscn" id="8_lflfe"]
-[ext_resource type="Texture2D" uid="uid://b43pjmuwn1i84" path="res://ui/save_button.png" id="12_b2wfq"]
-[ext_resource type="Texture2D" uid="uid://bto51yitt2ds4" path="res://ui/pressed_save.png" id="13_rkn7l"]
+[ext_resource type="Texture2D" uid="uid://my5jbrrygkap" path="res://ui/UI(1)/UI_coin.png" id="9_0bf1a"]
+[ext_resource type="Texture2D" uid="uid://boevfpikbod4w" path="res://ui/UI(1)/button_5.png" id="11_4k2ai"]
+[ext_resource type="Texture2D" uid="uid://b7tkddthyqmt0" path="res://ui/dark_button_version/button_5_dark.png" id="12_m3omd"]
 [ext_resource type="PackedScene" uid="uid://dfetviixmo6rp" path="res://rooms/main/treasure.tscn" id="13_st04a"]
 [ext_resource type="PackedScene" uid="uid://cbvctbxxv3rvi" path="res://Enemies/boss/boss_health.tscn" id="13_v24id"]
 [ext_resource type="PackedScene" uid="uid://byyvwanp7uc17" path="res://rooms/main/level_progress.tscn" id="14_v2j20"]
@@ -20,40 +20,21 @@
 [ext_resource type="Texture2D" uid="uid://bex85l0n7gfvt" path="res://ui/normal_restart.png" id="17_2h7oy"]
 [ext_resource type="PackedScene" uid="uid://bjsj1mwug051v" path="res://ui/controls/joystick.tscn" id="17_4k2ai"]
 [ext_resource type="PackedScene" uid="uid://bi22hwrsfppr5" path="res://ui/dialog/dialogs.tscn" id="17_tm1hv"]
-[ext_resource type="AudioStream" uid="uid://ds7spg85qkrto" path="res://rooms/main/main-theme.mp3" id="17_ubvls"]
 [ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://rooms/main/shadow.tscn" id="17_w8gtq"]
-[ext_resource type="Texture2D" uid="uid://ccxbm7ynl0ukh" path="res://ui/controls/joystick-attack.png" id="18_4k2ai"]
+[ext_resource type="Texture2D" uid="uid://clwqfbsh7uifu" path="res://ui/UI(1)/button_4.png" id="17_wewfl"]
 [ext_resource type="Texture2D" uid="uid://b50rpcijpbgyp" path="res://ui/pressed_restart.png" id="18_bjhwx"]
-[ext_resource type="Texture2D" uid="uid://cc5dag3vjrnww" path="res://ui/controls/joystick.png" id="18_m3omd"]
-[ext_resource type="Script" path="res://scene_manager/scene_changer_main.gd" id="19_4j2le"]
+[ext_resource type="Texture2D" uid="uid://4q1uxalbnk7b" path="res://ui/dark_button_version/button_4_dark.png" id="18_o4joc"]
+[ext_resource type="Script" path="res://rooms/main/scene_changer_main.gd" id="19_4j2le"]
+[ext_resource type="Texture2D" uid="uid://da22qlgp6rrdk" path="res://ui/UI(1)/ui_button_joystick.png" id="20_0bf1a"]
 [ext_resource type="PackedScene" uid="uid://dj3g4s7hfeffe" path="res://rooms/shop/shop.tscn" id="20_h78s4"]
 [ext_resource type="Texture2D" uid="uid://i1hwxo0kun40" path="res://ui/heal_btn.png" id="20_o4joc"]
 [ext_resource type="Texture2D" uid="uid://c8ewn13w3edbo" path="res://ui/heal_pressed.png" id="21_u7l0b"]
 [ext_resource type="PackedScene" uid="uid://dibl3hw88xbdh" path="res://ui/heal_window.tscn" id="22_u7l0b"]
+[ext_resource type="PackedScene" uid="uid://b8vvwlraynlk7" path="res://ui/mixing.tscn" id="25_m3omd"]
 [ext_resource type="Texture2D" uid="uid://dqihn4rguc2al" path="res://rooms/main/locate.png" id="27_ayxu2"]
+[ext_resource type="AudioStream" uid="uid://c2ch4bxq7gjp1" path="res://rooms/main/main_theme.mp3" id="29_tm1hv"]
 [ext_resource type="Texture2D" uid="uid://bikoth7p3iqff" path="res://rooms/shop/iron_bar_v2.png" id="30_tm1hv"]
 [ext_resource type="Texture2D" uid="uid://c1psrg47nignr" path="res://rooms/shop/iron_barrer.png" id="31_tm1hv"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_tm1hv"]
-specular_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_40i0a"]
-font = ExtResource("6_qmpgk")
-font_size = 36
-
-[sub_resource type="GDScript" id="GDScript_g8e8a"]
-script/source = "extends Label
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bf1a"]
-size = Vector2(25, 15)
-
-[sub_resource type="LabelSettings" id="LabelSettings_oosx8"]
-font = ExtResource("6_qmpgk")
-font_size = 84
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tm1hv"]
-size = Vector2(25, 15)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xu4os"]
 vertices = PackedVector2Array(1143.3, 650.25, 825.148, 649.148, 837.383, 647.633, 713.406, 639.469, 746.367, 648.883, 397.578, 647.68, 1032.38, 344.633, 1143.3, 22.7578, 1047.7, 411.359, 741.297, 517.992, 741.297, 539.398, 712.703, 460.75, 645.297, 409.992, 491.383, 303.633, 462.703, 224.75, 711.406, 266.469, 769, 282.922, 712.703, 400.359, 1003.7, 265.75, 1003.7, 205.359, 1076.38, 550.633, 1010, 558.922, 952.406, 542.469, 808.703, 568.75, 808.703, 508.359, 311.297, 544.992, 311.297, 589.75, 290.367, 647.312, 217.383, 608.633, 188.703, 529.75, 188.703, 469.359, 9.78906, 646.344, 151, 616.922, 93.4062, 600.469, 121.297, 478.992, 121.297, 523.75, 14.6016, 28.6328, 100.406, 284.469, 936.297, 214.992, 936.297, 259.75, 908.406, 336.469, 835.383, 274.633, 806.703, 195.75, 806.703, 135.359, 675, 547.922, 741.297, 539.633, 741.297, 562.75, 617.406, 531.469, 378.703, 595.75, 378.703, 535.359, 980.297, 420.992, 980.297, 465.75, 739.297, 189.75, 462.703, 164.359, 739.297, 144.992, 224.383, 292.633, 395.297, 218.75, 367.406, 295.469, 395.297, 173.992, 195.703, 213.75, 195.703, 153.359, 645.297, 454.75, 425, 311.922, 128.297, 162.992, 128.297, 207.75, 158, 300.922, 966, 352.922, 1047.7, 471.75)
@@ -251,12 +232,28 @@ _data = {
 &"ending": SubResource("Animation_jgkow")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_u7l0b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oosx8"]
+font = ExtResource("6_qmpgk")
+font_size = 84
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ayxu2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_40i0a"]
+font = ExtResource("6_qmpgk")
+font_size = 36
+
+[sub_resource type="GDScript" id="GDScript_g8e8a"]
+script/source = "extends Label
+"
+
 [node name="Node2D" type="Node2D" groups=["level"]]
 process_mode = 1
 y_sort_enabled = true
 script = ExtResource("1_4ufej")
 
-[node name="Player" parent="." groups=["player", "target"] instance=ExtResource("1_28m1h")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_28m1h")]
 position = Vector2(582, 449)
 scale = Vector2(0.991811, 1)
 collision_layer = 1
@@ -276,172 +273,6 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("3_tm1hv")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("3_2iv3q")
-volume_db = -12.181
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
-follow_viewport_scale = 20.388
-
-[node name="Boss_health" parent="Player/CanvasLayer" instance=ExtResource("13_v24id")]
-visible = false
-
-[node name="Stamina" parent="Player/CanvasLayer" instance=ExtResource("3_bkj6u")]
-offset_left = 29.0
-offset_top = -5.99997
-offset_right = 93.0
-offset_bottom = 58.0
-scale = Vector2(3.88, 3.56)
-
-[node name="Health" parent="Player/CanvasLayer" instance=ExtResource("5_0dchd")]
-offset_left = 20.304
-offset_top = -143.0
-offset_right = 84.304
-offset_bottom = -79.0
-scale = Vector2(6.34209, 5.79179)
-texture_over = SubResource("CanvasTexture_tm1hv")
-
-[node name="Price" type="Label" parent="Player/CanvasLayer"]
-offset_left = 973.0
-offset_top = 43.0
-offset_right = 1013.0
-offset_bottom = 81.0
-scale = Vector2(1.91124, 1.91124)
-text = "0"
-label_settings = SubResource("LabelSettings_40i0a")
-horizontal_alignment = 2
-script = SubResource("GDScript_g8e8a")
-
-[node name="Control" parent="Player/CanvasLayer" instance=ExtResource("8_lflfe")]
-unique_name_in_owner = true
-offset_left = -5.0
-offset_right = -5.0
-size_flags_horizontal = 4
-size_flags_vertical = 8
-
-[node name="Money" type="Sprite2D" parent="Player/CanvasLayer"]
-position = Vector2(1101, 52)
-scale = Vector2(3.9687, 3.56753)
-texture = ExtResource("7_7hk6n")
-
-[node name="Saving" type="Control" parent="Player/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -7.0
-offset_top = -224.0
-offset_right = -7.0
-offset_bottom = -224.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(5.86316, 6.3444)
-
-[node name="SaveButton" type="TouchScreenButton" parent="Player/CanvasLayer/Saving"]
-position = Vector2(-29.5063, -25.0615)
-scale = Vector2(1, 0.922)
-texture_normal = ExtResource("12_b2wfq")
-texture_pressed = ExtResource("13_rkn7l")
-shape = SubResource("RectangleShape2D_0bf1a")
-
-[node name="RestartUI" type="Control" parent="Player/CanvasLayer"]
-process_mode = 3
-visible = false
-z_index = 6
-layout_mode = 3
-anchors_preset = 0
-
-[node name="GameOver" type="Label" parent="Player/CanvasLayer/RestartUI"]
-layout_mode = 0
-offset_left = 278.0
-offset_top = 234.0
-offset_right = 885.0
-offset_bottom = 310.0
-text = "Game Over"
-label_settings = SubResource("LabelSettings_oosx8")
-
-[node name="RestartButton" type="TouchScreenButton" parent="Player/CanvasLayer/RestartUI"]
-process_mode = 3
-z_index = 9
-position = Vector2(481, 341)
-scale = Vector2(5.94104, 6.15733)
-texture_normal = ExtResource("17_2h7oy")
-texture_pressed = ExtResource("18_bjhwx")
-
-[node name="LevelProgress" parent="Player/CanvasLayer" instance=ExtResource("14_v2j20")]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = -196.0
-offset_right = 26.0
-offset_bottom = -116.0
-grow_vertical = 2
-scale = Vector2(4.34891, 4.34891)
-size_flags_horizontal = 0
-
-[node name="TimeStop" parent="Player/CanvasLayer" instance=ExtResource("16_0bf1a")]
-position = Vector2(971, 137)
-scale = Vector2(6, 6)
-shape = SubResource("RectangleShape2D_tm1hv")
-
-[node name="Heal_window" parent="Player/CanvasLayer" instance=ExtResource("22_u7l0b")]
-visible = false
-offset_left = -1.0
-offset_top = -4.0
-offset_right = -1.0
-offset_bottom = -4.0
-
-[node name="Dialogs" parent="Player/CanvasLayer" instance=ExtResource("17_tm1hv")]
-visible = false
-offset_left = -123.0
-offset_top = -9.0
-offset_right = -123.0
-offset_bottom = -9.0
-scale = Vector2(1.3, 1.3)
-
-[node name="Joystick" parent="Player/CanvasLayer" instance=ExtResource("17_4k2ai")]
-position = Vector2(153, 525)
-scale = Vector2(6, 6)
-
-[node name="Stick" type="TextureRect" parent="Player/CanvasLayer/Joystick"]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-texture = ExtResource("18_m3omd")
-
-[node name="SpellJoystick" parent="Player/CanvasLayer" instance=ExtResource("17_4k2ai")]
-position = Vector2(1035, 528)
-scale = Vector2(6, 6)
-
-[node name="Stick" type="TextureRect" parent="Player/CanvasLayer/SpellJoystick"]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-texture = ExtResource("18_4k2ai")
-
-[node name="Heal" type="TextureButton" parent="Player/CanvasLayer"]
-offset_left = 265.0
-offset_top = 52.0
-offset_right = 307.0
-offset_bottom = 111.0
-scale = Vector2(2.64454, 1.88754)
-texture_normal = ExtResource("20_o4joc")
-texture_pressed = ExtResource("21_u7l0b")
-stretch_mode = 0
-
-[node name="Stamina_timer" type="Timer" parent="Player"]
-wait_time = 0.5
-
-[node name="Cooldown_timer" type="Timer" parent="Player"]
-wait_time = 0.5
-one_shot = true
-autostart = true
-
 [node name="Collect_coin" type="AudioStreamPlayer2D" parent="Player"]
 stream = ExtResource("2_chvbv")
 
@@ -449,7 +280,7 @@ stream = ExtResource("2_chvbv")
 z_index = -1
 position = Vector2(573.042, 331.042)
 
-[node name="Treasure" parent="." groups=["target"] instance=ExtResource("13_st04a")]
+[node name="Treasure" parent="." instance=ExtResource("13_st04a")]
 y_sort_enabled = true
 position = Vector2(575, 309)
 scale = Vector2(6.56264, 6.56264)
@@ -508,8 +339,9 @@ scale = Vector2(6, 6)
 position = Vector2(426, 239)
 scale = Vector2(6, 6)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("17_ubvls")
+[node name="MainMusic" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("29_tm1hv")
 autoplay = true
 parameters/looping = true
 
@@ -605,11 +437,219 @@ libraries = {
 }
 autoplay = "crystal"
 
-[connection signal="pressed" from="Player/CanvasLayer/Saving/SaveButton" to="." method="_on_save_button_pressed"]
-[connection signal="pressed" from="Player/CanvasLayer/RestartUI/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="Player/CanvasLayer/Heal" to="." method="_on_button_pressed"]
-[connection signal="timeout" from="Player/Stamina_timer" to="Player" method="_on_timer_timeout"]
-[connection signal="timeout" from="Player/Cooldown_timer" to="Player" method="_on_cooldown_timer_timeout"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+follow_viewport_scale = 20.388
+
+[node name="ProgressBars" type="Node" parent="CanvasLayer"]
+
+[node name="Stamina" parent="CanvasLayer/ProgressBars" instance=ExtResource("3_bkj6u")]
+unique_name_in_owner = true
+offset_left = 28.0
+offset_top = 85.0
+offset_right = 106.0
+offset_bottom = 92.0
+scale = Vector2(6.3, 6.3)
+
+[node name="Health" parent="CanvasLayer/ProgressBars" instance=ExtResource("5_0dchd")]
+unique_name_in_owner = true
+offset_left = 26.304
+offset_top = 30.0
+offset_right = 104.304
+offset_bottom = 37.0
+scale = Vector2(6.34209, 5.79179)
+
+[node name="LevelProgress" parent="CanvasLayer/ProgressBars" instance=ExtResource("14_v2j20")]
+unique_name_in_owner = true
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 29.0
+offset_top = -181.0
+offset_right = 70.0
+offset_bottom = -174.0
+grow_vertical = 2
+scale = Vector2(7, 7)
+size_flags_horizontal = 0
+
+[node name="Boss_health" parent="CanvasLayer/ProgressBars" instance=ExtResource("13_v24id")]
+unique_name_in_owner = true
+visible = false
+
+[node name="TimeControl" type="Node" parent="CanvasLayer"]
+
+[node name="Saving" type="Control" parent="CanvasLayer/TimeControl"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -814.0
+offset_top = -197.0
+offset_right = -814.0
+offset_bottom = -197.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(5, 5)
+
+[node name="SaveButton" type="TouchScreenButton" parent="CanvasLayer/TimeControl/Saving"]
+modulate = Color(1, 1, 1, 0.580392)
+position = Vector2(-12.6212, -6.14716)
+scale = Vector2(1, 0.922)
+texture_normal = ExtResource("11_4k2ai")
+texture_pressed = ExtResource("12_m3omd")
+shape = SubResource("CircleShape2D_u7l0b")
+
+[node name="RestartUI" type="Control" parent="CanvasLayer/TimeControl"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+z_index = 6
+layout_mode = 3
+anchors_preset = 0
+
+[node name="GameOver" type="Label" parent="CanvasLayer/TimeControl/RestartUI"]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 234.0
+offset_right = 885.0
+offset_bottom = 310.0
+text = "Game Over"
+label_settings = SubResource("LabelSettings_oosx8")
+
+[node name="RestartButton" type="TouchScreenButton" parent="CanvasLayer/TimeControl/RestartUI"]
+process_mode = 3
+z_index = 9
+position = Vector2(481, 341)
+scale = Vector2(5.94104, 6.15733)
+texture_normal = ExtResource("17_2h7oy")
+texture_pressed = ExtResource("18_bjhwx")
+
+[node name="TimeStop" parent="CanvasLayer/TimeControl" instance=ExtResource("16_0bf1a")]
+modulate = Color(1, 1, 1, 0.635294)
+position = Vector2(147, 286)
+scale = Vector2(5, 5)
+texture_normal = ExtResource("17_wewfl")
+texture_pressed = ExtResource("18_o4joc")
+shape = SubResource("CircleShape2D_ayxu2")
+
+[node name="MoneyUI" type="Node" parent="CanvasLayer"]
+
+[node name="Money" type="Sprite2D" parent="CanvasLayer/MoneyUI"]
+position = Vector2(1096, 63)
+scale = Vector2(3.9687, 3.56753)
+texture = ExtResource("9_0bf1a")
+
+[node name="AmountOfMoney" type="Label" parent="CanvasLayer/MoneyUI"]
+unique_name_in_owner = true
+offset_left = 1065.0
+offset_top = 58.0
+offset_right = 1105.0
+offset_bottom = 96.0
+scale = Vector2(1.30589, 1.23584)
+text = "0"
+label_settings = SubResource("LabelSettings_40i0a")
+horizontal_alignment = 1
+script = SubResource("GDScript_g8e8a")
+
+[node name="Magic" type="Node" parent="CanvasLayer"]
+
+[node name="InventoryUI" parent="CanvasLayer/Magic" instance=ExtResource("8_lflfe")]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.635294)
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 5.0
+offset_bottom = 3.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Mixing" parent="CanvasLayer/Magic" instance=ExtResource("25_m3omd")]
+offset_left = 411.0
+offset_top = 581.0
+offset_right = 747.0
+offset_bottom = 621.0
+
+[node name="Support" type="Node" parent="CanvasLayer"]
+
+[node name="Heal_window" parent="CanvasLayer/Support" instance=ExtResource("22_u7l0b")]
+unique_name_in_owner = true
+visible = false
+offset_left = -1.0
+offset_top = -4.0
+offset_right = -1.0
+offset_bottom = -4.0
+
+[node name="Heal" type="TextureButton" parent="CanvasLayer/Support"]
+offset_left = 321.0
+offset_top = 109.0
+offset_right = 363.0
+offset_bottom = 168.0
+scale = Vector2(2.64454, 1.88754)
+texture_normal = ExtResource("20_o4joc")
+texture_pressed = ExtResource("21_u7l0b")
+stretch_mode = 0
+
+[node name="Timers&sound" type="Node" parent="CanvasLayer"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="CanvasLayer/Timers&sound"]
+stream = ExtResource("3_2iv3q")
+volume_db = -12.181
+
+[node name="Stamina_timer" type="Timer" parent="CanvasLayer/Timers&sound"]
+unique_name_in_owner = true
+wait_time = 0.5
+
+[node name="Cooldown_timer" type="Timer" parent="CanvasLayer/Timers&sound"]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="Dialogs" parent="CanvasLayer" instance=ExtResource("17_tm1hv")]
+unique_name_in_owner = true
+visible = false
+offset_left = -123.0
+offset_top = -9.0
+offset_right = -123.0
+offset_bottom = -9.0
+scale = Vector2(1.3, 1.3)
+
+[node name="Joysticks" type="Node" parent="CanvasLayer"]
+
+[node name="Joystick" parent="CanvasLayer/Joysticks" instance=ExtResource("17_4k2ai")]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.713726)
+position = Vector2(158, 496)
+scale = Vector2(4, 4)
+
+[node name="Stick" type="TextureRect" parent="CanvasLayer/Joysticks/Joystick"]
+offset_left = -10.8333
+offset_top = -10.3333
+offset_right = 11.1667
+offset_bottom = 11.6667
+texture = ExtResource("20_0bf1a")
+
+[node name="SpellJoystick" parent="CanvasLayer/Joysticks" instance=ExtResource("17_4k2ai")]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.713726)
+position = Vector2(1012, 504)
+scale = Vector2(4, 4)
+
+[node name="Stick" type="TextureRect" parent="CanvasLayer/Joysticks/SpellJoystick"]
+offset_left = -12.1667
+offset_top = -11.0
+offset_right = 9.83333
+offset_bottom = 11.0
+texture = ExtResource("20_0bf1a")
+
 [connection signal="timeout" from="CooldownBetweenWaves" to="." method="_on_cooldown_between_waves_timeout"]
 [connection signal="body_entered" from="Entrance_shop/SceneChanger" to="Entrance_shop/SceneChanger" method="_on_body_entered"]
 [connection signal="animation_finished" from="Main_animations" to="." method="_on_ending_animation_finished"]
+[connection signal="pressed" from="CanvasLayer/TimeControl/Saving/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TimeControl/RestartUI/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TimeControl/TimeStop" to="Player" method="_on_time_stop_pressed"]
+[connection signal="pressed" from="CanvasLayer/Support/Heal" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="CanvasLayer/Timers&sound/Stamina_timer" to="Player" method="_on_stamina_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/Timers&sound/Cooldown_timer" to="Player" method="_on_cooldown_timer_timeout"]

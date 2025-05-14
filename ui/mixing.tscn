@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8vvwlraynlk7"]
+
+[ext_resource type="Texture2D" uid="uid://cxb1huel7j3vx" path="res://ui/UI(1)/ui_element.png" id="1_rydhh"]
+[ext_resource type="Script" uid="uid://bma6fhvyma25w" path="res://ui/mixing.gd" id="2_8h0kg"]
+
+[node name="Mixing" type="TextureRect"]
+offset_right = 336.0
+offset_bottom = 40.0
+texture = ExtResource("1_rydhh")
+script = ExtResource("2_8h0kg")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 51.0
+offset_top = -8.0
+offset_right = 289.0
+offset_bottom = 51.0
+columns = 5
+
+[node name="Button" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button2" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+flat = true
+expand_icon = true
+
+[node name="Button3" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+flat = true
+expand_icon = true
+
+[node name="Button4" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+flat = true
+expand_icon = true
+
+[node name="Button5" type="Button" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+flat = true
+expand_icon = true

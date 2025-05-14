@@ -1,21 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://dmrk7fnn3wb0j"]
 
-[ext_resource type="Texture2D" uid="uid://b51ik02yye26j" path="res://Wizard/player_ui/healthbar_empty.png" id="1_tmkk4"]
 [ext_resource type="Script" uid="uid://3pfcmp655ecf" path="res://Wizard/player_ui/healthbar.gd" id="1_una5g"]
-[ext_resource type="Texture2D" uid="uid://ctrkptbd0ysri" path="res://Wizard/player_ui/healthbar.png" id="2_kmwyh"]
+[ext_resource type="Texture2D" uid="uid://d2k4fxlmr6utw" path="res://ui/UI(1)/ui_hp_bur.png" id="1_wwdev"]
+[ext_resource type="Texture2D" uid="uid://c04bs7uu7yk4i" path="res://ui/UI(1)/ui_hp_bur_full.png" id="2_r2idp"]
 
 [node name="Health" type="TextureProgressBar"]
-custom_minimum_size = Vector2(50, 50)
 anchors_preset = -1
 anchor_left = -0.002
 anchor_right = -0.002
-offset_left = 0.304
-offset_right = 56.304
-offset_bottom = 64.0
+offset_left = 2.304
+offset_top = 1.0
+offset_right = 80.304
+offset_bottom = 8.0
 size_flags_horizontal = 0
-min_value = 1.0
 max_value = 10.0
-value = 1.0
-texture_under = ExtResource("1_tmkk4")
-texture_progress = ExtResource("2_kmwyh")
+value = 2.0
+texture_under = ExtResource("1_wwdev")
+texture_progress = ExtResource("2_r2idp")
 script = ExtResource("1_una5g")

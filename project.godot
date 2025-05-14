@@ -72,11 +72,11 @@ config={
 config/name="Timeful adventure-phone"
 run/main_scene="res://ui/main_menu.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/image="uid://cfcsppor26svt"
+config/icon="uid://c56e1jll5pkmd"
 
 [autoload]
 
-SceneManager="*res://scene_manager/Scene_Manager.gd"
 Global="*res://global.gd"
 AttackSfx="*res://spells/attack_sfx.tscn"
 Texts="*res://ui/dialog/texts.gd"
@@ -87,7 +87,6 @@ SpellMixer="*res://spells/Mixer.gd"
 
 window/size/mode=2
 window/stretch/mode="viewport"
-window/stretch/aspect="ignore"
 mouse_cursor/custom_image="res://cursor.png"
 
 [dotnet]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bworkwhvc0mcv"]
+[gd_scene load_steps=6 format=3 uid="uid://bworkwhvc0mcv"]
 
-[ext_resource type="Texture2D" uid="uid://bc0apde2qbmpk" path="res://Wizard/inventory/slots.png" id="1_eg8o5"]
 [ext_resource type="Script" uid="uid://dmtdpn3up762f" path="res://Wizard/inventory/inv_ui.gd" id="1_k3ive"]
-[ext_resource type="Texture2D" uid="uid://xul4op3r41ny" path="res://Wizard/inventory/slots-chosen.png" id="2_eocea"]
-[ext_resource type="Texture2D" uid="uid://cqkrsefchejne" path="res://Wizard/inventory/slots-choose.png" id="3_y10bg"]
+[ext_resource type="Texture2D" uid="uid://j7e5pjhaxldc" path="res://ui/UI(1)/button_empty.png" id="2_8tj03"]
+[ext_resource type="Texture2D" uid="uid://crq3smbobck38" path="res://ui/UI(1)/button_empty_dark.png" id="3_m5fko"]
 [ext_resource type="Script" uid="uid://dw30860l2us2m" path="res://Wizard/inventory/slot.gd" id="6_llxb3"]
 [ext_resource type="PackedScene" uid="uid://otor5nu3wx31" path="res://spells/item_display.tscn" id="7_i1ngt"]
 
@@ -16,76 +15,48 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k3ive")
 
-[node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -134.0
-offset_top = -147.0
-offset_right = 134.0
-offset_bottom = -83.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(1.23254, 1.23254)
-pivot_offset = Vector2(130, 0)
-columns = 10
-
-[node name="TextureButton" type="TextureButton" parent="GridContainer" node_paths=PackedStringArray("display")]
-layout_mode = 2
-toggle_mode = true
-texture_normal = ExtResource("1_eg8o5")
-texture_pressed = ExtResource("2_eocea")
-texture_focused = ExtResource("3_y10bg")
+[node name="Slot1" type="TouchScreenButton" parent="." node_paths=PackedStringArray("display")]
+unique_name_in_owner = true
+position = Vector2(790, 468)
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2_8tj03")
+texture_pressed = ExtResource("3_m5fko")
 script = ExtResource("6_llxb3")
 display = NodePath("Item_display")
 
-[node name="Item_display" parent="GridContainer/TextureButton" instance=ExtResource("7_i1ngt")]
+[node name="Item_display" parent="Slot1" instance=ExtResource("7_i1ngt")]
 z_index = 5
-position = Vector2(-5, 1)
+position = Vector2(2.2, 2.8)
+scale = Vector2(0.3, 0.3)
 
-[node name="TextureButton2" type="TextureButton" parent="GridContainer" node_paths=PackedStringArray("display")]
-layout_mode = 2
-toggle_mode = true
-texture_normal = ExtResource("1_eg8o5")
-texture_pressed = ExtResource("2_eocea")
-texture_focused = ExtResource("3_y10bg")
+[node name="Slot2" type="TouchScreenButton" parent="." node_paths=PackedStringArray("display")]
+unique_name_in_owner = true
+position = Vector2(829, 359)
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2_8tj03")
+texture_pressed = ExtResource("3_m5fko")
 script = ExtResource("6_llxb3")
 display = NodePath("Item_display2")
 
-[node name="Item_display2" parent="GridContainer/TextureButton2" instance=ExtResource("7_i1ngt")]
+[node name="Item_display2" parent="Slot2" instance=ExtResource("7_i1ngt")]
 z_index = 5
-position = Vector2(-67, 3)
+position = Vector2(-1.14441e-05, 2.2)
+scale = Vector2(0.3, 0.3)
 
-[node name="TextureButton3" type="TextureButton" parent="GridContainer" node_paths=PackedStringArray("display")]
-layout_mode = 2
-toggle_mode = true
-texture_normal = ExtResource("1_eg8o5")
-texture_pressed = ExtResource("2_eocea")
-texture_focused = ExtResource("3_y10bg")
+[node name="Slot3" type="TouchScreenButton" parent="." node_paths=PackedStringArray("display")]
+unique_name_in_owner = true
+position = Vector2(932, 296)
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2_8tj03")
+texture_pressed = ExtResource("3_m5fko")
 script = ExtResource("6_llxb3")
 display = NodePath("Item_display3")
 
-[node name="Item_display3" parent="GridContainer/TextureButton3" instance=ExtResource("7_i1ngt")]
+[node name="Item_display3" parent="Slot3" instance=ExtResource("7_i1ngt")]
 z_index = 5
-position = Vector2(-136, 0)
+position = Vector2(2.79999, 1.6)
+scale = Vector2(0.3, 0.3)
 
-[node name="TextureButton4" type="TextureButton" parent="GridContainer" node_paths=PackedStringArray("display")]
-layout_mode = 2
-toggle_mode = true
-texture_normal = ExtResource("1_eg8o5")
-texture_pressed = ExtResource("2_eocea")
-texture_focused = ExtResource("3_y10bg")
-script = ExtResource("6_llxb3")
-display = NodePath("Item_display4")
-
-[node name="Item_display4" parent="GridContainer/TextureButton4" instance=ExtResource("7_i1ngt")]
-z_index = 5
-position = Vector2(-204, 0)
-
-[connection signal="toggled" from="GridContainer/TextureButton" to="." method="_on_texture_button_toggled"]
-[connection signal="toggled" from="GridContainer/TextureButton2" to="." method="_on_texture_button_2_toggled"]
-[connection signal="toggled" from="GridContainer/TextureButton3" to="." method="_on_texture_button_3_toggled"]
-[connection signal="toggled" from="GridContainer/TextureButton4" to="." method="_on_texture_button_4_toggled"]
+[connection signal="pressed" from="Slot1" to="." method="_on_slot_1_pressed"]
+[connection signal="pressed" from="Slot2" to="." method="_on_slot_2_pressed"]
+[connection signal="pressed" from="Slot3" to="." method="_on_slot_3_pressed"]

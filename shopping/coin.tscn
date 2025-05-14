@@ -31,7 +31,7 @@ _data = {
 &"coin_floating": SubResource("Animation_pnfoh")
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="Coin" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_y2805")

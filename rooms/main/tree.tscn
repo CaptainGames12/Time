@@ -18,4 +18,4 @@ offset = Vector2(0, -15)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0.736378, -12)
 scale = Vector2(0.239025, 0.790417)
-polygon = PackedVector2Array(-15.6317, 21.5076, -6.26062, 8.30258, -6.26062, 1.18608, 8.3475, 0, 8.3475, 9.48866, 13.6539, 22.7728, 1.10291, 21.5076)
+polygon = PackedVector2Array(-15.6317, 21.5076, -6.26062, 8.30258, -7.26442, 6.32578, 5.28657, 6.32578, 8.3475, 9.48866, 13.6539, 22.7728, 1.10291, 21.5076)

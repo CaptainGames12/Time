@@ -1,11 +1,25 @@
 extends Area2D
 
+var enemy : Array[CharacterBody2D]
+
 func _ready() -> void:
 	await get_tree().create_timer(4).timeout
+	remove_effect()
+	print(" ENEMY : " + str(enemy))
 	
-	queue_free()
+	get_parent().queue_free()
+	
 func _on_body_entered(body: Node2D) -> void:
+	print(" ENEMY ENTER : " + str(body))
 	if body.is_in_group("enemy"):
-		
+		body.confused = true;
 		body.health-=1
+
+		enemy.append(body)
+		
 		$"../AnimationPlayer".play("collide")
+
+func remove_effect() -> void: 
+	for body in enemy:
+		if( body != null) :
+			body.confused = false;

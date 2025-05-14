@@ -1,12 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://byyvwanp7uc17"]
+[gd_scene load_steps=4 format=3 uid="uid://byyvwanp7uc17"]
 
-[ext_resource type="Texture2D" uid="uid://3ijor6g4uem5" path="res://rooms/main/level_incomplete.png" id="1_4xn8v"]
-[ext_resource type="Texture2D" uid="uid://b06dvfujot2v1" path="res://rooms/main/level.png" id="2_1jt6s"]
+[ext_resource type="Texture2D" uid="uid://moc57fsa2p80" path="res://ui/UI(1)/ui_wave_icon.png" id="1_1jt6s"]
+[ext_resource type="Texture2D" uid="uid://2f4qh2l5cngy" path="res://ui/UI(1)/wave_current.png" id="2_qi3r3"]
+[ext_resource type="Texture2D" uid="uid://dkdmy4k7escp3" path="res://ui/UI(1)/wave_completed.png" id="3_g4nq4"]
 
 [node name="TextureProgressBar" type="TextureProgressBar"]
-offset_right = 16.0
-offset_bottom = 80.0
+offset_right = 41.0
+offset_bottom = 7.0
 max_value = 5.0
-fill_mode = 3
-texture_under = ExtResource("1_4xn8v")
-texture_progress = ExtResource("2_1jt6s")
+allow_greater = true
+texture_under = ExtResource("1_1jt6s")
+texture_progress = ExtResource("2_qi3r3")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 41.0
+offset_bottom = 7.0
+max_value = 5.0
+allow_lesser = true
+texture_progress = ExtResource("3_g4nq4")

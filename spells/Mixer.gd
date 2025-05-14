@@ -1,5 +1,6 @@
 extends Node
 class_name Mixer
+var chosen_items= [null, null, null, null, null]
 var elements={
 	"fire":preload("res://spells/fire/fire.tres"),
 	"earth":preload("res://spells/earth/earth.tres"),

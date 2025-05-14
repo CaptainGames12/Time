@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Inv" load_steps=7 format=3 uid="uid://w41rwmtsds5d"]
+[gd_resource type="Resource" script_class="Inv" load_steps=6 format=3 uid="uid://w41rwmtsds5d"]
 
 [ext_resource type="Script" uid="uid://c1x62rosyoo26" path="res://Wizard/inventory/inventory.gd" id="1_gccvi"]
 [ext_resource type="Script" uid="uid://ccpv7f45qylca" path="res://Wizard/inventory/Inv_slot.gd" id="2_lnfdt"]
@@ -12,9 +12,6 @@ script = ExtResource("2_lnfdt")
 [sub_resource type="Resource" id="Resource_c7xyh"]
 script = ExtResource("2_lnfdt")
 
-[sub_resource type="Resource" id="Resource_kk76x"]
-script = ExtResource("2_lnfdt")
-
 [resource]
 script = ExtResource("1_gccvi")
-slots = Array[ExtResource("2_lnfdt")]([SubResource("Resource_ad02t"), SubResource("Resource_rbuk1"), SubResource("Resource_c7xyh"), SubResource("Resource_kk76x")])
+slots = Array[ExtResource("2_lnfdt")]([SubResource("Resource_ad02t"), SubResource("Resource_rbuk1"), SubResource("Resource_c7xyh")])

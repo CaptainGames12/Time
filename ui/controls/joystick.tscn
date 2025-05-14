@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjsj1mwug051v"]
 
 [ext_resource type="Script" uid="uid://b2cy7wbp5sdsv" path="res://ui/controls/joystick.gd" id="1_74twu"]
-[ext_resource type="Texture2D" uid="uid://dd7rjkhwls2er" path="res://ui/controls/joystick-limits.png" id="3_2upv0"]
+[ext_resource type="Texture2D" uid="uid://328dunt8pj8d" path="res://ui/UI(1)/ui_cycle_joystick.png" id="2_3qqgv"]
 
 [node name="Joystick" type="Node2D"]
 script = ExtResource("1_74twu")
 
 [node name="Ring" type="TextureRect" parent="."]
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
-texture = ExtResource("3_2upv0")
+offset_left = -25.0
+offset_top = -24.0
+offset_right = 25.0
+offset_bottom = 26.0
+texture = ExtResource("2_3qqgv")
