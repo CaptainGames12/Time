@@ -1,9 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cawhfop6flk6g"]
+[gd_scene load_steps=4 format=3 uid="uid://cawhfop6flk6g"]
+
+[ext_resource type="Script" path="res://shopping/collectable_name.gd" id="1_k51mq"]
+[ext_resource type="Script" path="res://spells/standspells.gd" id="2_k51mq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6d80s"]
 radius = 30.9
 
 [node name="Collectable" type="Area2D"]
+script = ExtResource("1_k51mq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6d80s")
+
+[node name="display" type="Sprite2D" parent="."]
+position = Vector2(1.33514e-05, 1.90735e-06)
+scale = Vector2(0.77712, 0.786854)
+script = ExtResource("2_k51mq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

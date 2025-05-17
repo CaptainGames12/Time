@@ -7,3 +7,4 @@ class_name InvItem
 @export var damage: int
 @export var particle: PackedScene
 @export var audio: AudioStream
+@export var small_texture: Texture2D

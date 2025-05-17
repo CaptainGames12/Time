@@ -12,18 +12,18 @@ var attacked=false
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 @export var inv_res:Inv
-@onready var score= Global.score
+
 @onready var restart_ui: Control = %RestartUI
 @onready var dialogs: Control = %Dialogs
 		
 @onready var attack_node = preload("res://Wizard/attack/attack.tscn")
 
-@onready var money: Label = %AmountOfMoney
+@onready var money = %Money
 @onready var cooldown_timer: Timer = %Cooldown_timer
 @onready var main = $".."
 @onready var inventory = %InventoryUI
 @onready var stamina: TextureProgressBar = %Stamina
-@onready var timer: Timer = %Stamina_timer
+@onready var stamina_timer: Timer = %Stamina_timer
 @onready var healthbar:= %Health
 
 func _ready() -> void:
@@ -34,19 +34,8 @@ func _ready() -> void:
 	Global.hp = healthbar.value
 	healthbar.value = Global.hp
 
-func _input(event: InputEvent) -> void:
-	
-		if cooldown_timer.is_stopped():
-			cooldown_timer.start()
-		if cooldown_finished: 
-			if spell_joystick.input_vector!=Vector2.ZERO:
-				attack(spell_joystick.input_vector)
-				cooldown_finished = false
-				last_facing_dir=spell_joystick.input_vector.normalized()
-				animation_tree.set("parameters/Attack/blend_position", spell_joystick.input_vector)
-				attacked=true
-			else: 
-				attacked=false
+
+		
 func _process(delta: float) -> void:
 	var idle = !velocity.normalized()
 	if !idle:
@@ -55,26 +44,37 @@ func _process(delta: float) -> void:
 	$Attack.visible = attacked
 	animation_tree.set("parameters/Walk/blend_position", last_facing_dir)
 	animation_tree.set("parameters/Idle/blend_position", last_facing_dir)
-
+func shoot():
+	if cooldown_timer.is_stopped():
+			cooldown_timer.start()
+	if cooldown_finished: 
+			if spell_joystick.input_vector!=Vector2.ZERO:
+				attack(spell_joystick.input_vector)
+				cooldown_finished = false
+				last_facing_dir=spell_joystick.input_vector.normalized()
+				animation_tree.set("parameters/Attack/blend_position", spell_joystick.input_vector)
+				attacked=true
+			else: 
+				attacked=false
 func _physics_process(delta):
 	if Global.hp==0:
 		$"../TextureRect".visible=true
 	healthbar.value=Global.hp	
-	money.text = str(score)
+	
 	velocity = joystick.input_vector*SPEED
 	velocity+=knockback_power
 	velocity.normalized()
-	
+	shoot()
 	move_and_slide()
 
 func attack(touch_pos):
 	var bullet = attack_node.instantiate()
 	
-	if null != inventory.chosen_item.values():
+	if null != SpellMixer.chosen_items:
 		
 		bullet.look_at(touch_pos)
 		
-		bullet.elements = inventory.chosen_item
+		
 		get_parent().add_child(bullet)
 		
 		bullet.position = position
@@ -107,8 +107,8 @@ func _on_cooldown_timer_timeout() -> void:
 	cooldown_finished = true	
 
 func _on_time_stop_pressed() -> void:
-		if dialogs==null and !in_the_shop:
+		if dialogs==null and !in_the_shop and %Treasure!=null:
 			get_tree().paused = !get_tree().paused
-			timer.start()
-			$AudioStreamPlayer2D.play()
+			stamina_timer.start()
+			%TimeStopSound.play()
 		DialogSignals.time_stop_pressed.emit()

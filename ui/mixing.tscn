@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8vvwlraynlk7"]
+[gd_scene load_steps=4 format=3 uid="uid://b8vvwlraynlk7"]
 
 [ext_resource type="Texture2D" uid="uid://cxb1huel7j3vx" path="res://ui/UI(1)/ui_element.png" id="1_rydhh"]
 [ext_resource type="Script" uid="uid://bma6fhvyma25w" path="res://ui/mixing.gd" id="2_8h0kg"]
+[ext_resource type="Script" uid="uid://b2n0666bbp5l4" path="res://ui/element_mix.gd" id="3_tr1sa"]
 
 [node name="Mixing" type="TextureRect"]
 offset_right = 336.0
@@ -11,44 +12,48 @@ script = ExtResource("2_8h0kg")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 0
-offset_left = 51.0
-offset_top = -8.0
-offset_right = 289.0
-offset_bottom = 51.0
+offset_left = 58.0
+offset_top = 5.0
+offset_right = 283.0
+offset_bottom = 35.0
+theme_override_constants/h_separation = 10
 columns = 5
 
-[node name="Button" type="Button" parent="GridContainer"]
+[node name="Button" type="TextureButton" parent="GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-flat = true
-icon_alignment = 1
-expand_icon = true
+size_flags_horizontal = 15
+size_flags_vertical = 15
+stretch_mode = 4
+script = ExtResource("3_tr1sa")
 
-[node name="Button2" type="Button" parent="GridContainer"]
+[node name="Button2" type="TextureButton" parent="GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-flat = true
-expand_icon = true
+size_flags_horizontal = 15
+size_flags_vertical = 15
+stretch_mode = 4
+script = ExtResource("3_tr1sa")
+button_id = 1
 
-[node name="Button3" type="Button" parent="GridContainer"]
+[node name="Button3" type="TextureButton" parent="GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-flat = true
-expand_icon = true
+size_flags_horizontal = 15
+size_flags_vertical = 15
+stretch_mode = 4
+script = ExtResource("3_tr1sa")
+button_id = 2
 
-[node name="Button4" type="Button" parent="GridContainer"]
+[node name="Button4" type="TextureButton" parent="GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-flat = true
-expand_icon = true
+size_flags_horizontal = 15
+size_flags_vertical = 15
+stretch_mode = 4
+script = ExtResource("3_tr1sa")
+button_id = 3
 
-[node name="Button5" type="Button" parent="GridContainer"]
+[node name="Button5" type="TextureButton" parent="GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-flat = true
-expand_icon = true
+size_flags_horizontal = 15
+size_flags_vertical = 15
+stretch_mode = 4
+script = ExtResource("3_tr1sa")
+button_id = 4

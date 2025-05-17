@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://dcifbpe8tn1uf"]
+[gd_scene load_steps=59 format=3 uid="uid://dcifbpe8tn1uf"]
 
 [ext_resource type="Script" uid="uid://cpfmollh1xmdd" path="res://rooms/main/main.gd" id="1_4ufej"]
 [ext_resource type="PackedScene" uid="uid://dwi7bdg27wpbr" path="res://Wizard/Wizard.tscn" id="1_28m1h"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://dmrk7fnn3wb0j" path="res://Wizard/player_ui/Healthbar.tscn" id="5_0dchd"]
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="6_qmpgk"]
 [ext_resource type="PackedScene" uid="uid://bworkwhvc0mcv" path="res://Wizard/inventory/inventory.tscn" id="8_lflfe"]
-[ext_resource type="Texture2D" uid="uid://my5jbrrygkap" path="res://ui/UI(1)/UI_coin.png" id="9_0bf1a"]
 [ext_resource type="Texture2D" uid="uid://boevfpikbod4w" path="res://ui/UI(1)/button_5.png" id="11_4k2ai"]
 [ext_resource type="Texture2D" uid="uid://b7tkddthyqmt0" path="res://ui/dark_button_version/button_5_dark.png" id="12_m3omd"]
 [ext_resource type="PackedScene" uid="uid://dfetviixmo6rp" path="res://rooms/main/treasure.tscn" id="13_st04a"]
@@ -31,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://c8ewn13w3edbo" path="res://ui/heal_pressed.png" id="21_u7l0b"]
 [ext_resource type="PackedScene" uid="uid://dibl3hw88xbdh" path="res://ui/heal_window.tscn" id="22_u7l0b"]
 [ext_resource type="PackedScene" uid="uid://b8vvwlraynlk7" path="res://ui/mixing.tscn" id="25_m3omd"]
+[ext_resource type="PackedScene" uid="uid://bu4x1lrdy0xjs" path="res://shopping/display_money.tscn" id="26_wewfl"]
 [ext_resource type="Texture2D" uid="uid://dqihn4rguc2al" path="res://rooms/main/locate.png" id="27_ayxu2"]
 [ext_resource type="AudioStream" uid="uid://c2ch4bxq7gjp1" path="res://rooms/main/main_theme.mp3" id="29_tm1hv"]
 [ext_resource type="Texture2D" uid="uid://bikoth7p3iqff" path="res://rooms/shop/iron_bar_v2.png" id="30_tm1hv"]
@@ -240,14 +240,6 @@ font_size = 84
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ayxu2"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_40i0a"]
-font = ExtResource("6_qmpgk")
-font_size = 36
-
-[sub_resource type="GDScript" id="GDScript_g8e8a"]
-script/source = "extends Label
-"
-
 [node name="Node2D" type="Node2D" groups=["level"]]
 process_mode = 1
 y_sort_enabled = true
@@ -277,13 +269,13 @@ script = ExtResource("3_tm1hv")
 stream = ExtResource("2_chvbv")
 
 [node name="Treasure_shadow" parent="." instance=ExtResource("17_w8gtq")]
-z_index = -1
-position = Vector2(573.042, 331.042)
+position = Vector2(900, 561)
 
 [node name="Treasure" parent="." instance=ExtResource("13_st04a")]
+unique_name_in_owner = true
 y_sort_enabled = true
 position = Vector2(575, 309)
-scale = Vector2(6.56264, 6.56264)
+scale = Vector2(4, 4)
 
 [node name="Entrances" type="Node2D" parent="."]
 position = Vector2(545, 152)
@@ -363,7 +355,7 @@ autostart = true
 
 [node name="Entrance_shop" type="StaticBody2D" parent="."]
 process_mode = 3
-position = Vector2(908, 102)
+position = Vector2(909, 90)
 scale = Vector2(3, 4)
 collision_layer = 9
 
@@ -374,7 +366,7 @@ build_mode = 1
 polygon = PackedVector2Array(27.393, -0.915493, -24.1039, -3.29142, -26.1141, 35.9233, -13.5912, 35.9233, -7.8961, 9.14284, 13.7143, 12.0686, 16.5778, 35.5853, 29.6699, 35.5853)
 
 [node name="Entrance_anim" type="AnimatedSprite2D" parent="Entrance_shop"]
-position = Vector2(1.33333, 2.25)
+position = Vector2(0.666641, 5)
 scale = Vector2(2.58997, 2.11606)
 sprite_frames = SubResource("SpriteFrames_wewfl")
 animation = &"close"
@@ -421,6 +413,7 @@ position = Vector2(29, 2)
 polygon = PackedVector2Array(1212, 632, 1183, 667, 1167, 52, -25, 47, -30, 670, 1191, 671, 1159, 736, -71, 691, -90, -70, 522.552, -58.2955, 1204, -45)
 
 [node name="Shop" parent="." instance=ExtResource("20_h78s4")]
+unique_name_in_owner = true
 z_index = -1
 position = Vector2(30, -1199)
 scale = Vector2(1.66065, 1.66065)
@@ -445,11 +438,11 @@ follow_viewport_scale = 20.388
 
 [node name="Stamina" parent="CanvasLayer/ProgressBars" instance=ExtResource("3_bkj6u")]
 unique_name_in_owner = true
-offset_left = 28.0
+offset_left = 25.0
 offset_top = 85.0
-offset_right = 106.0
+offset_right = 103.0
 offset_bottom = 92.0
-scale = Vector2(6.3, 6.3)
+scale = Vector2(5, 5)
 
 [node name="Health" parent="CanvasLayer/ProgressBars" instance=ExtResource("5_0dchd")]
 unique_name_in_owner = true
@@ -457,7 +450,7 @@ offset_left = 26.304
 offset_top = 30.0
 offset_right = 104.304
 offset_bottom = 37.0
-scale = Vector2(6.34209, 5.79179)
+scale = Vector2(5, 5)
 
 [node name="LevelProgress" parent="CanvasLayer/ProgressBars" instance=ExtResource("14_v2j20")]
 unique_name_in_owner = true
@@ -469,12 +462,32 @@ offset_top = -181.0
 offset_right = 70.0
 offset_bottom = -174.0
 grow_vertical = 2
-scale = Vector2(7, 7)
+scale = Vector2(5, 5)
 size_flags_horizontal = 0
 
 [node name="Boss_health" parent="CanvasLayer/ProgressBars" instance=ExtResource("13_v24id")]
 unique_name_in_owner = true
 visible = false
+
+[node name="StageCompleted" type="RichTextLabel" parent="CanvasLayer/ProgressBars"]
+unique_name_in_owner = true
+clip_contents = false
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.636
+offset_right = 1.0
+offset_bottom = 3.87198
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme_override_fonts/normal_font = ExtResource("6_qmpgk")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[wave]STAGE COMPLETED[/wave]"
+horizontal_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="TimeControl" type="Node" parent="CanvasLayer"]
 
@@ -536,22 +549,10 @@ shape = SubResource("CircleShape2D_ayxu2")
 
 [node name="MoneyUI" type="Node" parent="CanvasLayer"]
 
-[node name="Money" type="Sprite2D" parent="CanvasLayer/MoneyUI"]
-position = Vector2(1096, 63)
-scale = Vector2(3.9687, 3.56753)
-texture = ExtResource("9_0bf1a")
-
-[node name="AmountOfMoney" type="Label" parent="CanvasLayer/MoneyUI"]
+[node name="Money" parent="CanvasLayer/MoneyUI" instance=ExtResource("26_wewfl")]
 unique_name_in_owner = true
-offset_left = 1065.0
-offset_top = 58.0
-offset_right = 1105.0
-offset_bottom = 96.0
-scale = Vector2(1.30589, 1.23584)
-text = "0"
-label_settings = SubResource("LabelSettings_40i0a")
-horizontal_alignment = 1
-script = SubResource("GDScript_g8e8a")
+position = Vector2(1106, 84)
+scale = Vector2(4, 4)
 
 [node name="Magic" type="Node" parent="CanvasLayer"]
 
@@ -593,7 +594,8 @@ stretch_mode = 0
 
 [node name="Timers&sound" type="Node" parent="CanvasLayer"]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="CanvasLayer/Timers&sound"]
+[node name="TimeStopSound" type="AudioStreamPlayer" parent="CanvasLayer/Timers&sound"]
+unique_name_in_owner = true
 stream = ExtResource("3_2iv3q")
 volume_db = -12.181
 

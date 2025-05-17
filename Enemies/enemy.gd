@@ -14,7 +14,6 @@ class_name Enemy
 var coin = preload("res://shopping/coin.tscn").instantiate()
 var treasure: Sprite2D
 
-var main_node: Node2D
 var restart_ui: Control
 var knock_speed = 50
 		
@@ -36,7 +35,8 @@ func _ready() -> void:
 	healthbar.max_value = health
 	healthbar.value = health
 	dead.connect($"..".enemy_death)
-	
+	restart_ui = get_parent().get_node("CanvasLayer/TimeControl/RestartUI")
+
 func spawn_coin_and_free():
 	get_parent().call_deferred("add_child", coin)
 	coin.position = position
@@ -108,12 +108,12 @@ func fired():
 func hitting_player():
 	Global.hp-=1
 	attack_animation_player.play("attack")
-	restart_ui = get_parent().get_node("%RestartUI")
-	main_node = get_parent()
-
+	
 func player_free(body):
-	restart_ui.get_parent().remove_child(restart_ui)
-	main_node.add_child(restart_ui)
+	for i in get_parent().get_node("CanvasLayer").get_children():
+		for j in i.get_children():
+			if j.name!="RestartUI":
+				j.queue_free()
 	body.queue_free()
 	get_tree().paused = true
 	restart_ui.visible = true

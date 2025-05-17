@@ -1,6 +1,9 @@
 extends Node
 class_name Mixer
 var chosen_items= [null, null, null, null, null]
+func _process(delta: float) -> void:
+	if get_node("/root/Node2D/Player")==null or get_node("/root/Node2D/Treasure")==null:
+		chosen_items=[null, null, null, null, null]
 var elements={
 	"fire":preload("res://spells/fire/fire.tres"),
 	"earth":preload("res://spells/earth/earth.tres"),
@@ -10,12 +13,37 @@ var elements={
 	"fire+wind":preload("res://spells/smoke/smoke.tres")
 	}
 func mix(arr:Array[String]):
+	var dmg = 0
+	var same_elements:Dictionary[String, int]={
+		"fire":0,
+		"wind":0,
+		"ice":0,
+		"earth":0
+	}
+	for i in chosen_items:
+		if i!=null:
+			if same_elements.has(i.item_name):	
+				same_elements[i.item_name]+=1
 	var combo:String=""
 	arr.sort()
-	combo = "+".join(arr.filter(func(x):return x!=null))
+	var unique = []
+
+	for item in arr:
+		if not unique.has(item):
+			unique.append(item)
+	combo = "+".join(unique.filter(func(x):return x!=null))
 	
+	print(same_elements.values())	
 	var spell
+	var new_damage=0
 	if elements.has(combo):	
-		spell=elements[combo]
+		spell=elements[combo].duplicate()
 		
+		for i in same_elements.keys():
+			
+			if same_elements[i]>0:
+				
+				spell.damage+=elements[i].damage*same_elements[i]
+	
 	return spell
+	

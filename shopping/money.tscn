@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyys1i6r15da3"]
+
+[ext_resource type="Texture2D" uid="uid://ya4x5uvrbu1p" path="res://shopping/coin.png" id="1_jgixu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rx0qk"]
+radius = 2.99985
+height = 14.0194
+
+[node name="money" type="Node2D"]
+process_mode = 3
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+can_sleep = false
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture_filter = 3
+position = Vector2(1.90735e-06, 4.76837e-07)
+texture = ExtResource("1_jgixu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(4.88498e-15, -1)
+rotation = 1.56074
+shape = SubResource("CapsuleShape2D_rx0qk")

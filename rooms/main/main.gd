@@ -12,7 +12,7 @@ var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 @onready var inv = %InventoryUI
 
 @onready var texture_rect: TextureRect = $TextureRect
-@onready var current_level = 1
+@onready var current_level = 5
 @onready var saver = ResourceSaver
 @onready var loader = ResourceLoader.load(save_path) as SaveGame
 
@@ -73,6 +73,7 @@ func load_save():
 	else:
 		printerr("isn't loaded")
 func _ready():
+	%Money.addMoney(Global.score)
 	ad_initialize()
 	Texts.place =1
 	close_open_shop_onstart()
@@ -84,7 +85,12 @@ func _ready():
 	cooldown_timer.autostart =true
 	if player:
 		$Player.global_position = $Entrances/any.global_position
+func show_stage_completed():
+	var tween = get_tree().create_tween()
+	tween.tween_property(%StageCompleted, "visible_ratio", 1, 3)
 
+	tween.tween_property(%StageCompleted, "visible_ratio", 0, 3)
+	tween.finished.connect(tween.kill)
 func _process(delta: float) -> void:
 
 	if %Heal_window.is_visible_in_tree():
@@ -97,11 +103,13 @@ func enemy_death():
 	dead_enemies += 1
 	
 	if dead_enemies==enemy_count[current_level]:
+		show_stage_completed()
 		open_shop()
 		current_level+=1
 		cooldown_timer.start()
 		print()
 		dead_enemies=0
+		
 func spawn_enemies():
 	
 	if current_level<=4:
@@ -156,21 +164,22 @@ func _on_restart_button_pressed() -> void:
 	restart_ui.visible = false
 	
 func _on_save_button_pressed() -> void:
-	if player.stamina.value==100:
-		DialogSignals.time_save_pressed.emit()
-		player.stamina.value = 0
-		player.timer.start()
-		
-		saving.collected_items = Global.collected_items
-		saving.player_pos = player.global_position
-		saving.player_health = player.healthbar.value
-		saving.player_score = player.score
-		saving.global_score = Global.score
-		saving.global_hp = Global.hp
-		saving.level = current_level
-		saving.player_inv = inv.itemsList.slots
-		
-		saver.save(saving, save_path)
+	if player!=null and treasure!=null:
+		if player.stamina.value==100:
+			DialogSignals.time_save_pressed.emit()
+			player.stamina.value = 0
+			player.stamina_timer.start()
+			
+			saving.collected_items = Global.collected_items
+			saving.player_pos = player.global_position
+			saving.player_health = player.healthbar.value
+			
+			saving.global_score = Global.score
+			saving.global_hp = Global.hp
+			saving.level = current_level
+			saving.player_inv = inv.itemsList.slots
+			
+			saver.save(saving, save_path)
 func the_end():
 	$Main_animations.play("ending")
 
@@ -180,7 +189,7 @@ func _on_ending_animation_finished(anim_name: StringName="ending") -> void:
 
 func _on_button_pressed() -> void:
 	if dialogs == null:
-		$Player/CanvasLayer/Heal_window.visible = !$Player/CanvasLayer/Heal_window.visible 
+		%Heal_window.visible = !%Heal_window.visible 
 		var unit_id : String
 		if OS.get_name() == "Android":
 			unit_id = "ca-app-pub-3940256099942544/5224354917"

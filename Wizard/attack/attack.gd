@@ -6,25 +6,25 @@ extends Area2D
 @onready var bossHealth: Control = get_parent().get_node("CanvasLayer/ProgressBars/Boss_health")
 @onready var dialogs = get_parent().get_node("CanvasLayer/Dialogs")
 
-var elements = {}
+var elements = SpellMixer.chosen_items
 var target_fire: Vector2
 var coin = preload("res://shopping/coin.tscn").instantiate()
 var ready_elements: Array[String] = []
-var spell: Resource
+var spell
 
 signal deadBoss
 
 func _ready() -> void:
-	for i in elements.values():
+	for i in elements:
 		if i != null:
-			ready_elements.append(i)
+			ready_elements.append(i.item_name)
 
 	look_at(target_fire)
 
 	if dialogs != null:
 		process_mode = Node.PROCESS_MODE_ALWAYS
 
-	spell = SpellMixer.mix(ready_elements)
+	spell= SpellMixer.mix(ready_elements)
 	deadBoss.connect(get_node("/root/Node2D").the_end)
 	DialogSignals.shoot.emit()
 
@@ -98,6 +98,7 @@ func apply_spell_effects(body: Node2D) -> void:
 
 	if body.has_method("health"):
 		body.health -= spell.damage
+		print(body.health)
 
 func spawn_particle(target: Node = null) -> void:
 	var particle_instance = spell.particle.instantiate()

@@ -7,7 +7,7 @@ extends Area2D
 func _on_body_entered(body):
 
 	body.in_the_shop=true
-	body.cooldown_timer.stop()
+	body.stamina_timer.stop()
 	body.global_position = shop.entrance_pos
 	get_parent().get_parent().in_the_shop.emit()
 	shop.shop_theme.play()

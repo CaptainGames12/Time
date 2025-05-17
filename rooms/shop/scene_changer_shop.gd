@@ -9,8 +9,8 @@ func _on_body_entered(body):
 	
 	print("detects")
 	body.in_the_shop = false
-	if !pause_state:
-		body.timer.start()
+	if !pause_state:	
+		body.stamina_timer.start()
 	shop.shop_theme.stop()
 	body.global_position = shop.any_main_pos
 	

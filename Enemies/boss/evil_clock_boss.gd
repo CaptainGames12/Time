@@ -127,13 +127,14 @@ func _on_attack_body_entered(body: Node2D) -> void:
 			queue_free()
 func spawning_restart(body):
 	restart_ui = get_node("../Player/CanvasLayer/RestartUI")
-	var main = get_parent()
+	
 	
 	if Global.hp <= 0:
 		if restart_ui!=null:
-			
-			restart_ui.get_parent().remove_child(restart_ui)
-			main.add_child(restart_ui)
+			for i in get_parent().get_node("CanvasLayer").get_children():
+				for j in i.get_children():
+					if j.name!="RestartUI":
+						j.queue_free()
 			body.queue_free()
 			get_tree().paused = true
 			restart_ui.visible = true
