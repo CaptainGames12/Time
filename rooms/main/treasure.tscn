@@ -35,9 +35,9 @@ shape = SubResource("CapsuleShape2D_ekkrb")
 [node name="Durability" type="ProgressBar" parent="."]
 z_index = 1
 offset_left = -8.0
-offset_top = -18.0
+offset_top = -21.0
 offset_right = 8.0
-offset_bottom = -15.0
+offset_bottom = -18.0
 theme_override_styles/background = SubResource("StyleBoxFlat_ebkkm")
 theme_override_styles/fill = SubResource("StyleBoxFlat_8oxmk")
 value = 100.0

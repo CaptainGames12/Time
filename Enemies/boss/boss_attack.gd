@@ -20,5 +20,5 @@ func _on_body_entered(body: Player):
 	body.healthbar.value-=1
 	Global.hp-=1
 	if boss!=null and body!=null:
-		boss.spawning_restart(player_getter())
+		boss.finishing_player(player_getter())
 	queue_free()

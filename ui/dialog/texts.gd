@@ -1,7 +1,7 @@
 extends Node
 
-const time_stop = "Awesome. You have ability to control time with golden clocks, which I gave you. Try pressing [img]res://ui/time_stop_button.png[/img] to stop time."
-const time_reverse = "Goog. Now press [img]res://ui/save_button.png[/img] to [wave]save[/wave] your time point and turn back in time if something bad happens. Remember it needs your whole mana."
+const time_stop = "Awesome. You have ability to control time with golden clocks, which I gave you. Try pressing [img]res://ui/UI(1)/button_4.png[/img] to stop time."
+const time_reverse = "Goog. Now press [img]res://ui/UI(1)/button_5.png[/img] to [wave]save[/wave] your time point and turn back in time if something bad happens. Remember it needs your whole mana."
 const greetings = "Hello. My time has come. So it is your turn to defend [rainbow][wave]the Crystal of harmony[/wave][/rainbow]. I hope I teached you well." 
 const question = "Do you need jogging your memory?
 

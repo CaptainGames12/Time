@@ -1,6 +1,6 @@
 extends Node2D
-var save_path = "user://save.tres"
-var saving = SaveGame.new()
+
+
 
 var rewarded_ad : RewardedAd
 var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
@@ -12,9 +12,7 @@ var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 @onready var inv = %InventoryUI
 
 @onready var texture_rect: TextureRect = $TextureRect
-@onready var current_level = 5
-@onready var saver = ResourceSaver
-@onready var loader = ResourceLoader.load(save_path) as SaveGame
+@onready var current_level = 1
 
 @onready var boss_clock = preload("res://Enemies/boss/evil_clock_boss.tscn")
 @onready var entrance_shop: StaticBody2D = $Entrance_shop
@@ -57,21 +55,7 @@ func close_open_shop_onstart():
 	scene_changer.monitoring = true
 	if dialogs.is_inside_tree():
 		close_shop()
-func load_save():
-	if loader != null:	
-		DialogSignals.tutorial_finished.emit()
-		%Dialogs.queue_free()
-		player.global_position = loader.player_pos
-		player.healthbar.value = loader.player_health
-		player.score = loader.player_score
-		current_level = loader.level
-		Global.collected_items = loader.collected_items
-		Global.score = loader.global_score 
-		Global.hp = loader.global_hp
-		inv.itemsList.slots = loader.player_inv
-		inv.update_slots()
-	else:
-		printerr("isn't loaded")
+
 func _ready():
 	%Money.addMoney(Global.score)
 	ad_initialize()
@@ -80,7 +64,7 @@ func _ready():
 	DialogSignals.go_to_the_shop.connect(open_shop)
 	DialogSignals.tutorial_finished.connect(open_shop)
 	get_tree().paused=true
-	load_save()
+	
 	
 	cooldown_timer.autostart =true
 	if player:
@@ -93,10 +77,7 @@ func show_stage_completed():
 	tween.finished.connect(tween.kill)
 func _process(delta: float) -> void:
 
-	if %Heal_window.is_visible_in_tree():
-		Engine.time_scale=0
-	else:
-		Engine.time_scale=1
+	
 	if boss_clock_node!= null:
 		boss_healthbar.get_child(0).value= boss_clock_node.boss_health
 func enemy_death():
@@ -162,24 +143,7 @@ func _on_restart_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 	restart_ui.visible = false
-	
-func _on_save_button_pressed() -> void:
-	if player!=null and treasure!=null:
-		if player.stamina.value==100:
-			DialogSignals.time_save_pressed.emit()
-			player.stamina.value = 0
-			player.stamina_timer.start()
-			
-			saving.collected_items = Global.collected_items
-			saving.player_pos = player.global_position
-			saving.player_health = player.healthbar.value
-			
-			saving.global_score = Global.score
-			saving.global_hp = Global.hp
-			saving.level = current_level
-			saving.player_inv = inv.itemsList.slots
-			
-			saver.save(saving, save_path)
+
 func the_end():
 	$Main_animations.play("ending")
 
@@ -190,6 +154,17 @@ func _on_ending_animation_finished(anim_name: StringName="ending") -> void:
 func _on_button_pressed() -> void:
 	if dialogs == null:
 		%Heal_window.visible = !%Heal_window.visible 
+		get_tree().paused=%Heal_window.visible
+		match %Heal_window.visible:
+			true:
+				$CanvasLayer/TimeControl.process_mode=Node.PROCESS_MODE_PAUSABLE
+				player.stamina_timer.stop()
+				player.process_mode=Node.PROCESS_MODE_PAUSABLE
+			false:
+				$CanvasLayer/TimeControl.process_mode=Node.PROCESS_MODE_ALWAYS
+				player.stamina_timer.start()
+				player.process_mode=Node.PROCESS_MODE_ALWAYS
+				
 		var unit_id : String
 		if OS.get_name() == "Android":
 			unit_id = "ca-app-pub-3940256099942544/5224354917"

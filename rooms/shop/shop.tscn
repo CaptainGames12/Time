@@ -1,15 +1,27 @@
-[gd_scene load_steps=18 format=3 uid="uid://dj3g4s7hfeffe"]
+[gd_scene load_steps=24 format=3 uid="uid://dj3g4s7hfeffe"]
 
 [ext_resource type="Script" uid="uid://c3k5pwoenex3g" path="res://rooms/shop/shop.gd" id="1_gei0l"]
-[ext_resource type="Texture2D" uid="uid://bh8l4ykorq1lb" path="res://rooms/shop/shop-room.png" id="2_g5u8n"]
+[ext_resource type="Texture2D" uid="uid://bbwuq5hcyxkgd" path="res://rooms/shop/shop_leayer_1.png" id="2_i6kk3"]
 [ext_resource type="Script" uid="uid://c72njqudysceq" path="res://rooms/shop/scene_changer_shop.gd" id="3_f65yd"]
+[ext_resource type="Texture2D" uid="uid://c2vv4ql7a7dgd" path="res://rooms/shop/shop_leayer_3.png" id="3_hop3w"]
+[ext_resource type="Texture2D" uid="uid://clreot6p612di" path="res://rooms/shop/shop_leayer_2.png" id="4_8o2ef"]
 [ext_resource type="Resource" uid="uid://cjoxar2pq1t5o" path="res://spells/fire/fire.tres" id="5_spp1l"]
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="7_2x7yq"]
 [ext_resource type="PackedScene" uid="uid://cawhfop6flk6g" path="res://shopping/collectable.tscn" id="9_c2jn6"]
 [ext_resource type="Resource" uid="uid://c7g1jmn5c16e4" path="res://spells/ice/ice.tres" id="9_sn16c"]
 [ext_resource type="Resource" uid="uid://drlppforch3c8" path="res://spells/earth/earth.tres" id="11_ivrbv"]
 [ext_resource type="AudioStream" uid="uid://cqgxg1jrpxnp0" path="res://rooms/shop/shop-theme.mp3" id="12_75d0j"]
+[ext_resource type="Script" uid="uid://b5nepvn5mdqrs" path="res://rooms/shop/water.gd" id="13_8o2ef"]
 [ext_resource type="Resource" uid="uid://ccy3hlsvd2046" path="res://spells/wind/wind.tres" id="15_sn16c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hop3w"]
+size = Vector2(189, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8o2ef"]
+size = Vector2(194, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v05ha"]
+size = Vector2(19.1777, 5.58796)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uk8tc"]
 size = Vector2(167.536, 70.351)
@@ -36,22 +48,70 @@ font_size = 40
 
 [node name="Shop" type="Node2D"]
 process_mode = 2
+y_sort_enabled = true
 script = ExtResource("1_gei0l")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(568, 315.5)
-scale = Vector2(9.15625, 9.58594)
-texture = ExtResource("2_g5u8n")
+[node name="Appearence" type="Node2D" parent="."]
+
+[node name="Shelves" type="StaticBody2D" parent="Appearence"]
+position = Vector2(609, 97)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Appearence/Shelves"]
+position = Vector2(-115.5, 10)
+shape = SubResource("RectangleShape2D_hop3w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Appearence/Shelves"]
+position = Vector2(107, 9)
+shape = SubResource("RectangleShape2D_8o2ef")
+
+[node name="Room" type="Sprite2D" parent="Appearence"]
+position = Vector2(573.5, 323)
+scale = Vector2(5, 5)
+texture = ExtResource("2_i6kk3")
 region_rect = Rect2(0, 0, 126.611, 125.577)
 
+[node name="Stands" type="StaticBody2D" parent="Appearence/Room"]
+position = Vector2(-2.57765, 0.979938)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Appearence/Room/Stands"]
+position = Vector2(48.9754, 8.28164)
+shape = SubResource("RectangleShape2D_v05ha")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Appearence/Room/Stands"]
+position = Vector2(-47.0164, 8.62346)
+shape = SubResource("RectangleShape2D_v05ha")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Appearence/Room/Stands"]
+position = Vector2(-15.2597, 8.62346)
+shape = SubResource("RectangleShape2D_v05ha")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Appearence/Room/Stands"]
+position = Vector2(17.3218, 8.42747)
+shape = SubResource("RectangleShape2D_v05ha")
+
+[node name="Ceiling" type="Sprite2D" parent="Appearence"]
+visible = false
+z_index = 1
+z_as_relative = false
+position = Vector2(571, 327)
+scale = Vector2(5, 5)
+texture = ExtResource("3_hop3w")
+
+[node name="Light" type="Sprite2D" parent="Appearence"]
+position = Vector2(579, 323)
+scale = Vector2(5, 5)
+texture = ExtResource("4_8o2ef")
+
 [node name="SceneChanger" type="Area2D" parent="."]
-position = Vector2(562, 568)
+position = Vector2(562, 577)
 scale = Vector2(0.567042, 0.810224)
 disable_mode = 2
 script = ExtResource("3_f65yd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SceneChanger"]
-position = Vector2(6.17236, 0.617004)
+position = Vector2(19.3989, 50.6033)
 shape = SubResource("RectangleShape2D_uk8tc")
 
 [node name="Entrances" type="Node2D" parent="."]
@@ -61,52 +121,62 @@ position = Vector2(573, 475)
 position = Vector2(1, -22)
 
 [node name="Collectable3" parent="." instance=ExtResource("9_c2jn6")]
-position = Vector2(325, 325)
+z_index = 1
+y_sort_enabled = true
+position = Vector2(331, 362)
 item = ExtResource("5_spp1l")
 
 [node name="Label" type="Label" parent="Collectable3"]
+z_index = 1
 offset_left = -25.0
-offset_top = 34.0
+offset_top = 56.0
 offset_right = 40.0
-offset_bottom = 79.0
+offset_bottom = 101.0
 text = "5$"
 label_settings = SubResource("LabelSettings_fg71o")
-metadata/_edit_use_anchors_ = true
 
 [node name="Collectable2" parent="." instance=ExtResource("9_c2jn6")]
-position = Vector2(491, 325)
+z_index = 1
+y_sort_enabled = true
+position = Vector2(488, 365)
 item = ExtResource("9_sn16c")
 
 [node name="Label" type="Label" parent="Collectable2"]
+z_index = 1
 offset_left = -30.0
-offset_top = 30.0
+offset_top = 52.0
 offset_right = 23.0
-offset_bottom = 67.0
+offset_bottom = 89.0
 text = "7$"
 label_settings = SubResource("LabelSettings_3a1oo")
 
 [node name="Collectable" parent="." instance=ExtResource("9_c2jn6")]
-position = Vector2(854, 325)
+z_index = 1
+y_sort_enabled = true
+position = Vector2(806, 365)
 item = ExtResource("15_sn16c")
 
 [node name="Label" type="Label" parent="Collectable"]
+z_index = 1
 offset_left = -30.0
-offset_top = 30.0
+offset_top = 57.0
 offset_right = 41.0
-offset_bottom = 107.0
+offset_bottom = 134.0
 text = "10$
 "
 label_settings = SubResource("LabelSettings_m54ad")
 
 [node name="Collectable4" parent="." instance=ExtResource("9_c2jn6")]
-position = Vector2(683, 325)
+z_index = 1
+y_sort_enabled = true
+position = Vector2(648, 365)
 item = ExtResource("11_ivrbv")
 
 [node name="Label" type="Label" parent="Collectable4"]
 offset_left = -30.0
-offset_top = 30.0
+offset_top = 54.0
 offset_right = 23.0
-offset_bottom = 107.0
+offset_bottom = 131.0
 text = "6$
 "
 label_settings = SubResource("LabelSettings_xgp1s")
@@ -123,11 +193,22 @@ texture = SubResource("CanvasTexture_blb3i")
 physics_material_override = SubResource("PhysicsMaterial_mssgm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(-1, 16)
-polygon = PackedVector2Array(1105, 569, 1079, 524, 1079, 39, 59, 40, 57, 527, 487, 529, 511, 593, 629, 597, 641, 524, 1064, 524, 1111, 591, 602, 654, 514, 669, 440, 591, 28, 586, 32, -1, 1107, 3)
+position = Vector2(-29.2182, 26.1754)
+scale = Vector2(1.0636, 1.05037)
+polygon = PackedVector2Array(1131.27, 586.293, 1107.76, 545.355, 1093.67, 63.6199, 34.9928, 52.1954, 41.5742, 548.21, 479.71, 549.162, 511, 593, 629, 597, 648.948, 560.586, 1104.94, 554.876, 1128.45, 596.766, 648.007, 606.284, 479.71, 604.38, 440, 591, 17.1289, 583.435, 4.90618, -5.87926, 1120.93, -0.166988)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_75d0j")
 parameters/looping = true
 
+[node name="Water" type="Area2D" parent="."]
+script = ExtResource("13_8o2ef")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Water"]
+position = Vector2(120, 240)
+scale = Vector2(16.52, 22.36)
+polygon = PackedVector2Array(-6.84019, 8.2737, -1.15012, 4.69589, 2.72397, 1.83363, 3.26877, 0.178891, 4.96368, -1.16279, 8.05085, -1.9678, 8.29298, -2.63864, 8.59564, -3.57782, 8.59564, -5.18784, 8.11138, -5.94812, 3.08717, -5.99284, 5.08475, -3.98032, 3.81356, -2.01252, 2.66344, -1.16279, -0.363196, 1.16279, -0.968523, 2.72809, -3.38983, 5.18784, -6.71913, 7.78175)
+
 [connection signal="body_entered" from="SceneChanger" to="SceneChanger" method="_on_body_entered"]
+[connection signal="body_entered" from="Water" to="Water" method="_on_body_entered"]
+[connection signal="body_exited" from="Water" to="Water" method="_on_body_exited"]

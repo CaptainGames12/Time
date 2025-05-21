@@ -6,7 +6,7 @@ func _ready() -> void:
 	
 	DialogSignals.connect("tutorial_finished", tutorial_finished)
 func _on_body_entered(body):
-	
+	$"../../CanvasLayer/Support/Heal".disabled=false
 	print("detects")
 	body.in_the_shop = false
 	if !pause_state:	

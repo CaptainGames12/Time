@@ -6,6 +6,8 @@ var last_facing_dir = Vector2(0, -1)
 var cooldown_finished = true
 var knockback_power: Vector2 = Vector2.ZERO
 var attacked=false
+var save_path = "user://save.tres"
+var saving = SaveGame.new()
 @onready var collect_coin: AudioStreamPlayer2D = $Collect_coin
 @onready var joystick: Node2D = %Joystick
 @onready var spell_joystick: Node2D = %SpellJoystick
@@ -26,8 +28,11 @@ var attacked=false
 @onready var stamina_timer: Timer = %Stamina_timer
 @onready var healthbar:= %Health
 
+@onready var saver = ResourceSaver
+@onready var loader = ResourceLoader.load(save_path) as SaveGame
+
 func _ready() -> void:
-	
+	load_save()
 	animation_tree.active=true
 	healthbar.max_value =10
 	healthbar.value = 10
@@ -60,13 +65,23 @@ func _physics_process(delta):
 	if Global.hp==0:
 		$"../TextureRect".visible=true
 	healthbar.value=Global.hp	
-	
+	if dialogs==null:
+		%SaveButton.action="time_save"
+		%TimeStop.action="time_stop"
 	velocity = joystick.input_vector*SPEED
 	velocity+=knockback_power
 	velocity.normalized()
+	time_save()
 	shoot()
+	stop_time()
 	move_and_slide()
-
+func stop_time():
+	if Input.is_action_just_pressed("time_stop"):
+		if dialogs==null and !in_the_shop and %Treasure!=null:
+				get_tree().paused = !get_tree().paused
+				stamina_timer.start()
+				%TimeStopSound.play()
+		DialogSignals.time_stop_pressed.emit()
 func attack(touch_pos):
 	var bullet = attack_node.instantiate()
 	
@@ -105,10 +120,37 @@ func collect(item):
 	inv_res.insert(item)
 func _on_cooldown_timer_timeout() -> void:
 	cooldown_finished = true	
-
-func _on_time_stop_pressed() -> void:
-		if dialogs==null and !in_the_shop and %Treasure!=null:
-			get_tree().paused = !get_tree().paused
-			stamina_timer.start()
-			%TimeStopSound.play()
-		DialogSignals.time_stop_pressed.emit()
+func load_save():
+	if loader != null:	
+		DialogSignals.tutorial_finished.emit()
+		%Dialogs.queue_free()
+		global_position = loader.player_pos
+		healthbar.value = loader.player_health
+		
+		get_parent().current_level = loader.level
+		Global.collected_items = loader.collected_items
+		Global.score = loader.global_score 
+		Global.hp = loader.global_hp
+		inventory.itemsList.slots = loader.player_inv
+		inventory.update_slots()
+	else:
+		printerr("isn't loaded")	
+func time_save() -> void:
+	if Input.is_action_just_pressed("time_save"):
+		if %Treasure!=null:
+			if stamina.value==100:
+				DialogSignals.time_save_pressed.emit()
+				stamina.value = 0
+				stamina_timer.start()
+				
+				saving.collected_items = Global.collected_items
+				saving.player_pos = global_position
+				saving.player_health = healthbar.value
+				
+				saving.global_score = Global.score
+				saving.global_hp = Global.hp
+				saving.level = get_parent().current_level
+				saving.player_inv = inventory.itemsList.slots
+				
+				saver.save(saving, save_path)
+		

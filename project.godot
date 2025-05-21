@@ -156,6 +156,10 @@ attack={
 "deadzone": 0.2,
 "events": []
 }
+time_save={
+"deadzone": 0.2,
+"events": []
+}
 
 [input_devices]
 

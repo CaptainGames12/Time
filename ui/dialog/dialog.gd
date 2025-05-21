@@ -6,14 +6,19 @@ enum Text_state{
 	FINISHED
 }
 var isSkipped =false
-
+@onready var btn_stop=get_parent().get_parent().get_parent().get_node("TimeControl/TimeStop")
+@onready var btn_save=get_parent().get_parent().get_parent().get_node("TimeControl/Saving/SaveButton")
 var current_state = Text_state.ONREADY
 var next_text = ""
 var isTutorialStarted:bool
 var is_tutorial_here = true
 
 @onready var tween_dialog =  get_tree().create_tween().set_pause_mode(2)
+func buttons_disable():
+	btn_save.action="nothing"
+	btn_stop.action="nothing"
 func _ready() -> void:
+	buttons_disable()
 	DialogSignals.tutorial_started.emit()
 	DialogSignals.tutorial_started.connect(start)
 	DialogSignals.bought.connect(got_item)
@@ -64,9 +69,11 @@ func got_item():
 	state_changer(Text_state.ONREADY)
 func cast_spell():
 	Texts.place=5
+	btn_stop.action="time_stop"
 	state_changer(Text_state.ONREADY)
 func stop_pressed():
 	Texts.place=9
+	btn_save.action="time_save"
 	state_changer(Text_state.ONREADY)	
 func shoot():
 	shoot_counter+=1

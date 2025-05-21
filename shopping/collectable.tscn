@@ -7,13 +7,14 @@
 radius = 30.9
 
 [node name="Collectable" type="Area2D"]
+process_mode = 3
 script = ExtResource("1_k51mq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6d80s")
 
 [node name="display" type="Sprite2D" parent="."]
-position = Vector2(1.33514e-05, 1.90735e-06)
+position = Vector2(-9.09495e-13, -16)
 scale = Vector2(0.77712, 0.786854)
 script = ExtResource("2_k51mq")
 

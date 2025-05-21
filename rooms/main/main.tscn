@@ -415,8 +415,8 @@ polygon = PackedVector2Array(1212, 632, 1183, 667, 1167, 52, -25, 47, -30, 670, 
 [node name="Shop" parent="." instance=ExtResource("20_h78s4")]
 unique_name_in_owner = true
 z_index = -1
-position = Vector2(30, -1199)
-scale = Vector2(1.66065, 1.66065)
+position = Vector2(10, -1317)
+scale = Vector2(1.68507, 1.95292)
 
 [node name="StopVec" type="RayCast2D" parent="."]
 process_mode = 3
@@ -507,12 +507,14 @@ grow_vertical = 0
 scale = Vector2(5, 5)
 
 [node name="SaveButton" type="TouchScreenButton" parent="CanvasLayer/TimeControl/Saving"]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.580392)
 position = Vector2(-12.6212, -6.14716)
 scale = Vector2(1, 0.922)
 texture_normal = ExtResource("11_4k2ai")
 texture_pressed = ExtResource("12_m3omd")
 shape = SubResource("CircleShape2D_u7l0b")
+action = "time_save"
 
 [node name="RestartUI" type="Control" parent="CanvasLayer/TimeControl"]
 unique_name_in_owner = true
@@ -540,6 +542,7 @@ texture_normal = ExtResource("17_2h7oy")
 texture_pressed = ExtResource("18_bjhwx")
 
 [node name="TimeStop" parent="CanvasLayer/TimeControl" instance=ExtResource("16_0bf1a")]
+unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.635294)
 position = Vector2(147, 286)
 scale = Vector2(5, 5)
@@ -649,9 +652,7 @@ texture = ExtResource("20_0bf1a")
 [connection signal="timeout" from="CooldownBetweenWaves" to="." method="_on_cooldown_between_waves_timeout"]
 [connection signal="body_entered" from="Entrance_shop/SceneChanger" to="Entrance_shop/SceneChanger" method="_on_body_entered"]
 [connection signal="animation_finished" from="Main_animations" to="." method="_on_ending_animation_finished"]
-[connection signal="pressed" from="CanvasLayer/TimeControl/Saving/SaveButton" to="." method="_on_save_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TimeControl/RestartUI/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TimeControl/TimeStop" to="Player" method="_on_time_stop_pressed"]
 [connection signal="pressed" from="CanvasLayer/Support/Heal" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="CanvasLayer/Timers&sound/Stamina_timer" to="Player" method="_on_stamina_timer_timeout"]
 [connection signal="timeout" from="CanvasLayer/Timers&sound/Cooldown_timer" to="Player" method="_on_cooldown_timer_timeout"]

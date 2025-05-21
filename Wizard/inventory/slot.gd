@@ -14,8 +14,10 @@ func update(slot: InvSlot)->void:
 	print(display.name)
 	if slot.item:
 	
-		display.texture = slot.item.texture
-		display.position = Vector2(0, 0)
+		display.texture = slot.item.small_texture
+		display.scale=Vector2(2.4, 2.4)
+	
+		display.position = Vector2(3, 2)
 		display.visible = true
 		
 func drop():

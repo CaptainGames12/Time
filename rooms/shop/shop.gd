@@ -29,5 +29,3 @@ func _ready():
 				shop_list.remove_at(count)
 				
 			count+=1
-
-	

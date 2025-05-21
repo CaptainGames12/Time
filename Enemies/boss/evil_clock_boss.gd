@@ -118,15 +118,15 @@ func _on_attack_body_entered(body: Node2D) -> void:
 		Global.hp-=2
 		body.healthbar.value-=2
 		emit_signal("hit_player", velocity)
-		spawning_restart(body)
+		finishing_player(body)
 	elif body.is_in_group("tree"):
 		
 		body.queue_free()
 		boss_health -=2
 		if boss_health==0:
 			queue_free()
-func spawning_restart(body):
-	restart_ui = get_node("../Player/CanvasLayer/RestartUI")
+func finishing_player(body):
+	restart_ui =get_parent().get_node("CanvasLayer/TimeControl/RestartUI")
 	
 	
 	if Global.hp <= 0:
@@ -153,10 +153,7 @@ func _on_rolling_time_timeout() -> void:
 func winded(direction):
 	atk_dir = direction
 	isWinded = true
-func earthed():
-	get_parent().call_deferred("add_child", rockNode)
-	rockNode.position.y = position.y
-	rockNode.position.x = position.x+20
+
 func watered():
 	SPEED = 5
 	await get_tree().create_timer(4).timeout
