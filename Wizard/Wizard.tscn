@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dwi7bdg27wpbr"]
+[gd_scene load_steps=43 format=3 uid="uid://dwi7bdg27wpbr"]
 
 [ext_resource type="Script" path="res://Wizard/Player.gd" id="1_23xfq"]
 [ext_resource type="Resource" uid="uid://w41rwmtsds5d" path="res://Wizard/inventory/playerinv.tres" id="2_ep4yn"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cv3b4ni4ednu" path="res://Wizard/wither_no_magic_v2.png" id="4_ep4yn"]
 [ext_resource type="Texture2D" uid="uid://bsaujut2tkhs3" path="res://Wizard/TimeAdventure/wither_yes_magic.png" id="5_7ff2m"]
 [ext_resource type="AnimationNodeBlendSpace2D" uid="uid://cb3q3taa6j1ro" path="res://Wizard/walk_anim.tres" id="5_utr7p"]
+[ext_resource type="Script" uid="uid://bwrv3p6ta8sji" path="res://Wizard/silhouette_attack.gd" id="7_3t1gk"]
+[ext_resource type="Shader" uid="uid://dxe1hrol8u730" path="res://Wizard/silhouette.gdshader" id="7_vmu88"]
+[ext_resource type="Script" uid="uid://q47ib8jyfg6g" path="res://Wizard/silhouette_move.gd" id="8_3t1gk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4lojw"]
 radius = 18.125
@@ -16,7 +19,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Move:frame")
+tracks/0/path = NodePath("../TextureRect/Move:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,7 +31,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Move:flip_h")
+tracks/1/path = NodePath("../TextureRect/Move:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -40,7 +43,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Move:frame_coords")
+tracks/2/path = NodePath("../TextureRect/Move:frame_coords")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -52,7 +55,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Attack:frame")
+tracks/3/path = NodePath("../TextureRect/Attack:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -64,7 +67,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../Move:visible")
+tracks/4/path = NodePath("../TextureRect/Move:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -76,7 +79,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../Attack:flip_h")
+tracks/5/path = NodePath("../TextureRect/Attack:flip_h")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -93,7 +96,7 @@ step = 0.0333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Move:frame")
+tracks/0/path = NodePath("../TextureRect/Move:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -110,7 +113,7 @@ step = 0.0333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Attack:frame")
+tracks/0/path = NodePath("../TextureRect/Attack:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -122,7 +125,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Move:visible")
+tracks/1/path = NodePath("../TextureRect/Move:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -138,7 +141,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Move:frame")
+tracks/0/path = NodePath("../TextureRect/Move:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -156,7 +159,7 @@ step = 0.0333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Move:frame")
+tracks/0/path = NodePath("../TextureRect/Move:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -168,7 +171,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Move:flip_h")
+tracks/1/path = NodePath("../TextureRect/Move:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -185,7 +188,7 @@ step = 0.0333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Attack:frame")
+tracks/0/path = NodePath("../TextureRect/Attack:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -197,7 +200,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Attack:flip_h")
+tracks/1/path = NodePath("../TextureRect/Attack:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -213,7 +216,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Move:flip_h")
+tracks/0/path = NodePath("../TextureRect/Move:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -225,7 +228,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Move:frame")
+tracks/1/path = NodePath("../TextureRect/Move:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -243,7 +246,7 @@ step = 0.0333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Move:frame")
+tracks/0/path = NodePath("../TextureRect/Move:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -255,7 +258,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Move:flip_h")
+tracks/1/path = NodePath("../TextureRect/Move:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -272,7 +275,7 @@ step = 0.0333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Attack:frame")
+tracks/0/path = NodePath("../TextureRect/Attack:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -284,7 +287,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Attack:flip_h")
+tracks/1/path = NodePath("../TextureRect/Attack:flip_h")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -300,7 +303,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Move:flip_h")
+tracks/0/path = NodePath("../TextureRect/Move:flip_h")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -312,7 +315,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Move:frame")
+tracks/1/path = NodePath("../TextureRect/Move:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -328,7 +331,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Move:frame")
+tracks/0/path = NodePath("../TextureRect/Move:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -344,7 +347,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Move:frame_coords")
+tracks/0/path = NodePath("../TextureRect/Move:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -454,6 +457,10 @@ states/Walk/node = ExtResource("5_utr7p")
 states/Walk/position = Vector2(475, 51)
 transitions = ["Start", "Walk", SubResource("AnimationNodeStateMachineTransition_utr7p"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_7ff2m"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_bgkj2"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_8fjh2"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_phelm"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_fm1ad"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_vmu88")]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_00wba"]
+shader = ExtResource("7_vmu88")
+shader_parameter/silhouette_color = Color(0, 0, 0, 0.5)
+
 [node name="Player" type="CharacterBody2D"]
 process_mode = 3
 collision_layer = 5
@@ -466,23 +473,33 @@ visibility_layer = 3
 position = Vector2(-1, 3)
 shape = SubResource("CapsuleShape2D_4lojw")
 
-[node name="Sprite2D" parent="." instance=ExtResource("2_wi82f")]
-position = Vector2(0, 28)
+[node name="TextureRect" type="TextureRect" parent="."]
+clip_contents = true
+offset_left = -47.0
+offset_top = -98.0
+offset_right = 60.0
+offset_bottom = 65.0
+pivot_offset = Vector2(50, 100)
 
-[node name="Move" type="Sprite2D" parent="."]
+[node name="Sprite2D" parent="TextureRect" instance=ExtResource("2_wi82f")]
+position = Vector2(47, 126)
+
+[node name="Move" type="Sprite2D" parent="TextureRect"]
 visible = false
-position = Vector2(1.87504, -27.125)
+position = Vector2(48.875, 70.875)
 scale = Vector2(3.86719, 3.86719)
 texture = ExtResource("4_ep4yn")
 hframes = 10
 frame = 8
+script = ExtResource("8_3t1gk")
 
-[node name="Attack" type="Sprite2D" parent="."]
-position = Vector2(1.87504, -27.125)
+[node name="Attack" type="Sprite2D" parent="TextureRect"]
+position = Vector2(48.875, 70.875)
 scale = Vector2(3.86719, 3.86719)
 texture = ExtResource("5_7ff2m")
 flip_h = true
 hframes = 9
+script = ExtResource("7_3t1gk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../AnimationTree")
@@ -499,3 +516,12 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/Attack/blend_position = Vector2(-0.00240195, -0.0329671)
 parameters/Idle/blend_position = Vector2(0.370697, -2.05494)
 parameters/Walk/blend_position = Vector2(-0.333867, -1.40659)
+
+[node name="Silhouette" type="Sprite2D" parent="."]
+visible = false
+z_index = 20
+material = SubResource("ShaderMaterial_00wba")
+
+[node name="SilhouetteAttack" type="Sprite2D" parent="."]
+z_index = 20
+material = SubResource("ShaderMaterial_00wba")

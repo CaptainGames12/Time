@@ -1,17 +1,17 @@
 [gd_resource type="Resource" script_class="InvItem" load_steps=6 format=3 uid="uid://cjoxar2pq1t5o"]
 
-[ext_resource type="AudioStream" uid="uid://bubcni6ccnt3a" path="res://spells/fire/fire_fx.mp3" id="1_112r0"]
-[ext_resource type="PackedScene" uid="uid://dwnkeop8j42an" path="res://spells/fire/fire_particle.tscn" id="1_gywru"]
-[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="1_py5ue"]
-[ext_resource type="Texture2D" uid="uid://b166u30ogn6tg" path="res://spells/fire/fire.png" id="2_tcsnv"]
-[ext_resource type="Texture2D" uid="uid://c440ap0tv1647" path="res://spells/fire/ui_mini_icon_fire.png" id="4_uk8kh"]
+[ext_resource type="AudioStream" uid="uid://dq81whr5myk0p" path="res://spells/fire/fx_fire.mp3" id="1_gkxt5"]
+[ext_resource type="PackedScene" uid="uid://dwnkeop8j42an" path="res://spells/fire/fire_particle.tscn" id="2_gw7ye"]
+[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="3_d1esb"]
+[ext_resource type="Texture2D" uid="uid://c440ap0tv1647" path="res://spells/fire/ui_mini_icon_fire.png" id="4_fq0ct"]
+[ext_resource type="Texture2D" uid="uid://b166u30ogn6tg" path="res://spells/fire/fire.png" id="5_1aygr"]
 
 [resource]
-script = ExtResource("1_py5ue")
+script = ExtResource("3_d1esb")
 item_name = "fire"
-texture = ExtResource("2_tcsnv")
+texture = ExtResource("5_1aygr")
 price = 10
 damage = 4
-particle = ExtResource("1_gywru")
-audio = ExtResource("1_112r0")
-small_texture = ExtResource("4_uk8kh")
+particle = ExtResource("2_gw7ye")
+audio = ExtResource("1_gkxt5")
+small_texture = ExtResource("4_fq0ct")

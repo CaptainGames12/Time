@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://dv8rrkp1rkaur"]
+
+[ext_resource type="Texture2D" uid="uid://b166u30ogn6tg" path="res://spells/fire/fire.png" id="1_6etro"]
+[ext_resource type="Script" uid="uid://dgebn41kigw1j" path="res://spells/fire wall/fire_wall.gd" id="1_rhhld"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhhld"]
+radius = 26.9907
+height = 86.0229
+
+[node name="Fire wall" type="CPUParticles2D"]
+self_modulate = Color(1, 0, 0, 1)
+amount = 20
+explosiveness = 0.35
+randomness = 1.0
+spread = 180.0
+gravity = Vector2(0, -98)
+tangential_accel_min = -100.0
+tangential_accel_max = 100.0
+color = Color(1, 0, 0, 1)
+script = ExtResource("1_rhhld")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(22, 2)
+rotation = -1.55512
+texture = ExtResource("1_6etro")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+rotation = -1.55512
+texture = ExtResource("1_6etro")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-15, 0)
+rotation = -1.55512
+texture = ExtResource("1_6etro")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(9, -1)
+rotation = 1.59705
+shape = SubResource("CapsuleShape2D_rhhld")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

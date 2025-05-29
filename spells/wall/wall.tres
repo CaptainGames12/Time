@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://4tq8a5oppigk"]
+
+[ext_resource type="PackedScene" uid="uid://baoie66p0o1h1" path="res://spells/wall/wall.tscn" id="1_cp1nn"]
+[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="2_pf7vy"]
+
+[resource]
+script = ExtResource("2_pf7vy")
+item_name = "wall"
+price = 0
+damage = 0
+particle = ExtResource("1_cp1nn")
+metadata/_custom_type_script = "uid://dsc584apkhxu"

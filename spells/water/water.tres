@@ -1,15 +1,15 @@
 [gd_resource type="Resource" script_class="InvItem" load_steps=5 format=3 uid="uid://dicpoy2ecubwa"]
 
-[ext_resource type="AudioStream" uid="uid://cm0lreo7ltykp" path="res://spells/water/water.wav" id="1_2s3x6"]
-[ext_resource type="PackedScene" uid="uid://cf00b5ppyb2tg" path="res://spells/water/water_particle.tscn" id="1_3u1yq"]
-[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="1_7jriu"]
-[ext_resource type="Texture2D" uid="uid://bu4q51om6q1ul" path="res://spells/water/water.png" id="2_qfqi4"]
+[ext_resource type="AudioStream" uid="uid://68vou1dtj311" path="res://spells/water/fx_voda.mp3" id="1_mr7i0"]
+[ext_resource type="PackedScene" uid="uid://cf00b5ppyb2tg" path="res://spells/water/water_particle.tscn" id="2_hqgvj"]
+[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="3_caxjq"]
+[ext_resource type="Texture2D" uid="uid://bu4q51om6q1ul" path="res://spells/water/water.png" id="4_et1n1"]
 
 [resource]
-script = ExtResource("1_7jriu")
+script = ExtResource("3_caxjq")
 item_name = "water"
-texture = ExtResource("2_qfqi4")
+texture = ExtResource("4_et1n1")
 price = 5
 damage = 3
-particle = ExtResource("1_3u1yq")
-audio = ExtResource("1_2s3x6")
+particle = ExtResource("2_hqgvj")
+audio = ExtResource("1_mr7i0")

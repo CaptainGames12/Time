@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bu4x1lrdy0xjs"]
+[gd_scene load_steps=6 format=3 uid="uid://bu4x1lrdy0xjs"]
 
 [ext_resource type="Script" uid="uid://davg18n53ms1i" path="res://shopping/money.gd" id="1_cfq1u"]
 [ext_resource type="PackedScene" uid="uid://dyys1i6r15da3" path="res://shopping/money.tscn" id="2_ey732"]
 [ext_resource type="Texture2D" uid="uid://my5jbrrygkap" path="res://ui/UI(1)/UI_coin.png" id="3_j40s3"]
+[ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="4_ey732"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j40s3"]
+font = ExtResource("4_ey732")
+font_size = 18
 
 [node name="StaticBody2D" type="StaticBody2D"]
 process_mode = 3
@@ -26,5 +31,15 @@ position = Vector2(-0.449532, -13.9917)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -62.0
+offset_top = -10.0
+offset_right = -12.0
+offset_bottom = 14.0
+text = "0"
+label_settings = SubResource("LabelSettings_j40s3")
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

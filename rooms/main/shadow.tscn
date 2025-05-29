@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://ofsbg0toro35" path="res://rooms/main/shadow.png" id="1_lxky3"]
 
 [node name="Sprite2D" type="Sprite2D"]
-modulate = Color(0.262745, 0.262745, 0.262745, 0.419608)
-self_modulate = Color(0.241156, 0.241156, 0.241156, 1)
+self_modulate = Color(0.239216, 0.239216, 0.239216, 0.258824)
 y_sort_enabled = true
 texture = ExtResource("1_lxky3")

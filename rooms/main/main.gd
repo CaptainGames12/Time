@@ -1,12 +1,12 @@
 extends Node2D
 
 
-
 var rewarded_ad : RewardedAd
 var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
 var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 @onready var player = $Player
 @onready var level_progress: TextureProgressBar = %LevelProgress
+
 
 @onready var restart_ui = %RestartUI
 @onready var inv = %InventoryUI
@@ -20,7 +20,7 @@ var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 
 @onready var inv_res = player.inv_res
 @onready var boss_healthbar: Control = %Boss_health
-@onready var main_music: AudioStreamPlayer2D = %MainMusic
+@onready var main_music: AudioStreamPlayer= %MainMusic
 @onready var entrance_anim: AnimatedSprite2D = $Entrance_shop/Entrance_anim
 @onready var scene_changer: Area2D = $Entrance_shop/SceneChanger
 
@@ -31,6 +31,7 @@ var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 	4:8,
 	5:1
 }
+
 @onready var enemy = preload("res://Enemies/enemy.tscn")
 @onready var rand = RandomNumberGenerator.new()
 @onready var dead_enemies = 0
@@ -50,35 +51,36 @@ func ad_initialize():
 	on_user_earned_reward_listener.on_user_earned_reward = func(rewarded_item : RewardedItem):
 		Global.hp=10
 		player.healthbar.value=10
-func close_open_shop_onstart():	
-	open_shop()
-	scene_changer.monitoring = true
-	if dialogs.is_inside_tree():
-		close_shop()
+
+
 
 func _ready():
+	
+	if player.loader!=null:
+		current_level=player.loader.level
+		open_shop()
+	else:
+		get_tree().paused=true
+		close_shop()
 	%Money.addMoney(Global.score)
 	ad_initialize()
 	Texts.place =1
-	close_open_shop_onstart()
+	
+	
 	DialogSignals.go_to_the_shop.connect(open_shop)
 	DialogSignals.tutorial_finished.connect(open_shop)
-	get_tree().paused=true
-	
 	
 	cooldown_timer.autostart =true
-	if player:
-		$Player.global_position = $Entrances/any.global_position
+	
 func show_stage_completed():
 	var tween = get_tree().create_tween()
 	tween.tween_property(%StageCompleted, "visible_ratio", 1, 3)
-
+	tween.tween_interval(0.5)
 	tween.tween_property(%StageCompleted, "visible_ratio", 0, 3)
 	tween.finished.connect(tween.kill)
 func _process(delta: float) -> void:
 
-	
-	if boss_clock_node!= null:
+	if boss_clock_node.is_inside_tree()== true:
 		boss_healthbar.get_child(0).value= boss_clock_node.boss_health
 func enemy_death():
 	dead_enemies += 1
@@ -133,17 +135,30 @@ func open_shop():
 	$Entrance_shop/Closed/ClosedCollision.disabled =true
 func close_shop():
 	print("shop is closed")
+	PhysicsServer2D.set_active(true)	
 	scene_changer.monitoring = false
 	entrance_anim.play("close")
 	$Entrance_shop/Closed/ClosedCollision.disabled =false
-	PhysicsServer2D.set_active(true)
+	
 
 func _on_restart_button_pressed() -> void:
-	Texts.place=1
-	get_tree().paused = false
-	get_tree().reload_current_scene()
-	restart_ui.visible = false
-
+	if Input.is_action_pressed("restart"):
+		%MainMusic.stream=preload("res://Wizard/fx_continue.mp3")
+		
+		%MainMusic.connect("finished", reset)
+		%MainMusic.play()
+	
+func reset():
+		Texts.place=1
+		
+		var tween = get_tree().create_tween()
+		tween.set_pause_mode(2)
+		
+		print(tween.is_running())
+		tween.tween_property($Sprite2D, "scale", Vector2(0, 0), 0.5)
+		tween.tween_property(restart_ui, "modulate", Color(0, 0, 0, 0), 0.5)
+		tween.finished.connect(get_tree().reload_current_scene)
+	
 func the_end():
 	$Main_animations.play("ending")
 

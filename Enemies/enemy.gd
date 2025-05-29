@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Enemy
 
-@export var health = 10
-@export var speed = 100
+@export var health = 100
+@export var SPEED = 100
 
 @onready var animation: AnimatedSprite2D = $Animation
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
@@ -43,7 +43,8 @@ func spawn_coin_and_free():
 	queue_free()
 	
 func _on_detection_body_entered(body):
-	player = body	
+	if body.name=="Player":
+		player = body	
 
 func random_vector():
 	return Vector2(randi_range(-1, 1), randi_range(-1, 1))
@@ -54,7 +55,7 @@ func move_to_target(target, delta):
 			final_direction = nav.get_next_path_position() - global_position
 			final_direction = final_direction.normalized() if !confused else random_vector()
 
-			velocity = velocity.lerp(final_direction*speed*delta, 1)
+			velocity = velocity.lerp(final_direction*SPEED*delta, 1)
 			tick = 0
 
 func finding_target():
@@ -91,14 +92,14 @@ func winded(attack_direction):
 	velocity+=attack_direction*knock_speed	
 
 func frozen():
-	speed = 0
+	SPEED = 0
 	await get_tree().create_timer(4).timeout
-	speed = 100	
+	SPEED = 100	
 		
 func watered():
-	speed = 50
+	SPEED = 50
 	await get_tree().create_timer(4).timeout
-	speed = 100
+	SPEED = 100
 	
 func fired():
 	for i in range(4):
@@ -114,10 +115,29 @@ func player_free(body):
 		for j in i.get_children():
 			if j.name!="RestartUI":
 				j.queue_free()
+
+	
 	body.queue_free()
+	game_over_anim()
+	
+func game_over_anim():
+	get_parent().get_node("CanvasLayer/TimeControl/RestartUI/Clock").game_over=true
+	$"../Sprite2D".global_position=treasure.position
+	$"../Sprite2D".visible=true
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(2)
+			
+	tween.tween_property($"../Sprite2D", "scale", Vector2(60, 60), 3)
+	get_parent().get_node("MainMusic").stream=preload("res://Wizard/game_over_without_ticking.mp3")
+	get_parent().get_node("MainMusic").process_mode = Node.PROCESS_MODE_ALWAYS
+	tween.finished.connect(get_parent().get_node("MainMusic").play)
 	get_tree().paused = true
 	restart_ui.visible = true
-	
+	tween.tween_property(restart_ui, "modulate", Color(1, 1, 1, 1), 2)
+	tween.finished.connect(tween.kill)
+	tween.finished.connect(turn_on_restart)
+func turn_on_restart():
+	restart_ui.get_node("RestartButton").action="restart"
 func _on_attack_body_entered(body:Node2D)->void:
 	if body.is_in_group("player"):
 		hitting_player()

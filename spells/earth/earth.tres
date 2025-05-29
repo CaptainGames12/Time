@@ -1,16 +1,16 @@
 [gd_resource type="Resource" script_class="InvItem" load_steps=5 format=3 uid="uid://drlppforch3c8"]
 
-[ext_resource type="AudioStream" uid="uid://bd1w6bjjmnpip" path="res://spells/earth/earth.wav" id="1_1cp1m"]
-[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="1_5j5ef"]
-[ext_resource type="Texture2D" uid="uid://it2ulst8k2ma" path="res://spells/earth/earth.png" id="2_1cp1m"]
-[ext_resource type="Texture2D" uid="uid://kxnckkuyxx83" path="res://spells/earth/ui_mini_icon_rock.png" id="3_h5fpx"]
+[ext_resource type="AudioStream" uid="uid://cobbjl77q8cm3" path="res://spells/earth/fx_earth.mp3" id="1_m58xi"]
+[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="2_cow7k"]
+[ext_resource type="Texture2D" uid="uid://kxnckkuyxx83" path="res://spells/earth/ui_mini_icon_rock.png" id="3_m3dv4"]
+[ext_resource type="Texture2D" uid="uid://it2ulst8k2ma" path="res://spells/earth/earth.png" id="4_1loqk"]
 
 [resource]
-script = ExtResource("1_5j5ef")
+script = ExtResource("2_cow7k")
 item_name = "earth"
-texture = ExtResource("2_1cp1m")
+texture = ExtResource("4_1loqk")
 price = 7
 damage = 3
-audio = ExtResource("1_1cp1m")
-small_texture = ExtResource("3_h5fpx")
+audio = ExtResource("1_m58xi")
+small_texture = ExtResource("3_m3dv4")
 metadata/_custom_type_script = "uid://dsc584apkhxu"

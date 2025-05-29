@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cawhfop6flk6g" path="res://shopping/collectable.tscn" id="9_c2jn6"]
 [ext_resource type="Resource" uid="uid://c7g1jmn5c16e4" path="res://spells/ice/ice.tres" id="9_sn16c"]
 [ext_resource type="Resource" uid="uid://drlppforch3c8" path="res://spells/earth/earth.tres" id="11_ivrbv"]
-[ext_resource type="AudioStream" uid="uid://cqgxg1jrpxnp0" path="res://rooms/shop/shop-theme.mp3" id="12_75d0j"]
+[ext_resource type="AudioStream" uid="uid://c8awrldj3h1wj" path="res://shopping/shop_v2.mp3" id="12_8o2ef"]
 [ext_resource type="Script" uid="uid://b5nepvn5mdqrs" path="res://rooms/shop/water.gd" id="13_8o2ef"]
 [ext_resource type="Resource" uid="uid://ccy3hlsvd2046" path="res://spells/wind/wind.tres" id="15_sn16c"]
 
@@ -100,6 +100,7 @@ scale = Vector2(5, 5)
 texture = ExtResource("3_hop3w")
 
 [node name="Light" type="Sprite2D" parent="Appearence"]
+z_index = 30
 position = Vector2(579, 323)
 scale = Vector2(5, 5)
 texture = ExtResource("4_8o2ef")
@@ -197,8 +198,8 @@ position = Vector2(-29.2182, 26.1754)
 scale = Vector2(1.0636, 1.05037)
 polygon = PackedVector2Array(1131.27, 586.293, 1107.76, 545.355, 1093.67, 63.6199, 34.9928, 52.1954, 41.5742, 548.21, 479.71, 549.162, 511, 593, 629, 597, 648.948, 560.586, 1104.94, 554.876, 1128.45, 596.766, 648.007, 606.284, 479.71, 604.38, 440, 591, 17.1289, 583.435, 4.90618, -5.87926, 1120.93, -0.166988)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("12_75d0j")
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_8o2ef")
 parameters/looping = true
 
 [node name="Water" type="Area2D" parent="."]

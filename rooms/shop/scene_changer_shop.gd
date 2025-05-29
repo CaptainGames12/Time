@@ -4,8 +4,10 @@ extends Area2D
 var pause_state = true
 func _ready() -> void:
 	
-	DialogSignals.connect("tutorial_finished", tutorial_finished)
+	DialogSignals.connect("tutorial_finished", change_pause_state)
 func _on_body_entered(body):
+	
+	get_tree().root.get_node("Node2D/CanvasLayer/Joysticks/SpellJoystick").process_mode=Node.PROCESS_MODE_ALWAYS
 	$"../../CanvasLayer/Support/Heal".disabled=false
 	print("detects")
 	body.in_the_shop = false
@@ -13,9 +15,10 @@ func _on_body_entered(body):
 		body.stamina_timer.start()
 	shop.shop_theme.stop()
 	body.global_position = shop.any_main_pos
-	
+	pause_state = true if body.loader==null else false
 	get_tree().paused = pause_state
+	
 	DialogSignals.emit_signal("out_of_the_shop")
 	get_parent().get_parent().out_of_the_shop.emit()
-func tutorial_finished():
+func change_pause_state():
 	pause_state = false

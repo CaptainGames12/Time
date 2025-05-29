@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5acx3pmd4ptu"]
+
+[ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="1_11s57"]
+[ext_resource type="Texture2D" uid="uid://bex85l0n7gfvt" path="res://ui/normal_restart.png" id="2_13w14"]
+[ext_resource type="Texture2D" uid="uid://b50rpcijpbgyp" path="res://ui/pressed_restart.png" id="3_yy4kl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oosx8"]
+font = ExtResource("1_11s57")
+font_size = 84
+
+[node name="RestartUI" type="Control"]
+process_mode = 3
+z_index = 6
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 2404.0
+offset_bottom = 1264.0
+color = Color(0, 0, 0, 1)
+
+[node name="GameOver" type="Label" parent="."]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 234.0
+offset_right = 885.0
+offset_bottom = 310.0
+text = "Game Over"
+label_settings = SubResource("LabelSettings_oosx8")
+
+[node name="RestartButton" type="TouchScreenButton" parent="."]
+process_mode = 3
+z_index = 9
+position = Vector2(481, 341)
+scale = Vector2(5.94104, 6.15733)
+texture_normal = ExtResource("2_13w14")
+texture_pressed = ExtResource("3_yy4kl")

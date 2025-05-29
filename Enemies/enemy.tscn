@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://nfai06t8ec8m" path="res://Enemies/angry clock.png" id="3_ptjc2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5bivi"]
-radius = 1420.0
-height = 2886.0
+radius = 3063.0
+height = 6126.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_47qgu"]
 radius = 16.8975

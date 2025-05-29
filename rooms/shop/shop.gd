@@ -2,7 +2,7 @@ extends Node2D
 @onready var player: Player = $"../Player"
 
 @onready var inventory: Inventory = %InventoryUI
-@onready var shop_theme: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var shop_theme: AudioStreamPlayer = $AudioStreamPlayer2D
 
 @onready var texture_rect: TextureRect = $TextureRect
 
@@ -17,9 +17,6 @@ func _ready():
 	
 	texture_rect.queue_free()
 	
-	if player:
-		
-		player.global_position = $Entrances/any.global_position
 	var count = 0
 	for i in Global.collected_items:
 		count = 0

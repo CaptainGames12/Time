@@ -1,0 +1,70 @@
+# LANGUAGE translation for Timeful adventure-phone for the following files:
+# res://ui/dialog/texts.gd
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Timeful adventure-phone\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: ui/dialog/texts.gd
+msgid "time_stop"
+msgstr "Awesome. You have ability to control time with golden clocks, which I gave you. Try pressing [img]res://ui/UI(1)/button_4.png[/img] to stop time."
+
+#: ui/dialog/texts.gd
+msgid "time_reverse"
+msgstr "Good. Now press [img]res://ui/UI(1)/button_5.png[/img] to [wave]save[/wave] your time point and turn back in time if something bad happens. Remember it needs your whole mana."
+
+#: ui/dialog/texts.gd
+msgid "greetings"
+msgstr "Hello. My time has come. So it is your turn to defend [rainbow][wave]the Crystal of harmony[/wave][/rainbow]. I hope I teached you well."
+
+#: ui/dialog/texts.gd
+msgid "question"
+msgstr ""
+"Do you need jogging your memory?\n"
+"\n"
+"\n"
+"[url=positive_answer]If you could, please[/url]\t\t[url=negative_answer]I think I'm ready[/url]"
+
+#: ui/dialog/texts.gd
+msgid "shop"
+msgstr "So firstly, you need to buy spells in the shop. You have got 10 coins which you can spend anylike you want."
+
+#: ui/dialog/texts.gd
+msgid "shoped"
+msgstr "Wonderful. Now come back to the main level, then I shall remember you how to cast spells."
+
+#: ui/dialog/texts.gd
+msgid "shooting"
+msgstr "Choose spell in inventory by touching. After that, aim your joystick to cast spell in this direction. Every spell has its own effect."
+
+#: ui/dialog/texts.gd
+msgid "ending"
+msgstr "Well done. Future of our world is in your hands. Good luck."
+
+#: ui/dialog/texts.gd
+msgid "skipping"
+msgstr "Then good luck. Future of our world is in your hands."
+
+#: ui/dialog/texts.gd
+msgid "clockphrase1"
+msgstr "Thanks to Darkness now we can revenge to all humankind for throwing us away."
+
+#: ui/dialog/texts.gd
+msgid "clockphrase2"
+msgstr "You thought that you could replace us that easy?"
+
+#: ui/dialog/texts.gd
+msgid "clockphrase3"
+msgstr "It's time to pay back."

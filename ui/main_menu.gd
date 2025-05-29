@@ -10,3 +10,15 @@ func _on_load_pressed() -> void:
 	change_scene()
 func change_scene():
 	get_tree().change_scene_to_file("res://rooms/main/main.tscn")
+
+
+func _on_english_pressed() -> void:
+	TranslationServer.set_locale("en")
+	for i in Texts.timeline.keys():
+		tr(Texts.timeline[i])
+		
+
+func _on_ukrainian_pressed() -> void:
+	TranslationServer.set_locale("uk")
+	for i in Texts.timeline.keys():
+		tr(Texts.timeline[i])

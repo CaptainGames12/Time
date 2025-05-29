@@ -1,6 +1,6 @@
 extends CharacterBody2D
 class_name ClockBoss
-@export var boss_health = 40
+@export var boss_health = 300
 var isAngried = false
 @onready var player = get_node("/root/Node2D/Player")
 var isProtected=true
@@ -17,7 +17,7 @@ signal stopHit
 @onready var rolling_time: Timer = $RollingTime
 @onready var locator_sprite: Sprite2D = $"Locator sprite"
 @onready var shooting_cooldown: Timer = $ShootingCooldown
-	
+@onready var phrases = preload("res://Enemies/boss/dialog/angryclockdialog.tscn").instantiate()	
 const BOSS_ATTACK = preload("res://Enemies/boss/boss_attack.tscn")
 enum States
 {
@@ -84,13 +84,17 @@ func _process(delta: float) -> void:
 		States.ROLLING:
 			rolling_animate(delta)
 func _ready() -> void:
+	get_parent().get_node("CanvasLayer").add_child(phrases)
+	get_parent().get_node("MainMusic").playing=false
 	stopHit.connect(stopHitEmited)
 	scale.x = 4
 	scale.y = 4
 	$RemoteTransform2D.remote_path = stop_vector.get_path()
 	position = Vector2(1878, 580)
 	var tween_walking = get_tree().create_tween()
-	tween_walking.tween_property(self, "global_position", Vector2(1700,580),2)
+	tween_walking.tween_property(self, "global_position", Vector2(1650,580),2)
+	#tween_walking.finished.connect(walked)
+
 func stopHitEmited():
 
 	isAngried = false

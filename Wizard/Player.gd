@@ -19,7 +19,7 @@ var saving = SaveGame.new()
 @onready var dialogs: Control = %Dialogs
 		
 @onready var attack_node = preload("res://Wizard/attack/attack.tscn")
-
+@onready var entrance = $"../Entrances/any"
 @onready var money = %Money
 @onready var cooldown_timer: Timer = %Cooldown_timer
 @onready var main = $".."
@@ -32,21 +32,23 @@ var saving = SaveGame.new()
 @onready var loader = ResourceLoader.load(save_path) as SaveGame
 
 func _ready() -> void:
-	load_save()
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	animation_tree.active=true
 	healthbar.max_value =10
 	healthbar.value = 10
 	Global.hp = healthbar.value
 	healthbar.value = Global.hp
-
+	load_save()
 
 		
 func _process(delta: float) -> void:
 	var idle = !velocity.normalized()
 	if !idle:
 		last_facing_dir= velocity.normalized()
-	$Move.visible = !attacked
-	$Attack.visible = attacked
+	$TextureRect/Move.visible = !attacked
+	$TextureRect/Attack.visible = attacked
+	$Silhouette.visible = !attacked
+	$SilhouetteAttack.visible = attacked
 	animation_tree.set("parameters/Walk/blend_position", last_facing_dir)
 	animation_tree.set("parameters/Idle/blend_position", last_facing_dir)
 func shoot():
@@ -62,14 +64,18 @@ func shoot():
 			else: 
 				attacked=false
 func _physics_process(delta):
-	if Global.hp==0:
-		$"../TextureRect".visible=true
+	if Global.hp<=0:
+	
+		SpellMixer.chosen_items=[null, null, null, null, null]
 	healthbar.value=Global.hp	
-	if dialogs==null:
-		%SaveButton.action="time_save"
-		%TimeStop.action="time_stop"
+	%SaveButton.action="time_save"
+	%TimeStop.action="time_stop"
 	velocity = joystick.input_vector*SPEED
 	velocity+=knockback_power
+	if velocity==Vector2.ZERO:
+		%Steps.stream_paused=true
+	else:
+		%Steps.stream_paused=false
 	velocity.normalized()
 	time_save()
 	shoot()
@@ -124,6 +130,7 @@ func load_save():
 	if loader != null:	
 		DialogSignals.tutorial_finished.emit()
 		%Dialogs.queue_free()
+		
 		global_position = loader.player_pos
 		healthbar.value = loader.player_health
 		
@@ -133,12 +140,16 @@ func load_save():
 		Global.hp = loader.global_hp
 		inventory.itemsList.slots = loader.player_inv
 		inventory.update_slots()
+		get_tree().paused=false
+		
 	else:
+		global_position = entrance.global_position
 		printerr("isn't loaded")	
 func time_save() -> void:
 	if Input.is_action_just_pressed("time_save"):
 		if %Treasure!=null:
 			if stamina.value==100:
+				print("save")
 				DialogSignals.time_save_pressed.emit()
 				stamina.value = 0
 				stamina_timer.start()

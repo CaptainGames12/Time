@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://baoie66p0o1h1"]
+
+[ext_resource type="Script" uid="uid://b6oik3adjbc87" path="res://spells/wall/wall.gd" id="1_cav32"]
+[ext_resource type="Texture2D" uid="uid://it2ulst8k2ma" path="res://spells/earth/earth.png" id="2_ip30c"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhhld"]
+radius = 16.9679
+height = 73.9745
+
+[node name="Wall" type="StaticBody2D"]
+self_modulate = Color(1, 0, 0, 1)
+y_sort_enabled = true
+script = ExtResource("1_cav32")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(3, 1)
+rotation = 1.59705
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_rhhld")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(22, 2)
+rotation = -1.55512
+texture = ExtResource("2_ip30c")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+rotation = -1.55512
+texture = ExtResource("2_ip30c")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-15, 0)
+rotation = -1.55512
+texture = ExtResource("2_ip30c")

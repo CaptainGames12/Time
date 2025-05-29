@@ -5,10 +5,12 @@ class_name CoinsGenerator
 var array_coins : Array[Node2D]
 var coins : int
 @onready var marker_2d: Marker2D = $Marker2D
+@onready var label: Label = $Label
 
 
 func addMoney(count : int) -> void: 
 	coins += count;
+	
 
 func getMoney() -> int:
 	return array_coins.size()
@@ -19,7 +21,7 @@ func removeCoins(count : int) -> void:
 			var temp : Node2D = array_coins.get(0)
 			temp.queue_free()
 			array_coins.remove_at(0)
-	
+			label.text = str(array_coins.size())+"$"
 func _on_timer_timeout() -> void:
 
 	if(coins > 0) :
@@ -32,4 +34,4 @@ func _on_timer_timeout() -> void:
 		instance.scale/=2
 		array_coins.append(instance)
 		coins -= 1;
-		
+		label.text = str(array_coins.size())+"$"

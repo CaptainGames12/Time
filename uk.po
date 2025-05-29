@@ -1,0 +1,70 @@
+# LANGUAGE translation for Timeful adventure-phone for the following files:
+# res://ui/dialog/texts.gd
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Timeful adventure-phone\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: ui/dialog/texts.gd
+msgid "time_stop"
+msgstr "Чудово. Ти маєш здатність контролювати час за допомогою годинника, який я тобі дав. Спробуй натиснути [img]res://ui/UI(1)/button_4.png[/img], щоб зупинити час."
+
+#: ui/dialog/texts.gd
+msgid "time_reverse"
+msgstr "Добре. Тепер натисни [img]res://ui/UI(1)/button_5.png[/img], щоб [wave]зберегти[/wave] свою часову точку і повернутися назад у часі, якщо станеться, щось недобре. Пам'ятай, що це потребує усієї твоєї мани."
+
+#: ui/dialog/texts.gd
+msgid "greetings"
+msgstr "Привіт. Мій час прийшов. Тож твоя черга захищати [rainbow][wave]Кристал гармонії[/wave][/rainbow]. Сподіваюся, я навчив тебе добре."
+
+#: ui/dialog/texts.gd
+msgid "question"
+msgstr ""
+"Треба стряхнути пам'ять?\r\n"
+"\r\n"
+"\r\n"
+"[url=positive_answer]Якщо могли б, будь ласка[/url]\t\t[url=negative_answer]Я думаю, я готовий[/url]"
+
+#: ui/dialog/texts.gd
+msgid "shop"
+msgstr "Отже спершу, тобі треба придбати заклинання у магазині. У тебе є 10 монет, які ти можеш витратити, як хочеш."
+
+#: ui/dialog/texts.gd
+msgid "shoped"
+msgstr "Приголомшливо. Тепер повернися до головної локації, тоді я нагадаю тобі як чаклувати."
+
+#: ui/dialog/texts.gd
+msgid "shooting"
+msgstr "Обери заклинання у інвентарі натисканням на нього. Далі, націль джойстик у тому напрямку, куди хочеш вистрелити. Кожне заклинання має власний ефект."
+
+#: ui/dialog/texts.gd
+msgid "ending"
+msgstr "Гарна робота. Майбутнє нашого світу у твоїх руках. Успіху."
+
+#: ui/dialog/texts.gd
+msgid "skipping"
+msgstr "Тоді успіху. Майбутнє нашого світу у твоїх руках."
+
+#: ui/dialog/texts.gd
+msgid "clockphrase1"
+msgstr "Завдяки Темному тепер ми можемо помститися людству за те, що нас викинули."
+
+#: ui/dialog/texts.gd
+msgid "clockphrase2"
+msgstr "Думали, можете просто так від нас здихатися?"
+
+#: ui/dialog/texts.gd
+msgid "clockphrase3"
+msgstr "Настав час розплати за свої вчинки."

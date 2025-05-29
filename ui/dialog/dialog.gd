@@ -12,12 +12,15 @@ var current_state = Text_state.ONREADY
 var next_text = ""
 var isTutorialStarted:bool
 var is_tutorial_here = true
-
+var bought_item=false
+@onready var player = get_tree().root.get_node("Node2D/Player")
+@onready var main = get_tree().root.get_node("Node2D")
 @onready var tween_dialog =  get_tree().create_tween().set_pause_mode(2)
 func buttons_disable():
 	btn_save.action="nothing"
 	btn_stop.action="nothing"
 func _ready() -> void:
+	main.get_node("CanvasLayer/Joysticks/SpellJoystick").process_mode=Node.PROCESS_MODE_PAUSABLE
 	buttons_disable()
 	DialogSignals.tutorial_started.emit()
 	DialogSignals.tutorial_started.connect(start)
@@ -27,7 +30,8 @@ func _ready() -> void:
 	DialogSignals.tutorial_finished.connect(finish)
 	DialogSignals.time_save_pressed.connect(save_pressed)
 	DialogSignals.time_stop_pressed.connect(stop_pressed)
-
+	if player.loader==null:	
+		get_tree().paused=true
 var shoot_counter=0	
 func _process(delta: float) -> void:
 	
@@ -66,20 +70,27 @@ func save_pressed():
 	state_changer(Text_state.ONREADY)
 func got_item():
 	Texts.place=4
+	bought_item=true
 	state_changer(Text_state.ONREADY)
 func cast_spell():
-	Texts.place=5
-	btn_stop.action="time_stop"
-	state_changer(Text_state.ONREADY)
+	if bought_item:
+		Texts.place=5
+		
+		main.get_node("CanvasLayer/Joysticks/SpellJoystick").process_mode=Node.PROCESS_MODE_ALWAYS
+		
+		main.call_deferred("close_shop")
+		state_changer(Text_state.ONREADY)
 func stop_pressed():
 	Texts.place=9
 	btn_save.action="time_save"
 	state_changer(Text_state.ONREADY)	
 func shoot():
-	shoot_counter+=1
-	if shoot_counter==1:
-		Texts.place=8
-		state_changer(Text_state.ONREADY)	
+	if player.in_the_shop==false:
+		btn_stop.action="time_stop"
+		shoot_counter+=1
+		if shoot_counter==1:
+			Texts.place=8
+			state_changer(Text_state.ONREADY)	
 func generate_dialogue(my_text = next_text):
 	
 	$"../../AudioStreamPlayer2D".play(2)

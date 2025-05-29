@@ -11,10 +11,10 @@ func _ready() -> void:
 	print("inv updated")
 	
 func update_slots():
-
-	for i in range(min(itemsList.slots.size(), slotsUi.size())):
-		slotsUi[i].update(itemsList.slots[i])
-		slotsUi[i].element=itemsList.slots[i].item
+	if slotsUi!=null:
+		for i in range(min(itemsList.slots.size(), slotsUi.size())):
+			slotsUi[i].update(itemsList.slots[i])
+			slotsUi[i].element=itemsList.slots[i].item
 		
 
 func choose_element(element):

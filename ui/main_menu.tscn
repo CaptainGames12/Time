@@ -57,5 +57,25 @@ stream = ExtResource("8_ubpvv")
 autoplay = true
 parameters/looping = true
 
+[node name="Ukrainian" type="Button" parent="."]
+z_index = 5
+layout_mode = 0
+offset_left = 510.0
+offset_top = 592.0
+offset_right = 594.0
+offset_bottom = 623.0
+text = "Ukrainian"
+
+[node name="English" type="Button" parent="."]
+z_index = 5
+layout_mode = 0
+offset_left = 511.0
+offset_top = 551.0
+offset_right = 574.0
+offset_bottom = 582.0
+text = "English"
+
 [connection signal="pressed" from="New" to="." method="_on_new_pressed"]
 [connection signal="pressed" from="Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="Ukrainian" to="." method="_on_ukrainian_pressed"]
+[connection signal="pressed" from="English" to="." method="_on_english_pressed"]

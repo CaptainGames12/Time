@@ -1,17 +1,14 @@
 extends Node
 
-const time_stop = "Awesome. You have ability to control time with golden clocks, which I gave you. Try pressing [img]res://ui/UI(1)/button_4.png[/img] to stop time."
-const time_reverse = "Goog. Now press [img]res://ui/UI(1)/button_5.png[/img] to [wave]save[/wave] your time point and turn back in time if something bad happens. Remember it needs your whole mana."
-const greetings = "Hello. My time has come. So it is your turn to defend [rainbow][wave]the Crystal of harmony[/wave][/rainbow]. I hope I teached you well." 
-const question = "Do you need jogging your memory?
-
-
-[url=positive_answer]If you could, please[/url]		[url=negative_answer]I think I'm ready[/url]"
-const shop = "So firstly, you need to buy spells in the shop. You have got 10 coins which you can spend anylike you want."
-const shoped = "Wonderful. Now come back to the main level, then I shall remember you how to cast spells."
-const shooting = "Choose spell in inventory by touching. After that, aim your joystick to cast spell in this direction. Every spell has its own effect."
-const ending = "Well done. Future of our world is in your hands. Good luck."
-const skipping = "Then good luck. Future of our world is in your hands."
+var time_stop = "time_stop"
+var time_reverse = "time_reverse"
+var greetings = "greetings"
+var question = "question"
+var shop = "shop"
+var shoped = "shoped"
+var shooting = "shooting"
+var ending = "ending"
+var skipping = "skipping"
 var timeline = {
 	1:greetings,
 	2:question,
@@ -24,3 +21,9 @@ var timeline = {
 	9:time_reverse
 }
 var place = 1
+
+var clockphrases={
+	1:tr("clockphrase1"),
+	2:tr("clockphrase2"),
+	3:tr("clockphrase3")
+}
