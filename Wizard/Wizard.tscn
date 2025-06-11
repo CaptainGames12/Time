@@ -1,14 +1,20 @@
-[gd_scene load_steps=43 format=3 uid="uid://dwi7bdg27wpbr"]
+[gd_scene load_steps=46 format=3 uid="uid://dwi7bdg27wpbr"]
 
+[ext_resource type="Shader" uid="uid://b0q2x6x83n3wg" path="res://Wizard/hurt.gdshader" id="1_00wba"]
 [ext_resource type="Script" path="res://Wizard/Player.gd" id="1_23xfq"]
 [ext_resource type="Resource" uid="uid://w41rwmtsds5d" path="res://Wizard/inventory/playerinv.tres" id="2_ep4yn"]
 [ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://rooms/main/shadow.tscn" id="2_wi82f"]
 [ext_resource type="Texture2D" uid="uid://cv3b4ni4ednu" path="res://Wizard/wither_no_magic_v2.png" id="4_ep4yn"]
 [ext_resource type="Texture2D" uid="uid://bsaujut2tkhs3" path="res://Wizard/TimeAdventure/wither_yes_magic.png" id="5_7ff2m"]
+[ext_resource type="Material" uid="uid://dg0sgwobwrem6" path="res://Wizard/hurt.tres" id="5_7xwks"]
 [ext_resource type="AnimationNodeBlendSpace2D" uid="uid://cb3q3taa6j1ro" path="res://Wizard/walk_anim.tres" id="5_utr7p"]
 [ext_resource type="Script" uid="uid://bwrv3p6ta8sji" path="res://Wizard/silhouette_attack.gd" id="7_3t1gk"]
 [ext_resource type="Shader" uid="uid://dxe1hrol8u730" path="res://Wizard/silhouette.gdshader" id="7_vmu88"]
 [ext_resource type="Script" uid="uid://q47ib8jyfg6g" path="res://Wizard/silhouette_move.gd" id="8_3t1gk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7xwks"]
+shader = ExtResource("1_00wba")
+shader_parameter/flash_strength = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4lojw"]
 radius = 18.125
@@ -463,6 +469,7 @@ shader_parameter/silhouette_color = Color(0, 0, 0, 0.5)
 
 [node name="Player" type="CharacterBody2D"]
 process_mode = 3
+material = SubResource("ShaderMaterial_7xwks")
 collision_layer = 5
 collision_mask = 109
 script = ExtResource("1_23xfq")
@@ -486,6 +493,7 @@ position = Vector2(47, 126)
 
 [node name="Move" type="Sprite2D" parent="TextureRect"]
 visible = false
+material = ExtResource("5_7xwks")
 position = Vector2(48.875, 70.875)
 scale = Vector2(3.86719, 3.86719)
 texture = ExtResource("4_ep4yn")
@@ -494,6 +502,7 @@ frame = 8
 script = ExtResource("8_3t1gk")
 
 [node name="Attack" type="Sprite2D" parent="TextureRect"]
+material = ExtResource("5_7xwks")
 position = Vector2(48.875, 70.875)
 scale = Vector2(3.86719, 3.86719)
 texture = ExtResource("5_7ff2m")

@@ -1,6 +1,7 @@
 extends Node2D
 
-
+	
+var is_restarted=false
 var rewarded_ad : RewardedAd
 var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
 var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
@@ -52,10 +53,14 @@ func ad_initialize():
 		Global.hp=10
 		player.healthbar.value=10
 
-
+func _notification(what: int) -> void:
+	
+	if what==NOTIFICATION_WM_CLOSE_REQUEST:
+		if "user://save.tres"!=null:
+			DirAccess.remove_absolute("user://save.tres")
 
 func _ready():
-	
+	Global.current_scene=self.scene_file_path
 	if player.loader!=null:
 		current_level=player.loader.level
 		open_shop()
@@ -80,8 +85,8 @@ func show_stage_completed():
 	tween.finished.connect(tween.kill)
 func _process(delta: float) -> void:
 
-	if boss_clock_node.is_inside_tree()== true:
-		boss_healthbar.get_child(0).value= boss_clock_node.boss_health
+	if boss_clock_node!= null:
+		boss_healthbar.get_child(0).value= boss_clock_node.health
 func enemy_death():
 	dead_enemies += 1
 	
@@ -112,8 +117,8 @@ func spawn_enemies():
 		
 		add_child(boss_clock_node)
 		boss_clock_node.hit_player.connect(player.boss_hit)
-		boss_healthbar.get_child(0).value= boss_clock_node.boss_health
-		boss_healthbar.get_child(0).max_value= boss_clock_node.boss_health
+		boss_healthbar.get_child(0).value= boss_clock_node.health
+		boss_healthbar.get_child(0).max_value= boss_clock_node.health
 		boss_healthbar.visible = true
 		
 func update_level(level):
@@ -129,20 +134,21 @@ func _on_cooldown_between_waves_timeout() -> void:
 func open_shop():
 	print("shop is opened")
 	PhysicsServer2D.set_active(true)
-	
+	%OpenCloseAudio.play()
 	scene_changer.monitoring = true
 	entrance_anim.play("open")
 	$Entrance_shop/Closed/ClosedCollision.disabled =true
 func close_shop():
 	print("shop is closed")
 	PhysicsServer2D.set_active(true)	
+	%OpenCloseAudio.play()
 	scene_changer.monitoring = false
 	entrance_anim.play("close")
 	$Entrance_shop/Closed/ClosedCollision.disabled =false
-	
 
 func _on_restart_button_pressed() -> void:
-	if Input.is_action_pressed("restart"):
+	if Input.is_action_pressed("restart") and !is_restarted:
+		is_restarted=true
 		%MainMusic.stream=preload("res://Wizard/fx_continue.mp3")
 		
 		%MainMusic.connect("finished", reset)
@@ -157,7 +163,7 @@ func reset():
 		print(tween.is_running())
 		tween.tween_property($Sprite2D, "scale", Vector2(0, 0), 0.5)
 		tween.tween_property(restart_ui, "modulate", Color(0, 0, 0, 0), 0.5)
-		tween.finished.connect(get_tree().reload_current_scene)
+		tween.finished.connect(get_tree().change_scene_to_file.bind("res://ui/loading.tscn"))
 	
 func the_end():
 	$Main_animations.play("ending")

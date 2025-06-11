@@ -70,7 +70,7 @@ config={
 [application]
 
 config/name="Timeful adventure-phone"
-run/main_scene="res://ui/main_menu.tscn"
+run/main_scene="res://ui/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/image="uid://cfcsppor26svt"
 config/icon="uid://c56e1jll5pkmd"
@@ -81,7 +81,7 @@ Global="*res://global.gd"
 AttackSfx="*res://spells/attack_sfx.tscn"
 Texts="*res://ui/dialog/texts.gd"
 DialogSignals="*res://ui/dialog/dialog_signals.gd"
-SpellMixer="*res://spells/Mixer.gd"
+SpellMixer="*res://spells/classes/Mixer.gd"
 
 [debug]
 
@@ -113,6 +113,10 @@ level=""
 player=""
 boss=""
 enemy=""
+
+[gui]
+
+fonts/dynamic_fonts/use_oversampling=false
 
 [input]
 
@@ -175,9 +179,9 @@ pointing/emulate_touch_from_mouse=true
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://uk.po", "res://en.po")
+locale/translations=PackedStringArray("res://Localization/en.po", "res://Localization/uk.po")
 locale/translations_pot_files=PackedStringArray("res://ui/dialog/texts.gd")
-locale/test="uk"
+locale/test="en"
 
 [layer_names]
 

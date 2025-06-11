@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://db086y1sk3eti"]
+[gd_scene load_steps=9 format=3 uid="uid://db086y1sk3eti"]
 
 [ext_resource type="Texture2D" uid="uid://c0xn66egpwcbr" path="res://ui/dialog/dialog_area.png" id="1_rw7u6"]
-[ext_resource type="Texture2D" uid="uid://bty02j8qjhict" path="res://Enemies/boss/rolling boss clock.png" id="2_vbs3i"]
+[ext_resource type="Texture2D" uid="uid://b4p8pv2forl6l" path="res://Enemies/boss/boss_clock_box.png" id="2_i0j4j"]
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="3_i0j4j"]
 [ext_resource type="Script" uid="uid://dt5pxkw10qfuy" path="res://Enemies/boss/dialog/clockbossdialog.gd" id="4_cngvw"]
+[ext_resource type="FontFile" uid="uid://diep4qd8unfs5" path="res://Localization/minecraft_ukr_eng.ttf" id="4_i0j4j"]
 [ext_resource type="AudioStream" uid="uid://d3hdedbh04vlw" path="res://Enemies/boss/clock-voice.mp3" id="5_rw7u6"]
 [ext_resource type="AudioStream" uid="uid://cui1isiq1xl40" path="res://Enemies/boss/boss_prepare.mp3" id="6_vbs3i"]
 
@@ -47,8 +48,8 @@ offset_bottom = 123.0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("2_vbs3i")
-stretch_mode = 4
+texture = ExtResource("2_i0j4j")
+expand_mode = 2
 flip_h = true
 
 [node name="Label" type="Label" parent="GridContainer"]
@@ -58,12 +59,13 @@ text = "*"
 label_settings = SubResource("LabelSettings_yoovk")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="GridContainer"]
+clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.6
 theme_override_constants/line_separation = 3
-theme_override_fonts/normal_font = ExtResource("3_i0j4j")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_fonts/normal_font = ExtResource("4_i0j4j")
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 fit_content = true
 visible_characters = 0

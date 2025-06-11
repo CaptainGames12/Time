@@ -1,4 +1,5 @@
 extends RichTextLabel
+
 var current_state = Text_state.ONREADY
 var next_text = ""
 

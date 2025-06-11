@@ -4,7 +4,8 @@ func update_mixer():
 	for i in slots.size():
 		if SpellMixer.chosen_items[i]!=null:
 			slots[i].texture_normal=SpellMixer.chosen_items[i].small_texture
-
+	if SpellMixer.chosen_items.count(null)<4:
+		DialogSignals.mixed_elements.emit()
 func _ready() -> void:
 	for i in slots:
 		i.btn_down.connect(remove_element)

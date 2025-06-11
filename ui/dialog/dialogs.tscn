@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bi22hwrsfppr5"]
+[gd_scene load_steps=8 format=3 uid="uid://bi22hwrsfppr5"]
 
 [ext_resource type="Script" uid="uid://dl4by5l0d68hm" path="res://ui/dialog/dialog.gd" id="1_mavls"]
 [ext_resource type="Texture2D" uid="uid://c0xn66egpwcbr" path="res://ui/dialog/dialog_area.png" id="2_0ldwc"]
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="2_r5q84"]
 [ext_resource type="Texture2D" uid="uid://41xt20tb2xbb" path="res://ui/dialog/master.png" id="3_r5q84"]
+[ext_resource type="FontFile" uid="uid://diep4qd8unfs5" path="res://Localization/minecraft_ukr_eng.ttf" id="4_6h0b3"]
 [ext_resource type="AudioStream" uid="uid://dw4q1sq0kso83" path="res://ui/dialog/Master's voice.mp3" id="5_yoovk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yoovk"]
@@ -29,7 +30,7 @@ anchor_right = 0.77
 anchor_bottom = 0.202
 offset_left = -0.0320129
 offset_top = -0.0160007
-offset_right = 0.959961
+offset_right = -1.03998
 offset_bottom = 0.103989
 texture = ExtResource("2_0ldwc")
 
@@ -37,9 +38,9 @@ texture = ExtResource("2_0ldwc")
 clip_contents = true
 layout_direction = 2
 layout_mode = 0
-offset_left = 232.0
+offset_left = 235.0
 offset_top = 20.0
-offset_right = 878.0
+offset_right = 870.0
 offset_bottom = 123.0
 
 [node name="Master" type="TextureRect" parent="GridContainer"]
@@ -47,6 +48,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("3_r5q84")
+expand_mode = 1
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="GridContainer"]
@@ -56,14 +58,17 @@ text = "*"
 label_settings = SubResource("LabelSettings_yoovk")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="GridContainer"]
+auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 4.6
+size_flags_vertical = 0
+size_flags_stretch_ratio = 4.8
 theme_override_constants/line_separation = 3
-theme_override_fonts/normal_font = ExtResource("2_r5q84")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_fonts/normal_font = ExtResource("4_6h0b3")
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 fit_content = true
+meta_underlined = false
 visible_characters = 0
 visible_ratio = 0.0
 script = ExtResource("1_mavls")

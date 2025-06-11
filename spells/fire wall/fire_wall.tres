@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://hr7e88lowjis"]
+[gd_resource type="Resource" script_class="InvItem" load_steps=4 format=3 uid="uid://hr7e88lowjis"]
 
-[ext_resource type="PackedScene" uid="uid://dv8rrkp1rkaur" path="res://spells/fire wall/fire_wall.tscn" id="1_q2olv"]
+[ext_resource type="Script" uid="uid://c30ltj12kiwwy" path="res://spells/fire wall/fire_wall_effect.gd" id="1_glg20"]
 [ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="2_glg20"]
+[ext_resource type="PackedScene" uid="uid://dv8rrkp1rkaur" path="res://spells/fire wall/fire_wall.tscn" id="2_prqvq"]
 
 [resource]
 script = ExtResource("2_glg20")
 item_name = "fire wall"
 price = 0
-damage = 0
-particle = ExtResource("1_q2olv")
+damage = 5
+effect = ExtResource("1_glg20")
+particle = ExtResource("2_prqvq")
 metadata/_custom_type_script = "uid://dsc584apkhxu"

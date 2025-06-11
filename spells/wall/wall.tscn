@@ -15,7 +15,6 @@ script = ExtResource("1_cav32")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(3, 1)
 rotation = 1.59705
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_rhhld")
 disabled = true
 

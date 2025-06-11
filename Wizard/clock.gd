@@ -1,21 +1,21 @@
-extends Sprite2D
+extends AnimatedSprite2D
 var tick = 0
 @onready var ticks_audio : AudioStreamPlayer = $AudioStreamPlayer
 @onready var player: Player = $"../../../../Player"
-var game_over = false
-@onready var arrow: Sprite2D = $arrow
-var restarted = false
-func _physics_process(delta: float) -> void:
-	if tick>=100 and !restarted and game_over:
-		ticks_audio.play()
-		arrow.rotation_degrees+=30
-		tick=0
-	if restarted:
-		arrow.rotation_degrees-=10
-		
-	tick+=1	
+var game_over = false:
+	set(value):
+		game_over=value
+		if game_over==true:
+			play("default")
 
+var restarted = false
 
 func _on_restart_button_pressed() -> void:
-	if Input.is_action_pressed("restart"):	
-		restarted=true
+	if Input.is_action_just_pressed("restart") and !restarted:	
+		speed_scale= 10*-1
+		restarted = true
+		ticks_audio.stop()
+		
+func _on_frame_changed() -> void:
+	if !restarted:	
+		ticks_audio.play()

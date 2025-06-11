@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://f0wixgyvj01l"]
+
+[ext_resource type="Script" uid="uid://2dutvyyk5jye" path="res://rift.gd" id="1_24qrt"]
+[ext_resource type="Texture2D" uid="uid://fnmep1kv4o8o" path="res://spells/rift/rift.png" id="2_trh1c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8rbqy"]
+radius = 30.3645
+
+[node name="Rift" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_24qrt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9.25, -6.25)
+scale = Vector2(2.97656, 2.92969)
+texture = ExtResource("2_trh1c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.500008, 1)
+shape = SubResource("CircleShape2D_8rbqy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

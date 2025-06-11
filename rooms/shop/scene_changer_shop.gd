@@ -15,7 +15,7 @@ func _on_body_entered(body):
 		body.stamina_timer.start()
 	shop.shop_theme.stop()
 	body.global_position = shop.any_main_pos
-	pause_state = true if body.loader==null else false
+	
 	get_tree().paused = pause_state
 	
 	DialogSignals.emit_signal("out_of_the_shop")

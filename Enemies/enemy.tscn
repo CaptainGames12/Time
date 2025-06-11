@@ -1,8 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsr7eeo6300mj"]
+[gd_scene load_steps=27 format=3 uid="uid://dsr7eeo6300mj"]
 
 [ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_ud3qa"]
 [ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://rooms/main/shadow.tscn" id="2_l28ki"]
-[ext_resource type="Texture2D" uid="uid://nfai06t8ec8m" path="res://Enemies/angry clock.png" id="3_ptjc2"]
+[ext_resource type="Texture2D" uid="uid://0mhb5ep2dcq3" path="res://Enemies/enemy_anim.png" id="3_47qgu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5bivi"]
 radius = 3063.0
@@ -15,34 +15,116 @@ height = 42.8069
 [sub_resource type="CircleShape2D" id="CircleShape2D_g3c5e"]
 radius = 33.3766
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_47qgu"]
-atlas = ExtResource("3_ptjc2")
-region = Rect2(64, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_572h1"]
-atlas = ExtResource("3_ptjc2")
-region = Rect2(0, 0, 32, 32)
+atlas = ExtResource("3_47qgu")
+region = Rect2(210, 0, 35, 35)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rt1x0"]
-atlas = ExtResource("3_ptjc2")
-region = Rect2(32, 0, 32, 32)
+atlas = ExtResource("3_47qgu")
+region = Rect2(245, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wvsg"]
+atlas = ExtResource("3_47qgu")
+region = Rect2(280, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk8ng"]
+atlas = ExtResource("3_47qgu")
+region = Rect2(315, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4o6mh"]
+atlas = ExtResource("3_47qgu")
+region = Rect2(350, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_koi6q"]
+atlas = ExtResource("3_47qgu")
+region = Rect2(385, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlnat"]
+atlas = ExtResource("3_47qgu")
+region = Rect2(420, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tligp"]
+atlas = ExtResource("3_47qgu")
+region = Rect2(0, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud0f3"]
+atlas = ExtResource("3_47qgu")
+region = Rect2(35, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xcb7"]
+atlas = ExtResource("3_47qgu")
+region = Rect2(70, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okpwn"]
+atlas = ExtResource("3_47qgu")
+region = Rect2(105, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc8db"]
+atlas = ExtResource("3_47qgu")
+region = Rect2(140, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq7gr"]
+atlas = ExtResource("3_47qgu")
+region = Rect2(175, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq37r"]
+atlas = ExtResource("3_47qgu")
+region = Rect2(210, 0, 35, 35)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8wvsg"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_47qgu")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_572h1")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rt1x0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wvsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gk8ng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4o6mh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_koi6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlnat")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tligp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud0f3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xcb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okpwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc8db")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq7gr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq37r")
 }],
 "loop": true,
 "name": &"walking",
@@ -132,7 +214,7 @@ avoidance_enabled = true
 position = Vector2(-1, -4)
 scale = Vector2(2.4375, 2.4375)
 sprite_frames = SubResource("SpriteFrames_8wvsg")
-animation = &"idle"
+animation = &"death"
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = -34.0

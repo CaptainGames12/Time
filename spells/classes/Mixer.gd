@@ -11,8 +11,10 @@ var elements={
 	"fire+wind":preload("res://spells/smoke/smoke.tres"),
 	"earth+fire":preload("res://spells/fire wall/fire_wall.tres"),
 	"ice+wind":preload("res://spells/blizzard/blizzard.tres"),
-	"earth+ice":preload("res://spells/wall/wall.tres")
+	"earth+ice":preload("res://spells/wall/wall.tres"),
+	"earth+wind":preload("res://spells/rift/rift.tres")
 	}
+var spell: InvItem
 func mix(arr:Array[String]):
 	var dmg = 0
 	var same_elements:Dictionary[String, int]={

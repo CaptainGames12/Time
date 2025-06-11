@@ -1,16 +1,18 @@
-[gd_resource type="Resource" script_class="InvItem" load_steps=5 format=3 uid="uid://ccy3hlsvd2046"]
+[gd_resource type="Resource" script_class="InvItem" load_steps=6 format=3 uid="uid://ccy3hlsvd2046"]
 
 [ext_resource type="AudioStream" uid="uid://tqrbmc40xc1y" path="res://spells/wind/fx_veter.mp3" id="1_2tyxb"]
 [ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="2_16rtn"]
 [ext_resource type="Texture2D" uid="uid://ddw71g0knhyu0" path="res://spells/wind/ui_mini_icon_veter.png" id="3_orvsq"]
-[ext_resource type="Texture2D" uid="uid://0q64x2sx66v" path="res://spells/wind/tornado.png" id="4_knrpn"]
+[ext_resource type="Texture2D" uid="uid://oy3rkr036ggx" path="res://spells/wind/ui_icon_spell_veter.png" id="4_fkttk"]
+[ext_resource type="Texture2D" uid="uid://0q64x2sx66v" path="res://spells/wind/tornado.png" id="5_6g1nc"]
 
 [resource]
 script = ExtResource("2_16rtn")
 item_name = "wind"
-texture = ExtResource("4_knrpn")
 price = 6
 damage = 2
-audio = ExtResource("1_2tyxb")
+texture = ExtResource("5_6g1nc")
+inv_texture = ExtResource("4_fkttk")
 small_texture = ExtResource("3_orvsq")
+audio = ExtResource("1_2tyxb")
 metadata/_custom_type_script = "uid://dsc584apkhxu"

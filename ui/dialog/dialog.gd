@@ -20,21 +20,25 @@ func buttons_disable():
 	btn_save.action="nothing"
 	btn_stop.action="nothing"
 func _ready() -> void:
+	state_changer(Text_state.ONREADY)
 	main.get_node("CanvasLayer/Joysticks/SpellJoystick").process_mode=Node.PROCESS_MODE_PAUSABLE
 	buttons_disable()
-	DialogSignals.tutorial_started.emit()
-	DialogSignals.tutorial_started.connect(start)
-	DialogSignals.bought.connect(got_item)
-	DialogSignals.out_of_the_shop.connect(cast_spell)
-	DialogSignals.shoot.connect(shoot)
-	DialogSignals.tutorial_finished.connect(finish)
-	DialogSignals.time_save_pressed.connect(save_pressed)
-	DialogSignals.time_stop_pressed.connect(stop_pressed)
-	if player.loader==null:	
-		get_tree().paused=true
+	if Texts.place!=10:
+		DialogSignals.tutorial_started.emit()
+		DialogSignals.tutorial_started.connect(start)
+		DialogSignals.bought.connect(got_item)
+		DialogSignals.out_of_the_shop.connect(cast_spell)
+		DialogSignals.shoot.connect(shoot)
+		DialogSignals.tutorial_finished.connect(finish)
+		DialogSignals.time_save_pressed.connect(save_pressed)
+		DialogSignals.time_stop_pressed.connect(stop_pressed)
+		DialogSignals.mixed_elements.connect(shoot_mixed)
+	if player.loader!=null:	
+		
+		DialogSignals.tutorial_finished.emit()
 var shoot_counter=0	
 func _process(delta: float) -> void:
-	
+
 	match current_state:
 		Text_state.ONREADY:
 			
@@ -59,12 +63,13 @@ func _process(delta: float) -> void:
 				if isSkipped or Texts.place==6:
 					is_tutorial_here = false
 					DialogSignals.tutorial_finished.emit()
-					get_tree().queue_delete($"../..")
 					
-				if !isTutorialStarted:
+					
+				if !isTutorialStarted and Texts.place!=10:
 					Texts.place+=1
 func finish():
 	get_tree().paused = false
+	get_parent().get_parent().queue_free()
 func save_pressed():
 	Texts.place=6
 	state_changer(Text_state.ONREADY)
@@ -86,11 +91,22 @@ func stop_pressed():
 	state_changer(Text_state.ONREADY)	
 func shoot():
 	if player.in_the_shop==false:
-		btn_stop.action="time_stop"
+		
 		shoot_counter+=1
 		if shoot_counter==1:
-			Texts.place=8
-			state_changer(Text_state.ONREADY)	
+			Texts.place=11
+			state_changer(Text_state.ONREADY)
+			DialogSignals.shoot.disconnect(shoot)
+func shoot_mixed():	
+	DialogSignals.shoot.connect(mix_elements)
+func mix_elements():
+	
+	shoot_counter=0
+	shoot_counter+=1
+	if shoot_counter==1:
+		btn_stop.action="time_stop"
+		Texts.place=8
+		state_changer(Text_state.ONREADY)	
 func generate_dialogue(my_text = next_text):
 	
 	$"../../AudioStreamPlayer2D".play(2)
@@ -121,10 +137,4 @@ func start():
 		
 func state_changer(next_state):
 	current_state = next_state
-	match next_state:
-		Text_state.ONREADY:
-			print("is on ready")
-		Text_state.GEN:
-			print("generating")
-		Text_state.FINISHED:
-			print("finished")
+	

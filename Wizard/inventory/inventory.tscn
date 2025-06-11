@@ -29,8 +29,8 @@ wait_time = 3.0
 
 [node name="Item_display" parent="Slot1" instance=ExtResource("7_i1ngt")]
 z_index = 5
-position = Vector2(5.6, 7.6)
-scale = Vector2(0.3, 0.3)
+position = Vector2(9.8, 9.6)
+centered = true
 
 [node name="Slot2" type="TouchScreenButton" parent="." node_paths=PackedStringArray("display")]
 unique_name_in_owner = true
@@ -43,8 +43,8 @@ display = NodePath("Item_display2")
 
 [node name="Item_display2" parent="Slot2" instance=ExtResource("7_i1ngt")]
 z_index = 5
-position = Vector2(5.6, 6)
-scale = Vector2(0.3, 0.3)
+position = Vector2(9.6, 9.4)
+centered = true
 
 [node name="Timer" type="Timer" parent="Slot2"]
 wait_time = 3.0
@@ -60,8 +60,8 @@ display = NodePath("Item_display3")
 
 [node name="Item_display3" parent="Slot3" instance=ExtResource("7_i1ngt")]
 z_index = 5
-position = Vector2(6.2, 5.8)
-scale = Vector2(0.3, 0.3)
+position = Vector2(9.6, 9.8)
+centered = true
 
 [node name="Timer" type="Timer" parent="Slot3"]
 wait_time = 3.0

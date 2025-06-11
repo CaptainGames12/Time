@@ -1,15 +1,54 @@
-[gd_scene load_steps=9 format=3 uid="uid://chq2r7qj02k12"]
+[gd_scene load_steps=18 format=3 uid="uid://chq2r7qj02k12"]
 
-[ext_resource type="Texture2D" uid="uid://crteyewft5qj0" path="res://Enemies/boss/boss clock.png" id="1_al4nj"]
 [ext_resource type="Script" uid="uid://bg45rpd0yoohk" path="res://Enemies/boss/evil_clock_boss.gd" id="1_dv3vu"]
-[ext_resource type="Texture2D" uid="uid://bty02j8qjhict" path="res://Enemies/boss/rolling boss clock.png" id="2_iq1lk"]
+[ext_resource type="Texture2D" uid="uid://bc1lhisxgwn2p" path="res://Enemies/boss/boss_anim.png" id="2_jwmnu"]
 [ext_resource type="Texture2D" uid="uid://cxrbjkw82lgkr" path="res://Enemies/boss/defense.png" id="3_jwmnu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iq1lk"]
+atlas = ExtResource("2_jwmnu")
+region = Rect2(540, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqen0"]
+atlas = ExtResource("2_jwmnu")
+region = Rect2(630, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkftd"]
+atlas = ExtResource("2_jwmnu")
+region = Rect2(720, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3ky8"]
+atlas = ExtResource("2_jwmnu")
+region = Rect2(810, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im47h"]
+atlas = ExtResource("2_jwmnu")
+region = Rect2(900, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spbmy"]
+atlas = ExtResource("2_jwmnu")
+region = Rect2(990, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_865py"]
+atlas = ExtResource("2_jwmnu")
+region = Rect2(1080, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivxh8"]
+atlas = ExtResource("2_jwmnu")
+region = Rect2(1170, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o1vq"]
+atlas = ExtResource("2_jwmnu")
+region = Rect2(0, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7fpi6"]
+atlas = ExtResource("2_jwmnu")
+region = Rect2(90, 0, 90, 90)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vqen0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_iq1lk")
+"texture": SubResource("AtlasTexture_iq1lk")
 }],
 "loop": true,
 "name": &"angry",
@@ -17,11 +56,40 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_al4nj")
+"texture": SubResource("AtlasTexture_vqen0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkftd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3ky8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im47h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spbmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_865py")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivxh8")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o1vq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7fpi6")
 }],
 "loop": true,
 "name": &"not angry",
-"speed": 5.0
+"speed": 2.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dv3vu"]
@@ -39,8 +107,9 @@ collision_mask = 25
 script = ExtResource("1_dv3vu")
 
 [node name="ClockBossSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.272649, 0.272649)
 sprite_frames = SubResource("SpriteFrames_vqen0")
-animation = &"angry"
+animation = &"not angry"
 autoplay = "not angry"
 
 [node name="Locator sprite" type="Sprite2D" parent="."]

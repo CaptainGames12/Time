@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv8rrkp1rkaur"]
+[gd_scene load_steps=5 format=3 uid="uid://dv8rrkp1rkaur"]
 
 [ext_resource type="Texture2D" uid="uid://b166u30ogn6tg" path="res://spells/fire/fire.png" id="1_6etro"]
 [ext_resource type="Script" uid="uid://dgebn41kigw1j" path="res://spells/fire wall/fire_wall.gd" id="1_rhhld"]
+[ext_resource type="Script" uid="uid://ciy4i6ipl3s1g" path="res://spells/fire/fire_effect.gd" id="2_culxv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhhld"]
 radius = 26.9907
@@ -18,6 +19,7 @@ tangential_accel_min = -100.0
 tangential_accel_max = 100.0
 color = Color(1, 0, 0, 1)
 script = ExtResource("1_rhhld")
+fire_effect = ExtResource("2_culxv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(22, 2)

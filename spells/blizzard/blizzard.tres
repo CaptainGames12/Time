@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="InvItem" load_steps=4 format=3 uid="uid://boobognemufba"]
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://boobognemufba"]
 
-[ext_resource type="PackedScene" uid="uid://bm6pfs35tj7av" path="res://spells/blizzard/blizzard.tscn" id="1_0jv6a"]
 [ext_resource type="AudioStream" uid="uid://cmfo0yduxpyeo" path="res://spells/ice/fx_ice.mp3" id="1_8s1t5"]
 [ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="1_goa7e"]
 
@@ -8,7 +7,6 @@
 script = ExtResource("1_goa7e")
 item_name = "blizzard"
 price = 0
-damage = 2
-particle = ExtResource("1_0jv6a")
+damage = 0
 audio = ExtResource("1_8s1t5")
 metadata/_custom_type_script = "uid://dsc584apkhxu"

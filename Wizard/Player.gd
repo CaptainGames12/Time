@@ -8,6 +8,25 @@ var knockback_power: Vector2 = Vector2.ZERO
 var attacked=false
 var save_path = "user://save.tres"
 var saving = SaveGame.new()
+var mat := preload("res://Wizard/hurt.tres") as ShaderMaterial
+var health = Global.hp:
+	set(value):
+		if value<health:
+			mat.set_shader_parameter("flash_strength", 1.0)
+			await get_tree().create_timer(0.1).timeout
+			mat.set_shader_parameter("flash_strength", 0.0)
+			await get_tree().create_timer(0.1).timeout
+			mat.set_shader_parameter("flash_strength", 1.0)
+			await get_tree().create_timer(0.1).timeout
+			mat.set_shader_parameter("flash_strength", 0.0)
+			await get_tree().create_timer(0.1).timeout
+			mat.set_shader_parameter("flash_strength", 1.0)
+			await get_tree().create_timer(0.1).timeout
+			mat.set_shader_parameter("flash_strength", 0.0)
+		health=value
+		healthbar.value = value
+		
+		
 @onready var collect_coin: AudioStreamPlayer2D = $Collect_coin
 @onready var joystick: Node2D = %Joystick
 @onready var spell_joystick: Node2D = %SpellJoystick
@@ -30,18 +49,33 @@ var saving = SaveGame.new()
 
 @onready var saver = ResourceSaver
 @onready var loader = ResourceLoader.load(save_path) as SaveGame
+var switch =1
+var ring_active := false
+var start_time := 0
+var ring_duration := 1000 # мілісекунд (1 секунда)
 
+func trigger_ring():
+	ring_active = true
+	start_time = Time.get_ticks_msec()
+	$"TimeStop".visible = true
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	animation_tree.active=true
 	healthbar.max_value =10
 	healthbar.value = 10
-	Global.hp = healthbar.value
-	healthbar.value = Global.hp
+	Global.hp=10
 	load_save()
 
-		
 func _process(delta: float) -> void:
+	if ring_active:
+		var now = Time.get_ticks_msec()
+		var elapsed = now - start_time
+		var progress = float(elapsed) / ring_duration
+		$"TimeStop".material.set_shader_parameter("progress", progress)
+
+		if progress >= 1.0:
+			ring_active = false
+			$"TimeStop".visible = false
 	var idle = !velocity.normalized()
 	if !idle:
 		last_facing_dir= velocity.normalized()
@@ -64,10 +98,19 @@ func shoot():
 			else: 
 				attacked=false
 func _physics_process(delta):
+	if get_tree().paused==true and dialogs==null and !in_the_shop:
+			
+			switch=1
+	else:
+			
+			switch=0
+		
+	$"../ColorRect".material.set_shader_parameter("enabled", switch)
 	if Global.hp<=0:
 	
 		SpellMixer.chosen_items=[null, null, null, null, null]
-	healthbar.value=Global.hp	
+	
+	health=Global.hp	
 	%SaveButton.action="time_save"
 	%TimeStop.action="time_stop"
 	velocity = joystick.input_vector*SPEED
@@ -81,12 +124,18 @@ func _physics_process(delta):
 	shoot()
 	stop_time()
 	move_and_slide()
+
 func stop_time():
 	if Input.is_action_just_pressed("time_stop"):
+		
 		if dialogs==null and !in_the_shop and %Treasure!=null:
 				get_tree().paused = !get_tree().paused
 				stamina_timer.start()
 				%TimeStopSound.play()
+				switch=!switch
+				trigger_ring()
+				
+
 		DialogSignals.time_stop_pressed.emit()
 func attack(touch_pos):
 	var bullet = attack_node.instantiate()
@@ -128,8 +177,6 @@ func _on_cooldown_timer_timeout() -> void:
 	cooldown_finished = true	
 func load_save():
 	if loader != null:	
-		DialogSignals.tutorial_finished.emit()
-		%Dialogs.queue_free()
 		
 		global_position = loader.player_pos
 		healthbar.value = loader.player_health

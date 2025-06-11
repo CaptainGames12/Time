@@ -1,12 +1,14 @@
 extends CPUParticles2D
-@export var fire_wall:InvItem
+var spell_manager = preload("res://spell_manager.tscn")
+@export var fire_effect:GDScript
 func _ready() -> void:
 	await get_tree().create_timer(4).timeout
 	queue_free()
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy"):
-		body.fired()
-		
+	body.add_child(spell_manager.instantiate())
+	body.get_node("SpellManager").set_script(fire_effect)
+	body.get_node("SpellManager").spell = SpellMixer.spell
+	body.get_node("SpellManager").apply_effect(body)
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

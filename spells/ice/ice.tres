@@ -1,16 +1,12 @@
-[gd_resource type="Resource" script_class="InvItem" load_steps=5 format=3 uid="uid://c7g1jmn5c16e4"]
+[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://c7g1jmn5c16e4"]
 
 [ext_resource type="AudioStream" uid="uid://cmfo0yduxpyeo" path="res://spells/ice/fx_ice.mp3" id="1_w1t8e"]
 [ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="1_y0gtf"]
-[ext_resource type="Texture2D" uid="uid://di1ghrjnhpudb" path="res://spells/ice/ice.png" id="2_bjp7k"]
-[ext_resource type="Texture2D" uid="uid://drr1p8dv80tbk" path="res://spells/ice/ui_mini_icon_ice.png" id="2_lly8a"]
 
 [resource]
 script = ExtResource("1_y0gtf")
 item_name = "ice"
-texture = ExtResource("2_bjp7k")
-price = 5
-damage = 2
+price = 0
+damage = 0
 audio = ExtResource("1_w1t8e")
-small_texture = ExtResource("2_lly8a")
 metadata/_custom_type_script = "uid://dsc584apkhxu"

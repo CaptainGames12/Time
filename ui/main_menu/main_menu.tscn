@@ -1,0 +1,255 @@
+[gd_scene load_steps=16 format=3 uid="uid://dnkfttplq4vu7"]
+
+[ext_resource type="Script" uid="uid://cbohdxbtwkk3k" path="res://ui/main_menu/main_menu.gd" id="1_6mijq"]
+[ext_resource type="Texture2D" uid="uid://foa3d0ge6omo" path="res://ui/main_menu/menu_background.png" id="2_3c04x"]
+[ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="3_4e78x"]
+[ext_resource type="Texture2D" uid="uid://co5lxchi5cw8a" path="res://ui/main_menu/world_map.png" id="3_joh67"]
+[ext_resource type="Texture2D" uid="uid://4a8xo06fddxw" path="res://ui/main_menu/menu_button.png" id="4_joh67"]
+[ext_resource type="LabelSettings" uid="uid://bnbl3raxn62on" path="res://Localization/main_menu_text.tres" id="7_s4pem"]
+[ext_resource type="Script" uid="uid://drptqy3fc7ye6" path="res://ui/main_menu/settings.gd" id="7_u184e"]
+[ext_resource type="ButtonGroup" uid="uid://goyth01w3b2" path="res://new_button_group.tres" id="8_6mijq"]
+[ext_resource type="AudioStream" uid="uid://cla4svsndu54l" path="res://ui/menu.mp3" id="8_lknku"]
+[ext_resource type="Texture2D" uid="uid://brkkuxm81hjbt" path="res://ui/main_menu/menu_button_pressed.png" id="9_w2r0d"]
+[ext_resource type="Script" uid="uid://u7vjbpgeofp3" path="res://ui/main_menu/level.gd" id="10_4e78x"]
+[ext_resource type="FontFile" uid="uid://diep4qd8unfs5" path="res://Localization/minecraft_ukr_eng.ttf" id="12_xio0d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bvwqm"]
+font = ExtResource("3_4e78x")
+font_size = 54
+font_color = Color(0.925314, 0.422854, 0.310888, 1)
+outline_size = 14
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w2r0d"]
+font = ExtResource("12_xio0d")
+font_size = 36
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s4pem"]
+font = ExtResource("12_xio0d")
+font_color = Color(0, 0, 0, 1)
+
+[node name="Main menu" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6mijq")
+
+[node name="NotLoadedMap" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 1150.0
+offset_bottom = 651.0
+texture = ExtResource("2_3c04x")
+
+[node name="LoadedMap" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 649.0
+texture = ExtResource("3_joh67")
+
+[node name="Timeful adventure" type="Label" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 96.0
+offset_right = 1111.0
+offset_bottom = 231.0
+text = "Timeful adventure"
+label_settings = SubResource("LabelSettings_bvwqm")
+
+[node name="New" type="TouchScreenButton" parent="."]
+position = Vector2(285, 424)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("4_joh67")
+texture_pressed = ExtResource("9_w2r0d")
+
+[node name="Label" type="Label" parent="New"]
+auto_translate_mode = 1
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 129.0
+offset_bottom = 39.0
+scale = Vector2(0.436429, 0.436429)
+text = "new"
+label_settings = ExtResource("7_s4pem")
+vertical_alignment = 1
+
+[node name="Settings" type="TouchScreenButton" parent="."]
+position = Vector2(480, 529)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("4_joh67")
+texture_pressed = ExtResource("9_w2r0d")
+
+[node name="Label" type="Label" parent="Settings"]
+auto_translate_mode = 1
+offset_left = 4.0
+offset_top = 2.5
+offset_right = 220.0
+offset_bottom = 39.5
+scale = Vector2(0.386149, 0.386149)
+text = "settings"
+label_settings = ExtResource("7_s4pem")
+vertical_alignment = 1
+text_overrun_behavior = 1
+
+[node name="Load" type="TouchScreenButton" parent="."]
+position = Vector2(678, 422)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("4_joh67")
+texture_pressed = ExtResource("9_w2r0d")
+
+[node name="Label" type="Label" parent="Load"]
+auto_translate_mode = 1
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 219.0
+offset_bottom = 40.0
+scale = Vector2(0.392252, 0.392252)
+text = "continue"
+label_settings = ExtResource("7_s4pem")
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_lknku")
+autoplay = true
+parameters/looping = true
+
+[node name="SettingsBack" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 172.0
+offset_top = 233.0
+offset_right = 998.0
+offset_bottom = 708.0
+scale = Vector2(1, 0.550447)
+texture = ExtResource("4_joh67")
+script = ExtResource("7_u184e")
+
+[node name="Settings" type="GridContainer" parent="SettingsBack"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 85.3851
+offset_right = 805.0
+offset_bottom = 410.385
+scale = Vector2(0.971473, 1.73095)
+
+[node name="Language" type="TextureButton" parent="SettingsBack/Settings"]
+layout_mode = 2
+texture_normal = ExtResource("4_joh67")
+texture_pressed = ExtResource("9_w2r0d")
+
+[node name="Label" type="Label" parent="SettingsBack/Settings/Language"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.63342
+offset_right = 229.0
+offset_bottom = 36.6334
+scale = Vector2(0.374936, 0.374936)
+text = "Language"
+label_settings = SubResource("LabelSettings_w2r0d")
+
+[node name="Language" type="Control" parent="SettingsBack"]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="English" type="TextureButton" parent="SettingsBack/Language"]
+z_index = 5
+layout_mode = 0
+offset_left = 45.0
+offset_top = 87.2019
+offset_right = 108.0
+offset_bottom = 118.202
+scale = Vector2(1.27707, 1.89324)
+toggle_mode = true
+button_group = ExtResource("8_6mijq")
+texture_normal = ExtResource("4_joh67")
+texture_pressed = ExtResource("9_w2r0d")
+
+[node name="English" type="Label" parent="SettingsBack/Language/English"]
+layout_mode = 0
+offset_left = 7.83042
+offset_top = 2.8787
+offset_right = 231.83
+offset_bottom = 35.8787
+scale = Vector2(0.374936, 0.374936)
+text = "English"
+label_settings = SubResource("LabelSettings_w2r0d")
+
+[node name="Ukrainian" type="TextureButton" parent="SettingsBack/Language"]
+z_index = 5
+layout_mode = 0
+offset_left = 48.0
+offset_top = 154.42
+offset_right = 141.0
+offset_bottom = 185.42
+scale = Vector2(1.27707, 1.89324)
+toggle_mode = true
+button_group = ExtResource("8_6mijq")
+texture_normal = ExtResource("4_joh67")
+texture_pressed = ExtResource("9_w2r0d")
+
+[node name="Ukrainian" type="Label" parent="SettingsBack/Language/Ukrainian"]
+layout_mode = 0
+offset_left = 6.26434
+offset_top = 4.79787
+offset_right = 262.264
+offset_bottom = 37.7979
+scale = Vector2(0.313756, 0.313756)
+text = "Ukrainian"
+label_settings = SubResource("LabelSettings_w2r0d")
+
+[node name="Close" type="Button" parent="SettingsBack"]
+layout_mode = 0
+offset_left = 707.0
+offset_top = 81.7517
+offset_right = 800.0
+offset_bottom = 121.752
+scale = Vector2(0.94133, 1.87777)
+text = "Close"
+
+[node name="LevelButtons" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="main" type="TextureButton" parent="LevelButtons"]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 353.0
+offset_right = 196.0
+offset_bottom = 376.0
+disabled = true
+texture_normal = ExtResource("4_joh67")
+texture_pressed = ExtResource("9_w2r0d")
+stretch_mode = 0
+script = ExtResource("10_4e78x")
+
+[node name="Label" type="Label" parent="LevelButtons/main"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 73.0
+offset_bottom = 22.0
+scale = Vector2(1.05163, 0.885568)
+text = "forest"
+label_settings = SubResource("LabelSettings_s4pem")
+
+[connection signal="pressed" from="New" to="." method="_on_new_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="SettingsBack/Settings/Language" to="SettingsBack" method="_on_language_pressed"]
+[connection signal="toggled" from="SettingsBack/Language/English" to="." method="_on_english_toggled"]
+[connection signal="toggled" from="SettingsBack/Language/Ukrainian" to="." method="_on_ukrainian_toggled"]
+[connection signal="pressed" from="SettingsBack/Close" to="SettingsBack" method="_on_close_pressed"]
+[connection signal="level_choosen" from="LevelButtons/main" to="." method="_on_main_level_choosen"]
+[connection signal="pressed" from="LevelButtons/main" to="LevelButtons/main" method="_on_pressed"]

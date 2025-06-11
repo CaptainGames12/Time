@@ -1,4 +1,4 @@
-extends Sprite2D
+extends AnimatedSprite2D
 
 @onready var money= get_parent().get_parent().get_node("CanvasLayer/MoneyUI/Money")
 

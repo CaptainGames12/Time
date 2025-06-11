@@ -1,0 +1,84 @@
+# LANGUAGE translation for Timeful adventure-phone for the following files:
+# res://ui/dialog/texts.gd
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Timeful adventure-phone\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: ui/dialog/texts.gd
+msgid "time_stop"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "time_reverse"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "greetings"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "question"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "shop"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "shoped"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "shooting"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "ending"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "skipping"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "clockphrase1"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "clockphrase2"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "clockphrase3"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "congrats"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "new"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "settings"
+msgstr ""
+
+#: ui/dialog/texts.gd
+msgid "continue"
+msgstr ""
+
+
+#: ui/dialog/texts.gd
+msgid "forest"
+msgstr ""
+
+
+

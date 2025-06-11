@@ -1,6 +1,6 @@
 extends CharacterBody2D
 class_name ClockBoss
-@export var boss_health = 300
+
 var isAngried = false
 @onready var player = get_node("/root/Node2D/Player")
 var isProtected=true
@@ -10,6 +10,24 @@ var isProtected=true
 var target_pos = Vector2(0,0)
 var SPEED = 20
 var ROT_SPEED = 300
+var master_dialog = preload("res://ui/dialog/dialogs.tscn").instantiate()
+@export var health = 20:
+	set(value):
+		if value<=0:
+			if phrases!=null:	
+				phrases.queue_free()
+			health=value
+			get_parent().get_node("Treasure").the_end_of_forest()
+			get_parent().get_node("CanvasLayer").add_child(master_dialog)
+			
+
+			$Collision.disabled=true
+			clock_boss_sprite.animation_finished.connect(queue_free)
+			
+			clock_boss_sprite.play("death")
+			
+		else:
+			health=value	
 signal hit_player
 signal stopHit
 @onready var stop_vector: RayCast2D = get_node("/root/Node2D/StopVec")
@@ -39,8 +57,9 @@ func rolling_animate(delta):
 	if velocity.x>0:
 		rotation_degrees+=ROT_SPEED*delta
 	if isAngried:
-		clock_boss_sprite.play("angry")
-		defense.visible = false
+		if health>=0:
+			clock_boss_sprite.play("angry")
+			defense.visible = false
 func rolling_physics(delta):
 	if isAngried:
 		if get_tree().paused==false:
@@ -77,13 +96,15 @@ func shooting():
 func _process(delta: float) -> void:
 	match state:
 		States.IDLE:
-			defense.visible = true
-			clock_boss_sprite.play("not angry")
-			rotation_degrees=0
-			shooting()
+			if health>=0:
+				defense.visible = true
+				clock_boss_sprite.play("not angry")
+				rotation_degrees=0
+				shooting()
 		States.ROLLING:
 			rolling_animate(delta)
 func _ready() -> void:
+	Texts.place=10
 	get_parent().get_node("CanvasLayer").add_child(phrases)
 	get_parent().get_node("MainMusic").playing=false
 	stopHit.connect(stopHitEmited)
@@ -126,9 +147,8 @@ func _on_attack_body_entered(body: Node2D) -> void:
 	elif body.is_in_group("tree"):
 		
 		body.queue_free()
-		boss_health -=2
-		if boss_health==0:
-			queue_free()
+		health -=2
+		
 func finishing_player(body):
 	restart_ui =get_parent().get_node("CanvasLayer/TimeControl/RestartUI")
 	
@@ -142,7 +162,27 @@ func finishing_player(body):
 			body.queue_free()
 			get_tree().paused = true
 			restart_ui.visible = true
-		
+		game_over_anim()
+	
+func game_over_anim():
+	get_parent().get_node("CanvasLayer/TimeControl/RestartUI/Clock").game_over=true
+	get_parent().get_node("Sprite2D").global_position=get_parent().get_node("Treasure").position
+	get_parent().get_node("Sprite2D").visible=true
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(2)
+			
+	tween.tween_property($"../Sprite2D", "scale", Vector2(60, 60), 3)
+	get_parent().get_node("MainMusic").stream=preload("res://Wizard/game_over_without_ticking.mp3")
+	get_parent().get_node("MainMusic").process_mode = Node.PROCESS_MODE_ALWAYS
+	tween.finished.connect(get_parent().get_node("MainMusic").play)
+	get_tree().paused = true
+	restart_ui.visible = true
+	tween.tween_property(restart_ui, "modulate", Color(1, 1, 1, 1), 2)
+	tween.finished.connect(tween.kill)
+	tween.finished.connect(turn_on_restart)
+	
+func turn_on_restart():
+	restart_ui.get_node("RestartButton").action="restart"	
 func _on_locator_body_entered(body: Node2D) -> void:
 	if rolling_time.is_stopped() and body is Player:
 		get_direction_rolling(body)
@@ -165,6 +205,6 @@ func watered():
 func fired():
 	for i in range(4):
 		await get_tree().create_timer(1).timeout
-		boss_health-=2
+		health-=2
 		if i==4:
 			get_child(0).queue_free()

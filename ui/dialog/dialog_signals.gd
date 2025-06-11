@@ -7,3 +7,4 @@ signal shoot
 signal time_stop_pressed
 signal time_save_pressed
 signal tutorial_finished
+signal mixed_elements

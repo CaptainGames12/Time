@@ -15,7 +15,7 @@ shape = SubResource("CircleShape2D_6d80s")
 
 [node name="display" type="Sprite2D" parent="."]
 position = Vector2(-9.09495e-13, -16)
-scale = Vector2(0.77712, 0.786854)
+scale = Vector2(4, 4)
 script = ExtResource("2_k51mq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

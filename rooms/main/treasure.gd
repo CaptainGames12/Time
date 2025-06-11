@@ -39,4 +39,8 @@ func _on_area_2d_body_entered(body: Area2D) -> void:
 			
 func turn_on_restart():
 	restart_ui.get_node("RestartButton").action="restart"
-			
+func the_end_of_forest():
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "modulate", Color(0, 0, 0, 0), 1)
+	tween.finished.connect(queue_free)		
+	tween.finished.connect($".."/Main_animations.play.bind("ending"))
