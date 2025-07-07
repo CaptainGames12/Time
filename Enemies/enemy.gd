@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Enemy
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 var counter = 0
+
 @export var health = 100:
 	set(value):
 		if value<=0:
@@ -17,7 +18,8 @@ var counter = 0
 			
 		else: 
 			health=value
-			healthbar.value = health
+			if healthbar!=null:	
+				healthbar.value = health
 @export var SPEED = 100
 
 @onready var animation: AnimatedSprite2D = $Animation
@@ -31,8 +33,7 @@ var coin = preload("res://shopping/coin.tscn").instantiate()
 var treasure: Sprite2D
 
 var restart_ui: Control
-var knock_speed = 50
-		
+
 var player = null
 
 var treasure_distance: Vector2 
@@ -56,9 +57,7 @@ func _ready() -> void:
 
 func spawn_coin_and_free():
 	SPEED=0
-	
-	
-	
+
 	emit_signal("dead")
 	
 	get_parent().call_deferred("add_child", coin)
@@ -69,10 +68,9 @@ func spawn_coin_and_free():
 func _on_detection_body_entered(body):
 	if body.name=="Player":
 		player = body	
-
 func random_vector():
 	return Vector2(randi_range(-1, 1), randi_range(-1, 1))
-	
+
 func move_to_target(target, delta):
 		if tick >= 30  or !confused :
 			nav.target_position = target.position
@@ -80,8 +78,7 @@ func move_to_target(target, delta):
 			final_direction = final_direction.normalized() if !confused else random_vector()
 
 			velocity = velocity.lerp(final_direction*SPEED*delta, 1)
-			tick = 0
-
+			tick=0
 func finding_target():
 	treasure_distance = (treasure.position - position)
 	player_distance = (player.position - position)  
@@ -93,42 +90,34 @@ func moving_animate():
 			animation.play("walking")
 		else:
 			animation.play("idle")	
-
-		
+					
 func _physics_process(delta):
-	
 
-	
 	if player!=null and treasure != null:
 		finding_target()
 	if is_tres_closer and treasure != null:
 		move_to_target(treasure, delta)
 	elif !is_tres_closer and player != null:
 		move_to_target(player, delta)
+	
 	moving_animate()
-	
-	tick += 1
-
+	tick+=1
 	move_and_collide(velocity)
-
-func winded(attack_direction):
-	velocity+=attack_direction*knock_speed	
-
-func frozen():
-	SPEED = 0
-	await get_tree().create_timer(4).timeout
-	SPEED = 100	
-		
-func watered():
-	SPEED = 50
-	await get_tree().create_timer(4).timeout
-	SPEED = 100
 	
-
-func hitting_player():
-	Global.hp-=1
-	attack_animation_player.play("attack")
-	
+func hitting(body: Node2D):
+	if body.is_in_group("player"):
+		Global.hp-=1
+		attack_animation_player.play("attack")
+		if body!=null:	
+			body.get_node("Oof").play()
+		if Global.hp <= 0:
+			player_free(body)
+	if body.is_in_group("treasure"):
+		var treasure = body.get_parent()
+		treasure.treasureDurability-=10
+		treasure.durabilityBar.value = treasure.treasureDurability
+		attack_animation_player.play("attack")
+		print("crystal_attacked")
 func player_free(body):
 	if body!=null:
 		body.process_mode=Node.PROCESS_MODE_PAUSABLE
@@ -137,12 +126,10 @@ func player_free(body):
 		for j in i.get_children():
 			if j.name!="RestartUI":
 				j.queue_free()
-
-	
-	
 	game_over_anim()
-	
+
 func game_over_anim():
+	
 	get_parent().get_node("CanvasLayer/TimeControl/RestartUI/Clock").game_over=true
 	$"../Sprite2D".global_position=treasure.position
 	$"../Sprite2D".visible=true
@@ -158,14 +145,12 @@ func game_over_anim():
 	tween.tween_property(restart_ui, "modulate", Color(1, 1, 1, 1), 2)
 	tween.finished.connect(tween.kill)
 	tween.finished.connect(turn_on_restart)
+	
 func turn_on_restart():
 	restart_ui.get_node("RestartButton").action="restart"
 func _on_attack_body_entered(body:Node2D)->void:
-	if body.is_in_group("player"):
-		hitting_player()
+	hitting(body)
 		
-		if body!=null:	
-			body.get_node("Oof").play()
-		if Global.hp <= 0:
-			player_free(body)
-			
+	
+
+		

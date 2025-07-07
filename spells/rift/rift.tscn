@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://f0wixgyvj01l"]
 
-[ext_resource type="Script" uid="uid://2dutvyyk5jye" path="res://rift.gd" id="1_24qrt"]
+[ext_resource type="Script" uid="uid://2dutvyyk5jye" path="res://spells/rift/rift.gd" id="1_24qrt"]
 [ext_resource type="Texture2D" uid="uid://fnmep1kv4o8o" path="res://spells/rift/rift.png" id="2_trh1c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8rbqy"]

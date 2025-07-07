@@ -165,7 +165,7 @@ animations = [{
 size = Vector2(194, 43.4649)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ndgev"]
-size = Vector2(46.3333, 16.25)
+size = Vector2(62, 16.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ehthk"]
 size = Vector2(45.6774, 14)
@@ -368,6 +368,7 @@ collision_layer = 1
 
 [node name="Collect_coin" type="AudioStreamPlayer2D" parent="Player"]
 stream = ExtResource("4_5hs6f")
+volume_db = 12.866
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 position = Vector2(4.03308, -56)
@@ -390,17 +391,17 @@ process_mode = 3
 visible = false
 z_index = 12
 material = SubResource("ShaderMaterial_6o8v2")
-offset_left = -716.0
-offset_top = -497.0
-offset_right = 750.0
-offset_bottom = 386.0
+offset_left = -1718.07
+offset_top = -1039.0
+offset_right = 1587.93
+offset_bottom = 952.0
 
 [node name="Treasure_shadow" parent="." instance=ExtResource("17_w8gtq")]
 y_sort_enabled = false
 position = Vector2(1171, 545)
 offset = Vector2(0, 100)
 
-[node name="Treasure" parent="." instance=ExtResource("13_st04a")]
+[node name="Treasure" parent="." groups=["treasure"] instance=ExtResource("13_st04a")]
 unique_name_in_owner = true
 position = Vector2(575, 309)
 scale = Vector2(4, 4)
@@ -519,11 +520,12 @@ shape = SubResource("RectangleShape2D_aatvm")
 [node name="Closed" type="StaticBody2D" parent="Entrance_shop"]
 process_mode = 3
 disable_mode = 1
-collision_layer = 32
+collision_layer = 40
+collision_mask = 9
 
 [node name="ClosedCollision" type="CollisionShape2D" parent="Entrance_shop/Closed"]
 process_mode = 3
-position = Vector2(-0.166656, 2.625)
+position = Vector2(-2, 2.625)
 shape = SubResource("RectangleShape2D_ndgev")
 
 [node name="Fence" type="Sprite2D" parent="Entrance_shop"]
@@ -532,6 +534,8 @@ scale = Vector2(1.88277, 1)
 texture = ExtResource("12_o4joc")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Entrance_shop/Fence"]
+collision_layer = 9
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entrance_shop/Fence/StaticBody2D"]
 position = Vector2(-0.70816, 3)
@@ -621,7 +625,7 @@ autoplay = "crystal"
 
 [node name="Sprite2D" type="TextureRect" parent="."]
 visible = false
-z_index = 10
+z_index = 30
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -830,7 +834,6 @@ wait_time = 0.5
 
 [node name="Cooldown_timer" type="Timer" parent="CanvasLayer/Timers&sound"]
 unique_name_in_owner = true
-wait_time = 0.5
 one_shot = true
 autostart = true
 

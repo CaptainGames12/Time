@@ -6,6 +6,7 @@ extends Area2D
 
 func _on_body_entered(body):
 	get_parent().get_parent().get_node("CanvasLayer/Joysticks/SpellJoystick").process_mode=Node.PROCESS_MODE_PAUSABLE
+	get_parent().get_parent().get_node("CanvasLayer/TimeControl/Saving").process_mode=Node.PROCESS_MODE_PAUSABLE
 	$"../../CanvasLayer/Support/Heal".disabled=true
 	body.in_the_shop=true
 	body.stamina_timer.stop()

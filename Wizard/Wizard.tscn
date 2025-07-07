@@ -534,3 +534,11 @@ material = SubResource("ShaderMaterial_00wba")
 [node name="SilhouetteAttack" type="Sprite2D" parent="."]
 z_index = 20
 material = SubResource("ShaderMaterial_00wba")
+
+[node name="HurtShaderTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.1
+
+[node name="StopPressedCooldown" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true

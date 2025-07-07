@@ -9,6 +9,7 @@ enum Text_state{
 	GEN,
 	FINISHED
 }
+@export var voice:AudioStreamPlayer
 @onready var tween_dialog =  get_tree().create_tween().set_pause_mode(2)
 func _process(delta: float) -> void:
 	
@@ -25,27 +26,31 @@ func _process(delta: float) -> void:
 		Text_state.GEN:
 			
 			if Input.is_action_just_pressed("continue"):
-				$"../../AudioStreamPlayer2D".stop()
+				
 				visible_ratio = 1
 				tween_dialog.kill()
 				state_changer(Text_state.FINISHED)
 		Text_state.FINISHED:
 			
 			if Input.is_action_just_pressed("continue") and Texts.place!=2:
-				$"../../AudioStreamPlayer2D".stop()
+				
 				$"../..".visible = false
 				state_changer(Text_state.ONREADY)
 				place+=1
 func generate_dialogue(my_text = next_text):
 	
-	$"../../AudioStreamPlayer2D".play(2)
+	
 	visible_ratio = 0
 	text = my_text
 	state_changer(Text_state.GEN)
 	tween_dialog = get_tree().create_tween().set_pause_mode(2)
+	generate_dialogue_audio()
 	tween_dialog.tween_property(self, "visible_ratio", 1, 2)
 	tween_dialog.connect("finished", anim_finished)
-	
+func generate_dialogue_audio():
+	while tween_dialog.is_running():
+		voice.play()
+		await get_tree().create_timer(0.1).timeout
 func anim_finished():
 	state_changer(Text_state.FINISHED)
 func state_changer(next_state):

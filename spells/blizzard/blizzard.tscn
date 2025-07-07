@@ -45,6 +45,7 @@ _data = {
 }
 
 [node name="Blizzard" type="CPUParticles2D"]
+z_index = 1
 amount = 15
 texture = ExtResource("1_n5ei5")
 emission_shape = 1
@@ -56,6 +57,7 @@ orbit_velocity_max = 1.0
 script = ExtResource("2_rahwm")
 
 [node name="Area2D" type="Area2D" parent="."]
+z_as_relative = false
 collision_layer = 0
 collision_mask = 2
 

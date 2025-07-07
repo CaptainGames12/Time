@@ -6,9 +6,7 @@ extends Sprite2D
 var is_tutorial_started = false
 func _on_area_2d_body_entered(body: Area2D) -> void:
 	if body.is_in_group("attack_area"):
-		treasureDurability-=10
-		durabilityBar.value = treasureDurability
-		body.get_parent().attack_animation_player.play("attack")
+		
 		if treasureDurability<=0:
 			$"../Sprite2D".global_position=position
 			$"../Sprite2D".visible=true
@@ -43,4 +41,4 @@ func the_end_of_forest():
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "modulate", Color(0, 0, 0, 0), 1)
 	tween.finished.connect(queue_free)		
-	tween.finished.connect($".."/Main_animations.play.bind("ending"))
+	

@@ -227,7 +227,6 @@ offset_left = 103.0
 offset_top = 353.0
 offset_right = 196.0
 offset_bottom = 376.0
-disabled = true
 texture_normal = ExtResource("4_joh67")
 texture_pressed = ExtResource("9_w2r0d")
 stretch_mode = 0
@@ -244,6 +243,31 @@ scale = Vector2(1.05163, 0.885568)
 text = "forest"
 label_settings = SubResource("LabelSettings_s4pem")
 
+[node name="village" type="TextureButton" parent="LevelButtons"]
+visible = false
+layout_mode = 0
+offset_left = 290.0
+offset_top = 70.0
+offset_right = 383.0
+offset_bottom = 93.0
+disabled = true
+texture_normal = ExtResource("4_joh67")
+texture_pressed = ExtResource("9_w2r0d")
+texture_disabled = ExtResource("9_w2r0d")
+stretch_mode = 0
+script = ExtResource("10_4e78x")
+
+[node name="Label" type="Label" parent="LevelButtons/village"]
+auto_translate_mode = 1
+layout_mode = 1
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 73.0
+offset_bottom = 22.0
+scale = Vector2(1.05163, 0.885568)
+text = "village"
+label_settings = SubResource("LabelSettings_s4pem")
+
 [connection signal="pressed" from="New" to="." method="_on_new_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Load" to="." method="_on_load_pressed"]
@@ -253,3 +277,5 @@ label_settings = SubResource("LabelSettings_s4pem")
 [connection signal="pressed" from="SettingsBack/Close" to="SettingsBack" method="_on_close_pressed"]
 [connection signal="level_choosen" from="LevelButtons/main" to="." method="_on_main_level_choosen"]
 [connection signal="pressed" from="LevelButtons/main" to="LevelButtons/main" method="_on_pressed"]
+[connection signal="level_choosen" from="LevelButtons/village" to="." method="_on_main_level_choosen"]
+[connection signal="pressed" from="LevelButtons/village" to="LevelButtons/village" method="_on_pressed"]

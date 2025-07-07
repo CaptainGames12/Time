@@ -6,7 +6,7 @@ func _ready() -> void:
 	
 	DialogSignals.connect("tutorial_finished", change_pause_state)
 func _on_body_entered(body):
-	
+	get_parent().get_parent().get_node("CanvasLayer/TimeControl/Saving").process_mode=Node.PROCESS_MODE_ALWAYS
 	get_tree().root.get_node("Node2D/CanvasLayer/Joysticks/SpellJoystick").process_mode=Node.PROCESS_MODE_ALWAYS
 	$"../../CanvasLayer/Support/Heal".disabled=false
 	print("detects")

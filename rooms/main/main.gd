@@ -1,3 +1,4 @@
+
 extends Node2D
 
 	
@@ -40,6 +41,7 @@ var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 @onready var spawnholder = $SpawnHolder
 @onready var treasure = $Treasure
 @onready var boss_clock_node = boss_clock.instantiate()
+@onready var stage_label_tween = get_tree().create_tween().chain()
 signal in_the_shop
 signal out_of_the_shop
 
@@ -60,6 +62,7 @@ func _notification(what: int) -> void:
 			DirAccess.remove_absolute("user://save.tres")
 
 func _ready():
+	DialogSignals.forest_end.connect($Main_animations.play.bind("ending"))
 	Global.current_scene=self.scene_file_path
 	if player.loader!=null:
 		current_level=player.loader.level
@@ -70,21 +73,31 @@ func _ready():
 	%Money.addMoney(Global.score)
 	ad_initialize()
 	Texts.place =1
-	
-	
 	DialogSignals.go_to_the_shop.connect(open_shop)
 	DialogSignals.tutorial_finished.connect(open_shop)
 	
 	cooldown_timer.autostart =true
 	
 func show_stage_completed():
-	var tween = get_tree().create_tween()
-	tween.tween_property(%StageCompleted, "visible_ratio", 1, 3)
-	tween.tween_interval(0.5)
-	tween.tween_property(%StageCompleted, "visible_ratio", 0, 3)
-	tween.finished.connect(tween.kill)
+	
+	stage_label_tween.tween_property(%StageCompleted, "visible_ratio", 1, 3)
+	stage_label_tween.tween_interval(0.5)
+	stage_label_tween.tween_property(%StageCompleted, "visible_ratio", 0, 3)
+func pause_stage_tween():
+	stage_label_tween.pause()
+	%StageCompleted.visible=false	
 func _process(delta: float) -> void:
-
+	var enemies_are_here = []
+	for i in get_children():
+		if i.is_in_group("enemy"):
+			enemies_are_here.append(i)
+	if cooldown_timer.is_stopped() and enemies_are_here.is_empty() and boss_clock==null:
+		show_stage_completed()
+		open_shop()
+		current_level+=1
+		cooldown_timer.start()
+		
+		dead_enemies=0
 	if boss_clock_node!= null:
 		boss_healthbar.get_child(0).value= boss_clock_node.health
 func enemy_death():
@@ -95,7 +108,6 @@ func enemy_death():
 		open_shop()
 		current_level+=1
 		cooldown_timer.start()
-		print()
 		dead_enemies=0
 		
 func spawn_enemies():
@@ -112,7 +124,7 @@ func spawn_enemies():
 			await get_tree().create_timer(1, false).timeout
 	elif current_level==5:
 		main_music.stream = load("res://Enemies/boss/test1.mp3")
-	
+		
 		main_music.play()
 		
 		add_child(boss_clock_node)
@@ -165,12 +177,15 @@ func reset():
 		tween.tween_property(restart_ui, "modulate", Color(0, 0, 0, 0), 0.5)
 		tween.finished.connect(get_tree().change_scene_to_file.bind("res://ui/loading.tscn"))
 	
-func the_end():
-	$Main_animations.play("ending")
 
 func _on_ending_animation_finished(anim_name: StringName="ending") -> void:
 	get_tree().change_scene_to_file("res://rooms/ending/clapping.tscn")
-
+	var there_is_level=false
+	for i in Global.open_levels:
+		if i=="village":
+			there_is_level = true
+	if !there_is_level:
+		Global.open_levels.append("village")
 
 func _on_button_pressed() -> void:
 	if dialogs == null:

@@ -12,7 +12,7 @@
 font = ExtResource("3_i0j4j")
 font_size = 27
 
-[node name="Control" type="Control"]
+[node name="BossDialog" type="Control"]
 process_mode = 3
 z_index = 5
 layout_mode = 3
@@ -58,7 +58,7 @@ size_flags_vertical = 0
 text = "*"
 label_settings = SubResource("LabelSettings_yoovk")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GridContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="GridContainer" node_paths=PackedStringArray("voice")]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -71,12 +71,13 @@ fit_content = true
 visible_characters = 0
 visible_ratio = 0.0
 script = ExtResource("4_cngvw")
+voice = NodePath("../../Voice")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+[node name="Voice" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_rw7u6")
 volume_db = 1.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BossEntranceMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_vbs3i")
 volume_db = -10.947
 autoplay = true

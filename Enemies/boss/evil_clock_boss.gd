@@ -4,24 +4,25 @@ class_name ClockBoss
 var isAngried = false
 @onready var player = get_node("/root/Node2D/Player")
 var isProtected=true
-@onready var clock_boss_sprite: AnimatedSprite2D = $ClockBossSprite
+@onready var clock_boss_sprite: AnimatedSprite2D = $Animation
 @onready var defense: Sprite2D = $Defense
 @onready var restart_ui: Control
 var target_pos = Vector2(0,0)
 var SPEED = 20
 var ROT_SPEED = 300
 var master_dialog = preload("res://ui/dialog/dialogs.tscn").instantiate()
+var counter=0
 @export var health = 20:
-	set(value):
-		if value<=0:
+	set(value):	
+		if value<=0 and counter==0:
+			counter+=1
+			$Collision.disabled=true
 			if phrases!=null:	
 				phrases.queue_free()
 			health=value
 			get_parent().get_node("Treasure").the_end_of_forest()
 			get_parent().get_node("CanvasLayer").add_child(master_dialog)
 			
-
-			$Collision.disabled=true
 			clock_boss_sprite.animation_finished.connect(queue_free)
 			
 			clock_boss_sprite.play("death")

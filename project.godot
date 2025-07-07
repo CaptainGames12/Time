@@ -113,6 +113,7 @@ level=""
 player=""
 boss=""
 enemy=""
+treasure=""
 
 [gui]
 
@@ -193,6 +194,7 @@ locale/test="en"
 2d_physics/layer_6="door"
 2d_physics/layer_7="trees"
 2d_physics/layer_8="money"
+2d_physics/layer_9="wall"
 
 [navigation]
 

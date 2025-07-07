@@ -31,8 +31,7 @@ func open_map():
 	tween.finished.connect(show_location_buttons)
 func show_location_buttons():
 	level_buttons.visible=true
-	for i in level_buttons.get_children():
-		i.disabled=false
+	
 func _on_settings_pressed() -> void:
 	settings.visible=true
 

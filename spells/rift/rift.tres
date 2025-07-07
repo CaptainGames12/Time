@@ -1,12 +1,16 @@
-[gd_resource type="Resource" script_class="InvItem" load_steps=3 format=3 uid="uid://cckie57yfrg1a"]
+[gd_resource type="Resource" script_class="InvItem" load_steps=5 format=3 uid="uid://cckie57yfrg1a"]
 
+[ext_resource type="Script" uid="uid://cecyn8qc2rx7w" path="res://spells/spawn_effect.gd" id="1_k86ux"]
 [ext_resource type="PackedScene" uid="uid://f0wixgyvj01l" path="res://spells/rift/rift.tscn" id="1_o3lt8"]
 [ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="2_ygoan"]
+[ext_resource type="Texture2D" uid="uid://fnmep1kv4o8o" path="res://spells/rift/rift.png" id="3_ygoan"]
 
 [resource]
 script = ExtResource("2_ygoan")
 item_name = "rift"
 price = 0
 damage = 0
-particle = ExtResource("1_o3lt8")
+texture = ExtResource("3_ygoan")
+effect = ExtResource("1_k86ux")
+spawn_area = ExtResource("1_o3lt8")
 metadata/_custom_type_script = "uid://dsc584apkhxu"

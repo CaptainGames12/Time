@@ -68,6 +68,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gaa6c"]
+radius = 7.07107
 
 [sub_resource type="Animation" id="Animation_d2ogf"]
 length = 0.001
@@ -98,6 +99,8 @@ _data = {
 [node name="Coin" type="Node2D"]
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.90735e-06, 1.90735e-06)
+scale = Vector2(1.9, 1.9)
 sprite_frames = SubResource("SpriteFrames_x3hc3")
 autoplay = "default"
 frame_progress = 0.882051

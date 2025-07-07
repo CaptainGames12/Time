@@ -1,10 +1,14 @@
-[gd_resource type="Resource" script_class="InvItem" load_steps=2 format=3 uid="uid://bsbqwalaujfr5"]
+[gd_resource type="Resource" script_class="InvItem" load_steps=4 format=3 uid="uid://bsbqwalaujfr5"]
 
+[ext_resource type="Script" uid="uid://cecyn8qc2rx7w" path="res://spells/spawn_effect.gd" id="1_ced55"]
 [ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="1_fsy8o"]
+[ext_resource type="PackedScene" uid="uid://b3y6kwsm2qiib" path="res://spells/smoke/smoke.tscn" id="2_ucs2d"]
 
 [resource]
 script = ExtResource("1_fsy8o")
 item_name = "smoke"
 price = 0
 damage = 0
+effect = ExtResource("1_ced55")
+spawn_area = ExtResource("2_ucs2d")
 metadata/_custom_type_script = "uid://dsc584apkhxu"

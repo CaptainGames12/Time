@@ -10,10 +10,10 @@ collision_mask = 0
 script = ExtResource("1_0aucb")
 
 [node name="Tree" type="Sprite2D" parent="."]
-position = Vector2(4, -15)
+position = Vector2(4, -14)
 scale = Vector2(0.376294, 0.376294)
 texture = ExtResource("2_0aucb")
-offset = Vector2(0, -15)
+offset = Vector2(0, -20)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -18)

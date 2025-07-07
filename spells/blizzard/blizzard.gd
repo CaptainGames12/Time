@@ -1,6 +1,6 @@
 extends CPUParticles2D
 var enemy = null
-var dmg = 0
+var dmg = SpellMixer.spell.damage
 func _ready() -> void:
 	await get_tree().create_timer(3).timeout
 	queue_free()

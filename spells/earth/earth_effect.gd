@@ -1,15 +1,11 @@
 extends Static
-var ticks = 10
-var attack_node 
-func _init() -> void:
-	spell_node=preload("res://spells/earth/rock.tscn")
-	
-	
+var ticks = 5
+
 func _physics_process(delta: float) -> void:
-	attack_node = get_parent()
-	print("attack_node:"+str(attack_node.global_position))
-	if ticks==10:
-		spawn_area(get_tree().root.get_node("Node2D"), spell_node, attack_node.global_position)
-		ticks=0
-		pass
-	ticks+=1
+	
+	if spell.spawn_area!=null:
+		if ticks==5:
+			spawn_area(get_tree().root.get_node("Node2D"), spell.spawn_area, get_parent().global_position)
+			ticks=0
+			
+		ticks+=1

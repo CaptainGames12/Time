@@ -18,5 +18,5 @@ inv_texture = ExtResource("4_h5fpx")
 small_texture = ExtResource("3_m3dv4")
 audio = ExtResource("1_m58xi")
 effect = ExtResource("2_6gdkr")
-particle = ExtResource("4_xeubt")
+spawn_area = ExtResource("4_xeubt")
 metadata/_custom_type_script = "uid://dsc584apkhxu"

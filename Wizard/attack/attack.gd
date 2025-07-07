@@ -11,30 +11,32 @@ var target_fire: Vector2
 var coin = preload("res://shopping/coin.tscn").instantiate()
 var ready_elements: Array[String] = []
 
-var script_for_manager
-signal deadBoss
+
 
 func _ready() -> void:
-	deadBoss.connect(get_node("/root/Node2D").the_end)
 	DialogSignals.shoot.emit()
 	if dialogs != null:
 		process_mode = Node.PROCESS_MODE_ALWAYS
+	mix_elements()
 	preparing_spell()
 	look_at(target_fire)
-	
-	
-	
-func preparing_spell():
+## This method is used for making spell with elements and attaching script with effect to SpellManager.
+## If spell is Static then we use spawn_area method.	
+func mix_elements():
 	for i in elements:
 		if i != null:
 			ready_elements.append(i.item_name)
 	SpellMixer.spell= SpellMixer.mix(ready_elements)
-	if SpellMixer.spell != null:
+func preparing_spell():
+	
+	if SpellMixer.spell != null and SpellMixer.spell.effect!=null:
+		
 		spell_manager.set_script(SpellMixer.spell.effect)
 		spell_manager.spell = SpellMixer.spell
 		$Sprite2D.texture = SpellMixer.spell.texture
+		
 		if spell_manager.has_method("spawn_area"):
-			spell_manager.spawn_area(get_parent(), spell_manager.spell.particle, position)
+			spell_manager.spawn_area(get_parent(), spell_manager.spell.spawn_area, position)
 		if SpellMixer.spell.audio!=null:
 			AttackSfx.stream = SpellMixer.spell.audio
 			AttackSfx.play()	
@@ -46,22 +48,26 @@ func _physics_process(delta: float) -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
-
+## Here we use _on_body_entered to reparent SpellManager to enemy and call apply_effect.
+## It's made this way so that it was more safe, because our attack/bullet entity can be removed at any moment.
 func _on_body_entered(body: Node2D) -> void:
 	if SpellMixer.spell == null:
 		return
 	if spell_manager.has_method("spawn_area"):
-		spell_manager.call_deferred("spawn_area", get_parent(), spell_manager.spell.particle, position)
-	spell_manager.reparent(body)
-	body.get_node("SpellManager").apply_effect(body)
+		spell_manager.call_deferred("spawn_area", get_parent(), spell_manager.spell.spawn_area, position)
+	else:
+		if body.is_in_group("enemy"):	
+			if body.get_node_or_null("SpellManager")==null:
+				spell_manager.reparent(body)
+			elif body.get_node("SpellManager").is_class("Bullet"):
+				body.get_node("SpellManager").queue_free()
+			body.get_node("SpellManager").apply_effect(body)
+		if body.is_in_group("boss"):
+			if !body.isProtected:
+				if body.get_node_or_null("SpellManager")==null:
+					spell_manager.reparent(body)
+				else:
+					body.get_node("SpellManager").queue_free()
+				body.get_node("SpellManager").apply_effect(body)
 	
 	queue_free()
-
-func spawn_particle(target: Node = null) -> void:
-	var particle_instance = SpellMixer.spell.particle.instantiate()
-	if target == null:
-		add_child(particle_instance)
-	else:
-		target.add_child(particle_instance)
-		if target.has_method("move_child"):
-			target.move_child(find_child("fire"), -1)

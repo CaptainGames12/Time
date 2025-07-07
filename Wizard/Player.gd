@@ -9,20 +9,14 @@ var attacked=false
 var save_path = "user://save.tres"
 var saving = SaveGame.new()
 var mat := preload("res://Wizard/hurt.tres") as ShaderMaterial
+
 var health = Global.hp:
 	set(value):
 		if value<health:
-			mat.set_shader_parameter("flash_strength", 1.0)
-			await get_tree().create_timer(0.1).timeout
-			mat.set_shader_parameter("flash_strength", 0.0)
-			await get_tree().create_timer(0.1).timeout
-			mat.set_shader_parameter("flash_strength", 1.0)
-			await get_tree().create_timer(0.1).timeout
-			mat.set_shader_parameter("flash_strength", 0.0)
-			await get_tree().create_timer(0.1).timeout
-			mat.set_shader_parameter("flash_strength", 1.0)
-			await get_tree().create_timer(0.1).timeout
-			mat.set_shader_parameter("flash_strength", 0.0)
+			var tween_hurt := get_tree().create_tween().chain()
+			tween_hurt.tween_property(mat, "shader_parameter/flash_strength", 1, 0.2)
+			tween_hurt.tween_property(mat, "shader_parameter/flash_strength", 0, 0.2)
+			tween_hurt.finished.connect(tween_hurt.kill)
 		health=value
 		healthbar.value = value
 		
@@ -52,7 +46,7 @@ var health = Global.hp:
 var switch =1
 var ring_active := false
 var start_time := 0
-var ring_duration := 1000 # мілісекунд (1 секунда)
+var ring_duration := 1000 
 
 func trigger_ring():
 	ring_active = true
@@ -64,6 +58,7 @@ func _ready() -> void:
 	healthbar.max_value =10
 	healthbar.value = 10
 	Global.hp=10
+	%StopPressedCooldown.timeout.connect(stop_time_after_cooldown)
 	load_save()
 
 func _process(delta: float) -> void:
@@ -98,11 +93,9 @@ func shoot():
 			else: 
 				attacked=false
 func _physics_process(delta):
-	if get_tree().paused==true and dialogs==null and !in_the_shop:
-			
+	if get_tree().paused==true and dialogs==null and !in_the_shop:	
 			switch=1
 	else:
-			
 			switch=0
 		
 	$"../ColorRect".material.set_shader_parameter("enabled", switch)
@@ -113,8 +106,17 @@ func _physics_process(delta):
 	health=Global.hp	
 	%SaveButton.action="time_save"
 	%TimeStop.action="time_stop"
-	velocity = joystick.input_vector*SPEED
+	
+	var x = (Input.get_action_strength("right")-Input.get_action_strength("left"))
+	var y = (Input.get_action_strength("down")-Input.get_action_strength("up"))
+	if joystick.input_vector.length()>0:	
+		velocity = joystick.input_vector*SPEED
+	elif Vector2(x, y).length()>0:	
+		velocity = Vector2(x, y).normalized()*SPEED
+	else:
+		velocity = Vector2.ZERO
 	velocity+=knockback_power
+	
 	if velocity==Vector2.ZERO:
 		%Steps.stream_paused=true
 	else:
@@ -127,26 +129,27 @@ func _physics_process(delta):
 
 func stop_time():
 	if Input.is_action_just_pressed("time_stop"):
+		if %StopPressedCooldown.is_stopped():
+			%TimeStopSound.play()
+			%StopPressedCooldown.start()
+	
 		
-		if dialogs==null and !in_the_shop and %Treasure!=null:
-				get_tree().paused = !get_tree().paused
-				stamina_timer.start()
-				%TimeStopSound.play()
-				switch=!switch
-				trigger_ring()
-				
+func stop_time_after_cooldown():
+	if dialogs==null and !in_the_shop and %Treasure!=null:
+		get_tree().paused = !get_tree().paused
+		stamina_timer.start()
+		
+		switch=!switch
+		trigger_ring()	
 
-		DialogSignals.time_stop_pressed.emit()
+	DialogSignals.time_stop_pressed.emit()
 func attack(touch_pos):
 	var bullet = attack_node.instantiate()
 	
 	if null != SpellMixer.chosen_items:
 		
 		bullet.look_at(touch_pos)
-		
-		
 		get_parent().add_child(bullet)
-		
 		bullet.position = position
 		bullet.target_fire = touch_pos.normalized()
 		

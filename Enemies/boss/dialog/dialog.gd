@@ -59,7 +59,8 @@ func _process(delta: float) -> void:
 					is_tutorial_here = false
 					DialogSignals.tutorial_finished.emit()
 					get_tree().queue_delete($"../..")
-					
+				if Texts.place==10:
+					DialogSignals.forest_end.emit()
 				if !isTutorialStarted:
 					Texts.place+=1
 func finish():
@@ -91,7 +92,7 @@ func shoot():
 			state_changer(Text_state.ONREADY)	
 func generate_dialogue(my_text = next_text):
 	
-	$"../../AudioStreamPlayer2D".play(2)
+	
 	visible_ratio = 0
 	text = my_text
 	state_changer(Text_state.GEN)
@@ -100,6 +101,10 @@ func generate_dialogue(my_text = next_text):
 	tween_dialog.connect("finished", anim_finished)
 	if Texts.place==3:
 		DialogSignals.go_to_the_shop.emit()
+func generate_dialogue_audio():
+	while tween_dialog.is_running():
+		.play()
+		await get_tree().create_timer(0.1).timeout
 func anim_finished():
 	state_changer(Text_state.FINISHED)
 	

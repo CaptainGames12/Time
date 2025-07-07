@@ -41,8 +41,9 @@ msgid "question"
 msgstr ""
 "Do you need jogging your memory?\n"
 "\n"
-"[url=positive_answer]If you could, please[/"
-"url]\t\t\t\t[url=negative_answer]I think I'm ready[/url]"
+"\n"
+"[url=positive_answer]If you could, please[/url]"
+"\t\t\t\t[url=negative_answer]I think I'm ready[/url]"
 
 #: ui/dialog/texts.gd
 msgid "shop"
@@ -55,19 +56,17 @@ msgid "shoped"
 msgstr ""
 "Wonderful. Now come back to the main level, then I shall remember you how to "
 "cast spells."
-
-#: ui/dialog/texts.gd
-msgid "shooting"
-msgstr ""
-"Choose spell in inventory by touching. After that, aim your joystick to cast "
-"spell in this direction. Every spell has its own effect."
-
 #: ui/dialog/texts.gd
 msgid "mix"
 msgstr ""
 "I almost forgot. You have the ability to combine elements with each other. "
 "Go ahead and try it. Also, remember that not all elements can be mixed with "
 "each other. If you want to remove an item from the combination, click on it. "
+#: ui/dialog/texts.gd
+msgid "shooting"
+msgstr ""
+"Choose spell in inventory by touching. After that, aim your joystick to cast "
+"spell in this direction. Every spell has its own effect."
 
 #: ui/dialog/texts.gd
 msgid "ending"
@@ -111,3 +110,14 @@ msgstr "Continue"
 #: ui/dialog/texts.gd
 msgid "forest"
 msgstr "Forest"
+
+#: ui/dialog/texts.gd
+msgid "village"
+msgstr "Village"
+
+#~ msgid "mix"
+#~ msgstr ""
+#~ "I almost forgot. You have the ability to combine elements with each "
+#~ "other. Go ahead and try it. Also, remember that not all elements can be "
+#~ "mixed with each other. If you want to remove an item from the "
+#~ "combination, click on it. "

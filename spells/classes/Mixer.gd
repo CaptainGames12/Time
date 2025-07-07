@@ -1,4 +1,5 @@
 extends Node
+## Mixer is used for mixing chosen elements
 class_name Mixer
 var chosen_items= [null, null, null, null, null]
 
@@ -15,6 +16,7 @@ var elements={
 	"earth+wind":preload("res://spells/rift/rift.tres")
 	}
 var spell: InvItem
+## This method mixes chosen elements and sums damage of same elements in collection
 func mix(arr:Array[String]):
 	var dmg = 0
 	var same_elements:Dictionary[String, int]={

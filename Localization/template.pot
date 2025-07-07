@@ -80,5 +80,9 @@ msgstr ""
 msgid "forest"
 msgstr ""
 
+#: ui/dialog/texts.gd
+msgid "village"
+msgstr ""
+
 
 

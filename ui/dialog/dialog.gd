@@ -16,6 +16,8 @@ var bought_item=false
 @onready var player = get_tree().root.get_node("Node2D/Player")
 @onready var main = get_tree().root.get_node("Node2D")
 @onready var tween_dialog =  get_tree().create_tween().set_pause_mode(2)
+@export var voice: AudioStreamPlayer2D
+
 func buttons_disable():
 	btn_save.action="nothing"
 	btn_stop.action="nothing"
@@ -107,17 +109,24 @@ func mix_elements():
 		btn_stop.action="time_stop"
 		Texts.place=8
 		state_changer(Text_state.ONREADY)	
+
 func generate_dialogue(my_text = next_text):
 	
-	$"../../AudioStreamPlayer2D".play(2)
 	visible_ratio = 0
 	text = my_text
 	state_changer(Text_state.GEN)
+	
 	tween_dialog = get_tree().create_tween().set_pause_mode(2)
+	generate_dialogue_audio()
 	tween_dialog.tween_property(self, "visible_ratio", 1, 2)
+	
 	tween_dialog.connect("finished", anim_finished)
 	if Texts.place==3:
 		DialogSignals.go_to_the_shop.emit()
+func generate_dialogue_audio():
+	while tween_dialog.is_running():
+		voice.play()
+		await get_tree().create_timer(0.1).timeout
 func anim_finished():
 	state_changer(Text_state.FINISHED)
 	
@@ -130,6 +139,7 @@ func answer(value:Variant):
 	if str(value)=="negative_answer":
 		generate_dialogue(Texts.skipping)
 		Texts.place+=1
+		main.get_node("CanvasLayer/Joysticks/SpellJoystick").process_mode=Node.PROCESS_MODE_ALWAYS
 		isSkipped = true
 		
 func start():

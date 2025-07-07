@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://chyellfuf1w1a"]
+
+[ext_resource type="Shader" uid="uid://gitr5bm2mniy" path="res://spells/ice/freeze.gdshader" id="1_ou8xy"]
+
+[resource]
+shader = ExtResource("1_ou8xy")
+shader_parameter/freeze_amount = 0.0
