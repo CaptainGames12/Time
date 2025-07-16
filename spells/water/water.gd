@@ -7,3 +7,4 @@ func apply_effect(body):
 	await get_tree().create_timer(2).timeout
 	body.get_node("AnimationPlayer").speed_scale=1
 	body.SPEED=100
+	queue_free()

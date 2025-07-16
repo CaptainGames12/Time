@@ -1,7 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dg0sgwobwrem6"]
-
-[ext_resource type="Shader" uid="uid://b0q2x6x83n3wg" path="res://Wizard/hurt.gdshader" id="1_oaqs6"]
-
-[resource]
-shader = ExtResource("1_oaqs6")
-shader_parameter/flash_strength = 0.0

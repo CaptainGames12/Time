@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="InvItem" load_steps=4 format=3 uid="uid://4tq8a5oppigk"]
 
 [ext_resource type="Script" uid="uid://cecyn8qc2rx7w" path="res://spells/spawn_effect.gd" id="1_pf7vy"]
-[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="2_pf7vy"]
+[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://wizard/inventory/item_inv.gd" id="2_pf7vy"]
 [ext_resource type="PackedScene" uid="uid://baoie66p0o1h1" path="res://spells/wall/wall.tscn" id="2_qcs2r"]
 
 [resource]

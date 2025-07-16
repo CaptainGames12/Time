@@ -8,3 +8,4 @@ func apply_effect(body:Node2D):
 		body.health-=spell.damage
 		if i==4:
 			queue_free()
+			

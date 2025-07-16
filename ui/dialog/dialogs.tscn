@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://c0xn66egpwcbr" path="res://ui/dialog/dialog_area.png" id="2_0ldwc"]
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="2_r5q84"]
 [ext_resource type="Texture2D" uid="uid://41xt20tb2xbb" path="res://ui/dialog/master.png" id="3_r5q84"]
-[ext_resource type="FontFile" uid="uid://diep4qd8unfs5" path="res://Localization/minecraft_ukr_eng.ttf" id="4_6h0b3"]
-[ext_resource type="AudioStream" uid="uid://5ilryru8jfwa" path="res://ui/dialog/Master's voice (mp3cut.net).mp3" id="6_6h0b3"]
+[ext_resource type="FontFile" uid="uid://ctvd66t3pojxn" path="res://localization/minecraft_ukr_eng.ttf" id="4_6h0b3"]
+[ext_resource type="AudioStream" uid="uid://5ilryru8jfwa" path="res://ui/dialog/Master's voice.mp3" id="6_6h0b3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yoovk"]
 font = ExtResource("2_r5q84")
@@ -75,8 +75,8 @@ voice = NodePath("../../AudioStreamPlayer2D")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_6h0b3")
-volume_db = 4.952
 pitch_scale = 1.1
 attenuation = 0.120742
+bus = &"SFX"
 
 [connection signal="meta_clicked" from="GridContainer/RichTextLabel" to="GridContainer/RichTextLabel" method="answer"]

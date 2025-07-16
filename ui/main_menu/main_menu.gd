@@ -7,7 +7,7 @@ var save_path = "user://save.tres"
 @onready var settings: TextureRect = $SettingsBack
 @onready var settings_btn: TouchScreenButton = $Settings
 @onready var level_buttons: Control = $LevelButtons
-var main_menu_text = preload("res://Localization/main_menu_text.tres")
+var main_menu_text = preload("res://localization/main_menu_text.tres")
 func _on_new_pressed() -> void:
 	open_map()
 	

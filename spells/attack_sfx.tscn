@@ -2,3 +2,4 @@
 
 [node name="AttackSFX" type="AudioStreamPlayer2D"]
 process_mode = 3
+bus = &"SFX"

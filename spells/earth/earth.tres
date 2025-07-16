@@ -2,7 +2,7 @@
 
 [ext_resource type="AudioStream" uid="uid://cobbjl77q8cm3" path="res://spells/earth/fx_earth.mp3" id="1_m58xi"]
 [ext_resource type="Script" uid="uid://dvhjf5h7roquu" path="res://spells/earth/earth_effect.gd" id="2_6gdkr"]
-[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="2_cow7k"]
+[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://wizard/inventory/item_inv.gd" id="2_cow7k"]
 [ext_resource type="Texture2D" uid="uid://kxnckkuyxx83" path="res://spells/earth/ui_mini_icon_rock.png" id="3_m3dv4"]
 [ext_resource type="Texture2D" uid="uid://d26xd10sx56y8" path="res://spells/earth/ui_icon_spell_rock.png" id="4_h5fpx"]
 [ext_resource type="PackedScene" uid="uid://c4tkqxr6vie41" path="res://spells/earth/rock.tscn" id="4_xeubt"]

@@ -1,10 +1,15 @@
 extends TextureRect
 @onready var language: Control = $Language
+@onready var sounds: Control = $Sounds
 
 
 func _on_language_pressed() -> void:
 	get_node("Settings").visible=false
 	language.visible=true
+
+func _on_sounds_pressed() -> void:
+	get_node("Settings").visible=false
+	sounds.visible=true
 
 
 func _on_close_pressed() -> void:

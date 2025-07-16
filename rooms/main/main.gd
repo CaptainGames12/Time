@@ -1,7 +1,7 @@
 
 extends Node2D
 
-	
+
 var is_restarted=false
 var rewarded_ad : RewardedAd
 var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
@@ -10,13 +10,13 @@ var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 @onready var level_progress: TextureProgressBar = %LevelProgress
 
 
-@onready var restart_ui = %RestartUI
-@onready var inv = %InventoryUI
+@onready var restart_ui: Control = %RestartUI
+@onready var inv: Control = %InventoryUI
 
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var current_level = 1
 
-@onready var boss_clock = preload("res://Enemies/boss/evil_clock_boss.tscn")
+@onready var boss_clock = preload("res://enemies/forest/boss/evil_clock_boss.tscn")
 @onready var entrance_shop: StaticBody2D = $Entrance_shop
 @onready var dialogs: Control = %Dialogs
 
@@ -34,14 +34,14 @@ var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 	5:1
 }
 
-@onready var enemy = preload("res://Enemies/enemy.tscn")
+@onready var enemy = preload("res://enemies/forest/clock_enemy/enemy.tscn")
 @onready var rand = RandomNumberGenerator.new()
 @onready var dead_enemies = 0
 @onready var cooldown_timer = $CooldownBetweenWaves
 @onready var spawnholder = $SpawnHolder
 @onready var treasure = $Treasure
 @onready var boss_clock_node = boss_clock.instantiate()
-@onready var stage_label_tween = get_tree().create_tween().chain()
+@onready var stage_label_tween: Tween
 signal in_the_shop
 signal out_of_the_shop
 
@@ -77,15 +77,23 @@ func _ready():
 	DialogSignals.tutorial_finished.connect(open_shop)
 	
 	cooldown_timer.autostart =true
-	
+	in_the_shop.connect(pause_stage_tween)
+	out_of_the_shop.connect(start_stage_tween)
 func show_stage_completed():
-	
+	stage_label_tween = get_tree().create_tween().chain()
 	stage_label_tween.tween_property(%StageCompleted, "visible_ratio", 1, 3)
 	stage_label_tween.tween_interval(0.5)
 	stage_label_tween.tween_property(%StageCompleted, "visible_ratio", 0, 3)
+	stage_label_tween.finished.connect(stage_label_tween.kill)
 func pause_stage_tween():
-	stage_label_tween.pause()
-	%StageCompleted.visible=false	
+	if stage_label_tween!=null:
+		stage_label_tween.pause()
+		%StageCompleted.visible=false	
+func start_stage_tween():
+	if stage_label_tween!=null:
+		stage_label_tween.play()
+		%StageCompleted.visible=true	
+
 func _process(delta: float) -> void:
 	var enemies_are_here = []
 	for i in get_children():
@@ -105,6 +113,7 @@ func enemy_death():
 	
 	if dead_enemies==enemy_count[current_level]:
 		show_stage_completed()
+		start_stage_tween()
 		open_shop()
 		current_level+=1
 		cooldown_timer.start()
@@ -133,7 +142,7 @@ func spawn_enemies():
 		boss_healthbar.get_child(0).max_value= boss_clock_node.health
 		boss_healthbar.visible = true
 		
-func update_level(level):
+func update_level():
 	
 	if level_progress!=null:
 		level_progress.value = current_level
@@ -141,7 +150,7 @@ func update_level(level):
 	spawn_enemies()
 func _on_cooldown_between_waves_timeout() -> void:
 	close_shop()
-	update_level(current_level)
+	update_level()
 		
 func open_shop():
 	print("shop is opened")
@@ -161,7 +170,7 @@ func close_shop():
 func _on_restart_button_pressed() -> void:
 	if Input.is_action_pressed("restart") and !is_restarted:
 		is_restarted=true
-		%MainMusic.stream=preload("res://Wizard/fx_continue.mp3")
+		%MainMusic.stream=preload("res://wizard/fx_continue.mp3")
 		
 		%MainMusic.connect("finished", reset)
 		%MainMusic.play()
@@ -182,10 +191,10 @@ func _on_ending_animation_finished(anim_name: StringName="ending") -> void:
 	get_tree().change_scene_to_file("res://rooms/ending/clapping.tscn")
 	var there_is_level=false
 	for i in Global.open_levels:
-		if i=="village":
+		if i=="town":
 			there_is_level = true
 	if !there_is_level:
-		Global.open_levels.append("village")
+		Global.open_levels.append("town")
 
 func _on_button_pressed() -> void:
 	if dialogs == null:

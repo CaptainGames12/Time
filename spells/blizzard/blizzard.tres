@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="InvItem" load_steps=5 format=3 uid="uid://boobognemufba"]
 
 [ext_resource type="AudioStream" uid="uid://cmfo0yduxpyeo" path="res://spells/ice/fx_ice.mp3" id="1_8s1t5"]
-[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="1_goa7e"]
+[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://wizard/inventory/item_inv.gd" id="1_goa7e"]
 [ext_resource type="Script" uid="uid://cecyn8qc2rx7w" path="res://spells/spawn_effect.gd" id="2_nteik"]
 [ext_resource type="PackedScene" uid="uid://bm6pfs35tj7av" path="res://spells/blizzard/blizzard.tscn" id="4_shm12"]
 

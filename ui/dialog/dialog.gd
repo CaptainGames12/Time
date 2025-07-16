@@ -15,7 +15,7 @@ var is_tutorial_here = true
 var bought_item=false
 @onready var player = get_tree().root.get_node("Node2D/Player")
 @onready var main = get_tree().root.get_node("Node2D")
-@onready var tween_dialog =  get_tree().create_tween().set_pause_mode(2)
+@onready var tween_dialog =  get_tree().create_tween().set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
 @export var voice: AudioStreamPlayer2D
 
 func buttons_disable():
@@ -59,6 +59,7 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("continue") and Texts.place!=2:
 				$"../../AudioStreamPlayer2D".stop()
 				$"../..".visible = false
+				tween_dialog.kill()
 				if Texts.place<3:	
 					state_changer(Text_state.ONREADY)
 				
@@ -121,6 +122,7 @@ func generate_dialogue(my_text = next_text):
 	tween_dialog.tween_property(self, "visible_ratio", 1, 2)
 	
 	tween_dialog.connect("finished", anim_finished)
+	
 	if Texts.place==3:
 		DialogSignals.go_to_the_shop.emit()
 func generate_dialogue_audio():
@@ -139,6 +141,9 @@ func answer(value:Variant):
 	if str(value)=="negative_answer":
 		generate_dialogue(Texts.skipping)
 		Texts.place+=1
+		btn_save.action="time_save"
+		btn_stop.action="time_stop"
+	
 		main.get_node("CanvasLayer/Joysticks/SpellJoystick").process_mode=Node.PROCESS_MODE_ALWAYS
 		isSkipped = true
 		

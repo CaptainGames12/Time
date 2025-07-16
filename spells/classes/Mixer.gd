@@ -18,7 +18,7 @@ var elements={
 var spell: InvItem
 ## This method mixes chosen elements and sums damage of same elements in collection
 func mix(arr:Array[String]):
-	var dmg = 0
+	
 	var same_elements:Dictionary[String, int]={
 		"fire":0,
 		"wind":0,
@@ -39,7 +39,7 @@ func mix(arr:Array[String]):
 	combo = "+".join(unique.filter(func(x):return x!=null))
 		
 	var spell
-	var new_damage=0
+	
 	if elements.has(combo):	
 		spell=elements[combo].duplicate()
 		

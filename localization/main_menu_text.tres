@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bnbl3raxn62on"]
+
+[ext_resource type="FontFile" uid="uid://diep4qd8unfs5" path="res://localization/minecraft_ukr_eng.ttf" id="1_8xs6o"]
+
+[resource]
+font = ExtResource("1_8xs6o")
+font_size = 20
+font_color = Color(0, 0, 0, 1)

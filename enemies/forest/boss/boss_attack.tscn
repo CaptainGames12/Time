@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dduplexb7l2u8"]
+
+[ext_resource type="Script" uid="uid://crjdml5ddjvqt" path="res://enemies/forest/boss/boss_attack.gd" id="1_wmqhb"]
+[ext_resource type="Texture2D" uid="uid://dsieadbn2uyoo" path="res://enemies/forest/boss/arrow.png" id="2_ntktj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ss2up"]
+radius = 4.0
+height = 18.0
+
+[node name="Attack" type="Area2D"]
+process_mode = 1
+collision_layer = 0
+script = ExtResource("1_wmqhb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.566
+scale = Vector2(3.34478, 2.01535)
+shape = SubResource("CapsuleShape2D_ss2up")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-0.5, 0.999998)
+rotation = 1.566
+scale = Vector2(2.82216, 2.01535)
+texture = ExtResource("2_ntktj")
+flip_h = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(3.34478, 2.01535)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://b45gsu6lclc1p"]
+
+[ext_resource type="Script" uid="uid://bxfta3er3afs1" path="res://wizard/attack/attack.gd" id="1_slyte"]
+[ext_resource type="PackedScene" uid="uid://gf5ikmgxpakk" path="res://spell_manager.tscn" id="2_xse6s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2634j"]
+radius = 14.0
+
+[node name="Attack" type="Area2D"]
+process_mode = 1
+collision_layer = 0
+collision_mask = 82
+script = ExtResource("1_slyte")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2634j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+flip_h = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.101
+autostart = true
+
+[node name="SpellManager" parent="." instance=ExtResource("2_xse6s")]
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

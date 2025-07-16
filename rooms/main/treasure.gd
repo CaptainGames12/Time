@@ -11,10 +11,10 @@ func _on_area_2d_body_entered(body: Area2D) -> void:
 			$"../Sprite2D".global_position=position
 			$"../Sprite2D".visible=true
 			var tween = get_tree().create_tween()
-			tween.set_pause_mode(2)
+			tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
 			
 			tween.tween_property($"../Sprite2D", "scale", Vector2(60, 60), 3)
-			get_parent().get_node("MainMusic").stream=preload("res://Wizard/game_over_without_ticking.mp3")
+			get_parent().get_node("MainMusic").stream=preload("res://wizard/game_over_without_ticking.mp3")
 			get_parent().get_node("MainMusic").process_mode = Node.PROCESS_MODE_ALWAYS
 			tween.finished.connect(get_parent().get_node("MainMusic").play)
 			$"../CanvasLayer/TimeControl/RestartUI/Clock".game_over=true

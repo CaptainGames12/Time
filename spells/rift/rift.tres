@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cecyn8qc2rx7w" path="res://spells/spawn_effect.gd" id="1_k86ux"]
 [ext_resource type="PackedScene" uid="uid://f0wixgyvj01l" path="res://spells/rift/rift.tscn" id="1_o3lt8"]
-[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://Wizard/inventory/item_inv.gd" id="2_ygoan"]
+[ext_resource type="Script" uid="uid://dsc584apkhxu" path="res://wizard/inventory/item_inv.gd" id="2_ygoan"]
 [ext_resource type="Texture2D" uid="uid://fnmep1kv4o8o" path="res://spells/rift/rift.png" id="3_ygoan"]
 
 [resource]

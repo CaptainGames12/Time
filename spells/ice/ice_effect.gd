@@ -9,6 +9,7 @@ func apply_effect(body):
 	if body.is_in_group("enemy"):
 		await get_tree().create_timer(4).timeout
 		body.attack_animation_player.play()
+		print(body.name)
 	if body.is_in_group("boss"):
 		await get_tree().create_timer(2).timeout
 	if !is_instance_valid(body):
@@ -16,4 +17,4 @@ func apply_effect(body):
 	body.get_node("Attack").monitoring =true
 	freeze_mat.set_shader_parameter("freeze_amount", 0)
 	body.SPEED = 100	
-		
+	queue_free()	

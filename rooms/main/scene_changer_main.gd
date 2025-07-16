@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var scene : String
-@onready var shop: Node2D = $"../../Shop"
+@onready var shop : Node2D = $"../../Shop"
 
 
 func _on_body_entered(body):

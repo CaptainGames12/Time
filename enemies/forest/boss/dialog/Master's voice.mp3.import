@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://7ybq2yb7pmo2"
+path="res://.godot/imported/Master's voice.mp3-44490d29b9f2fa4a30c1a9bed23358f6.mp3str"
+
+[deps]
+
+source_file="res://enemies/forest/boss/dialog/Master's voice.mp3"
+dest_files=["res://.godot/imported/Master's voice.mp3-44490d29b9f2fa4a30c1a9bed23358f6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
