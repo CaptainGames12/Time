@@ -1,10 +1,7 @@
 extends Node2D
 @onready var player: Player = $"../Player"
 
-@onready var inventory: Inventory = %InventoryUI
 @onready var shop_theme: AudioStreamPlayer = $AudioStreamPlayer2D
-
-@onready var texture_rect: TextureRect = $TextureRect
 
 @onready var any_main: Marker2D = $"../Entrances/any"
 @onready var any_main_pos = any_main.global_position
@@ -14,9 +11,6 @@ extends Node2D
 
 @onready var shop_list = [$Collectable3, $Collectable2, $Collectable, $Collectable4]
 func _ready():
-	
-	texture_rect.queue_free()
-	
 	var count = 0
 	for i in Global.collected_items:
 		count = 0
@@ -24,5 +18,4 @@ func _ready():
 			if i==j.item_name:
 				shop_list[count].queue_free()
 				shop_list.remove_at(count)
-				
 			count+=1

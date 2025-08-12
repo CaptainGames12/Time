@@ -4,7 +4,7 @@ var knock_speed: int = 200
 var attack_entity: Area2D
 func _init() -> void:
 	attack_entity = get_parent()
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if attack_entity!=null:	
 		attack_direction = attack_entity.target_fire
 	

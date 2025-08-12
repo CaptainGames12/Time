@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c04bs7uu7yk4i"
-path="res://.godot/imported/ui_hp_bur_full.png-a715b98190d2f44eb14ac31269d3db67.ctex"
+uid="uid://y6ej43kku5no"
+path="res://.godot/imported/temp_stamina_bar.png-2d4b1210c939573edae50c3129107cc8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/UI(1)/ui_hp_bur_full.png"
-dest_files=["res://.godot/imported/ui_hp_bur_full.png-a715b98190d2f44eb14ac31269d3db67.ctex"]
+source_file="res://ui/UI(1)/temp_stamina_bar.png"
+dest_files=["res://.godot/imported/temp_stamina_bar.png-2d4b1210c939573edae50c3129107cc8.ctex"]
 
 [params]
 

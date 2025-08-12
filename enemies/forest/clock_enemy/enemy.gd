@@ -5,6 +5,9 @@ var counter = 0
 
 @export var health = 100:
 	set(value):
+		health=value
+		if healthbar!=null:	
+			healthbar.value = health
 		if value<=0:
 			
 			if counter<=0:
@@ -16,10 +19,7 @@ var counter = 0
 				healthbar.value = health
 				health=value
 			
-		else: 
-			health=value
-			if healthbar!=null:	
-				healthbar.value = health
+		
 @export var SPEED = 100
 
 @onready var animation: AnimatedSprite2D = $Animation
@@ -53,7 +53,7 @@ func _ready() -> void:
 	healthbar.value = health
 	dead.connect($"..".enemy_death)
 	
-	restart_ui = get_parent().get_node("CanvasLayer/TimeControl/RestartUI")
+	restart_ui = get_parent().get_node("Interface/TimeControl/RestartUI")
 
 func spawn_coin_and_free():
 	SPEED=0
@@ -106,7 +106,7 @@ func _physics_process(delta):
 	
 func hitting(body: Node2D):
 	if body.is_in_group("player"):
-		Global.hp-=1
+		SignalBus.health_changed.emit(-1, "health")
 		attack_animation_player.play("attack")
 		if body!=null:	
 			body.get_node("Oof").play()
@@ -122,32 +122,8 @@ func player_free(body):
 	if body!=null:
 		body.process_mode=Node.PROCESS_MODE_PAUSABLE
 		body.queue_free()
-	for i in get_parent().get_node("CanvasLayer").get_children():
-		for j in i.get_children():
-			if j.name!="RestartUI":
-				j.queue_free()
-	game_over_anim()
+	
 
-func game_over_anim():
-	
-	get_parent().get_node("CanvasLayer/TimeControl/RestartUI/Clock").game_over=true
-	$"../Sprite2D".global_position=treasure.position
-	$"../Sprite2D".visible=true
-	var tween = get_tree().create_tween()
-	tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
-			
-	tween.tween_property($"../Sprite2D", "scale", Vector2(60, 60), 3)
-	get_parent().get_node("MainMusic").stream=preload("res://wizard/game_over_without_ticking.mp3")
-	get_parent().get_node("MainMusic").process_mode = Node.PROCESS_MODE_ALWAYS
-	tween.finished.connect(get_parent().get_node("MainMusic").play)
-	get_tree().paused = true
-	restart_ui.visible = true
-	tween.tween_property(restart_ui, "modulate", Color(1, 1, 1, 1), 2)
-	tween.finished.connect(tween.kill)
-	tween.finished.connect(turn_on_restart)
-	
-func turn_on_restart():
-	restart_ui.get_node("RestartButton").action="restart"
 func _on_attack_body_entered(body:Node2D)->void:
 	hitting(body)
 		

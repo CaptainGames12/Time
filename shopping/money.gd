@@ -7,7 +7,9 @@ var coins : int
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var label: Label = $Label
 
-
+func _ready() -> void:
+	addMoney(Global.score)
+	SignalBus.player_bought_item.connect(removeCoins)
 func addMoney(count : int) -> void: 
 	coins += count;
 	
@@ -28,7 +30,7 @@ func _on_timer_timeout() -> void:
 		PhysicsServer2D.set_active(true)
 		var instance : Node2D = object_scene.instantiate()
 		
-		instance.position = marker_2d.position;
+		instance.position = marker_2d.position
 		instance.rotate(randi() % 60)
 		add_child(instance)
 		instance.scale/=2

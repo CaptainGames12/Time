@@ -2,26 +2,21 @@
 extends Node2D
 
 
-var is_restarted=false
-var rewarded_ad : RewardedAd
+
+var rewarded_ad_object : RewardedAd
 var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
 var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 @onready var player = $Player
-@onready var level_progress: TextureProgressBar = %LevelProgress
+@export var level_progress: TextureProgressBar
 
 
-@onready var restart_ui: Control = %RestartUI
-@onready var inv: Control = %InventoryUI
-
-@onready var texture_rect: TextureRect = $TextureRect
 @onready var current_level = 1
 
 @onready var boss_clock = preload("res://enemies/forest/boss/evil_clock_boss.tscn")
 @onready var entrance_shop: StaticBody2D = $Entrance_shop
-@onready var dialogs: Control = %Dialogs
+@export var dialogs: Control 
 
-@onready var inv_res = player.inv_res
-@onready var boss_healthbar: Control = %Boss_health
+@export var boss_healthbar: Control
 @onready var main_music: AudioStreamPlayer= %MainMusic
 @onready var entrance_anim: AnimatedSprite2D = $Entrance_shop/Entrance_anim
 @onready var scene_changer: Area2D = $Entrance_shop/SceneChanger
@@ -51,7 +46,7 @@ func ad_initialize():
 	rewarded_ad_load_callback.on_ad_failed_to_load = on_rewarded_ad_failed_to_load
 	rewarded_ad_load_callback.on_ad_loaded = on_rewarded_ad_loaded
 	
-	on_user_earned_reward_listener.on_user_earned_reward = func(rewarded_item : RewardedItem):
+	on_user_earned_reward_listener.on_user_earned_reward = func(_rewarded_item : RewardedItem):
 		Global.hp=10
 		player.healthbar.value=10
 
@@ -64,13 +59,13 @@ func _notification(what: int) -> void:
 func _ready():
 	DialogSignals.forest_end.connect($Main_animations.play.bind("ending"))
 	Global.current_scene=self.scene_file_path
-	if player.loader!=null:
-		current_level=player.loader.level
+	if %TimeControlManager.loader!=null:
+		current_level=%TimeControlManager.loader.level
 		open_shop()
 	else:
 		get_tree().paused=true
 		close_shop()
-	%Money.addMoney(Global.score)
+	
 	ad_initialize()
 	Texts.place =1
 	DialogSignals.go_to_the_shop.connect(open_shop)
@@ -94,7 +89,7 @@ func start_stage_tween():
 		stage_label_tween.play()
 		%StageCompleted.visible=true	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var enemies_are_here = []
 	for i in get_children():
 		if i.is_in_group("enemy"):
@@ -167,27 +162,10 @@ func close_shop():
 	entrance_anim.play("close")
 	$Entrance_shop/Closed/ClosedCollision.disabled =false
 
-func _on_restart_button_pressed() -> void:
-	if Input.is_action_pressed("restart") and !is_restarted:
-		is_restarted=true
-		%MainMusic.stream=preload("res://wizard/fx_continue.mp3")
-		
-		%MainMusic.connect("finished", reset)
-		%MainMusic.play()
-	
-func reset():
-		Texts.place=1
-		
-		var tween = get_tree().create_tween()
-		tween.set_pause_mode(2)
-		
-		print(tween.is_running())
-		tween.tween_property($Sprite2D, "scale", Vector2(0, 0), 0.5)
-		tween.tween_property(restart_ui, "modulate", Color(0, 0, 0, 0), 0.5)
-		tween.finished.connect(get_tree().change_scene_to_file.bind("res://ui/loading.tscn"))
+
 	
 
-func _on_ending_animation_finished(anim_name: StringName="ending") -> void:
+func _on_ending_animation_finished(_anim_name: StringName="ending") -> void:
 	get_tree().change_scene_to_file("res://rooms/ending/clapping.tscn")
 	var there_is_level=false
 	for i in Global.open_levels:
@@ -219,8 +197,8 @@ func _on_button_pressed() -> void:
 		RewardedAdLoader.new().load(unit_id, AdRequest.new(), rewarded_ad_load_callback)
 		
 func main_show_ad():
-	if rewarded_ad:
-		rewarded_ad.show(on_user_earned_reward_listener)
+	if rewarded_ad_object:
+		rewarded_ad_object.show(on_user_earned_reward_listener)
 		print("is shown")
 		
 func on_rewarded_ad_failed_to_load(adError : LoadAdError) -> void:

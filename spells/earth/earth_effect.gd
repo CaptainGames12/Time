@@ -1,7 +1,7 @@
 extends Static
 var ticks = 5
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	if spell.spawn_area!=null:
 		if ticks==5:

@@ -1,8 +1,6 @@
 extends Static
 var target_pos:Vector2
-func _ready() -> void:
-	await dmg_enemy
-	queue_free()
+	
 func apply_effect(body) -> void:
 	super.apply_effect(body)
 	if body.is_in_group("enemy"):
@@ -27,3 +25,4 @@ func dmg_enemy(body):
 		body.SPEED=100
 		
 		tween.tween_property(body, "modulate", Color(1, 1, 1, 1), 0.5)
+	queue_free()

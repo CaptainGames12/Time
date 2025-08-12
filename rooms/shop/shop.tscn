@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dj3g4s7hfeffe"]
+[gd_scene load_steps=23 format=3 uid="uid://dj3g4s7hfeffe"]
 
 [ext_resource type="Script" uid="uid://c3k5pwoenex3g" path="res://rooms/shop/shop.gd" id="1_gei0l"]
 [ext_resource type="Texture2D" uid="uid://bbwuq5hcyxkgd" path="res://rooms/shop/shop_leayer_1.png" id="2_i6kk3"]
@@ -41,8 +41,6 @@ font_size = 40
 [sub_resource type="LabelSettings" id="LabelSettings_xgp1s"]
 font = ExtResource("7_2x7yq")
 font_size = 40
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_blb3i"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mssgm"]
 
@@ -181,14 +179,6 @@ offset_bottom = 131.0
 text = "6$
 "
 label_settings = SubResource("LabelSettings_xgp1s")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-modulate = Color(0, 0, 0, 1)
-self_modulate = Color(0, 0, 0, 1)
-offset_right = 1154.0
-offset_bottom = 654.0
-texture = SubResource("CanvasTexture_blb3i")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_mssgm")

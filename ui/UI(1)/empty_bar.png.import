@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tlab731mbid2"
-path="res://.godot/imported/respawn clock.png-06fb446261abee8188163b2e56205722.ctex"
+uid="uid://djydnws75b4p7"
+path="res://.godot/imported/empty_bar.png-5c8f453f59f1fdd0cf10da4bcf56a9b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://wizard/respawn clock.png"
-dest_files=["res://.godot/imported/respawn clock.png-06fb446261abee8188163b2e56205722.ctex"]
+source_file="res://ui/UI(1)/empty_bar.png"
+dest_files=["res://.godot/imported/empty_bar.png-5c8f453f59f1fdd0cf10da4bcf56a9b7.ctex"]
 
 [params]
 

@@ -11,7 +11,6 @@ var game_over = false:
 var restarted = false
 
 func _on_restart_button_pressed() -> void:
-	if Input.is_action_just_pressed("restart") and !restarted:	
 		speed_scale= 10*-1
 		restarted = true
 		ticks_audio.stop()

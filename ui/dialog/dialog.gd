@@ -1,6 +1,10 @@
 extends RichTextLabel
-
-enum Text_state{
+@export var root_node: Node2D
+@export var root_of_tutorial_dialog: Control
+@export var spell_joystick: Node2D
+@export var time_manager: Node
+enum Text_state
+{
 	ONREADY,
 	GEN,
 	FINISHED
@@ -13,8 +17,8 @@ var next_text = ""
 var isTutorialStarted:bool
 var is_tutorial_here = true
 var bought_item=false
-@onready var player = get_tree().root.get_node("Node2D/Player")
-@onready var main = get_tree().root.get_node("Node2D")
+@onready var player = get_tree().root.get_node("Forest/Player")
+@onready var main = get_tree().root.get_node("Forest")
 @onready var tween_dialog =  get_tree().create_tween().set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
 @export var voice: AudioStreamPlayer2D
 
@@ -22,8 +26,11 @@ func buttons_disable():
 	btn_save.action="nothing"
 	btn_stop.action="nothing"
 func _ready() -> void:
+	if root_node.name!="Forest":
+		print(root_node.name)
+		root_of_tutorial_dialog.queue_free()
 	state_changer(Text_state.ONREADY)
-	main.get_node("CanvasLayer/Joysticks/SpellJoystick").process_mode=Node.PROCESS_MODE_PAUSABLE
+	spell_joystick.process_mode=Node.PROCESS_MODE_PAUSABLE
 	buttons_disable()
 	if Texts.place!=10:
 		DialogSignals.tutorial_started.emit()
@@ -35,11 +42,11 @@ func _ready() -> void:
 		DialogSignals.time_save_pressed.connect(save_pressed)
 		DialogSignals.time_stop_pressed.connect(stop_pressed)
 		DialogSignals.mixed_elements.connect(shoot_mixed)
-	if player.loader!=null:	
+	if time_manager.loader!=null:	
 		
 		DialogSignals.tutorial_finished.emit()
 var shoot_counter=0	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 
 	match current_state:
 		Text_state.ONREADY:
@@ -50,7 +57,7 @@ func _process(delta: float) -> void:
 		Text_state.GEN:
 			
 			if Input.is_action_just_pressed("continue"):
-				$"../../AudioStreamPlayer2D".stop()
+				voice.stop()
 				visible_ratio = 1
 				tween_dialog.kill()
 				state_changer(Text_state.FINISHED)
@@ -117,7 +124,7 @@ func generate_dialogue(my_text = next_text):
 	text = my_text
 	state_changer(Text_state.GEN)
 	
-	tween_dialog = get_tree().create_tween().set_pause_mode(2)
+	tween_dialog = get_tree().create_tween().set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
 	generate_dialogue_audio()
 	tween_dialog.tween_property(self, "visible_ratio", 1, 2)
 	
@@ -144,7 +151,7 @@ func answer(value:Variant):
 		btn_save.action="time_save"
 		btn_stop.action="time_stop"
 	
-		main.get_node("CanvasLayer/Joysticks/SpellJoystick").process_mode=Node.PROCESS_MODE_ALWAYS
+		spell_joystick.process_mode=Node.PROCESS_MODE_ALWAYS
 		isSkipped = true
 		
 func start():

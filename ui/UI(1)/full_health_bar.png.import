@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y7srwcig7dxw"
-path="res://.godot/imported/ui_time_bur_full.png-d75839c5561b4b3272741700f141614d.ctex"
+uid="uid://mimhocwhq3rv"
+path="res://.godot/imported/full_health_bar.png-76e2e217b386f4c7a5b06e86c1b89490.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/UI(1)/ui_time_bur_full.png"
-dest_files=["res://.godot/imported/ui_time_bur_full.png-d75839c5561b4b3272741700f141614d.ctex"]
+source_file="res://ui/UI(1)/full_health_bar.png"
+dest_files=["res://.godot/imported/full_health_bar.png-76e2e217b386f4c7a5b06e86c1b89490.ctex"]
 
 [params]
 

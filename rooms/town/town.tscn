@@ -1,8 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://cd8yrfo7mm4eo"]
+[gd_scene load_steps=4 format=3 uid="uid://cd8yrfo7mm4eo"]
 
+[ext_resource type="PackedScene" uid="uid://cpn613n0k4ls1" path="res://wizard/time_control/time_control_manager.tscn" id="1_k2fm8"]
+[ext_resource type="PackedScene" uid="uid://bykkx8hfl6i86" path="res://ui/interface.tscn" id="1_xhuol"]
 [ext_resource type="PackedScene" uid="uid://dwi7bdg27wpbr" path="res://wizard/Wizard.tscn" id="1_xj1ly"]
 
 [node name="Town" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_xj1ly")]
+[node name="TimeControlManager" parent="." node_paths=PackedStringArray("ui", "stop_pressed_cooldown", "stop_audio", "restart_ui", "time_stop_screen_fx", "player", "healthbar", "inventory", "stamina", "stamina_timer", "restart_button") instance=ExtResource("1_k2fm8")]
+ui = NodePath("../Interface")
+stop_pressed_cooldown = NodePath("../Player/StopPressedCooldown")
+stop_audio = NodePath("../Interface/Timers&sound/TimeStopSound")
+restart_ui = NodePath("../Interface/TimeControl/RestartUI")
+time_stop_screen_fx = NodePath("../Interface/TimeStopScreenFX")
+player = NodePath("../Player")
+healthbar = NodePath("../Interface/ProgressBars/Health")
+inventory = NodePath("../Interface/Magic/InventoryUI")
+stamina = NodePath("../Interface/ProgressBars/Stamina")
+stamina_timer = NodePath("../Interface/Timers&sound/Stamina_timer")
+restart_button = NodePath("../Interface/TimeControl/RestartUI/RestartButton")
+
+[node name="Interface" parent="." instance=ExtResource("1_xhuol")]
+
+[node name="Stamina" parent="Interface/ProgressBars" index="0"]
+signal_name = null
+
+[node name="Health" parent="Interface/ProgressBars" index="1"]
+signal_name = null
+
+[node name="RichTextLabel" parent="Interface/Dialogs/GridContainer" index="2" node_paths=PackedStringArray("root_node", "spell_joystick", "time_manager")]
+root_node = NodePath("../../../..")
+spell_joystick = NodePath("../../../Joysticks/SpellJoystick")
+time_manager = NodePath("../../../../TimeControlManager")
+
+[node name="Player" parent="." node_paths=PackedStringArray("joystick", "spell_joystick", "healthbar") instance=ExtResource("1_xj1ly")]
 position = Vector2(687, 560)
+joystick = NodePath("../Interface/Joysticks/Joystick")
+spell_joystick = NodePath("../Interface/Joysticks/SpellJoystick")
+healthbar = NodePath("../Interface/ProgressBars/Health")
+
+[editable path="Interface"]
+[editable path="Interface/Dialogs"]
+[editable path="Player"]

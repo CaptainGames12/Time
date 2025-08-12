@@ -37,16 +37,11 @@ func mix(arr:Array[String]):
 		if not unique.has(item):
 			unique.append(item)
 	combo = "+".join(unique.filter(func(x):return x!=null))
-		
-	var spell
-	
+
 	if elements.has(combo):	
 		spell=elements[combo].duplicate()
-		
 		for i in same_elements.keys():
-			
 			if same_elements[i]>0:
-				
 				spell.damage+=elements[i].damage*same_elements[i]
 	
 	return spell

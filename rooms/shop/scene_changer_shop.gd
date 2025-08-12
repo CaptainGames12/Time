@@ -1,21 +1,24 @@
 extends Area2D
-
-@onready var shop: Node2D = $".."
+@export var spell_joystick: Node2D
+@export var save_button: Control
+@export var heal: Control
+@export var root_node: Node2D
+@export var time_control_manager: Node 
 var pause_state = true
 func _ready() -> void:
 	
 	DialogSignals.connect("tutorial_finished", change_pause_state)
 func _on_body_entered(body):
-	get_parent().get_parent().get_node("CanvasLayer/TimeControl/Saving").process_mode=Node.PROCESS_MODE_ALWAYS
-	get_tree().root.get_node("Node2D/CanvasLayer/Joysticks/SpellJoystick").process_mode=Node.PROCESS_MODE_ALWAYS
+	save_button.process_mode=Node.PROCESS_MODE_ALWAYS
+	spell_joystick.process_mode=Node.PROCESS_MODE_ALWAYS
 	
-	$"../../CanvasLayer/Support/Heal".disabled=false
+	heal.disabled=false
 	print("detects")
-	body.in_the_shop = false
+	time_control_manager.in_the_shop = false
 	if !pause_state:	
-		body.stamina_timer.start()
-	shop.shop_theme.stop()
-	body.global_position = shop.any_main_pos
+		time_control_manager.stamina_timer.start()
+	root_node.shop_theme.stop()
+	body.global_position = root_node.any_main_pos
 	
 	get_tree().paused = pause_state
 	

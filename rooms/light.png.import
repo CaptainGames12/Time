@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2k4fxlmr6utw"
-path="res://.godot/imported/ui_hp_bur.png-38570618356ef53abc41cca74e87e535.ctex"
+uid="uid://bfeonvier73lb"
+path="res://.godot/imported/light.png-12a793ef69bd88c9a495a60573908209.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/UI(1)/ui_hp_bur.png"
-dest_files=["res://.godot/imported/ui_hp_bur.png-38570618356ef53abc41cca74e87e535.ctex"]
+source_file="res://rooms/light.png"
+dest_files=["res://.godot/imported/light.png-12a793ef69bd88c9a495a60573908209.ctex"]
 
 [params]
 

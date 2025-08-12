@@ -57,7 +57,7 @@ size_flags_vertical = 0
 text = "*"
 label_settings = SubResource("LabelSettings_yoovk")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GridContainer" node_paths=PackedStringArray("voice")]
+[node name="RichTextLabel" type="RichTextLabel" parent="GridContainer" node_paths=PackedStringArray("root_of_tutorial_dialog", "voice")]
 auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 3
@@ -71,6 +71,7 @@ fit_content = true
 visible_characters = 0
 visible_ratio = 0.0
 script = ExtResource("1_mavls")
+root_of_tutorial_dialog = NodePath("../..")
 voice = NodePath("../../AudioStreamPlayer2D")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

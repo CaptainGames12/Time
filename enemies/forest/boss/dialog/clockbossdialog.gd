@@ -11,7 +11,7 @@ enum Text_state{
 }
 @export var voice:AudioStreamPlayer
 @onready var tween_dialog =  get_tree().create_tween().set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	match current_state:
 		Text_state.ONREADY:

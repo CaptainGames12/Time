@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpn613n0k4ls1"]
+
+[ext_resource type="Script" uid="uid://baq1v4lt5ttqm" path="res://wizard/time_control/time_control_manager.gd" id="1_3irpf"]
+
+[node name="TimeControlManager" type="Node" node_paths=PackedStringArray("stop_pressed_cooldown", "stop_audio", "restart_ui", "time_stop_screen_fx", "dialogs", "player", "healthbar", "inventory", "entrance", "treasure", "stamina", "stamina_timer", "restart_button", "ring_effect")]
+process_mode = 3
+script = ExtResource("1_3irpf")
+stop_pressed_cooldown = NodePath("")
+stop_audio = NodePath("")
+restart_ui = NodePath("")
+time_stop_screen_fx = NodePath("")
+dialogs = NodePath("")
+player = NodePath("")
+healthbar = NodePath("")
+inventory = NodePath("")
+entrance = NodePath("")
+treasure = NodePath("")
+stamina = NodePath("")
+stamina_timer = NodePath("")
+restart_button = NodePath("")
+ring_effect = NodePath("")

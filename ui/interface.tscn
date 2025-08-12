@@ -1,20 +1,25 @@
-[gd_scene load_steps=37 format=3 uid="uid://bykkx8hfl6i86"]
+[gd_scene load_steps=46 format=3 uid="uid://bykkx8hfl6i86"]
 
-[ext_resource type="PackedScene" uid="uid://7kfpfr1fhuh5" path="res://wizard/player_ui/control.tscn" id="1_rm747"]
-[ext_resource type="PackedScene" uid="uid://dmrk7fnn3wb0j" path="res://wizard/player_ui/Healthbar.tscn" id="2_2t7gn"]
+[ext_resource type="Shader" uid="uid://ce7iw88ohe0gi" path="res://wizard/gray_time_stop_screen.gdshader" id="1_yp3y4"]
+[ext_resource type="PackedScene" uid="uid://dmrk7fnn3wb0j" path="res://wizard/player_ui/bar.tscn" id="2_2t7gn"]
+[ext_resource type="Texture2D" uid="uid://cv6flshcukulp" path="res://ui/UI(1)/full_stamina_bar.png" id="3_2t7gn"]
 [ext_resource type="PackedScene" uid="uid://byyvwanp7uc17" path="res://rooms/main/level_progress.tscn" id="3_gtcda"]
+[ext_resource type="Texture2D" uid="uid://y6ej43kku5no" path="res://ui/UI(1)/temp_stamina_bar.png" id="4_gtcda"]
 [ext_resource type="PackedScene" uid="uid://cbvctbxxv3rvi" path="res://enemies/forest/boss/boss_health.tscn" id="4_i3j0c"]
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="5_goa6t"]
+[ext_resource type="Texture2D" uid="uid://do35fw3l71m4f" path="res://ui/UI(1)/stamina_icon.png" id="5_js8hj"]
 [ext_resource type="Texture2D" uid="uid://boevfpikbod4w" path="res://ui/UI(1)/button_5.png" id="6_js8hj"]
+[ext_resource type="Texture2D" uid="uid://mimhocwhq3rv" path="res://ui/UI(1)/full_health_bar.png" id="6_o5cqe"]
+[ext_resource type="Texture2D" uid="uid://b7m62x4kyv0vw" path="res://ui/UI(1)/temp_health_bar.png" id="7_g8vcq"]
 [ext_resource type="Texture2D" uid="uid://b7tkddthyqmt0" path="res://ui/dark_button_version/button_5_dark.png" id="7_o5cqe"]
-[ext_resource type="Texture2D" path="res://ui/normal_restart.png" id="8_g8vcq"]
-[ext_resource type="Texture2D" path="res://ui/pressed_restart.png" id="9_apw32"]
+[ext_resource type="Texture2D" uid="uid://jhcfte7y2mjp" path="res://ui/UI(1)/health_icon.png" id="8_apw32"]
 [ext_resource type="Texture2D" uid="uid://b50pkbhw6s04u" path="res://wizard/menu_clock.png" id="10_1uikj"]
+[ext_resource type="Texture2D" uid="uid://4a8xo06fddxw" path="res://ui/main_menu/menu_button.png" id="10_2t7gn"]
+[ext_resource type="Texture2D" uid="uid://brkkuxm81hjbt" path="res://ui/main_menu/menu_button_pressed.png" id="11_gtcda"]
 [ext_resource type="Script" uid="uid://du3wrllvswb2p" path="res://wizard/clock.gd" id="11_suxck"]
+[ext_resource type="FontFile" uid="uid://ctvd66t3pojxn" path="res://localization/minecraft_ukr_eng.ttf" id="12_i3j0c"]
 [ext_resource type="AudioStream" uid="uid://soev4p3d33nf" path="res://wizard/tick.mp3" id="12_q7sjo"]
 [ext_resource type="PackedScene" uid="uid://xd5fsmhf0pj7" path="res://ui/time_stop_btn.tscn" id="13_0potx"]
-[ext_resource type="Texture2D" uid="uid://clwqfbsh7uifu" path="res://ui/UI(1)/button_4.png" id="14_38x65"]
-[ext_resource type="Texture2D" uid="uid://4q1uxalbnk7b" path="res://ui/dark_button_version/button_4_dark.png" id="15_dywsh"]
 [ext_resource type="PackedScene" uid="uid://bu4x1lrdy0xjs" path="res://shopping/display_money.tscn" id="16_28jgm"]
 [ext_resource type="PackedScene" uid="uid://bworkwhvc0mcv" path="res://wizard/inventory/inventory.tscn" id="17_guamx"]
 [ext_resource type="PackedScene" uid="uid://b8vvwlraynlk7" path="res://ui/mixing.tscn" id="18_vpyft"]
@@ -26,11 +31,39 @@
 [ext_resource type="PackedScene" uid="uid://bjsj1mwug051v" path="res://ui/controls/joystick.tscn" id="24_qwttk"]
 [ext_resource type="Texture2D" uid="uid://da22qlgp6rrdk" path="res://ui/UI(1)/ui_button_joystick.png" id="25_rdp37"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k5gnf"]
+shader = ExtResource("1_yp3y4")
+shader_parameter/enabled = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_js8hj"]
+font = ExtResource("12_i3j0c")
+
+[sub_resource type="GDScript" id="GDScript_o5cqe"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	SignalBus.progress_saved.connect(show_label)
+func show_label():
+	var tween = get_tree().create_tween()
+	print(\"progress saved\")
+	
+	tween.tween_property(self, \"self_modulate\", Color(1, 1, 1, 1), 1)
+	tween.tween_property(self, \"self_modulate\", Color(0, 0, 0, 0), 1)
+	tween.finished.connect(tween.kill)
+"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_u7l0b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_oosx8"]
 font = ExtResource("5_goa6t")
 font_size = 84
+
+[sub_resource type="LabelSettings" id="LabelSettings_goa6t"]
+font = ExtResource("12_i3j0c")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5hs6f"]
 atlas = ExtResource("10_1uikj")
@@ -95,23 +128,47 @@ animations = [{
 process_mode = 3
 follow_viewport_scale = 20.388
 
+[node name="TimeStopScreenFX" type="ColorRect" parent="."]
+process_mode = 3
+material = SubResource("ShaderMaterial_k5gnf")
+offset_left = -51.0
+offset_top = -18.0
+offset_right = 1859.0
+offset_bottom = 1076.0
+scale = Vector2(1.3212, 1.18343)
+
+[node name="ProgressSavedLabel" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 467.0
+offset_top = 290.0
+offset_right = 719.0
+offset_bottom = 313.0
+text = "Progress has been saved"
+label_settings = SubResource("LabelSettings_js8hj")
+script = SubResource("GDScript_o5cqe")
+
 [node name="ProgressBars" type="Node" parent="."]
 
-[node name="Stamina" parent="ProgressBars" instance=ExtResource("1_rm747")]
-unique_name_in_owner = true
-offset_left = 25.0
-offset_top = 85.0
-offset_right = 103.0
-offset_bottom = 92.0
-scale = Vector2(5, 5)
+[node name="Stamina" parent="ProgressBars" instance=ExtResource("2_2t7gn")]
+offset_left = 31.0
+offset_top = 71.0
+offset_right = 109.0
+offset_bottom = 78.0
+signal_name = "stamina_changed"
+bar_texture_progress = ExtResource("3_2t7gn")
+temp_texture_progress = ExtResource("4_gtcda")
+icon = ExtResource("5_js8hj")
 
 [node name="Health" parent="ProgressBars" instance=ExtResource("2_2t7gn")]
 unique_name_in_owner = true
-offset_left = 26.304
+offset_left = 31.0
 offset_top = 30.0
-offset_right = 104.304
+offset_right = 109.0
 offset_bottom = 37.0
-scale = Vector2(5, 5)
+signal_name = "health_changed"
+bar_texture_progress = ExtResource("6_o5cqe")
+temp_texture_progress = ExtResource("7_g8vcq")
+icon = ExtResource("8_apw32")
 
 [node name="LevelProgress" parent="ProgressBars" instance=ExtResource("3_gtcda")]
 unique_name_in_owner = true
@@ -149,82 +206,6 @@ text = "[wave]STAGE COMPLETED[/wave]"
 horizontal_alignment = 1
 visible_characters = 0
 visible_ratio = 0.0
-
-[node name="TimeControl" type="Node" parent="."]
-
-[node name="Saving" type="Control" parent="TimeControl"]
-layout_mode = 3
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -814.0
-offset_top = -197.0
-offset_right = -814.0
-offset_bottom = -197.0
-grow_horizontal = 0
-grow_vertical = 0
-scale = Vector2(5, 5)
-
-[node name="SaveButton" type="TouchScreenButton" parent="TimeControl/Saving"]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.580392)
-position = Vector2(-12.6212, -6.14716)
-scale = Vector2(1, 0.922)
-texture_normal = ExtResource("6_js8hj")
-texture_pressed = ExtResource("7_o5cqe")
-shape = SubResource("CircleShape2D_u7l0b")
-action = "time_save"
-
-[node name="RestartUI" type="Control" parent="TimeControl"]
-unique_name_in_owner = true
-process_mode = 3
-visible = false
-modulate = Color(1, 1, 1, 0)
-z_index = 6
-layout_mode = 3
-anchor_right = 2.066
-anchor_bottom = 1.911
-offset_right = -2380.03
-offset_bottom = -1238.33
-
-[node name="GameOver" type="Label" parent="TimeControl/RestartUI"]
-layout_mode = 0
-offset_left = 278.0
-offset_top = 234.0
-offset_right = 885.0
-offset_bottom = 310.0
-text = "Game Over"
-label_settings = SubResource("LabelSettings_oosx8")
-
-[node name="RestartButton" type="TouchScreenButton" parent="TimeControl/RestartUI"]
-process_mode = 3
-z_index = 9
-position = Vector2(481, 341)
-scale = Vector2(5.94104, 6.15733)
-texture_normal = ExtResource("8_g8vcq")
-texture_pressed = ExtResource("9_apw32")
-
-[node name="Clock" type="AnimatedSprite2D" parent="TimeControl/RestartUI"]
-position = Vector2(566, 91)
-scale = Vector2(2.33484, 2.33484)
-sprite_frames = SubResource("SpriteFrames_tnmve")
-frame_progress = 0.633901
-speed_scale = 0.5
-script = ExtResource("11_suxck")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TimeControl/RestartUI/Clock"]
-stream = ExtResource("12_q7sjo")
-
-[node name="TimeStop" parent="TimeControl" instance=ExtResource("13_0potx")]
-unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0.635294)
-position = Vector2(147, 286)
-scale = Vector2(5, 5)
-texture_normal = ExtResource("14_38x65")
-texture_pressed = ExtResource("15_dywsh")
-shape = SubResource("CircleShape2D_ayxu2")
 
 [node name="MoneyUI" type="Node" parent="."]
 
@@ -282,11 +263,6 @@ bus = &"SFX"
 unique_name_in_owner = true
 wait_time = 0.5
 
-[node name="Cooldown_timer" type="Timer" parent="Timers&sound"]
-unique_name_in_owner = true
-one_shot = true
-autostart = true
-
 [node name="Dialogs" parent="." instance=ExtResource("23_rirgm")]
 unique_name_in_owner = true
 visible = false
@@ -295,6 +271,104 @@ offset_top = -9.0
 offset_right = -123.0
 offset_bottom = -9.0
 scale = Vector2(1.3, 1.3)
+
+[node name="TimeControl" type="Node" parent="."]
+
+[node name="Saving" type="Control" parent="TimeControl"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -814.0
+offset_top = -197.0
+offset_right = -814.0
+offset_bottom = -197.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(5, 5)
+
+[node name="SaveButton" type="TouchScreenButton" parent="TimeControl/Saving"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.580392)
+position = Vector2(-12.6212, -6.14716)
+scale = Vector2(1, 0.922)
+texture_normal = ExtResource("6_js8hj")
+texture_pressed = ExtResource("7_o5cqe")
+shape = SubResource("CircleShape2D_u7l0b")
+action = "time_save"
+
+[node name="RestartUI" type="Control" parent="TimeControl"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+z_index = 6
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOver" type="Label" parent="TimeControl/RestartUI"]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 234.0
+offset_right = 885.0
+offset_bottom = 310.0
+text = "Game Over"
+label_settings = SubResource("LabelSettings_oosx8")
+
+[node name="RestartButton" type="TextureButton" parent="TimeControl/RestartUI"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 14.0
+offset_right = 127.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+disabled = true
+texture_normal = ExtResource("10_2t7gn")
+texture_pressed = ExtResource("11_gtcda")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="TimeControl/RestartUI/RestartButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+label_settings = SubResource("LabelSettings_goa6t")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Clock" type="AnimatedSprite2D" parent="TimeControl/RestartUI"]
+position = Vector2(566, 91)
+scale = Vector2(2.33484, 2.33484)
+sprite_frames = SubResource("SpriteFrames_tnmve")
+frame_progress = 0.633901
+speed_scale = 0.5
+script = ExtResource("11_suxck")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TimeControl/RestartUI/Clock"]
+stream = ExtResource("12_q7sjo")
+
+[node name="TimeStop" parent="TimeControl" instance=ExtResource("13_0potx")]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.635294)
+position = Vector2(147, 286)
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_ayxu2")
 
 [node name="Joysticks" type="Node" parent="."]
 
