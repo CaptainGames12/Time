@@ -12,23 +12,7 @@ var SPEED = 20
 var ROT_SPEED = 300
 var master_dialog = preload("res://ui/dialog/dialogs.tscn").instantiate()
 var counter=0
-@export var health = 20:
-	set(value):	
-		if value<=0 and counter==0:
-			counter+=1
-			$Collision.disabled=true
-			if phrases!=null:	
-				phrases.queue_free()
-			health=value
-			get_parent().get_node("Treasure").the_end_of_forest()
-			get_parent().get_node("CanvasLayer").add_child(master_dialog)
-			
-			clock_boss_sprite.animation_finished.connect(queue_free)
-			
-			clock_boss_sprite.play("death")
-			
-		else:
-			health=value	
+@export var health = 20
 signal hit_player
 signal stopHit
 @onready var stop_vector: RayCast2D = get_node("/root/Forest/StopVec")
@@ -105,16 +89,16 @@ func _process(delta: float) -> void:
 			rolling_animate(delta)
 func _ready() -> void:
 	Texts.place=10
-	get_parent().get_parent().get_node("Interface").add_child(phrases)
+	get_parent().get_node("Interface").add_child(phrases)
 	SignalBus.boss_entered.emit()
-	get_parent().get_parent().get_node("MainMusic").playing=false
+	get_parent().get_node("MainMusic").playing=false
 	stopHit.connect(stopHitEmited)
 	scale.x = 4
 	scale.y = 4
 	$RemoteTransform2D.remote_path = stop_vector.get_path()
-	position = Vector2(1878, 580)
+	position = get_parent().get_node("BossSpawnPosition").position
 	var tween_walking = get_tree().create_tween()
-	tween_walking.tween_property(self, "global_position", Vector2(1650,580),2)
+	tween_walking.tween_property(self, "global_position", Vector2(position.x-500, position.y), 0.5)
 	
 
 func stopHitEmited():
@@ -153,25 +137,7 @@ func finishing_player(body):
 
 	if Global.hp <= 0:
 		SignalBus.game_over.emit()
-func game_over_anim():
-	get_parent().get_node("CanvasLayer/TimeControl/RestartUI/Clock").game_over=true
-	get_parent().get_node("Sprite2D").global_position=get_parent().get_node("Treasure").position
-	get_parent().get_node("Sprite2D").visible=true
-	var tween = get_tree().create_tween()
-	tween.set_pause_mode(Tween.TweenPauseMode.TWEEN_PAUSE_PROCESS)
-			
-	tween.tween_property($"../Sprite2D", "scale", Vector2(60, 60), 3)
-	get_parent().get_node("MainMusic").stream=preload("res://wizard/game_over_without_ticking.mp3")
-	get_parent().get_node("MainMusic").process_mode = Node.PROCESS_MODE_ALWAYS
-	tween.finished.connect(get_parent().get_node("MainMusic").play)
-	get_tree().paused = true
-	restart_ui.visible = true
-	tween.tween_property(restart_ui, "modulate", Color(1, 1, 1, 1), 2)
-	tween.finished.connect(tween.kill)
-	tween.finished.connect(turn_on_restart)
 	
-func turn_on_restart():
-	restart_ui.get_node("RestartButton").action="restart"	
 func _on_locator_body_entered(body: Node2D) -> void:
 	if rolling_time.is_stopped() and body is Player:
 		get_direction_rolling(body)

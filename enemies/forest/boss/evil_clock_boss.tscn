@@ -105,7 +105,7 @@ process_mode = 3
 collision_layer = 17
 collision_mask = 25
 script = ExtResource("1_dv3vu")
-health = 400
+health = 10
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.272649, 0.272649)

@@ -2,7 +2,6 @@ extends Area2D
 
 @export var speed := 500
 
-@onready var bossHealth: Control = get_parent().get_node("Interface/ProgressBars/Boss_health")
 @onready var dialogs = get_parent().get_node_or_null("CanvasLayer/Dialogs")
 @onready var spell_manager: Node = %SpellManager
 

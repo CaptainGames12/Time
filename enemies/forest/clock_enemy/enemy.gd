@@ -34,7 +34,7 @@ var tornado_direction: Vector2
 signal dead
 
 func _ready() -> void:
-	dead.connect($"..".enemy_death)
+	dead.connect(get_parent().get_node("LevelManager").enemy_death)
 
 func spawn_coin_and_free():
 	SPEED=0

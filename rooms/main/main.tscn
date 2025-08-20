@@ -262,7 +262,8 @@ position = Vector2(4.03308, -56)
 scale = Vector2(17.9317, 472.044)
 remote_path = NodePath("../../Camera2D")
 
-[node name="LevelManager" parent="." node_paths=PackedStringArray("treasure", "player", "level_progress", "stage_completed", "scene_changer", "boss_healthbar", "entrance_anim") instance=ExtResource("4_353kp")]
+[node name="LevelManager" parent="." node_paths=PackedStringArray("root_node", "treasure", "player", "level_progress", "stage_completed", "scene_changer", "boss_healthbar", "entrance_anim") instance=ExtResource("4_353kp")]
+root_node = NodePath("..")
 treasure = NodePath("../Treasure")
 player = NodePath("../Player")
 level_progress = NodePath("../Interface/ProgressBars/LevelProgress")
@@ -312,22 +313,23 @@ offset_right = 2722.0
 offset_bottom = 2369.0
 
 [node name="BossHealth" parent="Interface/ProgressBars" index="2"]
-visible = false
 bar_texture_progress = ExtResource("9_v24id")
 temp_texture_progress = ExtResource("10_jgkow")
 icon = ExtResource("11_23j7k")
 
-[node name="TempHealthBar" parent="Interface/ProgressBars/BossHealth" index="0"]
-nine_patch_stretch = true
-texture_under = ExtResource("12_pbnns")
-texture_progress = ExtResource("10_jgkow")
-
 [node name="Icon" parent="Interface/ProgressBars/BossHealth/HBoxContainer" index="0"]
 texture = ExtResource("11_23j7k")
 
-[node name="Bar" parent="Interface/ProgressBars/BossHealth/HBoxContainer" index="1"]
-nine_patch_stretch = true
-texture_progress = ExtResource("9_v24id")
+[node name="TempHealthBar" parent="Interface/ProgressBars/BossHealth/HBoxContainer" index="1"]
+max_value = 4000.0
+step = 100.0
+value = 4000.0
+texture_under = ExtResource("12_pbnns")
+
+[node name="Bar" parent="Interface/ProgressBars/BossHealth/HBoxContainer/TempHealthBar" index="0"]
+max_value = 400.0
+step = 40.0
+value = 400.0
 
 [node name="RichTextLabel" parent="Interface/Dialogs/GridContainer" index="2" node_paths=PackedStringArray("root_node", "spell_joystick", "time_manager")]
 root_node = NodePath("../../../..")
@@ -506,6 +508,9 @@ grow_vertical = 2
 scale = Vector2(0.636047, 0.636047)
 pivot_offset = Vector2(32, 32)
 texture = ExtResource("22_ayxu2")
+
+[node name="BossSpawnPosition" type="Marker2D" parent="."]
+position = Vector2(3144, 1242)
 
 [connection signal="body_entered" from="Entrance_shop/SceneChanger" to="Entrance_shop/SceneChanger" method="_on_body_entered"]
 [connection signal="animation_finished" from="Main_animations" to="." method="_on_ending_animation_finished"]

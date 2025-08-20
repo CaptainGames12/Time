@@ -1,4 +1,5 @@
 extends Node2D
+@export var root_node: Node2D
 @export var treasure: Node2D
 @export var player: Player
 @export var level_progress: TextureProgressBar
@@ -53,9 +54,7 @@ func _process(_delta: float) -> void:
 		cooldown_timer.start()
 		
 		dead_enemies=0
-	if boss_node.is_inside_tree():
-		boss_healthbar.get_child(0).value = boss_node.health
-		pass
+	
 
 func enemy_death():
 	dead_enemies += 1
@@ -82,17 +81,16 @@ func spawn_enemies():
 			var spawn_pos = rand_spawn_node.global_position
 			enemy_node.position = spawn_pos
 			enemy_node.treasure = treasure
-			add_child(enemy_node)
-			await get_tree().create_timer(1, false).timeout
+			root_node.add_child(enemy_node)
+			await get_tree().create_timer(1.5, false).timeout
 	elif current_level==boss_level:
 		main_music.stream = boss_track
 		
 		main_music.play()
 		
-		add_child(boss_node)
+		root_node.add_child(boss_node)
 		boss_node.hit_player.connect(player.boss_hit)
-		boss_healthbar.get_child(0).value= boss_node.health
-		boss_healthbar.get_child(0).max_value= boss_node.health
+	
 		boss_healthbar.visible = true
 		
 func update_level():

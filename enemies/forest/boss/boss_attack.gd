@@ -3,8 +3,8 @@ extends Area2D
 @export var speed: = 500
 
 var target_fire: Vector2
-@onready var boss=get_node("/root/Node2D/EvilClockBoss")
-@onready var player=get_node("/root/Node2D/Player")
+@onready var boss=get_node("/root/Forest/EvilClockBoss")
+@onready var player=get_node("/root/Forest/Player")
 func _physics_process(delta):
 	position-=target_fire*speed*delta
 	

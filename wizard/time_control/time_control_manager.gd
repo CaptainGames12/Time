@@ -103,7 +103,7 @@ func load_save():
 		
 		player.global_position = loader.player_pos
 		
-		get_parent().current_level = loader.level
+		get_parent().get_node("LevelManager").current_level = loader.level
 		Global.collected_items = loader.collected_items
 		Global.score = loader.global_score 
 		Global.hp = loader.global_hp
@@ -131,7 +131,7 @@ func time_save() -> void:
 				
 				saving.global_score = Global.score
 				saving.global_hp = Global.hp
-				saving.level = get_parent().current_level
+				saving.level = get_parent().get_node("LevelManager").current_level
 				saving.player_inv = inventory.itemsList.slots
 				
 				saver.save(saving, save_path)

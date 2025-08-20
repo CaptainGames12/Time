@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://dsr7eeo6300mj"]
+[gd_scene load_steps=29 format=3 uid="uid://dsr7eeo6300mj"]
 
 [ext_resource type="Script" path="res://enemies/forest/clock_enemy/enemy.gd" id="1_ud3qa"]
 [ext_resource type="PackedScene" uid="uid://dmrk7fnn3wb0j" path="res://wizard/player_ui/bar.tscn" id="2_fi1k6"]
 [ext_resource type="PackedScene" uid="uid://dx6ah8cjdrku2" path="res://rooms/main/shadow.tscn" id="2_l28ki"]
 [ext_resource type="Texture2D" uid="uid://c0cvkgfbjl7q" path="res://enemies/forest/clock_enemy/full_enemy_health_bar.png" id="3_5c688"]
 [ext_resource type="Texture2D" uid="uid://0mhb5ep2dcq3" path="res://enemies/forest/clock_enemy/enemy_anim.png" id="3_47qgu"]
+[ext_resource type="Texture2D" uid="uid://bvqgbkfk02683" path="res://enemies/forest/clock_enemy/temp_enemy_health_bar.png" id="4_5c688"]
 [ext_resource type="Texture2D" uid="uid://b71c1i0lgtixf" path="res://enemies/forest/clock_enemy/emptyl_enemy_health_bar.png" id="4_jpc58"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5bivi"]
@@ -177,24 +178,27 @@ collision_mask = 295
 motion_mode = 1
 script = ExtResource("1_ud3qa")
 health = 150
-SPEED = 50
 
 [node name="Bar" parent="." instance=ExtResource("2_fi1k6")]
-offset_left = -87.0
-offset_top = -51.0
-offset_right = -9.0
-offset_bottom = -44.0
+offset_left = -63.0
+offset_top = -49.0
+offset_right = 15.0
+offset_bottom = -42.0
 scale = Vector2(2, 2)
 signal_name = "enemy_health_changed"
 bar_texture_progress = ExtResource("3_5c688")
-temp_texture_progress = ExtResource("3_5c688")
+temp_texture_progress = ExtResource("4_5c688")
 
-[node name="TempHealthBar" parent="Bar" index="0"]
+[node name="TempHealthBar" parent="Bar/HBoxContainer" index="1"]
+max_value = 150.0
+value = 150.0
 texture_under = ExtResource("4_jpc58")
-texture_progress = ExtResource("3_5c688")
 
-[node name="Bar" parent="Bar/HBoxContainer" index="1"]
-texture_progress = ExtResource("3_5c688")
+[node name="Bar" parent="Bar/HBoxContainer/TempHealthBar" index="0"]
+max_value = 150.0
+step = 15.0
+value = 150.0
+texture_progress = ExtResource("4_jpc58")
 
 [node name="Sprite2D2" parent="." instance=ExtResource("2_l28ki")]
 position = Vector2(-2, 26)

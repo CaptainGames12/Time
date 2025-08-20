@@ -23,14 +23,17 @@ var bought_item=false
 @export var voice: AudioStreamPlayer2D
 
 func buttons_disable():
-	btn_save.action="nothing"
-	btn_stop.action="nothing"
+	if btn_save != null and btn_stop!=null:
+		btn_save.action="nothing"
+		btn_stop.action="nothing"
 func _ready() -> void:
+	root_node = get_tree().root.get_child(get_child_count()-1)
 	if root_node.name!="Forest":
 		print(root_node.name)
 		root_of_tutorial_dialog.queue_free()
 	state_changer(Text_state.ONREADY)
-	spell_joystick.process_mode=Node.PROCESS_MODE_PAUSABLE
+	if spell_joystick!=null:	
+		spell_joystick.process_mode=Node.PROCESS_MODE_PAUSABLE
 	buttons_disable()
 	if Texts.place!=10:
 		DialogSignals.tutorial_started.emit()
@@ -42,9 +45,10 @@ func _ready() -> void:
 		DialogSignals.time_save_pressed.connect(save_pressed)
 		DialogSignals.time_stop_pressed.connect(stop_pressed)
 		DialogSignals.mixed_elements.connect(shoot_mixed)
-	if time_manager.loader!=null:	
+	if time_manager!=null:
+		if time_manager.loader!=null:	
 		
-		DialogSignals.tutorial_finished.emit()
+			DialogSignals.tutorial_finished.emit()
 var shoot_counter=0	
 func _process(_delta: float) -> void:
 
@@ -77,6 +81,8 @@ func _process(_delta: float) -> void:
 					
 				if !isTutorialStarted and Texts.place!=10:
 					Texts.place+=1
+				if Texts.place == 10:
+					DialogSignals.forest_end.emit()
 func finish():
 	get_tree().paused = false
 	get_parent().get_parent().queue_free()
