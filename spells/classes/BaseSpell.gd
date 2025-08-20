@@ -7,5 +7,4 @@ var spell: InvItem
 
 ## Base method of applying effect which can be modified in any script with spell effect.
 func apply_effect(body:Node2D):
-	body.health -= spell.damage
-	
+	SignalBus.boss_health_changed.emit(-spell.damage, body)

@@ -1,10 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmrk7fnn3wb0j"]
+[gd_scene load_steps=3 format=3 uid="uid://dmrk7fnn3wb0j"]
 
 [ext_resource type="Script" uid="uid://3pfcmp655ecf" path="res://wizard/player_ui/bar.gd" id="1_a1a3n"]
 [ext_resource type="Texture2D" uid="uid://djydnws75b4p7" path="res://ui/UI(1)/empty_bar.png" id="2_xmrn8"]
-[ext_resource type="Texture2D" uid="uid://b7m62x4kyv0vw" path="res://ui/UI(1)/temp_health_bar.png" id="3_bg0rc"]
-[ext_resource type="Texture2D" uid="uid://jhcfte7y2mjp" path="res://ui/UI(1)/health_icon.png" id="4_wueu0"]
-[ext_resource type="Texture2D" uid="uid://mimhocwhq3rv" path="res://ui/UI(1)/full_health_bar.png" id="5_gr3lm"]
 
 [node name="Bar" type="Control" node_paths=PackedStringArray("bar", "temp_bar", "timer", "icon_display")]
 layout_mode = 3
@@ -26,7 +23,6 @@ offset_right = 77.0
 offset_bottom = 7.0
 value = 100.0
 texture_under = ExtResource("2_xmrn8")
-texture_progress = ExtResource("3_bg0rc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -36,7 +32,6 @@ theme_override_constants/separation = 1
 
 [node name="Icon" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("4_wueu0")
 stretch_mode = 2
 
 [node name="Bar" type="TextureProgressBar" parent="HBoxContainer"]
@@ -45,7 +40,6 @@ size_flags_vertical = 0
 max_value = 10.0
 step = 0.1
 value = 10.0
-texture_progress = ExtResource("5_gr3lm")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.03

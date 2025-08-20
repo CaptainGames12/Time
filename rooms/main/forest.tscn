@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://c88ax48do1k7w"]
+
+[ext_resource type="PackedScene" uid="uid://cj50vhg4j81cq" path="res://rooms/main/location.tscn" id="1_lifw2"]
+
+[node name="Forest" type="Node2D"]
+
+[node name="Location" parent="." instance=ExtResource("1_lifw2")]
+position = Vector2(1149, 1261)
+
+[node name="SpenShop" parent="Location/Level1" index="9"]
+z_index = 0
+
+[node name="Tree" parent="Location/Level1/Tree/NavigationRegion2D" index="0"]
+position = Vector2(510.472, 242.032)
+
+[node name="Tree2" parent="Location/Level1/Tree/NavigationRegion2D" index="1"]
+position = Vector2(616.733, 234.367)
+
+[node name="Tree3" parent="Location/Level1/Tree/NavigationRegion2D" index="2"]
+position = Vector2(631.808, 248.788)
+
+[node name="Tree4" parent="Location/Level1/Tree/NavigationRegion2D" index="3"]
+position = Vector2(463.408, 280.357)
+
+[node name="Tree5" parent="Location/Level1/Tree/NavigationRegion2D" index="4"]
+position = Vector2(657.424, 280.227)
+
+[node name="Tree6" parent="Location/Level1/Tree/NavigationRegion2D" index="5"]
+position = Vector2(518.071, 273.212)
+
+[node name="Tree7" parent="Location/Level1/Tree/NavigationRegion2D" index="6"]
+position = Vector2(594.059, 266.196)
+
+[node name="Tree10" parent="Location/Level1/Tree/NavigationRegion2D" index="9"]
+position = Vector2(623.474, 393.643)
+
+[node name="Tree14" parent="Location/Level1/Tree/NavigationRegion2D" index="13"]
+position = Vector2(391.096, 231.769)
+
+[node name="Tree15" parent="Location/Level1/Tree/NavigationRegion2D" index="14"]
+position = Vector2(367.564, 284.644)
+
+[node name="Tree17" parent="Location/Level1/Tree/NavigationRegion2D" index="16"]
+position = Vector2(348.69, 374.026)
+
+[node name="Tree18" parent="Location/Level1/Tree/NavigationRegion2D" index="17"]
+position = Vector2(398.205, 438.464)
+
+[node name="Tree20" parent="Location/Level1/Tree/NavigationRegion2D" index="19"]
+position = Vector2(609.012, 449.507)
+
+[node name="Tree21" parent="Location/Level1/Tree/NavigationRegion2D" index="20"]
+position = Vector2(689.045, 461.589)
+
+[node name="Tree22" parent="Location/Level1/Tree/NavigationRegion2D" index="21"]
+position = Vector2(766.259, 437.555)
+
+[node name="Tree26" parent="Location/Level1/Tree/NavigationRegion2D" index="25"]
+position = Vector2(777.535, 236.576)
+
+[node name="Tree27" parent="Location/Level1/Tree/NavigationRegion2D" index="26"]
+position = Vector2(695.541, 253.854)
+
+[node name="Tree28" parent="Location/Level1/Tree/NavigationRegion2D" index="27"]
+position = Vector2(723.607, 272.822)
+
+[node name="Tree29" parent="Location/Level1/Tree/NavigationRegion2D" index="28"]
+position = Vector2(750.326, 274.641)
+
+[editable path="Location"]

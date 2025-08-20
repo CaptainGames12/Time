@@ -9,11 +9,13 @@ func _ready() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
 		body.SPEED=0
-		body.health-=dmg
+		SignalBus.enemy_health_changed.emit(-dmg, body)
+		
 	if body.is_in_group("boss"):
 		if !body.is_protected:
 			body.SPEED=0
-			body.health-=dmg
+			SignalBus.enemy_health_changed.emit(-dmg, body)
+		
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("enemy"):

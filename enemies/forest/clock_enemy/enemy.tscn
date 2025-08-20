@@ -180,6 +180,7 @@ collision_mask = 295
 motion_mode = 1
 script = ExtResource("1_ud3qa")
 health = 150
+SPEED = 200
 
 [node name="Sprite2D2" parent="." instance=ExtResource("2_l28ki")]
 position = Vector2(-2, 26)

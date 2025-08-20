@@ -9,10 +9,8 @@ var counter = 0
 		if healthbar!=null:	
 			healthbar.value = health
 		if value<=0:
-			
 			if counter<=0:
-				counter+=1
-				
+				counter+=1	
 				animation.stop()
 				animation.play("death")
 				animation.animation_finished.connect(spawn_coin_and_free)
@@ -53,7 +51,7 @@ func _ready() -> void:
 	healthbar.value = health
 	dead.connect($"..".enemy_death)
 	
-	restart_ui = get_parent().get_node("Interface/TimeControl/RestartUI")
+	
 
 func spawn_coin_and_free():
 	SPEED=0

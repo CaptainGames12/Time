@@ -23,6 +23,6 @@ func _on_body_entered(body):
 	get_tree().paused = pause_state
 	
 	DialogSignals.emit_signal("out_of_the_shop")
-	get_parent().get_parent().out_of_the_shop.emit()
+	SignalBus.exited_the_shop.emit()
 func change_pause_state():
 	pause_state = false

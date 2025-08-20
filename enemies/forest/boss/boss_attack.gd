@@ -17,8 +17,7 @@ func player_getter():
 		return player
 		
 func _on_body_entered(body: Player):
-	body.healthbar.value-=1
-	Global.hp-=1
+	SignalBus.health_changed.emit(-1, "health")
 	if boss!=null and body!=null:
 		boss.finishing_player(player_getter())
 	queue_free()

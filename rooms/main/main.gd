@@ -1,44 +1,13 @@
-
 extends Node2D
-
-
-
 var rewarded_ad_object : RewardedAd
 var rewarded_ad_load_callback := RewardedAdLoadCallback.new()
 var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 @onready var player = $Player
-@export var level_progress: TextureProgressBar
-
-
-@onready var current_level = 1
-
-@onready var boss_clock = preload("res://enemies/forest/boss/evil_clock_boss.tscn")
 @onready var entrance_shop: StaticBody2D = $Entrance_shop
 @export var dialogs: Control 
 
-@export var boss_healthbar: Control
-@onready var main_music: AudioStreamPlayer= %MainMusic
-@onready var entrance_anim: AnimatedSprite2D = $Entrance_shop/Entrance_anim
-@onready var scene_changer: Area2D = $Entrance_shop/SceneChanger
-
-@onready var enemy_count: Dictionary[int, int] = {
-	1:2,
-	2:4,
-	3:6,
-	4:8,
-	5:1
-}
-
-@onready var enemy = preload("res://enemies/forest/clock_enemy/enemy.tscn")
-@onready var rand = RandomNumberGenerator.new()
-@onready var dead_enemies = 0
-@onready var cooldown_timer = $CooldownBetweenWaves
-@onready var spawnholder = $SpawnHolder
 @onready var treasure = $Treasure
-@onready var boss_clock_node = boss_clock.instantiate()
-@onready var stage_label_tween: Tween
-signal in_the_shop
-signal out_of_the_shop
+
 
 func ad_initialize():
 	MobileAds.initialize()
@@ -59,110 +28,11 @@ func _notification(what: int) -> void:
 func _ready():
 	DialogSignals.forest_end.connect($Main_animations.play.bind("ending"))
 	Global.current_scene=self.scene_file_path
-	if %TimeControlManager.loader!=null:
-		current_level=%TimeControlManager.loader.level
-		open_shop()
-	else:
-		get_tree().paused=true
-		close_shop()
-	
+
 	ad_initialize()
 	Texts.place =1
-	DialogSignals.go_to_the_shop.connect(open_shop)
-	DialogSignals.tutorial_finished.connect(open_shop)
-	
-	cooldown_timer.autostart =true
-	in_the_shop.connect(pause_stage_tween)
-	out_of_the_shop.connect(start_stage_tween)
-func show_stage_completed():
-	stage_label_tween = get_tree().create_tween().chain()
-	stage_label_tween.tween_property(%StageCompleted, "visible_ratio", 1, 3)
-	stage_label_tween.tween_interval(0.5)
-	stage_label_tween.tween_property(%StageCompleted, "visible_ratio", 0, 3)
-	stage_label_tween.finished.connect(stage_label_tween.kill)
-func pause_stage_tween():
-	if stage_label_tween!=null:
-		stage_label_tween.pause()
-		%StageCompleted.visible=false	
-func start_stage_tween():
-	if stage_label_tween!=null:
-		stage_label_tween.play()
-		%StageCompleted.visible=true	
-
-func _process(_delta: float) -> void:
-	var enemies_are_here = []
-	for i in get_children():
-		if i.is_in_group("enemy"):
-			enemies_are_here.append(i)
-	if cooldown_timer.is_stopped() and enemies_are_here.is_empty() and boss_clock==null:
-		show_stage_completed()
-		open_shop()
-		current_level+=1
-		cooldown_timer.start()
-		
-		dead_enemies=0
-	if boss_clock_node!= null:
-		boss_healthbar.get_child(0).value= boss_clock_node.health
-func enemy_death():
-	dead_enemies += 1
-	
-	if dead_enemies==enemy_count[current_level]:
-		show_stage_completed()
-		start_stage_tween()
-		open_shop()
-		current_level+=1
-		cooldown_timer.start()
-		dead_enemies=0
-		
-func spawn_enemies():
-	
-	if current_level<=4:
-		for i in range(enemy_count[current_level]):
-			var enemy_node = enemy.instantiate()
-			var spawn_amount = spawnholder.get_child_count()-1
-			var rand_num = rand.randi_range(0, spawn_amount)
-			var spawn_pos = spawnholder.get_child(rand_num).position
-			enemy_node.position=spawn_pos
-			enemy_node.treasure = treasure
-			add_child(enemy_node)
-			await get_tree().create_timer(1, false).timeout
-	elif current_level==5:
-		main_music.stream = load("res://Enemies/boss/test1.mp3")
-		
-		main_music.play()
-		
-		add_child(boss_clock_node)
-		boss_clock_node.hit_player.connect(player.boss_hit)
-		boss_healthbar.get_child(0).value= boss_clock_node.health
-		boss_healthbar.get_child(0).max_value= boss_clock_node.health
-		boss_healthbar.visible = true
-		
-func update_level():
-	
-	if level_progress!=null:
-		level_progress.value = current_level
-		level_progress.get_child(0).value=current_level-1
-	spawn_enemies()
-func _on_cooldown_between_waves_timeout() -> void:
-	close_shop()
-	update_level()
-		
-func open_shop():
-	print("shop is opened")
-	PhysicsServer2D.set_active(true)
-	%OpenCloseAudio.play()
-	scene_changer.monitoring = true
-	entrance_anim.play("open")
-	$Entrance_shop/Closed/ClosedCollision.disabled =true
-func close_shop():
-	print("shop is closed")
-	PhysicsServer2D.set_active(true)	
-	%OpenCloseAudio.play()
-	scene_changer.monitoring = false
-	entrance_anim.play("close")
-	$Entrance_shop/Closed/ClosedCollision.disabled =false
-
-
+	DialogSignals.go_to_the_shop.connect($Entrance_shop.open_shop)
+	DialogSignals.tutorial_finished.connect($Entrance_shop.open_shop)
 	
 
 func _on_ending_animation_finished(_anim_name: StringName="ending") -> void:

@@ -14,7 +14,7 @@ func _on_body_entered(body):
 	time_control_manager.in_the_shop=true
 	time_control_manager.stamina_timer.stop()
 	body.global_position = shop.entrance_pos
-	root_node.in_the_shop.emit()
+	SignalBus.entered_the_shop.emit()
 	shop.shop_theme.play()
 	get_tree().paused =true
 	PhysicsServer2D.set_active(true)

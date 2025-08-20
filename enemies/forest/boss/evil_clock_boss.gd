@@ -1,9 +1,9 @@
 extends CharacterBody2D
-class_name ClockBoss
+class_name Boss
 
 var isAngried = false
-@onready var player = get_node("/root/Node2D/Player")
-var isProtected=true
+@onready var player = get_node("/root/Forest/Player")
+var isProtected = true
 @onready var clock_boss_sprite: AnimatedSprite2D = $Animation
 @onready var defense: Sprite2D = $Defense
 @onready var restart_ui: Control
@@ -31,7 +31,7 @@ var counter=0
 			health=value	
 signal hit_player
 signal stopHit
-@onready var stop_vector: RayCast2D = get_node("/root/Node2D/StopVec")
+@onready var stop_vector: RayCast2D = get_node("/root/Forest/StopVec")
 @onready var locator: Area2D = $Locator
 @onready var rolling_time: Timer = $RollingTime
 @onready var locator_sprite: Sprite2D = $"Locator sprite"
@@ -46,10 +46,9 @@ enum States
 var state = States.IDLE
 var atk_dir:Vector2 = Vector2(0, 0)
 var isWinded = false
-var spawnRock = false
+
 var knock_speed=50
-var rockNode = preload("res://spells/earth/rock.tscn").instantiate()
-		
+
 func states_changer(newState):
 	state=newState
 func rolling_animate(delta):
@@ -106,8 +105,9 @@ func _process(delta: float) -> void:
 			rolling_animate(delta)
 func _ready() -> void:
 	Texts.place=10
-	get_parent().get_node("CanvasLayer").add_child(phrases)
-	get_parent().get_node("MainMusic").playing=false
+	get_parent().get_parent().get_node("Interface").add_child(phrases)
+	SignalBus.boss_entered.emit()
+	get_parent().get_parent().get_node("MainMusic").playing=false
 	stopHit.connect(stopHitEmited)
 	scale.x = 4
 	scale.y = 4
@@ -115,7 +115,7 @@ func _ready() -> void:
 	position = Vector2(1878, 580)
 	var tween_walking = get_tree().create_tween()
 	tween_walking.tween_property(self, "global_position", Vector2(1650,580),2)
-	#tween_walking.finished.connect(walked)
+	
 
 func stopHitEmited():
 
@@ -141,8 +141,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_attack_body_entered(body: Node2D) -> void:
 	if body is Player:
-		Global.hp-=2
-		body.healthbar.value-=2
+		SignalBus.health_changed.emit(-2, "health")
 		emit_signal("hit_player", velocity)
 		finishing_player(body)
 	elif body.is_in_group("tree"):
@@ -151,20 +150,9 @@ func _on_attack_body_entered(body: Node2D) -> void:
 		health -=2
 		
 func finishing_player(body):
-	restart_ui =get_parent().get_node("CanvasLayer/TimeControl/RestartUI")
-	
-	
+
 	if Global.hp <= 0:
-		if restart_ui!=null:
-			for i in get_parent().get_node("CanvasLayer").get_children():
-				for j in i.get_children():
-					if j.name!="RestartUI":
-						j.queue_free()
-			body.queue_free()
-			get_tree().paused = true
-			restart_ui.visible = true
-		game_over_anim()
-	
+		SignalBus.game_over.emit()
 func game_over_anim():
 	get_parent().get_node("CanvasLayer/TimeControl/RestartUI/Clock").game_over=true
 	get_parent().get_node("Sprite2D").global_position=get_parent().get_node("Treasure").position
@@ -195,17 +183,3 @@ func _on_rolling_time_timeout() -> void:
 
 	locator_sprite.visible = true
 	locator.set_deferred("monitoring", true)
-func winded(direction):
-	atk_dir = direction
-	isWinded = true
-
-func watered():
-	SPEED = 5
-	await get_tree().create_timer(4).timeout
-	SPEED = 20
-func fired():
-	for i in range(4):
-		await get_tree().create_timer(1).timeout
-		health-=2
-		if i==4:
-			get_child(0).queue_free()

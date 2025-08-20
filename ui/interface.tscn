@@ -1,11 +1,10 @@
-[gd_scene load_steps=46 format=3 uid="uid://bykkx8hfl6i86"]
+[gd_scene load_steps=45 format=3 uid="uid://bykkx8hfl6i86"]
 
 [ext_resource type="Shader" uid="uid://ce7iw88ohe0gi" path="res://wizard/gray_time_stop_screen.gdshader" id="1_yp3y4"]
 [ext_resource type="PackedScene" uid="uid://dmrk7fnn3wb0j" path="res://wizard/player_ui/bar.tscn" id="2_2t7gn"]
 [ext_resource type="Texture2D" uid="uid://cv6flshcukulp" path="res://ui/UI(1)/full_stamina_bar.png" id="3_2t7gn"]
 [ext_resource type="PackedScene" uid="uid://byyvwanp7uc17" path="res://rooms/main/level_progress.tscn" id="3_gtcda"]
 [ext_resource type="Texture2D" uid="uid://y6ej43kku5no" path="res://ui/UI(1)/temp_stamina_bar.png" id="4_gtcda"]
-[ext_resource type="PackedScene" uid="uid://cbvctbxxv3rvi" path="res://enemies/forest/boss/boss_health.tscn" id="4_i3j0c"]
 [ext_resource type="FontFile" uid="uid://bpp82k7v8e671" path="res://shopping/PixelatedEleganceRegular-ovyAA.ttf" id="5_goa6t"]
 [ext_resource type="Texture2D" uid="uid://do35fw3l71m4f" path="res://ui/UI(1)/stamina_icon.png" id="5_js8hj"]
 [ext_resource type="Texture2D" uid="uid://boevfpikbod4w" path="res://ui/UI(1)/button_5.png" id="6_js8hj"]
@@ -170,6 +169,22 @@ bar_texture_progress = ExtResource("6_o5cqe")
 temp_texture_progress = ExtResource("7_g8vcq")
 icon = ExtResource("8_apw32")
 
+[node name="BossHealth" parent="ProgressBars" instance=ExtResource("2_2t7gn")]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.0
+offset_top = 2.0
+offset_right = 39.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(39, 35)
+signal_name = "enemy_health_changed"
+
 [node name="LevelProgress" parent="ProgressBars" instance=ExtResource("3_gtcda")]
 unique_name_in_owner = true
 anchors_preset = 4
@@ -182,10 +197,6 @@ offset_bottom = -174.0
 grow_vertical = 2
 scale = Vector2(5, 5)
 size_flags_horizontal = 0
-
-[node name="Boss_health" parent="ProgressBars" instance=ExtResource("4_i3j0c")]
-unique_name_in_owner = true
-visible = false
 
 [node name="StageCompleted" type="RichTextLabel" parent="ProgressBars"]
 unique_name_in_owner = true
