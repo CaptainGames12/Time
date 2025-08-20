@@ -4,7 +4,7 @@ extends Node2D
 @export var level_progress: TextureProgressBar
 @export var boss_level: int
 @export var boss_track: AudioStream
-
+@export var stage_completed: RichTextLabel
 @export var scene_changer: Area2D
 
 @onready var stage_label_tween: Tween
@@ -20,7 +20,7 @@ extends Node2D
 	4:8,
 	5:1
 }
-@onready var current_level = 5
+@onready var current_level = 1
 
 @export var boss_scene: PackedScene
 @onready var boss_node = boss_scene.instantiate()
@@ -106,15 +106,15 @@ func _on_cooldown_between_waves_timeout() -> void:
 
 func show_stage_completed():
 	stage_label_tween = get_tree().create_tween().chain()
-	stage_label_tween.tween_property(%StageCompleted, "visible_ratio", 1, 3)
+	stage_label_tween.tween_property(stage_completed, "visible_ratio", 1, 3)
 	stage_label_tween.tween_interval(0.5)
-	stage_label_tween.tween_property(%StageCompleted, "visible_ratio", 0, 3)
+	stage_label_tween.tween_property(stage_completed, "visible_ratio", 0, 3)
 	stage_label_tween.finished.connect(stage_label_tween.kill)
 func pause_stage_tween():
 	if stage_label_tween!=null:
 		stage_label_tween.pause()
-		%StageCompleted.visible=false	
+		stage_completed.visible=false	
 func start_stage_tween():
 	if stage_label_tween!=null:
 		stage_label_tween.play()
-		%StageCompleted.visible=true	
+		stage_completed.visible=true	

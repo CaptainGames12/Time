@@ -3,27 +3,14 @@ class_name Enemy
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 var counter = 0
 
-@export var health = 100:
-	set(value):
-		health=value
-		if healthbar!=null:	
-			healthbar.value = health
-		if value<=0:
-			if counter<=0:
-				counter+=1	
-				animation.stop()
-				animation.play("death")
-				animation.animation_finished.connect(spawn_coin_and_free)
-				healthbar.value = health
-				health=value
-			
-		
+@export var health = 100
+	
 @export var SPEED = 100
 
 @onready var animation: AnimatedSprite2D = $Animation
 @onready var nav: NavigationAgent2D = $NavigationAgent2D
 
-@onready var healthbar: ProgressBar = $ProgressBar
+
 @onready var attack_animation_player: AnimationPlayer = $AnimationPlayer
 
 
@@ -47,11 +34,7 @@ var tornado_direction: Vector2
 signal dead
 
 func _ready() -> void:
-	healthbar.max_value = health
-	healthbar.value = health
 	dead.connect($"..".enemy_death)
-	
-	
 
 func spawn_coin_and_free():
 	SPEED=0

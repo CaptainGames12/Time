@@ -24,12 +24,17 @@ func change_value(diff: float, additional_value: Variant)->void:
 		update_bars(diff, bar, temp_bar, diff, rate_of_change_temp_bar)
 	if diff>0:
 		update_bars(diff, temp_bar, bar, diff*10, rate_of_change_bar)
-	if additional_value == "health":
+	if str(additional_value) == "health":
 		change_health(diff)
 	if additional_value is CharacterBody2D:
 		change_enemy_health(diff, additional_value)
 func change_enemy_health(diff: float, enemy: CharacterBody2D):
-	enemy.health -= diff
+	enemy.health += diff
+	if(enemy.health<=0):
+		enemy.animation.stop()
+		enemy.animation.play("death")
+		enemy.animation.animation_finished.connect(enemy.spawn_coin_and_free)
+				
 	
 func update_bars(diff_for_updates:float, first_bar:TextureProgressBar, after_bar: TextureProgressBar, diff_for_instant_val_change: float, rate_of_change: float):
 	var amount_of_updates: float = abs(diff_for_updates)*10

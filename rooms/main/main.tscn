@@ -262,25 +262,26 @@ position = Vector2(4.03308, -56)
 scale = Vector2(17.9317, 472.044)
 remote_path = NodePath("../../Camera2D")
 
-[node name="LevelManager" parent="." node_paths=PackedStringArray("treasure", "player", "level_progress", "scene_changer", "boss_healthbar", "entrance_anim") instance=ExtResource("4_353kp")]
+[node name="LevelManager" parent="." node_paths=PackedStringArray("treasure", "player", "level_progress", "stage_completed", "scene_changer", "boss_healthbar", "entrance_anim") instance=ExtResource("4_353kp")]
 treasure = NodePath("../Treasure")
 player = NodePath("../Player")
 level_progress = NodePath("../Interface/ProgressBars/LevelProgress")
 boss_level = 5
 boss_track = ExtResource("5_mee6x")
+stage_completed = NodePath("../Interface/ProgressBars/StageCompleted")
 scene_changer = NodePath("../Entrance_shop/SceneChanger")
 boss_healthbar = NodePath("../Interface/ProgressBars/BossHealth")
 entrance_anim = NodePath("../Entrance_shop/Entrance_anim")
 boss_scene = ExtResource("6_w8gtq")
 
 [node name="Spawner" type="Node2D" parent="LevelManager"]
-position = Vector2(3435, 1066)
+position = Vector2(3179, 1178)
 
 [node name="Spawner2" type="Node2D" parent="LevelManager"]
-position = Vector2(1186, 2644)
+position = Vector2(1164, 2410)
 
 [node name="Spawner4" type="Node2D" parent="LevelManager"]
-position = Vector2(-1233, 1329)
+position = Vector2(-1022, 1240)
 
 [node name="TimeControlManager" parent="." node_paths=PackedStringArray("ui", "darkness_falling", "stop_pressed_cooldown", "stop_audio", "restart_ui", "time_stop_screen_fx", "dialogs", "player", "healthbar", "inventory", "entrance", "treasure", "stamina", "stamina_timer", "restart_button", "ring_effect") instance=ExtResource("2_mee6x")]
 unique_name_in_owner = true
